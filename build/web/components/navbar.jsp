@@ -60,11 +60,19 @@
                 Tài khoản
               </a>
               <ul class="dropdown-menu">
+                  <!--Trước khi login-->
                 <li>
                   <a class="dropdown-item" href="login-user.jsp">Đăng nhập</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="login-admin.jsp">Đăng nhập cho admin</a>
+                </li>
+                <!--sau khi login-->
+                <li>
+                  <a class="dropdown-item" href="login-admin.jsp">Thông tin cá nhân</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="login-admin.jsp">Đăng xuất</a>
                 </li>
               </ul>
             </li>
