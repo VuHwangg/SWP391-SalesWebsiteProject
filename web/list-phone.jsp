@@ -87,49 +87,47 @@
                         <p>Sắp xếp theo:</p>
                       </div>
                       <div class="col-md-8">
-                        <form action="" method="get">
-                            <div class="btn-group sort-method-selection" role="group">
-                              <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btnradio1"
-                                autocomplete="off"
-                                checked
-                              />
-                              <label class="btn btn-outline-danger" for="btnradio1">
-                                Khuyến mãi
+                        <div class="btn-group sort-method-selection" role="group">
+                            <input
+                              type="radio"
+                              class="btn-check"
+                              name="btnradio"
+                              id="btnradio1"
+                              autocomplete="off"
+                              checked
+                            />
+                            <a class="btn btn-outline-danger" href="#">
+                                <label for="btnradio1">
+                                    Khuyến mãi
                               </label>
+                            </a>
 
-                              <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btnradio2"
-                                autocomplete="off"
-                              />
-                              <label class="btn btn-outline-danger" for="btnradio2">
-                                Giá tăng dần
+                            <input
+                              type="radio"
+                              class="btn-check"
+                              name="btnradio"
+                              id="btnradio2"
+                              autocomplete="off"
+                            />
+                            <a class="btn btn-outline-danger" href="#">
+                              <label for="btnradio2">
+                                  Giá tăng dần
                               </label>
+                            </a>
 
-                              <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btnradio3"
-                                autocomplete="off"
-                              />
-                              <label class="btn btn-outline-danger" for="btnradio3">
-                                Giá giảm dần
+                            <input
+                              type="radio"
+                              class="btn-check"
+                              name="btnradio"
+                              id="btnradio3"
+                              autocomplete="off"
+                            />
+                            <a class="btn btn-outline-danger" href="#">
+                                <label for="btnradio3">
+                                  Giá giảm dần
                               </label>
-
-                              <input
-                                class="btn btn-outline-secondary"
-                                type="submit"
-                                value="Lọc"
-                              />
-                            </div>
-                          </form>
+                            </a>
+                          </div>
                       </div>
                     </div>
 

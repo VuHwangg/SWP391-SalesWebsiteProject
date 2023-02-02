@@ -315,6 +315,10 @@
   .list-product .sort-method .sort-method-selection .btn {
     font-weight: 500;
   }
+  
+  .list-product .sort-method .sort-method-selection .btn label {
+      cursor: pointer;
+  }
 
   @media (max-width: 768px) {
     .list-product .sort-method .sort-method-title {
