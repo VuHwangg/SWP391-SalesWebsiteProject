@@ -72,7 +72,7 @@
                   <a class="dropdown-item" href="login-admin.jsp">Thông tin cá nhân</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="login-admin.jsp">Đăng xuất</a>
+                  <a class="dropdown-item" href="login-user.jsp">Đăng xuất</a>
                 </li>
               </ul>
             </li>

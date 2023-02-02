@@ -24,7 +24,7 @@
                     <a
                         type="button"
                         class="btn btn-outline-light"
-                        href="index.html"
+                        href="index.jsp"
                         style="font-weight: 500"
                         >
                         <i class="bi bi-house me-1"></i>Trang chủ
