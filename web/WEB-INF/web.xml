@@ -8,6 +8,10 @@
         <servlet-name>SignupUser</servlet-name>
         <servlet-class>controller.SignupUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginEmpt</servlet-name>
+        <servlet-class>controller.LoginEmpt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SignupUser</servlet-name>
         <url-pattern>/SignupUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginEmpt</servlet-name>
+        <url-pattern>/LoginEmpt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
