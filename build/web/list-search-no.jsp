@@ -21,7 +21,7 @@
             <div class="content-center">
               <!-- Breadcrumb -->
               <div class="breadcrumb">
-                <a href="index.html">Trang chủ</a>
+                <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
                 <a href="#">Tìm kiếm</a>
               </div>
@@ -30,7 +30,7 @@
                 <div>
                     <p>Rất tiếc, chúng tôi không có kết quả bạn cần tìm</p>
                     <div class="row">
-                        <a class="btn btn-danger w-50"> Quay lại trang chủ </a>
+                        <a class="btn btn-danger w-50" href="home"> Quay lại trang chủ </a>
                     </div>
                 </div>
               </div>

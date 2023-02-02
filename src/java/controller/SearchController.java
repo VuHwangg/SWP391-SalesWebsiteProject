@@ -27,7 +27,13 @@ public class SearchController extends HttpServlet{
         ProductDBContext productList = new ProductDBContext();
         ArrayList<Product> searchList = productList.listProduct(textSearch,sort);
         request.setAttribute("searchList", searchList);
-        request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
+        if(searchList.isEmpty()){
+            response.sendRedirect("list-search-no.jsp");
+        }
+        else{
+            request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
+        }
+        
     }
 
     @Override

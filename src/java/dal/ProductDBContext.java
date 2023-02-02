@@ -40,29 +40,29 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where  [status] = 1";
-            if(type != -1){
-                sql= sql+"AND [type] = ?"; 
+            if (type != -1) {
+                sql = sql + "AND [type] = ?";
             }
-            if(topSold == true || topSale == true){
-                sql= sql+" ORDER BY "; 
+            if (topSold == true || topSale == true) {
+                sql = sql + " ORDER BY ";
             }
-            
-            if(topSold == true){
-                sql= sql+"[sold] DESC"; 
+
+            if (topSold == true) {
+                sql = sql + "[sold] DESC";
             }
-            
-            if(topSale == true){
-                if(topSold == true) sql = sql + ", ";
-                sql= sql+" [discount] DESC"; 
+
+            if (topSale == true) {
+                if (topSold == true) {
+                    sql = sql + ", ";
+                }
+                sql = sql + " [discount] DESC";
             }
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
-            if(type != -1){ 
+            if (type != -1) {
                 stm.setInt(2, type);
             }
-            
-            
-            
+
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -179,5 +179,4 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-
 }

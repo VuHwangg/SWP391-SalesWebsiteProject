@@ -24,7 +24,7 @@
       <div class="footer-section footer-links">
           <h2>Truy Cập</h2>
           <ul>
-              <li><a href="index.jsp">Trang chủ</a></li>
+              <li><a href="home">Trang chủ</a></li>
               <li><a href="list-phone.jsp">Điện thoại</a></li>
               <li><a href="list-laptop.jsp">Laptop</a></li>
               <li><a href="cart.jsp">Giỏ hàng</a></li>

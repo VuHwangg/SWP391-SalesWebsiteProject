@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="index.jsp">Logo</a>
+            <a class="navbar-brand" href="home">Logo</a>
 
             <!-- Search box -->
             <form class="d-flex search-box" role="search" action="search" method="GET">
