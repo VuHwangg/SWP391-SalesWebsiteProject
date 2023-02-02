@@ -89,22 +89,28 @@
                     </div>
                     <div class="border-top border-dark border-3 my-3"></div>
                     <!--Login with account password-->
-                    <form>
+                    <form action="LoginEmpt" method="post">
                       <p class="lead mb-3" style="color: #fb1514">
                         Phần đăng nhập chỉ dành cho Admin
                       </p>
 
                       <div class="mb-3">
+                             <%
+                                String mess = (String)request.getAttribute("err");
+                                if(mess == null) mess="";           
+                                            %>
+                                            <p><%=mess%></p>
                         <input
-                          type="email"
+                            name="email"
+                            type="text"
                           class="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
+                         
                           placeholder="Username"
                         />
                       </div>
                       <div class="mb-3">
                         <input
+                            name="pass"
                           type="password"
                           class="form-control"
                           id="exampleInputPassword1"
