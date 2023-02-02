@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dal.AccountDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,9 +43,9 @@ public class LoginUser extends HttpServlet {
         if(adao.loginGoogle(user.getEmail())){
             HttpSession session = request.getSession();
             session.setAttribute("account", user);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("register-user.jsp").forward(request, response);
         }
     }
 
