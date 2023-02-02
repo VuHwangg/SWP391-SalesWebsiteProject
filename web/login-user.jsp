@@ -96,10 +96,8 @@
 
                                             <div class="mb-3">
                                                 <input
-                                                    type="email"
-                                                    class="form-control"
-                                                    id="exampleInputEmail1"
-                                                    aria-describedby="emailHelp"
+                                                    type="text"
+                                                    class="form-control"       
                                                     placeholder="Username"
                                                     />
                                             </div>
