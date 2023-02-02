@@ -128,7 +128,9 @@ public class ProductDBContext extends DBContext {
                     + "   OR [memory] LIKE ?\n"
                     + "   OR [cpu] LIKE ?\n"
                     + "   OR [graphics_card] LIKE ? AND [status] = 1";
-
+            if (sort.compareTo("none") == 0) {
+                sql = sql + "\n ORDER BY [discount] DESC";
+            }
             if (sort.compareTo("ASC") == 0) {
                 sql = sql + "\n ORDER BY [current_price] ASC";
             }
