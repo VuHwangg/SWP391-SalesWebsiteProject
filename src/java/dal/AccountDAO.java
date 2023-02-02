@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import module.Account;
 import module.Customer;
 
 /**
@@ -34,5 +35,80 @@ public class AccountDAO extends DBContext {
         }
         return false;
     }
-//    public boolean Addco
+
+    public Account checkLoginCus(String username, String password) throws SQLException {
+        Account acc = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * "
+                    + " FROM Account "
+                    + " WHERE username =? AND password=? ";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("username");
+                String pass = rs.getString("password");
+                String displayname = rs.getString("displayname");
+                acc = new Account(name, pass, displayname);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+        return acc;
+    }
+    public boolean AddAcount(String username, String password,String displayname){
+         boolean check = false;
+        try {
+            String sql = "Insert Account "
+                    + "(username,password,displayname) values (?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, displayname);
+           
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+   public boolean AddCust(String customer_name, String address,String phone,String email){
+         boolean check = false;
+        try {
+            String sql = "Insert into Customer "
+                    + "(customer_name,address,phone,email) values (?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, customer_name);
+            ps.setString(2, address);
+            ps.setString(3, phone);
+            ps.setString(4, email);
+           
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+   public boolean AddRole(int roleid, String username){
+        boolean check = false;
+        try {
+            String sql = "Insert into Role_Account"
+                    + "(role_id,username) values(?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, roleid);
+            ps.setString(2,username );                    
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+   }
 }
