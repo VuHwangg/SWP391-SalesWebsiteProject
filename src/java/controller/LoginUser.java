@@ -34,12 +34,14 @@ public class LoginUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public static String mail ;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
         GooglePojo user = getUserInfo(accessToken);
         AccountDAO adao = new AccountDAO();
+        mail =user.getEmail() ;
         if(adao.loginGoogle(user.getEmail())){
             HttpSession session = request.getSession();
             session.setAttribute("account", user);
