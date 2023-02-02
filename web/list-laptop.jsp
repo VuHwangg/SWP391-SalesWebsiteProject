@@ -87,7 +87,6 @@
                         <p>Sắp xếp theo:</p>
                       </div>
                       <div class="col-md-8">
-                        <form action="" method="get">
                             <div class="btn-group sort-method-selection" role="group">
                               <input
                                 type="radio"
@@ -97,9 +96,11 @@
                                 autocomplete="off"
                                 checked
                               />
-                              <label class="btn btn-outline-danger" for="btnradio1">
-                                Khuyến mãi
-                              </label>
+                              <a class="btn btn-outline-danger" href="#">
+                                  <label for="btnradio1">
+                                      Khuyến mãi
+                                </label>
+                              </a>
 
                               <input
                                 type="radio"
@@ -108,10 +109,12 @@
                                 id="btnradio2"
                                 autocomplete="off"
                               />
-                              <label class="btn btn-outline-danger" for="btnradio2">
-                                Giá tăng dần
-                              </label>
-
+                              <a class="btn btn-outline-danger" href="#">
+                                <label for="btnradio2">
+                                    Giá tăng dần
+                                </label>
+                              </a>
+                              
                               <input
                                 type="radio"
                                 class="btn-check"
@@ -119,17 +122,12 @@
                                 id="btnradio3"
                                 autocomplete="off"
                               />
-                              <label class="btn btn-outline-danger" for="btnradio3">
-                                Giá giảm dần
-                              </label>
-
-                              <input
-                                class="btn btn-outline-secondary"
-                                type="submit"
-                                value="Lọc"
-                              />
+                              <a class="btn btn-outline-danger" href="#">
+                                  <label for="btnradio3">
+                                    Giá giảm dần
+                                </label>
+                              </a>
                             </div>
-                          </form>
                       </div>
                     </div>
 

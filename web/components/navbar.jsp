@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="index.jsp">Logo</a>
 
         <!-- Search box -->
         <form class="d-flex search-box" role="search">
@@ -38,16 +38,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Điện thoại</a>
+              <a class="nav-link" href="list-phone.jsp">Điện thoại</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Laptop</a>
+              <a class="nav-link" href="list-laptop.jsp">Laptop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Giỏ hàng</a>
+              <a class="nav-link" href="cart.jsp">Giỏ hàng</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tra đơn</a>
+              <a class="nav-link" href="order-info.jsp">Tra đơn</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -61,10 +61,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">Đăng xuất</a>
+                  <a class="dropdown-item" href="login-user.jsp">Đăng nhập</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Thay đổi thông tin</a>
+                  <a class="dropdown-item" href="login-admin.jsp">Đăng nhập cho admin</a>
                 </li>
               </ul>
             </li>

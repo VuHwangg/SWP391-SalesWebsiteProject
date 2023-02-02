@@ -5,7 +5,7 @@
 
       <div class="footer-section footer-about">
           <div class="footer-logo">
-              <img src="#" alt="Logo">
+              <img src="index.jsp" alt="Logo">
           </div>
           <div class="description">
               <p>
@@ -24,12 +24,12 @@
       <div class="footer-section footer-links">
           <h2>Truy Cập</h2>
           <ul>
-              <li><a href="#">Trang chủ</a></li>
-              <li><a href="#">Điện thoại</a></li>
-              <li><a href="#">Laptop</a></li>
-              <li><a href="#">Giỏ hàng</a></li>
-              <li><a href="#">Theo dõi đơn</a></li>
-              <li><a href="#">Cá nhân</a></li>
+              <li><a href="index.jsp">Trang chủ</a></li>
+              <li><a href="list-phone.jsp">Điện thoại</a></li>
+              <li><a href="list-laptop.jsp">Laptop</a></li>
+              <li><a href="cart.jsp">Giỏ hàng</a></li>
+              <li><a href="order-info.jsp">Theo dõi đơn</a></li>
+              <li><a href="">Cá nhân</a></li>
           </ul>
       </div> 
 
