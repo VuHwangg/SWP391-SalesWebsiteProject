@@ -36,7 +36,7 @@ public class AccountDAO extends DBContext {
         return false;
     }
 
-    public Account checkLoginCus(String username, String password) throws SQLException {
+    public Account checkLoginCus(String username, String password)  {
         Account acc = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -55,15 +55,8 @@ public class AccountDAO extends DBContext {
                 acc = new Account(name, pass, displayname);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
+        } catch(Exception ex ){
+            
         }
         return acc;
     }
