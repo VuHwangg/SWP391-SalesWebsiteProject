@@ -75,36 +75,7 @@
                                         </div>
                                         
                                         <!--Login with account password-->
-
-                                        <form>
-                                            <p class="lead mb-3" style="color: #fb1514">
-                                                Phần đăng nhập chỉ dành cho Admin
-                                            </p>
-
-                                            <div class="mb-3">
-                                                <input
-                                                    type="text"
-                                                    class="form-control"       
-                                                    placeholder="Username"
-                                                    />
-                                            </div>
-                                            <div class="mb-3">
-                                                <input
-                                                    type="password"
-                                                    class="form-control"
-                                                    id="exampleInputPassword1"
-                                                    placeholder="Password"
-                                                    />
-                                            </div>
-
-                                            <button
-                                                type="submit"
-                                                class="btn btn-outline-danger w-100"
-                                                >
-                                                Login
-                                            </button>
-                                        </form>
-
+                                        
                                     </div>
                                 </div>
                             </div>

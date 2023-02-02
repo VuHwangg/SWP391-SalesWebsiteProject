@@ -23,65 +23,12 @@
                 <div class="d-flex justify-content-start align-items-start">
                     <a
                         type="button"
-
-                        class="btn btn-outline-dark mb-2 w-100"
-                      >
-                        <i class="bi bi-google text-danger me-1"></i>
-                        <p class="d-inline h5">
-                          <strong>Sử dụng tài khoản Google </strong>
-                        </p>
-                      </button>
-
-                      <button
-                        type="button"
-                        class="btn btn-outline-dark mb-2 w-100"
-                      >
-                        <i class="bi bi-facebook text-primary me-1"></i>
-                        <p class="d-inline h5">
-                          <strong>Sử dụng tài khoản Facebook </strong>
-                        </p>
-                      </button>
-                    </div>
-                    <div class="border-top border-dark border-3 my-3"></div>
-                    <!--Login with account password-->
-                    <form action="LoginEmpt" method="post">
-                      <p class="lead mb-3" style="color: #fb1514">
-                        Phần đăng nhập chỉ dành cho Admin
-                      </p>
-
-                      <div class="mb-3">
-                             <%
-                                String mess = (String)request.getAttribute("err");
-                                if(mess == null) mess="";           
-                                            %>
-                                            <p><%=mess%></p>
-                        <input
-                            name="email"
-                            type="text"
-                          class="form-control"
-                         
-                          placeholder="Username"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <input
-                            name="pass"
-                          type="password"
-                          class="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Password"
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        class="btn btn-outline-danger w-100"
-                      >
-                        Login
-                      </button>
-                    </form>
-                  </div>
-
+                        class="btn btn-outline-light"
+                        href="index.jsp"
+                        style="font-weight: 500"
+                        >
+                        <i class="bi bi-house me-1"></i>Trang chủ
+                    </a>
                 </div>
                 <h1 style="color: white">FTECH</h1>
                 <h4 style="color: white">
