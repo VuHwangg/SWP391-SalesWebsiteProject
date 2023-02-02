@@ -61,13 +61,13 @@
                     <div class="border-top border-dark border-3 my-3"></div>
 
                     <!--Login with account password-->
-                    <form>
+                    <form action="SignupUser"  method="post">
                       <p class="lead mb-3" style="color: #fb1514">
                         Bạn vui lòng hoàn thiện thêm thông tin bên dưới
                       </p>
 
                       <div class="mb-3">
-                        <input
+                        <input name = "name"
                           type="text"
                           class="form-control"
                           placeholder="Họ và tên"
@@ -75,7 +75,7 @@
                       </div>
 
                       <div class="mb-3">
-                        <input
+                          <input name="phone"
                           type="text"
                           class="form-control"
                           placeholder="Số điện thoại"
@@ -83,7 +83,7 @@
                       </div>
 
                       <div class="mb-3">
-                        <input
+                          <input name="place"
                           type="text"
                           class="form-control"
                           placeholder="Địa chỉ nhà"
