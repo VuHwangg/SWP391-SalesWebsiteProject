@@ -56,17 +56,23 @@
                                             ĐĂNG NHẬP
                                         </h1>
                                         <!--Đăng nhập cho user-->
-                                        
-                                        
+
+
                                         <!--Login with account password-->
                                         <div class="border-top border-dark border-3 my-3"></div>
                                         <p class="mb-3" style="color: #fb1514; font-size: 20px">
                                             Phần đăng nhập chỉ dành cho Admin
                                         </p>
                                         
-                                        <form>
+                                        <form action="LoginEmpt" method="post">
+                                            <%
+                                            String mess = (String)request.getAttribute("err");
+                                            if(mess == null) mess="";           
+                                        %>
+                                        <p><%=mess%></p>
                                             <div class="mb-3">
                                                 <input
+                                                    name="email"
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Username"
@@ -74,6 +80,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <input
+                                                    name="pass"
                                                     type="password"
                                                     class="form-control"
                                                     id="exampleInputPassword1"
