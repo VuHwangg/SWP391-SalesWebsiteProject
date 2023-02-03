@@ -49,7 +49,7 @@
                         <a class="nav-link" href="cart.jsp">Giỏ hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order-info.jsp">Tra đơn</a>
+                        <a class="nav-link" href="order-lookup.jsp">Tra đơn</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a

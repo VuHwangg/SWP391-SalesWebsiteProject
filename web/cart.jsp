@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <title>Trang chủ</title>
+        <title>Giỏ hàng</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -18,8 +18,11 @@
 
           <div class="py-5"></div>
             <div class="container min-vh-100">
-              <div>
-                <p class="fw-bold mb-3" style="color: black">Trang chủ / Giỏ hàng</p>
+              <!-- Breadcrumb -->
+              <div class="breadcrumb" style="padding-top: 20px">
+                <a href="index.jsp">Trang chủ</a>
+                <span>&nbsp;/&nbsp;</span>
+                <a href="#">Giỏ hàng</a>
               </div>
 
               <div>
@@ -53,7 +56,7 @@
                             class="form-select form-select-sm w-75 mt-3"
                             aria-label=".form-select-sm example"
                           >
-                            <option selected>Mầu sắc</option>
+                            <option selected>Màu sắc</option>
                             <option value="1">Tím</option>
                             <option value="2">Xanh</option>
                             <option value="3">Vàng</option>
@@ -80,6 +83,11 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
+                        </td>
+                        <td style="padding: 30px 0">
+                            <a href="#" style="font-size: 20px;">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
                         </td>
                       </tr>
 
@@ -103,7 +111,7 @@
                             class="form-select form-select-sm w-75 mt-3"
                             aria-label=".form-select-sm example"
                           >
-                            <option selected>Mầu sắc</option>
+                            <option selected>Màu sắc</option>
                             <option value="1">Tím</option>
                             <option value="2">Xanh</option>
                             <option value="3">Vàng</option>
@@ -130,6 +138,11 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
+                        </td>
+                        <td style="padding: 30px 0">
+                            <a href="#" style="font-size: 20px;">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
                         </td>
                       </tr>
 
@@ -153,7 +166,7 @@
                             class="form-select form-select-sm w-75 mt-3"
                             aria-label=".form-select-sm example"
                           >
-                            <option selected>Mầu sắc</option>
+                            <option selected>Màu sắc</option>
                             <option value="1">Tím</option>
                             <option value="2">Xanh</option>
                             <option value="3">Vàng</option>
@@ -180,6 +193,11 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
+                        </td>
+                        <td style="padding: 30px 0">
+                            <a href="#" style="font-size: 20px;">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
                         </td>
                       </tr>
                     </tbody>
@@ -215,9 +233,9 @@
                   </div>
                   <div class="border-top border-dark border-3 mb-3"></div>
                   <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-danger w-100">
+                    <a type="button" class="btn btn-danger w-100" href="payment.jsp">
                       Đi tới thanh toán
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

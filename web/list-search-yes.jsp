@@ -25,7 +25,7 @@
                 <div class="content-center bg-offwhite">
                     <!-- Breadcrumb -->
                     <div class="breadcrumb">
-                        <a href="index.html">Trang chủ</a>
+                        <a href="index.jsp">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
                         <a href="#">Tìm kiếm</a>
                     </div>
