@@ -39,43 +39,88 @@
                   <div class="filter col-sm-3">
                     <form action="" method="get">
                         <div class="row">
-                          <p class="filter-title">Checkbox</p>
+                          <p class="filter-title">Hãng sản xuất</p>
                           <div class="col-lg-6">
                             <input type="checkbox" name="brand" id="brand1" checked />
                             <label for="brand1">Tất cả</label>
                           </div>
                           <div class="col-lg-6">
                             <input type="checkbox" name="brand" id="brand2" />
-                            <label for="brand2">Brand 2</label>
+                            <label for="brand2">Apple</label>
                           </div>
                           <div class="col-lg-6">
                             <input type="checkbox" name="brand" id="brand3" />
-                            <label for="brand3">Brand 3</label>
+                            <label for="brand3">Asus</label>
                           </div>
                           <div class="col-lg-6">
                             <input type="checkbox" name="brand" id="brand4" />
-                            <label for="brand4">Brand 4</label>
+                            <label for="brand4">HP</label>
                           </div>
                         </div>
+                        
                         <div class="row">
-                          <p class="filter-title">Radio</p>
+                          <p class="filter-title">Nhu cầu sử dụng</p>
                           <div class="col-lg-6">
-                            <input type="radio" name="brand_2" id="brand5" checked />
-                            <label for="brand5">Tất cả</label>
+                            <input type="checkbox" name="needs" id="needs1" checked />
+                            <label for="needs1">Tất cả</label>
                           </div>
                           <div class="col-lg-6">
-                            <input type="radio" name="brand_2" id="brand6" />
-                            <label for="brand6">Brand 2</label>
+                            <input type="checkbox" name="needs" id="needs2" />
+                            <label for="needs2">Văn phòng</label>
                           </div>
                           <div class="col-lg-6">
-                            <input type="radio" name="brand_2" id="brand7" />
-                            <label for="brand7">Brand 3</label>
-                          </div>
-                          <div class="col-lg-6">
-                            <input type="radio" name="brand_2" id="brand8" />
-                            <label for="brand8">Brand 4</label>
+                            <input type="checkbox" name="needs" id="needs3" />
+                            <label for="needs3">Gaming</label>
                           </div>
                         </div>
+                        
+                        <div class="row">
+                          <p class="filter-title">Kích thước màn hình</p>
+                          <div class="col-12">
+                            <input type="checkbox" name="size-screen" id="size-screen1" checked />
+                            <label for="size-screen1">Tất cả</label>
+                          </div>
+                          <div class="col-12">
+                            <input type="checkbox" name="size-screen" id="size-screen2" />
+                            <label for="size-screen2">Dưới 13 inch</label>
+                          </div>
+                          <div class="col-12">
+                            <input type="checkbox" name="size-screen" id="size-screen3" />
+                            <label for="size-screen3">Từ 13 inch đến 15 inch</label>
+                          </div>
+                          <div class="col-12">
+                            <input type="checkbox" name="size-screen" id="size-screen4" />
+                            <label for="size-screen4">Từ 15 inch đến 17 inch</label>
+                          </div>
+                          <div class="col-12">
+                            <input type="checkbox" name="size-screen" id="size-screen5" />
+                            <label for="size-screen5">Trên 17 inch</label>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <p class="filter-title">Mức giá</p>
+                          <div class="price-input">
+                            <div class="field">
+                              
+                              <input type="number" class="input-min" value="10000000">
+                              <span>&nbsp;VNĐ</span>
+                            </div>
+                            <div class="separator">></div>
+                            <div class="field">
+                              <input type="number" class="input-max" value="80000000">
+                              <span>&nbsp;VNĐ</span>
+                            </div>
+                          </div>
+                          <div class="slider">
+                            <div class="progress"></div>
+                          </div>
+                          <div class="range-input">
+                            <input type="range" class="range-min" min="0" max="100000000" value="10000000" step="2000000">
+                            <input type="range" class="range-max" min="0" max="100000000" value="80000000" step="2000000">
+                          </div>
+                        </div>
+                        
                         <input class="btn-filter" type="submit" value=" Tìm kiếm " />
                       </form>
                   </div>

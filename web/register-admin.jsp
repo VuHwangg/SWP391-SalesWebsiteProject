@@ -96,34 +96,22 @@
                                               <div class="col-md-6">
                                                 <ul class="list-group">
                                                   <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="admin" name="role" value="admin" checked>
-                                                    <label class="form-check-label" for="admin">Quản trị viên</label>
-                                                    <a onClick="Show1()" data-bs-toggle="collapse" href="#admin-info" aria-expanded="false" aria-controls="admin-info" style="float: right">
-                                                        <i class="bi bi-info-circle"></i>
-                                                    </a>
-                                                  </li>
-                                                  <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="manager" name="role" value="manager">
+                                                    <input class="form-check-input me-1" type="radio" id="manager" name="role" value="manager" checked>
                                                     <label class="form-check-label" for="manager">Quản lý kho</label>
-                                                    <a onClick="Show2()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
+                                                    <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
                                                         <i class="bi bi-info-circle"></i>
                                                     </a>
                                                   </li>
                                                   <li class="list-group-item">
                                                     <input class="form-check-input me-1" type="radio" id="employee" name="role" value="employee">
                                                     <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
-                                                    <a onClick="Show3()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
+                                                    <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
                                                         <i class="bi bi-info-circle"></i>
                                                     </a>
                                                   </li>
                                                 </ul>
                                               </div>
                                               <div class="col-md-6">
-                                                  <div class="collapse collapse-info" id="admin-info">
-                                                    <div class="card card-body">
-                                                      Có toàn quyền quản lý cũng như sỡ hữu đầy đủ chức năng của các vai trò còn lại
-                                                    </div>
-                                                  </div>
                                                   <div class="collapse collapse-info" id="manager-info">
                                                     <div class="card card-body">
                                                       Quản lý xuất nhập kho, và sô lượng sản phẩm hiện có 
