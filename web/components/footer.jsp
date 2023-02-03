@@ -5,19 +5,20 @@
 
       <div class="footer-section footer-about">
           <div class="footer-logo">
-              <img src="index.jsp" alt="Logo">
+<!--              <img src="index.jsp" alt="Logo">-->
+        <h3 style="color: white">FTECH STORE</h3>
           </div>
           <div class="description">
               <p>
-
+                  FTECH là store chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá phù hợp với chính sách bảo hành lên đến 3 năm cho mọi sản phẩm. 
               </p>
           </div>
           <div class="media-icons">
-              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=Ul1JM6CajeQ"><i class="fab fa-facebook-f"></i></a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fab fa-twitter"></i></a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=Zi_XLOBDo_Y"><i class="fab fa-instagram"></i></a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/vuhwangg-dev/"><i class="fab fa-linkedin-in"></i></a>
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/VuHwangg/CovidGate"><i class="fab fa-github"></i></a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-facebook"></i></a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-twitter"></i></a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-instagram"></i></a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-linkedin"></i></a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-github"></i></a>
           </div>
       </div>
 

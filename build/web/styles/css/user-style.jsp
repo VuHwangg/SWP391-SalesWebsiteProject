@@ -393,7 +393,7 @@
   }
 
   .list-product .product .col-4 {
-    background-image: url('../img/svg/seven-pointed-star-svgrepo-com.svg');
+    background-image: url('img/seven-pointed-star-svgrepo-com.svg');
     background-repeat: no-repeat;
     background-size: 54px;
     background-position: 0px;

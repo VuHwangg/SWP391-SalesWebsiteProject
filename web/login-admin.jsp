@@ -61,7 +61,7 @@
                                         <!--Login with account password-->
                                         <div class="border-top border-dark border-3 my-3"></div>
                                         <p class="mb-3" style="color: #fb1514; font-size: 20px">
-                                            Phần đăng nhập chỉ dành cho Admin
+                                            Phần đăng nhập chỉ dành cho nhân viên
                                         </p>
                                         
                                         <form action="LoginEmpt" method="post">

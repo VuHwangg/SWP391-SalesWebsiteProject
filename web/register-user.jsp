@@ -7,57 +7,54 @@
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
-        <%@include file="styles/css/user-style.jsp" %>
-        <title>Đăng ký</title>
+        <%@include file="styles/css/login-style.jsp" %>
+        <title>Hoàn thiện thông tin</title>
     </head>
     <body>
         <!-- Section: Design Block -->
         <section
             class="text-center h-100 w-100 d-inline-block"
-            style="max-height: 1000px"
+            style="min-height: 100vh"
             >
             <!-- Background image -->
             <div
-                class="p-5 bg-image"
-                style="background-color: #fb1514; height: 350px"
+                class="p-4 bg-image"
                 >
-                <div class="d-flex justify-content-end align-items-start">
+                <div class="d-flex justify-content-start align-items-start">
                     <a
                         type="button"
-                        style="margin-top: -2rem"
                         class="btn btn-outline-light"
-                        href="index.html"
-                        ></i>Bỏ qua bước này
+                        href="index.jsp"
+                        style="font-weight: 500"
+                        >
+                        <i class="bi bi-house me-1"></i>Trang chủ
                     </a>
                 </div>
                 <h1 style="color: white">FTECH</h1>
-                <h1 style="color: white">
+                <h4 style="color: white">
                     Store chuyên cung cấp đồ công nghệ hàng đầu Việt Nam
-                </h1>
+                </h4>
             </div>
             <!-- Background image -->
 
-            <div class="container-fluid h-100 d-inline-block">
+            <div class="container-fluid d-inline-block">
                 <div class="row">
-                    <!--Col-2 Banner-1-->
-                    <div class="col-md-2 mx-0" style="background-color: #e3e2e5">
-                        <h3>Banner</h3>
-                    </div>
 
                     <!--Col-6-->
-                    <div class="col-md-8" style="padding: 0">
+                    <div class="col-md-8" style="padding: 0; margin: auto">
                         <div
-                            class="card rounded-3 shadow-5-strong"
+                            class="card rounded-5 shadow-5-strong"
                             style="
-                            margin-top: -100px;
-                            background: hsla(0, 0%, 100%, 0.8);
+                            background: hsla(0, 0%, 100%, 0.7);
                             backdrop-filter: blur(30px);
                             "
                             >
                             <div class="card-body py-5 px-md-5">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-lg-8">
-                                        <h1 class="fw-bold mb-2" style="color: #fb1514">ĐĂNG KÝ</h1>
+                                        <h1 class="fw-bold mb-2">
+                                            HOÀN THIỆN THÔNG TIN
+                                        </h1>
                                         <div class="border-top border-dark border-3 my-3"></div>
 
                                         <!--Login with account password-->
@@ -89,13 +86,14 @@
                                                 <input name="place"
                                                        type="text"
                                                        class="form-control"
-                                                       placeholder="Địa chỉ nhà"
+                                                       placeholder="Địa chỉ"
                                                        />
                                             </div>
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-outline-danger w-100"
+                                                class="btn w-100 btn-submit"
+                                                style=""
                                                 >
                                                 Hoàn tất
                                             </button>
@@ -106,10 +104,6 @@
                         </div>
                     </div>
 
-                    <!--Col-3 Banner-2-->
-                    <div class="col-md-2 mx-0" style="background-color: #e3e2e5">
-                        <h3>Banner</h3>
-                    </div>
                 </div>
             </div>
         </section>
@@ -130,5 +124,9 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
         ></script>
+        <%@include file="styles/js/script.jsp" %>
     </body>
 </html>
+
+
+                              

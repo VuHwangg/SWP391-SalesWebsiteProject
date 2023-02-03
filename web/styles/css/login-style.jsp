@@ -1,8 +1,8 @@
 <style>
 body{
     height: 100vh;
-    background: linear-gradient(180deg, #b60303, #dd9700);
-    background-size: 300% 300%;
+    background: linear-gradient(180deg, #b60303, #4300b6);
+    background-size: 400% 400%;
     animation: gradientFade 10s ease infinite;
 }
 
@@ -11,7 +11,7 @@ body{
         background-position: 47% 20%;
     }
     50%{
-        background-position: 64% 90%;
+        background-position: 64% 80%;
     }
     100%{
         background-position: 47% 20%;

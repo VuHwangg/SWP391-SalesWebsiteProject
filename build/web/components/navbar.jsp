@@ -67,12 +67,21 @@
                                 <a class="dropdown-item" href="login-user.jsp">Đăng nhập</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="login-admin.jsp">Đăng nhập cho admin</a>
+                                <a class="dropdown-item" href="login-admin.jsp">Đăng nhập nhân viên</a>
                             </li>
-                            <!--sau khi login-->
+                            <!--sau khi login user account-->
+                            <li>
+                                <a class="dropdown-item" href="register-user.jsp">Hoàn thiện thông tin</a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="login-admin.jsp">Thông tin cá nhân</a>
                             </li>
+                            
+                            <!--sau khi admin user account-->
+                            <li>
+                                <a class="dropdown-item" href="register-admin.jsp">Đăng ký cho nhân viên</a>
+                            </li>
+                            
                             <li>
                                 <a class="dropdown-item" href="login-user.jsp">Đăng xuất</a>
                             </li>

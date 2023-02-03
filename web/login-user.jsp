@@ -57,7 +57,7 @@
                                         </h1>
                                         <div class="border-top border-dark border-3 my-3"></div>
                                         <p class="mb-3" style="font-size: 20px">
-                                            Chọn tài khoản bạn muốn đăng nhập vao FTECH Store
+                                            Chọn tài khoản bạn muốn đăng nhập vào FTECH Store
                                         </p>
 
                                         <!--Login with gmail-->

@@ -48,10 +48,12 @@
                                             autocomplete="off"
                                             checked
                                             />
-                                        <a href="search?txtSearch=${param.txtSearch}&sort=none"> Khuyến mãi</a>
-                                        <label class="btn btn-outline-danger" for="btnradio1">
-                                            Khuyến mãi
-                                        </label>
+                                        <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=none">
+                                            <label for="btnradio1">
+                                                Khuyến mãi
+                                          </label>
+                                        </a>
+                                        
 
                                         <input
                                             type="radio"
@@ -60,10 +62,12 @@
                                             id="btnradio2"
                                             autocomplete="off"
                                             />
-                                        <a href="search?txtSearch=${param.txtSearch}&sort=ASC"> Tăng dần</a>
-                                        <label class="btn btn-outline-danger" for="btnradio2">
-                                            Giá tăng dần
-                                        </label>
+                                        <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=ASC">
+                                            <label  for="btnradio2">
+                                                Giá tăng dần
+                                            </label>
+                                        </a>
+                                        
 
                                         <input
                                             type="radio"
@@ -72,10 +76,11 @@
                                             id="btnradio3"
                                             autocomplete="off"
                                             />
-                                         <a href="search?txtSearch=${param.txtSearch}&sort=DESC"> GIảm dần</a>
-                                        <label class="btn btn-outline-danger" for="btnradio3">
-                                            Giá giảm dần
-                                        </label>
+                                         <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=DESC">
+                                            <label  for="btnradio3">
+                                                Giá giảm dần
+                                            </label>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
