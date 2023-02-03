@@ -7,8 +7,8 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import module.Account;
-import module.Customer;
+import model.Account;
+import model.Customer;
 
 /**
  *
