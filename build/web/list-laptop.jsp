@@ -106,7 +106,7 @@
                               <input type="number" class="input-min" value="10000000">
                               <span>&nbsp;VNĐ</span>
                             </div>
-                            <div class="separator">></div>
+                            <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
                             <div class="field">
                               <input type="number" class="input-max" value="80000000">
                               <span>&nbsp;VNĐ</span>

@@ -38,6 +38,30 @@
                   <!-- list of filter check-box column -->
                   <div class="filter col-sm-3">
                     <form action="" method="get">
+                        
+                        <div class="row">
+                          <p class="filter-title">Mức giá</p>
+                          <div class="price-input">
+                            <div class="field">
+                              
+                              <input type="number" class="input-min" value="10000000">
+                              <span>&nbsp;VNĐ</span>
+                            </div>
+                            <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
+                            <div class="field">
+                              <input type="number" class="input-max" value="80000000">
+                              <span>&nbsp;VNĐ</span>
+                            </div>
+                          </div>
+                          <div class="slider">
+                            <div class="progress"></div>
+                          </div>
+                          <div class="range-input">
+                            <input type="range" class="range-min" min="0" max="100000000" value="10000000" step="2000000">
+                            <input type="range" class="range-max" min="0" max="100000000" value="80000000" step="2000000">
+                          </div>
+                        </div>
+                        
                         <div class="row">
                           <p class="filter-title">Kích thức màn hình</p>
                           <div class="col-lg-6">
@@ -51,46 +75,20 @@
                         </div>
                         
                         <div class="row">
-                          <p class="filter-title">Nhu </p>
+                          <p class="filter-title">Nhu cầu sử dụng</p>
                           <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand1"  />
-                            <label for="brand1"></label>
+                            <input type="checkbox" name="needs" id="needs1" checked />
+                            <label for="needs1">Tất cả</label>
                           </div>
                           <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand2" />
-                            <label for="brand2">Brand 2</label>
+                            <input type="checkbox" name="needs" id="needs2" />
+                            <label for="needs2">Mỏng nhẹ</label>
                           </div>
                           <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand3" />
-                            <label for="brand3">Brand 3</label>
-                          </div>
-                          <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand4" />
-                            <label for="brand4">Brand 4</label>
+                            <input type="checkbox" name="needs" id="needs3" />
+                            <label for="needs3">Gaming</label>
                           </div>
                         </div>
-                        
-                        
-                        <div class="row">
-                          <p class="filter-title">Checkbox</p>
-                          <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand1"  />
-                            <label for="brand1">Tất cả</label>
-                          </div>
-                          <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand2" />
-                            <label for="brand2">Brand 2</label>
-                          </div>
-                          <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand3" />
-                            <label for="brand3">Brand 3</label>
-                          </div>
-                          <div class="col-lg-6">
-                            <input type="checkbox" name="brand" id="brand4" />
-                            <label for="brand4">Brand 4</label>
-                          </div>
-                        </div>
-                        
                         
                         <div class="row">
                           <p class="filter-title">Radio</p>
