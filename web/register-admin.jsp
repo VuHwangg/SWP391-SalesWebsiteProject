@@ -64,10 +64,10 @@
                                             * Phần đăng ký dành cho nhân viên *
                                         </p>
                                         
-                                        <form action="LoginEmpt" method="post">
+                                        <form >
                                             <div class="mb-3">
                                                 <input
-                                                    name="username"
+                                                    name="email"
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Tên đăng nhập"

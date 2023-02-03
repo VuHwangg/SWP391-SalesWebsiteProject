@@ -34,12 +34,15 @@ public class LoginEmpt extends HttpServlet {
             }
 
         }
+       
+        
         if (err.equals("1") == false) {
             req.setAttribute("err", err);
             req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
         } else {
             AccountDAO acc = new AccountDAO();
-            Account accout = acc.checkLoginCus(err, password);
+            Account accout = acc.checkLoginCus(email, password);
+            
             if (accout == null) {
                 req.setAttribute("err", "Username is not exist");
                 req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
