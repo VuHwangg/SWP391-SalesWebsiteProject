@@ -45,7 +45,7 @@ public class LoginUser extends HttpServlet {
         if(adao.loginGoogle(user.getEmail())){
             HttpSession session = request.getSession();
             session.setAttribute("account", user);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("home").forward(request, response);
         } else {
             request.getRequestDispatcher("register-user.jsp").forward(request, response);
         }

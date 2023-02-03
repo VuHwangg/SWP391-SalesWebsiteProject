@@ -50,7 +50,7 @@ public class SignupUser extends HttpServlet {
             AccountDAO acc = new AccountDAO();
             if(acc.AddAcount(mail,"!!", name) && acc.AddCust(name,place , phone, email)){
                 if(acc.AddRole(4, mail)){
-                    req.getRequestDispatcher("index.jsp").forward(req, resp);
+                    req.getRequestDispatcher("home").forward(req, resp);
                 }
             }else {req.getRequestDispatcher("register-user.jsp").forward(req, resp);}
         }
