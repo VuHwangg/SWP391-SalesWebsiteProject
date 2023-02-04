@@ -12,6 +12,10 @@
         <servlet-name>LoginEmpt</servlet-name>
         <servlet-class>controller.LoginEmpt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignupEmpt</servlet-name>
+        <servlet-class>controller.SignupEmpt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -24,8 +28,7 @@
         <servlet-name>LoginEmpt</servlet-name>
         <url-pattern>/LoginEmpt</url-pattern>
     </servlet-mapping>
-    
-     <servlet>
+    <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
     </servlet>
@@ -33,7 +36,6 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.SearchController</servlet-class>
@@ -42,7 +44,10 @@
         <servlet-name>Search</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>SignupEmpt</servlet-name>
+        <url-pattern>/SignupEmpt</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

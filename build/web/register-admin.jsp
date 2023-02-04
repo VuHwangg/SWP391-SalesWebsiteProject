@@ -64,7 +64,12 @@
                                             * Phần đăng ký dành cho nhân viên *
                                         </p>
                                         
-                                        <form >
+                                        <form action="SignupEmpt" method="post">
+                                              <%
+                                String mess = (String)request.getAttribute("err");
+                                if(mess == null) mess="Bạn vui lòng hoàn thiện thông tin bên dưới";           
+                                            %>
+                                            <p><%=mess%></p>
                                             <div class="mb-3">
                                                 <input
                                                     name="email"
@@ -84,7 +89,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <input
-                                                    name="pass-confirm"
+                                                    name="repass"
                                                     type="password"
                                                     class="form-control"
                                                     id="exampleInputPassword2"
@@ -96,14 +101,14 @@
                                               <div class="col-md-6">
                                                 <ul class="list-group">
                                                   <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="manager" name="role" value="manager" checked>
+                                                    <input class="form-check-input me-1" type="radio" id="manager" name="role" value="3" checked>
                                                     <label class="form-check-label" for="manager">Quản lý kho</label>
                                                     <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
                                                         <i class="bi bi-info-circle"></i>
                                                     </a>
                                                   </li>
                                                   <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="employee" name="role" value="employee">
+                                                    <input class="form-check-input me-1" type="radio" id="employee" name="role" value="2">
                                                     <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
                                                     <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
                                                         <i class="bi bi-info-circle"></i>

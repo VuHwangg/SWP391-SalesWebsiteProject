@@ -104,4 +104,28 @@ public class AccountDAO extends DBContext {
         }
         return check;
    }
+    public Account checkExistAcc(String username)  {
+        Account acc = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * "
+                    + " FROM Account "
+                    + " WHERE username =? ";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+           
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("username");
+                String pass = rs.getString("password");
+                String displayname = rs.getString("displayname");
+                acc = new Account(name, pass, displayname);
+            }
+
+        } catch(Exception ex ){
+            
+        }
+        return acc;
+    }
 }
