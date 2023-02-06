@@ -14,6 +14,7 @@
         <title>Trang chủ</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+        
         <main>
             <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>

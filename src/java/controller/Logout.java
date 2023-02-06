@@ -20,8 +20,16 @@ public class Logout extends HttpServlet {
     private static final String ERROR = "";
     private static final String SUCCESS = "home";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+ 
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       // super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
@@ -36,4 +44,5 @@ public class Logout extends HttpServlet {
             response.sendRedirect(url);
         }
     }
+    
 }
