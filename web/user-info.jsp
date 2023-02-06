@@ -30,7 +30,7 @@
                                             if(mess == null) mess="";           
                                         %>
                                         <p><%=mess%></p>
-                    <form action="EditProfile" method="post">
+                    <form action="EditProfile" >
                         <div id="profile-content">
 
                             <div>Customer Name: <br/><input type="text" name="name" value="<%=cus.getCustomerName()%>" required=""></div>
