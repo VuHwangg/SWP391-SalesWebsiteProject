@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import model.Customer;
 import util.Check;
@@ -21,7 +22,7 @@ import util.Check;
 public class EditProfile extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //   super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         String customer_name = req.getParameter("name");
         String address = req.getParameter("address");
@@ -37,13 +38,17 @@ public class EditProfile extends HttpServlet {
                 && cust.getPhone().equalsIgnoreCase(phone) == true) {
             err = "The information you change matches the information available";
         }
-
+        HttpSession session = req.getSession();
+        ;
         if (err.equals("1") == false) {
+            session.setAttribute("cust", cust);
             req.setAttribute("err", err);
             req.getRequestDispatcher("user-info.jsp").forward(req, resp);
         } else {
             if (adao.UpdateCust(customer_name, address, phone, mail)) {
                 if (adao.UpdateAccName(customer_name, mail)) {
+                    cust = adao.GetCust(mail);
+                    session.setAttribute("cust", cust);
                     req.getRequestDispatcher("home").forward(req, resp);
                 }
             }
@@ -51,9 +56,6 @@ public class EditProfile extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
+  
 
 }
