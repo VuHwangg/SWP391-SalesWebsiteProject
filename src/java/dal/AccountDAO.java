@@ -145,7 +145,7 @@ public class AccountDAO extends DBContext {
 
             rs = stm.executeQuery();
             if (rs.next()) {
-               role = rs.getInt("role_id");
+                role = rs.getInt("role_id");
             }
         } catch (Exception e) {
 
@@ -153,8 +153,9 @@ public class AccountDAO extends DBContext {
 
         return role;
     }
-     public Customer GetCust(String email) {
-         Customer cust = null;
+
+    public Customer GetCust(String email) {
+        Customer cust = null;
         try {
             String sql = "SELECT [customer_id]\n"
                     + "      ,[customer_name]\n"
@@ -167,10 +168,10 @@ public class AccountDAO extends DBContext {
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                int customer_id= rs.getInt("customer_id")  ;
+                int customer_id = rs.getInt("customer_id");
                 String customer_name = rs.getString("customer_name");
                 String address = rs.getString("address");
-                String  phone = rs.getString("phone");
+                String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
                 cust = new Customer(customer_id, customer_name, address, phone, email1);
             }
@@ -178,5 +179,36 @@ public class AccountDAO extends DBContext {
         }
         return cust;
     }
-    
+
+    public boolean UpdateCust(String name, String adress, String phone, String mail) {
+        boolean check = false;
+        try {
+            String sql = "Update Customer "
+                    + "set customer_name = ? ,address = ? ,phone = ? where email = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, adress);
+            ps.setString(3, phone);
+            ps.setString(4, mail);
+            
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+     public boolean UpdateAccName(String name, String mail) {
+        boolean check = false;
+        try {
+            String sql = "Update  Account set displayname = ? where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            
+            ps.setString(2, mail);
+            
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+
 }
