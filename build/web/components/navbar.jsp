@@ -111,7 +111,7 @@
                             %>
                             <!--sau khi login user account-->
                             <li>
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="user-info.jsp">Thông tin cá nhân</a>
                             </li>
                                                                                
                             <li>
