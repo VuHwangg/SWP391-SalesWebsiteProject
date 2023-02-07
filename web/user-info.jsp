@@ -26,14 +26,15 @@
                         <a href="user-info.jsp">Thông tin cá nhân</a>
                     </div>
                     <%
+                                            cus = (Customer) session.getAttribute("cust");
                                             String mess = (String)request.getAttribute("err");
                                             if(mess == null) mess="";           
-                                        %>
-                                        <p><%=mess%></p>
+                    %>
+                    <p><%=mess%></p>
                     <form action="EditProfile" >
                         <div id="profile-content">
 
-                            <div>Customer Name: <br/><input type="text" name="name" value="<%=cus.getCustomerName()%>" required=""></div>
+                            <div>Customer Name: <br/><input type="text" name="name" value="<%=cus.getCustomerName()%>"  required=""></div>
                             <div>Address: <br/><input type="text" name="adress" value="<%=cus.getAddress()%>" required=""></div>
                             <div>Phone: <br/><input type="text" name="phone" value="<%=cus.getPhone()%>" required=""></div>                      
                             <div><input type="submit" value="Edit"/></div>

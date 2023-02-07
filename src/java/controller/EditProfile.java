@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import model.Account;
 import model.Customer;
 import util.Check;
 
@@ -25,29 +26,32 @@ public class EditProfile extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //   super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         String customer_name = req.getParameter("name");
-        String address = req.getParameter("address");
+        String address = req.getParameter("adress");
         String phone = req.getParameter("phone");
         String err = "1";
         AccountDAO adao = new AccountDAO();
-        Customer cust = adao.GetCust(mail);
-
-       
-
-        if (cust.getCustomerName().equalsIgnoreCase(customer_name) == true
-                && cust.getAddress().equalsIgnoreCase(address) == true
-                && cust.getPhone().equalsIgnoreCase(phone) == true) {
-            err = "The information you change matches the information available";
+        Customer cust = adao.GetCust(mail); 
+        Check check = new Check();
+        if(check.CheckPhone(phone) == false){
+            err = "Please input Phone Number again";
+        }else {
+            if (customer_name.equals(cust.getCustomerName())
+                    && address.equals(cust.getAddress())
+                    && phone.equals(cust.getPhone())){
+                err = "The information is duplicate";
+            }
         }
-        HttpSession session = req.getSession();
-        ;
+        HttpSession session = req.getSession();    
         if (err.equals("1") == false) {
             session.setAttribute("cust", cust);
             req.setAttribute("err", err);
             req.getRequestDispatcher("user-info.jsp").forward(req, resp);
         } else {
-            if (adao.UpdateCust(customer_name, address, phone, mail)) {
-                if (adao.UpdateAccName(customer_name, mail)) {
+            if (adao.UpdateCust(customer_name, address, phone, mail)== true) {
+                if (adao.UpdateAccName(customer_name, mail) == true) {
                     cust = adao.GetCust(mail);
+                    Account acc = adao.checkExistAcc(mail);
+                    session.setAttribute("acc", acc);
                     session.setAttribute("cust", cust);
                     req.getRequestDispatcher("home").forward(req, resp);
                 }
