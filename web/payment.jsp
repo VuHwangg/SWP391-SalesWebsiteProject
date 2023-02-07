@@ -61,7 +61,7 @@
 
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Địa chỉ nhận hàng" value='<%=address%>' ></textarea>
+                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Địa chỉ nhận hàng" ><%=address%></textarea>
                             </div>
 
                             <div>
