@@ -5,7 +5,6 @@
 <html>
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
-        <!--duy ngu-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>

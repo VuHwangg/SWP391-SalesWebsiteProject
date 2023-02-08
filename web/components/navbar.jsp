@@ -1,6 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
-import="model.Account"%> <%@page import="model.Customer"%> <%@page
-import="jakarta.servlet.http.HttpSession" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page import="model.Account"%> 
+<%@page import="model.Customer"%> 
+<%@page import="jakarta.servlet.http.HttpSession" %>
 
 <header>
   <!-- Mini banner -->
@@ -48,17 +49,27 @@ import="jakarta.servlet.http.HttpSession" %>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <% Account acc = (Account) session.getAttribute("acc"); Customer cus =
-          (Customer) session.getAttribute("cust"); // // chuyen sang trang admin
-          // if ((int)session.getAttribute("role") == 1){ //
-          request.getRequestDispatcher("#").forward(request, response); // } //
-          // chuyen sang trang empt // if ((int)session.getAttribute("role") ==
-          2){ // request.getRequestDispatcher("#").forward(request, response);
-          // } // // chuyen sang trang mana // if
-          ((int)session.getAttribute("role") == 3){ //
-          request.getRequestDispatcher("#").forward(request, response); // } //
-          if ((int)session.getAttribute("role") == 4 &&
-          (int)session.getAttribute("role") ==0){ // %>
+           <%
+                         
+                          Account acc = (Account) session.getAttribute("acc");
+                          Customer cus = (Customer) session.getAttribute("cust");
+                         
+//                           // chuyen sang trang admin
+//                           if ((int)session.getAttribute("role") == 1){
+//                               request.getRequestDispatcher("#").forward(request, response);
+//                            }
+//                           // chuyen sang trang empt
+//                           if ((int)session.getAttribute("role") == 2){
+//                               request.getRequestDispatcher("#").forward(request, response);
+//                            }
+//                           // chuyen sang trang mana
+//                            if ((int)session.getAttribute("role") == 3){
+//                               request.getRequestDispatcher("#").forward(request, response);
+//                            }
+//                            if ((int)session.getAttribute("role") == 4 && (int)session.getAttribute("role") ==0){
+//                           
+                           
+                        %>
 
           <li class="nav-item">
             <a class="nav-link" href="list-phone.jsp">Điện thoại</a>
