@@ -33,21 +33,35 @@
                         <div>
                             <h3 class="fw-bold mb-4">THÔNG TIN GIAO HÀNG</h3>
                         </div>
+                        <%
+                            cus = (Customer) session.getAttribute("cust");
+                            String email = "";
+                            String name = "";
+                            String address = "";
+                            String phone = "";
+                            if(cus != null){
+                            email = cus.getEmail();
+                            name = cus.getCustomerName();
+                            address = cus.getAddress();
+                            phone = cus.getPhone();
+                            }
+                        %>
                         <form>
+                            
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên">
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>">
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại">
+                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>">
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Email">
+                                <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>">
 
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Địa chỉ nhận hàng"></textarea>
+                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Địa chỉ nhận hàng" ><%=address%></textarea>
                             </div>
 
                             <div>

@@ -13,7 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Account;
 import model.Constants;
+import model.Customer;
 import model.GooglePojo;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
@@ -34,21 +36,31 @@ public class LoginUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public static String mail ;
+    public static String mail;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
         GooglePojo user = getUserInfo(accessToken);
+        mail = user.getEmail();
         AccountDAO adao = new AccountDAO();
-        mail =user.getEmail() ;
-        if(adao.loginGoogle(user.getEmail())){
+        Account acc = adao.checkExistAcc(mail);
+        Customer cust = adao.GetCust(mail);
+        int role = adao.GetRole(mail);
+        
+
+        if (adao.loginGoogle(user.getEmail())) {
             HttpSession session = request.getSession();
-            session.setAttribute("account", user);
+            session.setAttribute("cust", cust);
+            session.setAttribute("acc", acc);
+            session.setAttribute("role", role);
             request.getRequestDispatcher("home").forward(request, response);
         } else {
             request.getRequestDispatcher("register-user.jsp").forward(request, response);
         }
+        
+
     }
 
     public static String getToken(String code) throws ClientProtocolException, IOException {
@@ -73,7 +85,6 @@ public class LoginUser extends HttpServlet {
 
         return googlePojo;
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

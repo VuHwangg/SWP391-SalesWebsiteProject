@@ -1,0 +1,21 @@
+Plan 1:
++Tạo database, add dữ liệu vào data
++ Tạo 1 số màn hình của user :
+	.Cart
+	.Home
+	.Login cho tất cả người dùng bao gồm Cust,Employee,Manager,Admin(Cust thực hiện login bằng Google)
+	.Trang tạo mới tài khoản cho tài khoản khách hàng, nhân viên
+	.Search sản phẩm, oder, catagory
++ Thực hiện làm tài liệu Song Song với tiến trình code
++ Thực hiện back end của 1 số màn hình: home, filter,login, đăng ký
+Plan 2:
++ Hoàn thiện lại các màn hình Detail, oder, user infor, payment
++ Thực hiện Back end toàn bộ chức năng của cust(send mail khi khách hàng mua hàng về mã đơn hàng , thông tin đơn hàng )
++ Thực hiện test và hoàn thiện toàn bộ chức năng và giao diện của Cust
++ Thực hiện làm tài liệu Song Song với tiến trình code
+Plan 3: 
++ Tạo các màn hình của Admin, Employee,Manager
++ Hoàn thiện Backend cho các trang của Admin, Employee,Manager
++ Thực hiện test và hoàn thiện toàn bộ chức năng và giao diện của Admin, Employee,Manager
++ Thực hiện làm tài liệu Song Song với tiến trình code
++ Thực hiện test và sửa lỗi phát sinh của toàn bộ dự án
