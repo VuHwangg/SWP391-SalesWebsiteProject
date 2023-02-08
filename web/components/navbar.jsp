@@ -71,7 +71,7 @@
                             </li>
                             <!--sau khi login user account-->
                             <li>
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="profile.jsp">Thông tin cá nhân</a>
                             </li>
                             
                             <!--sau khi admin user account-->

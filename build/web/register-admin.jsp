@@ -80,6 +80,14 @@
                                             </div>
                                             <div class="mb-3">
                                                 <input
+                                                    name="name"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Họ và tên"
+                                                    />
+                                            </div>
+                                            <div class="mb-3">
+                                                <input
                                                     name="pass"
                                                     type="password"
                                                     class="form-control"

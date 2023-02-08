@@ -62,15 +62,15 @@
 
                                         <!--Login with gmail-->
                                         <div>
-                                            <button
-                                                type="button"
+                                            <a  style="text-decoration: none"
+                                                href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/SWP391-SalesWebsiteProject/LoginUser&response_type=code&client_id=1085689904569-u4662st25sdv1a20rngoqc2vn1ucibrh.apps.googleusercontent.com&approval_prompt=force"
                                                 class="btn mb-2 w-100 btn-google"
                                                 >
                                                 <i class="bi bi-google me-1"></i>
-                                                <a style="text-decoration: none" class="d-line h5" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/SWP391-SalesWebsiteProject/LoginUser&response_type=code&client_id=1085689904569-u4662st25sdv1a20rngoqc2vn1ucibrh.apps.googleusercontent.com&approval_prompt=force">
+                                                <span  class="d-line h5" >
                                                     <strong>Sử dụng tài khoản Google </strong>
-                                                </a>
-                                            </button>
+                                                </span>
+                                            </a>
 
                                         </div>
                                         

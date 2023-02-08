@@ -26,7 +26,7 @@
   }
   
   :root {
-    --main-bg-color: #FF1616;
+    --main-bg-color: #dc3545;
     --main-color-gray: #404044;
     --main-color-darkgray: #243238;
     --main-color-black: rgb(39, 39, 39);
@@ -42,7 +42,7 @@
   }
 
   .bg-offwhite {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(235, 235, 235) !important;
   }
 
 
@@ -241,12 +241,16 @@
   .list-product {
     padding: 30px 40px 1px 40px;
   }
-
+  
+  .cover-block {
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
   .list-product .cover-block {
     background-color: white;
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 16px;
   }
 
   /* List in home page */
@@ -409,7 +413,128 @@
       height: auto;
     }
   }
+  
+/* Profile  -------------------------------------------------------------------------------------*/
 
+.profile {
+    padding: 15px 40px 1px 40px;
+  }
+
+.profile .cover-block{
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.profile .profile-left {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.avatar {
+    overflow: hidden;
+    border: 8px solid white;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    background-color: white;
+}
+
+.avatar img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile .profile-name p {
+    margin: 20px 0 2px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.profile .profile-email p {
+    font-size: 14px;
+} 
+
+.the-line-white {
+    width: 100%;
+    border: 2px solid var(--main-color-darkgray);
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-btn-white {
+      color: var(--main-color-black);
+      background-color: white;
+      border: 3px solid var(--main-color-black);
+      border-radius: 24px;
+      padding: 8px;
+      width: 100%;
+      margin-top: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+  }
+  
+  .profile-btn-white:hover {
+      background-color: var(--main-bg-color);
+      color: white;
+  }
+  
+  
+  .profile-btn-red {
+      color: white;
+      background-color: var(--main-bg-color);
+      border: 3px solid var(--main-color-black);
+      border-radius: 24px;
+      padding: 8px;
+      width: 100%;
+      margin-top: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+  }
+  
+  .profile-btn-red:hover {
+      background-color: #ab2936;
+  }
+  
+  .profile-btn-white.active {
+      background-color: var(--main-bg-color);
+      color: white;
+  }
+  
+  .profile .profile-right table {
+      width: 100%;
+  }
+  
+  .profile .profile-right table tr {
+      border-bottom: 1px solid gray;
+  }
+  
+  .profile .profile-right table tr td:first-child {
+      font-weight: 500;
+      width: 150px;
+      height: 60px;
+  }
+  
+  .profile .profile-right table tr td input {
+      width: 100%;
+      height: 40px;
+  }
+  
+  .change-email.profile-btn-red {
+      font-size: 14px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      text-align: right;
+  }
+  
   
 /*** FOOTER ***/
 

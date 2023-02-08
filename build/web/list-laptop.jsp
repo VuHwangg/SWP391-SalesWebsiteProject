@@ -142,9 +142,7 @@
                                 checked
                               />
                               <a class="btn btn-outline-danger" href="#">
-                                  <label for="btnradio1">
                                       Khuyến mãi
-                                </label>
                               </a>
 
                               <input
