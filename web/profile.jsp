@@ -28,6 +28,10 @@
               </div>
               <!-- list product block -->
               <div class="profile">
+                    <%
+                                            cus = (Customer) session.getAttribute("cust");
+                                                      
+                    %>
                 <div class="row">
                   <!-- list of filter check-box column -->
                   <div class="cover-block profile-left col-sm-3 bg-offwhite">
@@ -35,10 +39,10 @@
                           <img src="img/avatar-profile.png" alt="avatar"/>
                       </div>
                       <div class="profile-name">
-                          <p>Hoàng Chu Anh Vũ</p>
+                          <p><%=cus.getCustomerName()%></p>
                       </div>
                       <div class="profile-email">
-                          <p>hoangvudepzai30082002@gmail.com</p>
+                          <p><%=cus.getEmail()%></p>
                       </div>
                       <div class="the-line-white"></div>
                       <a class="profile-btn-white active" href="#">
@@ -57,19 +61,19 @@
                         <table>
                             <tr>
                                 <td>Email liên kết:</td>
-                                <td>hoangvudepzai30082002@gmail.com</td>
+                                <td><%=cus.getEmail()%></td>
                             </tr>
                             <tr>
                                 <td>Họ và tên:</td>
-                                <td>Hoàng Chu Anh Vũ</td>
+                                <td><%=cus.getCustomerName()%></td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại:</td>
-                                <td>0833232520</td>
+                                <td><%=cus.getPhone()%></td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ:</td>
-                                <td>Đường Phai Dài, Khu 1, thị trấn Thất Khê, huyện Tràng Định, tỉnh Lạng Sơn</td>
+                                <td><%=cus.getAddress()%></td>
                             </tr>
                         </table>
                       

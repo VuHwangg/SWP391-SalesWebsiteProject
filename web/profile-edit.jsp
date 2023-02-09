@@ -28,6 +28,12 @@
               </div>
               <!-- list product block -->
               <div class="profile">
+                   <%
+                                            cus = (Customer) session.getAttribute("cust");
+                                            String mess = (String)request.getAttribute("err");
+                                            if(mess == null) mess="";           
+                    %>
+                    <p><%=mess%></p>
                 <div class="row">
                   <!-- list of filter check-box column -->
                   <div class="cover-block profile-left col-sm-3 bg-offwhite">
@@ -35,10 +41,10 @@
                           <img src="img/avatar-profile.png" alt="avatar"/>
                       </div>
                       <div class="profile-name">
-                          <p>Hoàng Chu Anh Vũ</p>
+                          <p><%=cus.getCustomerName()%></p>
                       </div>
                       <div class="profile-email">
-                          <p>hoangvudepzai30082002@gmail.com</p>
+                          <p><%=cus.getEmail()%></p>
                       </div>
                       <div class="the-line-white"></div>
                       <a class="profile-btn-white" href="profile.jsp">
@@ -54,35 +60,35 @@
                     <h3 class="title-profile">Thông tin cá nhân</h3>
                     <div class="border-top border-dark border-3 mb-2"></div>
                     <div class="col">
-                      <form action="">
+                      <form action="EditProfile">
                         <table>
                             <tr>
                                 <td>Email liên kết:</td>
                                 <td>
-                                    <span>hoangvudepzai30082002@gmail.com</span>
+                                    <span><%=cus.getEmail()%></span>
                                     <a class="profile-btn-red change-email" href="#">Đổi&nbsp;tài&nbsp;khoản</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Họ và tên:</td>
                                 <td>
-                                    <input type="text" name="name" value="Hoàng Chu Anh Vũ" class="form-control" placeholder="Nhập họ tên của bạn">
+                                    <input type="text" name="name" value="<%=cus.getCustomerName()%>" class="form-control" placeholder="Nhập họ tên của bạn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại:</td>
                                 <td>
-                                    <input type="text" name="phone" value="0833232520" class="form-control" placeholder="Nhập số điện thoại của bạn">
+                                    <input type="text" name="phone" value="<%=cus.getPhone()%>" class="form-control" placeholder="Nhập số điện thoại của bạn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ:</td>
                                 <td>
-                                    <input type="text" name="address" value="Đường Phai Dài, Khu 1, thị trấn Thất Khê, huyện Tràng Định, tỉnh Lạng Sơn" class="form-control" placeholder="Nhập địa chỉ của bạn">
+                                    <input type="text" name="adress" value="<%=cus.getAddress()%>" class="form-control" placeholder="Nhập địa chỉ của bạn">
                                 </td>
                             </tr>
                         </table>
-                          <input type="button" value="Lưu lại chỉnh sửa" class="profile-btn-red">
+                                <input type="submit" value="Lưu lại chỉnh sửa" class="profile-btn-red">
                       </form>
                     </div>
 

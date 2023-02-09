@@ -45,7 +45,7 @@ public class EditProfile extends HttpServlet {
         if (err.equals("1") == false) {
             session.setAttribute("cust", cust);
             req.setAttribute("err", err);
-            req.getRequestDispatcher("user-info.jsp").forward(req, resp);
+            req.getRequestDispatcher("profile-edit.jsp").forward(req, resp);
         } else {
             if (adao.UpdateCust(customer_name, address, phone, mail)== true) {
                 if (adao.UpdateAccName(customer_name, mail) == true) {
@@ -53,7 +53,7 @@ public class EditProfile extends HttpServlet {
                     Account acc = adao.checkExistAcc(mail);
                     session.setAttribute("acc", acc);
                     session.setAttribute("cust", cust);
-                    req.getRequestDispatcher("home").forward(req, resp);
+                    req.getRequestDispatcher("profile.jsp").forward(req, resp);
                 }
             }
         }
