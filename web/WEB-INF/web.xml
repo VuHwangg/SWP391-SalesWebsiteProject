@@ -44,6 +44,16 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Filter</servlet-name>
+        <servlet-class>controller.FilterController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Filter</servlet-name>
+        <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.SearchController</servlet-class>

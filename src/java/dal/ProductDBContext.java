@@ -179,4 +179,180 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+
+    public ArrayList<Product> filterProduct(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT	pr.[product_id]\n"
+                    + "      ,pr.[name]\n"
+                    + "      ,pr.[type]\n"
+                    + "      ,pr.[requirement]\n"
+                    + "      ,pr.[os]\n"
+                    + "      ,pr.[feature_product]\n"
+                    + "      ,pr.[color]\n"
+                    + "      ,pr.[current_price]\n"
+                    + "      ,pr.[original_price]\n"
+                    + "      ,pr.[ram]\n"
+                    + "      ,pr.[memory]\n"
+                    + "      ,pr.[cpu]\n"
+                    + "      ,pr.[graphics_card]\n"
+                    + "      ,pr.[size]\n"
+                    + "      ,pr.[description]\n"
+                    + "      ,pr.[discount]\n"
+                    + "      ,pr.[qty]\n"
+                    + "      ,pr.[sold]\n"
+                    + "      ,pr.[status]\n"
+                    + "      ,br.brand_name\n"
+                    + "  FROM  [Product] pr "
+                    + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
+                    + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+            if (needs != null) {
+                if(needs[0].compareTo("all")!=0){
+                    sql = sql + " AND pr.[requirement] in (";
+                    for (String need : needs) {
+                        sql = sql + "'" + need + "',";
+                    }
+                    sql = sql.substring(0, sql.length() - 1);
+                    sql = sql + ")";
+                }
+                
+            }
+
+            if (brands != null) {
+                if(brands[0].compareTo("all")!=0){
+                    sql = sql + " AND br.[brand_name] in (";
+                    for (String brand : brands) {
+                        sql = sql + "'" + brand + "',";
+                    }
+                    sql = sql.substring(0, sql.length() - 1);
+                    sql = sql + ")";
+                }
+                
+            }
+
+            if (sizes != null) {
+                if (sizes[0].compareTo("all")!=0) { 
+                    int i = 0;
+                    for (String size : sizes) {
+                        if(i==0){
+                            sql+=" AND ";
+                        }else{
+                            sql+=" OR ";
+                        }
+                        if(size.compareTo("size1")==0){
+                            sql = sql + "pr.[size] < 13";
+                        }
+                        if(size.compareTo("size2")==0){
+                            sql = sql + "pr.[size] >=14 AND pr.[size]<15";
+                        }
+                        if(size.compareTo("size3")==0){
+                            sql = sql + "pr.[size] >=15 AND pr.[size]<17";
+                        }
+                        if(size.compareTo("size4")==0){
+                            sql = sql + "pr.[size] >= 17";
+                        }
+                    }
+                }
+            }
+            if (sort.compareTo("none") == 0) {
+                sql = sql + "\n ORDER BY pr.[discount] DESC";
+            }
+            if (sort.compareTo("ASC") == 0) {
+                sql = sql + "\n ORDER BY pr.[current_price] ASC";
+            }
+            if (sort.compareTo("DESC") == 0) {
+                sql = sql + "\n ORDER BY pr.[current_price] DESC";
+            }
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setDouble(1, from);
+            stm.setDouble(2, to);
+            stm.setInt(3, type);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setRequirement(rs.getString("requirement"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+                product.setSold(rs.getInt("sold"));
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands) {
+        String sql = "SELECT	pr.[product_id]\n"
+                + "      ,pr.[name]\n"
+                + "      ,pr.[type]\n"
+                + "      ,pr.[requirement]\n"
+                + "      ,pr.[os]\n"
+                + "      ,pr.[feature_product]\n"
+                + "      ,pr.[color]\n"
+                + "      ,pr.[current_price]\n"
+                + "      ,pr.[original_price]\n"
+                + "      ,pr.[ram]\n"
+                + "      ,pr.[memory]\n"
+                + "      ,pr.[cpu]\n"
+                + "      ,pr.[graphics_card]\n"
+                + "      ,pr.[size]\n"
+                + "      ,pr.[description]\n"
+                + "      ,pr.[discount]\n"
+                + "      ,pr.[qty]\n"
+                + "      ,pr.[sold]\n"
+                + "      ,pr.[status]\n"
+                + "      ,br.brand_name\n"
+                + "  FROM  [Product] pr "
+                + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
+                + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
+                + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+        if (needs != null && needs[0] != "all") {
+            sql = sql + " AND pr.[requirement] in (";
+            for (String need : needs) {
+                sql = sql + "'" + need + "',";
+            }
+            sql = sql.substring(0, sql.length() - 1);
+            sql = sql + ")";
+        }
+
+        if (brands != null && brands[0].compareTo("all")!=0) {
+            sql = sql + " AND br.[brand_name] in (";
+            for (String brand : brands) {
+                sql = sql + "'" + brand + "',";
+            }
+            sql = sql.substring(0, sql.length() - 1);
+            sql = sql + ")";
+        }
+        if (sort.compareTo("none") == 0) {
+            sql = sql + "\n ORDER BY pr.[discount] DESC";
+        }
+        if (sort.compareTo("ASC") == 0) {
+            sql = sql + "\n ORDER BY pr.[current_price] ASC";
+        }
+        if (sort.compareTo("DESC") == 0) {
+            sql = sql + "\n ORDER BY pr.[current_price] DESC";
+        }
+        return sql;
+    }
 }
