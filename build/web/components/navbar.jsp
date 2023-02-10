@@ -81,7 +81,7 @@
             <a class="nav-link" href="cart.jsp">Giỏ hàng</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="order-lookup.jsp">Tra đơn</a>
+            <a class="nav-link" href="ViewAllOrder">Tra đơn</a>
           </li>
           <li class="nav-item dropdown">
             <%if (cus == null){%>
