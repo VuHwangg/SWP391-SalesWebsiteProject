@@ -57,7 +57,7 @@
 																												('Huawei Matebook 14 ',	1,	'Window11',	0,	'Silver',16990000,	21990000,16,	512,	'Core i5-1155G7 ',	'Intel Iris Xe Graphics', 	15.6,'Huawei MateBook 14 – Thiết kế nhỏ gọn, hiệu năng mạnh mẽ: Bạn đang băn khoăn không biết nên chọn mua cho mình chiếc laptop mỏng nhẹ cùng cấu hình mạnh mẽ nào. Còn chần chừ gì nữa mà không chọn mua ngay chiếc laptop Huawei MateBook 14. Thiết kế mỏng nhẹ cấu hình mạnh mẽ cùng với một mức giá vô cùng phải chăng sẽ là sự lựa chọn không thể nào tốt hơn dành cho bạn.',23,0,0,1),
 																												('Huawei Matebook 14 ',	1,	'Window11',	0,	'Silver',	16990000,21990000,16,	512,	'AMD R5500u ',	'AMD Radeon Graphics', 	15.6,'Huawei MateBook 14 – Thiết kế nhỏ gọn, hiệu năng mạnh mẽ: Bạn đang băn khoăn không biết nên chọn mua cho mình chiếc laptop mỏng nhẹ cùng cấu hình mạnh mẽ nào. Còn chần chừ gì nữa mà không chọn mua ngay chiếc laptop Huawei MateBook 14. Thiết kế mỏng nhẹ cấu hình mạnh mẽ cùng với một mức giá vô cùng phải chăng sẽ là sự lựa chọn không thể nào tốt hơn dành cho bạn.',23,0,0,1),
 																												('Dell Vostro 3405',	1,	'Window11',	0,	'Black',11690000,	18490000,16,	512,	'AMD R5500u ',	'AMD Radeon Graphics', 	15.6,'Laptop Dell Vostro 3405 V4R53500U003W được xem là mẫu laptop luôn mang đến những trải nghiệm ấn tượng cho người dùng. Không những được thiết kế một cách độc đáo, sang trọng, ấn tượng mà mẫu máy này còn có thể xử lý được nhiều tác vụ khác nhau một cách mượt mà nhơf vào bộ vi xử lý mạnh mẽ, ấn tượng.: Cùng khám phá thêm mẫu laptop Dell Vostro 5402 70231338 có hiệu năng hoạt động nhanh chóng, hiệu quả. Giúp giải quyết nhiều tác vụ văn phòng một cách tiện lợi nhất.',37,0,0,1)
-Insert into Requirement (reqirement_name) values ('Gaming'),('Office'),('Graphic'),('Photography')
+Insert into Requirement (requirement_name) values ('Gaming'),('Office'),('Graphic'),('Photography')
 Insert into Product_Requirement (product_id,requirement_id) values (1,1),(2,1),(3,1),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,2),(11,2),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),(19,2),(20,2),(21,2),(22,2),(23,2),(24,2),(25,2),(26,2),(27,3),(28,4),(29,4),(30,4),(31,4),(32,4),(33,4),(34,4),(35,4),(36,4),(37,4),(38,4),(39,4),(40,1),(41,1),(42,1),(43,1),(44,1),(45,1),(46,1),(47,1),(48,1),(49,1),(50,1),(51,1),(52,3),(53,2),(54,2),(55,2),(56,2),(57,2),(58,2)
 Insert into Brand(brand_name,[description]) values ('Asus',''), ('Apple',''),('HP',''),('Samsung',''),('Gigabyte',''),('Dell',''),('MSI',''),('Huawei','')
 Insert into Product_Brand(brand_id,product_id) values (1,1),(1,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),(2,13),(2,14),(2,15),(2,16),(2,17),(2,18),(2,19),(2,20),(2,21),(2,22),(2,23),(3,24),(3,25),(3,26),(1,27),(2,28),(2,29),(2,30),(2,31),(2,32),(2,33),(2,34),(2,35),(2,36),(2,37),(2,38),(2,39),(4,40),(4,41),(4,42),(4,43),(4,44),(4,45),(4,46),(4,47),(4,48),(4,49),(4,50),(5,51),(5,52),(5,53),(6,54),(7,55),(8,56),(8,57),(8,58)
@@ -242,6 +242,6 @@ Insert into Role(role_name) values ('Admin'),
 Insert into Account(username,[password],displayname) values	('admin','admin','admin')	
 Insert into Role_Account(role_id,username) values (1,'admin')
 Insert into Status(status_name) values ('Preparing'),('Shipping'),('Success'),('Cancelled')
-Insert into Status(status_name) values (1)
 
-Insert into [Order]([status],customer_id,date,total_price) values (1,1,'2/11/2023',22190000)
+
+Insert into [Order]([status],customer_id,[date],total_price) values (1,1,'2/2/2023',22190000)
