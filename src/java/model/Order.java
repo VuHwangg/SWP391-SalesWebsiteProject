@@ -17,6 +17,8 @@ public class Order {
     private Date date;
     private String note;
     private float total_price;
+
+    
     
 
     public Order() {

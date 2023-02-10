@@ -3,6 +3,7 @@
 <%@page import="model.Order" %>
 <%@page import="java.sql.Date" %>
 <%@page import="java.util.ArrayList" %>
+<%@page  import="util.helper"%>
 
 <!DOCTYPE html>
 <html>
@@ -47,44 +48,51 @@
                 </div>
 
                 <!--Order status-->
-              
+               <%
+                                          ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
+                                          String err="";
+                                         
+                                                      
+                %>
                 <div>
                     <div class="row text-center">
                         <div style="background-color: #fb1514; color: white;" class="col-md border border-2 border-dark p-0 fw-bolder">
-                            <span>2</span>
+                            <span><%=session.getAttribute("total") %></span>
                             <br>
                             <span>Tất cả</span>
                         </div>
                         <div class="col-md border border-2 p-0 fw-bold">
-                            <span>1</span>
+                            <span><%=session.getAttribute("Preparing") %></span>
                             <br>
                             <span>Đang chuẩn bị</span>
                         </div>
                         <div class="col-md border border-2 p-0 fw-bold">
-                            <span>0</span>
+                            <span><%=session.getAttribute("Shipping") %></span>
                             <br>
                             <span>Đang vận chuyển</span>
                         </div>
                         <div class="col-md border border-2 p-0 fw-bold">
-                            <span>1</span>
+                            <span><%=session.getAttribute("Success") %></span>
                             <br>
                             <span>Đã nhận hàng</span>
                         </div>
                         <div class="col-md border border-2 p-0 fw-bold">
-                            <span>0</span>
+                            <span><%=session.getAttribute("Cancelled") %></span>
                             <br>
                             <span>Đơn đã bị hủy</span>
                         </div>
 
                     </div>
                 </div>
+               
+                <!--Order and detail-->
                 <%
-                                          ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
-                                          String err="";
+                                           arr = (ArrayList<Order>) session.getAttribute("lst");
+                                          err="";
                                          
                                                       
                 %>
-                <!--Order and detail-->
+                
                 <table class="table text-center mt-5">
                     <tbody>
                         <tr style="color: white; background-color: #fb1514;" class="row fw-bold">
@@ -97,6 +105,8 @@
                         <%
                                     if (arr.isEmpty() == false){
                                         for (int i = 0; i < arr.size(); i++) {
+                                        helper helper = new helper();
+                                       String price= helper.convertBigNum(arr.get(i).getTotal_price());
                         
                         %>
                         <tr class="row">
@@ -112,8 +122,8 @@
                                             if (arr.get(i).getStatus() == 3 ){
                                             err ="Succeeded";
                                             }else {
-                                                 if (arr.get(i).getStatus() == 3 ){
-                                                err ="Succeeded";
+                                                 if (arr.get(i).getStatus() == 4 ){
+                                                err ="Cancelled";
                                                 }
                                             }
                                         }
@@ -121,9 +131,9 @@
                                 %>
                             <th class="col fw-normal"><%=err%></th>
                             <th class="col fw-normal text-decoration-underline">
-                                <a href="order-detail.jsp">Xem chi tiết</a>
+                                <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
                             </th>
-                            <th class="col fw-normal text-end"><%=arr.get(i).getTotal_price()%></th>
+                            <th class="col fw-normal text-end"> <%=price%></th>
                         </tr>
                         <%}
 }

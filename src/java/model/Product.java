@@ -209,6 +209,20 @@ public class Product {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public Product(String name, String color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    public Product() {
+    }
+
+    public Product(int id, String name, String color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
     
     
 }
