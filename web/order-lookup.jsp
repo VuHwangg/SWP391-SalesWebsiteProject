@@ -25,8 +25,22 @@
                 <a href="#">Tra đơn</a>
               </div>
 
-              <div>
-                <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
+              <div class="row">
+                  <div class="col-md-8 col-sm-7">
+                      <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
+                  </div>
+                  <div class="col-md-4 col-sm-5 mb-4">
+                      <form action="">
+                          <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
+                            <input class="form-control border-end-0 border" type="search" placeholder="Tìm kiếm theo mã đơn hàng">
+                            <span class="input-group-append">
+                                <button class="btn bg-danger" type="button" style="border-radius: 0">
+                                    <i class="bi bi-search" style="color: white"></i>
+                                </button>
+                            </span>
+                        </div>
+                      </form>
+                  </div>
               </div>
 
                 <!--Order status-->

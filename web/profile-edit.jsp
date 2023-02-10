@@ -66,7 +66,7 @@
                                 <td>Email liên kết:</td>
                                 <td>
                                     <span><%=cus.getEmail()%></span>
-                                    <a class="profile-btn-red change-email" href="#">Đổi&nbsp;tài&nbsp;khoản</a>
+<!--                                    <a class="profile-btn-red change-email" href="#">Đổi&nbsp;tài&nbsp;khoản</a>-->
                                 </td>
                             </tr>
                             <tr>

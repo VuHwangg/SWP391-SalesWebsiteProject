@@ -111,6 +111,9 @@
               <li>
                 <a class="dropdown-item" href="login-user.jsp">Đăng nhập</a>
               </li>
+              <li>
+                <a class="dropdown-item" href="login-admin.jsp">Đăng nhập cho nhân viên</a>
+              </li>
               <%} else { %>
               <!--sau khi login user account-->
               <li>

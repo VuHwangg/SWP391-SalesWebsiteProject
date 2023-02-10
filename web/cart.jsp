@@ -34,7 +34,6 @@
                 <!--Products in cart-->
                 <div class="col-md-9 border border-2 rounded-1">
                   <table class="table w-100">
-                    <tbody>
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
@@ -48,29 +47,15 @@
                         </th>
 
                         <!--Name and color option-->
-                        <td>
-                          <span class="fst-normal">Iphone 14 Pro Max 128GB</span>
-                          <br />
-                          <select
-                            class="form-select form-select-sm w-75 mt-3"
-                            aria-label=".form-select-sm example"
-                          >
-                            <option selected>Màu sắc</option>
-                            <option value="1">Tím</option>
-                            <option value="2">Xanh</option>
-                            <option value="3">Vàng</option>
-                          </select>
-                        </td>
-
-                        <!--Quantity-->
-                        <td>
-                          <div class="form-outline w-75">
-                            <input
-                              type="number"
-                              id="typeNumber"
-                              value="1"
-                              class="form-control"
-                            />
+                        <td style="width: 100%; padding-left: 20px">
+                          <h5 class="fst-normal">Iphone 14 Pro Max 128GB</h5>
+                          <br/>
+                           <!--Quantity-->
+                          <div class="d-flex align-items-center">
+                            <span>Số lượng: </span>
+                            <div class="form-outline" style="width: 80px; padding-left: 10px">
+                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                            </div>
                           </div>
                         </td>
 
@@ -82,14 +67,14 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
-                        </td>
-                        <td style="padding: 30px 0">
-                            <a href="#" style="font-size: 20px;">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                          <div class="d-flex justify-content-end ">
+                                <a href="#" style="font-size: 20px;">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </a>
+                            </div>
                         </td>
                       </tr>
-
+                      
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
@@ -103,29 +88,15 @@
                         </th>
 
                         <!--Name and color option-->
-                        <td>
-                          <span class="fst-normal">Iphone 14 Pro Max 128GB</span>
-                          <br />
-                          <select
-                            class="form-select form-select-sm w-75 mt-3"
-                            aria-label=".form-select-sm example"
-                          >
-                            <option selected>Màu sắc</option>
-                            <option value="1">Tím</option>
-                            <option value="2">Xanh</option>
-                            <option value="3">Vàng</option>
-                          </select>
-                        </td>
-
-                        <!--Quantity-->
-                        <td>
-                          <div class="form-outline w-75">
-                            <input
-                              type="number"
-                              id="typeNumber"
-                              value="1"
-                              class="form-control"
-                            />
+                        <td style="width: 100%; padding-left: 20px">
+                          <h5 class="fst-normal">Macbook Pro 14 M1 Pro 16GB 1TB 2021</h5>
+                          <br/>
+                           <!--Quantity-->
+                          <div class="d-flex align-items-center">
+                            <span>Số lượng: </span>
+                            <div class="form-outline" style="width: 80px; padding-left: 10px">
+                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                            </div>
                           </div>
                         </td>
 
@@ -137,14 +108,14 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
-                        </td>
-                        <td style="padding: 30px 0">
-                            <a href="#" style="font-size: 20px;">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                          <div class="d-flex justify-content-end ">
+                                <a href="#" style="font-size: 20px;">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </a>
+                            </div>
                         </td>
                       </tr>
-
+                      
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
@@ -158,29 +129,15 @@
                         </th>
 
                         <!--Name and color option-->
-                        <td>
-                          <span class="fst-normal">Iphone 14 Pro Max 128GB</span>
-                          <br />
-                          <select
-                            class="form-select form-select-sm w-75 mt-3"
-                            aria-label=".form-select-sm example"
-                          >
-                            <option selected>Màu sắc</option>
-                            <option value="1">Tím</option>
-                            <option value="2">Xanh</option>
-                            <option value="3">Vàng</option>
-                          </select>
-                        </td>
-
-                        <!--Quantity-->
-                        <td>
-                          <div class="form-outline w-75">
-                            <input
-                              type="number"
-                              id="typeNumber"
-                              value="1"
-                              class="form-control"
-                            />
+                        <td style="width: 100%; padding-left: 20px">
+                          <h5 class="fst-normal">Iphone 14 Pro Max 128GB</h5>
+                          <br/>
+                           <!--Quantity-->
+                          <div class="d-flex align-items-center">
+                            <span>Số lượng: </span>
+                            <div class="form-outline" style="width: 80px; padding-left: 10px">
+                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                            </div>
                           </div>
                         </td>
 
@@ -192,14 +149,15 @@
                           <p class="fw-light text-decoration-line-through">
                             67.980.000&#8363;
                           </p>
-                        </td>
-                        <td style="padding: 30px 0">
-                            <a href="#" style="font-size: 20px;">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                          <div class="d-flex justify-content-end ">
+                                <a href="#" style="font-size: 20px;">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </a>
+                            </div>
                         </td>
                       </tr>
-                    </tbody>
+
+                      
                   </table>
                   <div class="d-flex justify-content-between mb-3">
                     <button type="button" class="btn btn-outline-danger">
