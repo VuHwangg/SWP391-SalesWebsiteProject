@@ -79,11 +79,6 @@
                       
                       
                     </div>
-
-                    <!-- list all product -->
-                    <div class="row">
-                      
-                    </div>
                   </div>
                 </div>
               </div>

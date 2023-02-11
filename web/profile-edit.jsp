@@ -91,11 +91,6 @@
                                 <input type="submit" value="Lưu lại chỉnh sửa" class="profile-btn-red">
                       </form>
                     </div>
-
-                    <!-- list all product -->
-                    <div class="row">
-                      
-                    </div>
                   </div>
                 </div>
               </div>
