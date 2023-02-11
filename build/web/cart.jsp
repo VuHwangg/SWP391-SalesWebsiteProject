@@ -54,7 +54,7 @@
                           <div class="d-flex align-items-center">
                             <span>Số lượng: </span>
                             <div class="form-outline" style="width: 80px; padding-left: 10px">
-                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                                <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
                             </div>
                           </div>
                         </td>
@@ -95,7 +95,7 @@
                           <div class="d-flex align-items-center">
                             <span>Số lượng: </span>
                             <div class="form-outline" style="width: 80px; padding-left: 10px">
-                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                                <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
                             </div>
                           </div>
                         </td>
@@ -136,7 +136,7 @@
                           <div class="d-flex align-items-center">
                             <span>Số lượng: </span>
                             <div class="form-outline" style="width: 80px; padding-left: 10px">
-                                <input class="form-control" type="number" value="1" step="1" min="0" max="99" />
+                                <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
                             </div>
                           </div>
                         </td>

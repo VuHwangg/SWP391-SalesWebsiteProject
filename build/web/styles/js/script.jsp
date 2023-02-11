@@ -65,5 +65,33 @@
         });
     });
     
+    // Quantity input------------------------------------------------------------
     
+    const minusBtn = document.querySelector("#minusBtn");
+      const plusBtn = document.querySelector("#plusBtn");
+      const numberInput = document.querySelector("#numberInput");
+      
+      minusBtn.addEventListener("click", function() {
+        let value = parseInt(numberInput.value);
+        if (value > 1) {
+          value--;
+        }
+        numberInput.value = value;
+      });
+      
+      plusBtn.addEventListener("click", function() {
+        let value = parseInt(numberInput.value);
+        if (value < 99) {
+          value++;
+        }
+        numberInput.value = value;
+      });
+      
+      //Slider images -----------------------------------------------------------
+      function change_image(image){
+        var container = document.getElementById("main-image");
+        container.src = image.src;
+      }
+      document.addEventListener("DOMContentLoaded", function(event) {
+      });
 </script>
