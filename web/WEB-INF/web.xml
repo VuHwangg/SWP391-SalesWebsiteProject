@@ -24,6 +24,18 @@
         <servlet-name>EditProfile</servlet-name>
         <servlet-class>controller.EditProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAllOrder</servlet-name>
+        <servlet-class>controller.ViewAllOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderDetail</servlet-name>
+        <servlet-class>controller.ViewOrderDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelOrder</servlet-name>
+        <servlet-class>controller.CancelOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -44,7 +56,6 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>Filter</servlet-name>
         <servlet-class>controller.FilterController</servlet-class>
@@ -53,7 +64,6 @@
         <servlet-name>Filter</servlet-name>
         <url-pattern>/filter</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.SearchController</servlet-class>
@@ -73,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>EditProfile</servlet-name>
         <url-pattern>/EditProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllOrder</servlet-name>
+        <url-pattern>/ViewAllOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderDetail</servlet-name>
+        <url-pattern>/ViewOrderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelOrder</servlet-name>
+        <url-pattern>/CancelOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
