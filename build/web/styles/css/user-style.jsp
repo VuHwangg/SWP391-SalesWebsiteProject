@@ -700,6 +700,30 @@
       }
   
   
+      
+      
+/*ORDER LOOKUP -----------------------------------------------------------------*/
+
+.order-lookup .order-status-group .order-status {
+    color: var(--main-color-black);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.order-lookup .order-status-group .order-status:hover {
+    background-color: var(--main-bg-color); 
+    color: white;
+}
+
+.order-lookup .order-status-group .order-status.active {
+    background-color: var(--main-bg-color); 
+    color: white;
+}
+
+.order-lookup .order-detail tr:first-child{
+    color: white;
+    background-color: var(--main-bg-color);
+}
   
 /*** FOOTER ***/
 

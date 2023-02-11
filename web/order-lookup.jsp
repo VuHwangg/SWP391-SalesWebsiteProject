@@ -9,7 +9,6 @@
 <html>
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
-        <!--duy ngu-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
@@ -46,44 +45,45 @@
                         </form>
                     </div>
                 </div>
-
-                <!--Order status-->
+                
+                <!--Order lookup-->
+                <div class="order-lookup">
+                    
+                    <!--Order status-->
                <%
                                           ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
                                           String err="";
                                          
                                                       
                 %>
-                <div>
-                    <div class="row text-center">
-                        <div style="background-color: #fb1514; color: white;" class="col-md border border-2 border-dark p-0 fw-bolder">
+                    
+                    <div class="order-status-group row text-center ">
+                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="order-lookup.jsp">
                             <span><%=session.getAttribute("total") %></span>
                             <br>
                             <span>Tất cả</span>
-                        </div>
-                        <div class="col-md border border-2 p-0 fw-bold">
+                        </a>
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-1.jsp">
                             <span><%=session.getAttribute("Preparing") %></span>
                             <br>
                             <span>Đang chuẩn bị</span>
-                        </div>
-                        <div class="col-md border border-2 p-0 fw-bold">
+                        </a>
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-2.jsp">
                             <span><%=session.getAttribute("Shipping") %></span>
                             <br>
                             <span>Đang vận chuyển</span>
-                        </div>
-                        <div class="col-md border border-2 p-0 fw-bold">
+                        </a>
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-3.jsp">
                             <span><%=session.getAttribute("Success") %></span>
                             <br>
                             <span>Đã nhận hàng</span>
-                        </div>
-                        <div class="col-md border border-2 p-0 fw-bold">
+                        </a>
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-4.jsp">
                             <span><%=session.getAttribute("Cancelled") %></span>
                             <br>
                             <span>Đơn đã bị hủy</span>
-                        </div>
-
+                        </a>
                     </div>
-                </div>
                
                 <!--Order and detail-->
                 <%
@@ -93,9 +93,9 @@
                                                       
                 %>
                 
-                <table class="table text-center mt-5">
+                <table class="order-detail table text-center mt-5">
                     <tbody>
-                        <tr style="color: white; background-color: #fb1514;" class="row fw-bold">
+                        <tr class="row fw-bold">
                             <th class="col border border-1 border-white">Mã đơn hàng</th>
                             <th class="col border border-1 border-white">Ngày đặt hàng</th>
                             <th class="col border border-1 border-white">Trạng thái</th>
@@ -141,6 +141,7 @@
 
                     </tbody>
                 </table>
+              </div>
             </div>
             <!--footer-->
             <%@include file="components/footer.jsp" %>
