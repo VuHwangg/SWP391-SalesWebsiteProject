@@ -120,7 +120,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[status]\n"
                     + "  FROM   [Product] \n"
                     + "  WHERE [name] LIKE ?\n"
-                    + "   OR [requirement] LIKE ?\n"
                     + "   OR [os] LIKE ?\n"
                     + "   OR [color] LIKE ?\n"
                     + "   OR [ram] LIKE ?\n"
@@ -144,7 +143,6 @@ public class ProductDBContext extends DBContext {
             stm.setString(5, txtSearch);
             stm.setString(6, txtSearch);
             stm.setString(7, txtSearch);
-            stm.setString(8, txtSearch);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();

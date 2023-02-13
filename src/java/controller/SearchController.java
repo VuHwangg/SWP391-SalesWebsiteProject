@@ -32,8 +32,7 @@ public class SearchController extends HttpServlet{
         }
         else{
             request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
-        }
-        
+        }     
     }
 
     @Override
