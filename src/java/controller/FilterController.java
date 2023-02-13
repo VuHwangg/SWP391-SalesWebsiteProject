@@ -31,7 +31,7 @@ public class FilterController extends HttpServlet {
         String rawTo = request.getParameter("to");
         String[] brands = request.getParameterValues("brand");
         String[] needs = request.getParameterValues("needs");
-        String[] sizes = request.getParameterValues("size-screen");
+//        String[] sizes = request.getParameterValues("size-screen");
         int type = Integer.parseInt(request.getParameter("type"));
         String sort;
         double from, to;
@@ -51,7 +51,7 @@ public class FilterController extends HttpServlet {
             to = 999999999;
         }
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands, sizes);
+        ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands);
         request.setAttribute("filterList", filterList);
         request.getRequestDispatcher("list-laptop.jsp").forward(request, response);
 //        response.getWriter().print(productList.testString(type, sort, from, to, needs, brands));
