@@ -16,4 +16,13 @@ public class helper {
         String result = formatter.format(x);
         return result;
     }
+    
+    public boolean checked(String x, String[] ys){
+        for(String y: ys){
+            if(x.compareTo(y)==0){
+                return true;
+            }
+        }
+        return false;
+    }
 }

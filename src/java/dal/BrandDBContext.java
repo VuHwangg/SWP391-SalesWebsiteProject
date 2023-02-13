@@ -42,4 +42,31 @@ public class BrandDBContext extends DBContext{
         }
         return null;
     }
+    
+     public ArrayList<Brand> listByType(int type) {
+        ArrayList<Brand> brands = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT b.[brand_id]\n"
+                    + "      ,b.[brand_name]\n"
+                    + "      ,b.[description]\n"
+                    + "      FROM [Brand] b\n"
+                    + "      INNER JOIN Product_Brand pb ON pb.brand_id = b.brand_id\n"
+                    + "      INNER JOIN Product pr ON pr.product_id = pb.product_id\n"
+                    + "      WHERE pr.[type] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, type);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand();
+                brand.setId(rs.getInt("brand_id"));
+                brand.setName(rs.getString("brand_name"));
+                brand.setDescription(rs.getString("description"));
+                brands.add(brand);
+            }
+            return brands;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
