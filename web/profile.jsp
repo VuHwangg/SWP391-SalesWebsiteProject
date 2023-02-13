@@ -33,7 +33,7 @@
                                                       
                     %>
                 <div class="row">
-                  <!-- list of filter check-box column -->
+                  <!--User information Col 1-->
                   <div class="cover-block profile-left col-sm-3 bg-offwhite">
                       <div class="avatar">
                           <img src="img/avatar-profile.png" alt="avatar"/>
@@ -52,9 +52,8 @@
                           Chỉnh sửa thông tin
                       </a>
                   </div>
-                  <!-- list of product column -->
+                  <!--User information Col 2-->
                   <div class="cover-block profile-right col-sm-8 bg-offwhite">
-                    <!-- sort method radio check -->
                     <h3 class="title-profile">Thông tin cá nhân</h3>
                     <div class="border-top border-dark border-3 mb-2"></div>
                     <div class="col">
@@ -76,7 +75,6 @@
                                 <td><%=cus.getAddress()%></td>
                             </tr>
                         </table>
-                      
                       
                     </div>
                   </div>

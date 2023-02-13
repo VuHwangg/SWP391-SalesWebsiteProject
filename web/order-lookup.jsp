@@ -92,7 +92,6 @@
                                          
                                                       
                 %>
-                
                 <table class="order-detail table text-center mt-5">
                     <tbody>
                         <tr class="row fw-bold">

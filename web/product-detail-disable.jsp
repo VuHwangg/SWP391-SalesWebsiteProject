@@ -60,164 +60,46 @@
                     <h3 class="price fw-bold">18.890.000 &#8363</h3>
                     <h4 class="sale-price text-decoration-line-through">21.990.000 &#8363</h4>
                     <div class="row filter-product-group">
-                        <a class="col-4 fp-btn active" href="#">
+                        <span class="col-4 fp-btn active">
                             128GB
-                        </a>
-                        <a class="col-4 fp-btn" href="#">
+                        </span>
+                        <span class="col-4 fp-btn">
                             256GB
-                        </a>
-                        <a class="col-4 fp-btn" href="#">
+                        </span>
+                        <span class="col-4 fp-btn">
                             512GB
-                        </a>
+                        </span>
                     </div>
                     
                     <div class="row filter-product-group">
-                        <a class="col-4 fp-btn" href="#">
-                            Đỏ
-                        </a>
-                        <a class="col-4 fp-btn" href="#">
+                        <span class="col-4 fp-btn">Đỏ</span>
+                        <span class="col-4 fp-btn">
                             Xanh
-                        </a>
-                        <a class="col-4 fp-btn" href="#">
+                        </span>
+                        <span class="col-4 fp-btn">
                             Vàng
-                        </a>
-                        <a class="col-4 fp-btn" href="#">
+                        </span>
+                        <span class="col-4 fp-btn">
                             Trắng
-                        </a>
-                        <a class="col-4 fp-btn active" href="#">
+                        </span>
+                        <span class="col-4 fp-btn active">
                             Đen
-                        </a>
+                        </span>
                     </div>
                     
                     <div class="row ">
                         <div class="col-12" style="padding: 0">
-                            <a class="buy-btn btn btn-danger w-100" href="cart.jsp">
-                                Mua ngay
+                            <a class="buy-btn btn btn-danger w-100" href="#">
+                                Truy cập vào sản phẩm trong cửa hàng
                             </a>
                         </div>
-                        <div class="col-4" style="padding: 0">
-                            <div class="quantity-input">
-                                <button id="minusBtn">-</button>
-                                <input type="number" id="numberInput" value="1" min="1" max="99" readonly />
-                                <button id="plusBtn">+</button>
-                              </div>
-                        </div>
-                        <div class="col-8" style="padding: 0 0 0 8px">
-                            <a class="add-cart-btn btn w-100" href="cart.jsp">
-                                <table>
-                                    <tr>
-                                        <td style="width: 30%"><i class="bi bi-cart-plus-fill"></i></td>
-                                        <td style="width: 70%">Thêm vào giỏ hàng</td>
-                                    </tr>
-                                </table>
-                            </a>
-                        </div>
+                        
+                        
                     </div>
                 </div>
               </div>
-             <div style="padding: 0 12px">
-              <div class="row mt-3 w-100 mx-auto cover-block similar-product">
-                  <h3>Sản phẩm tương tự: </h3>
-                  <div class="row" style="flex-grow: 1">
-                    <a class="product col-md-3 col-sm-6" href="#">
-                      <div class="product-img">
-                        <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                          alt="iphone"
-                        />
-                      </div>
-                      <div class="product-name">
-                        <p>iPhone 14 128GB</p>
-                      </div>
-                      <div class="row price-block">
-                        <div class="col-8">
-                          <div class="product-old-price">
-                            <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                          </div>
-                          <div class="product-price">
-                            <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <p class="sale-percent">-6%</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="product col-md-3 col-sm-6" href="#">
-                      <div class="product-img">
-                        <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                          alt="iphone"
-                        />
-                      </div>
-                      <div class="product-name">
-                        <p>iPhone 14 128GB</p>
-                      </div>
-                      <div class="row price-block">
-                        <div class="col-8">
-                          <div class="product-old-price">
-                            <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                          </div>
-                          <div class="product-price">
-                            <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <p class="sale-percent">-6%</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="product col-md-3 col-sm-6" href="#">
-                      <div class="product-img">
-                        <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                          alt="iphone"
-                        />
-                      </div>
-                      <div class="product-name">
-                        <p>iPhone 14 128GB</p>
-                      </div>
-                      <div class="row price-block">
-                        <div class="col-8">
-                          <div class="product-old-price">
-                            <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                          </div>
-                          <div class="product-price">
-                            <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <p class="sale-percent">-6%</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="product col-md-3 col-sm-6" href="#">
-                      <div class="product-img">
-                        <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                          alt="iphone"
-                        />
-                      </div>
-                      <div class="product-name">
-                        <p>iPhone 14 128GB</p>
-                      </div>
-                      <div class="row price-block">
-                        <div class="col-8">
-                          <div class="product-old-price">
-                            <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                          </div>
-                          <div class="product-price">
-                            <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <p class="sale-percent">-6%</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-              </div>
               
+             <div style="padding: 0 12px">
               <div class="row mt-3 w-100 mx-auto product-description">
                   
                   <div class="cover-block product-description-left col-md-7 bg-danger">
