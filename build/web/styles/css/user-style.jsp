@@ -22,12 +22,13 @@
   
   ::selection {
     color: #fff;
-    background: #4654a3;
+    background: var(--main-bg-color);
   }
   
   :root {
     --main-bg-color: #dc3545;
     --sub-bg-color: rgb(227, 215, 37);
+    --main-color-lightgray: #dee2e6;
     --main-color-gray: #404044;
     --main-color-darkgray: #243238;
     --main-color-black: rgb(39, 39, 39);
@@ -47,8 +48,9 @@
   }
 
 
-  /* Mini banner-------------------------------------------------------------------------------- */
-
+/*==============================================================================
+                                Mini banner
+==============================================================================*/
   .mini-banner {
     height: 60px;
     width: 100%;
@@ -59,7 +61,10 @@
     z-index: 999;
   }
 
-  /* Navigation bar-------------------------------------------------------------------------------- */
+
+/*==============================================================================
+                              Navigation Bar
+==============================================================================*/
   .navbar {
     padding: 0;
     margin-top: 30px;
@@ -151,8 +156,6 @@
     padding-left: 35px;
   }
 
-  
-
   @media (max-width: 400px) {
     .navbar .search-box {
       width: 50px;
@@ -166,13 +169,17 @@
     }
   }
 
-  /* Main container-------------------------------------------------------------------------------- */
+/*==============================================================================
+                              Main Container
+==============================================================================*/
   .main-container {
     position: relative;
   }
 
 
-  /* Side banner-------------------------------------------------------------------------------- */
+/*==============================================================================
+                                Side Banner
+==============================================================================*/
   .sb-right,
   .sb-left {
     position: fixed;
@@ -190,14 +197,19 @@
     object-fit: cover;
   }
 
-  /* Content center-------------------------------------------------------------------------------- */
+
+/*==============================================================================
+                                Content Center
+==============================================================================*/
   .content-center { 
     position: relative;
     max-width: 1200px;
     margin: auto;
   }
 
-  /* Breadcrumb-------------------------------------------------------------------------------- */
+/*==============================================================================
+                                 Breadcrumb
+==============================================================================*/
   .breadcrumb {
     padding: 100px 20px 10px;
     margin-bottom: 0;
@@ -214,8 +226,10 @@
     color: var(--main-bg-color);
   }
 
-  /* Carousel-------------------------------------------------------------------------------- */
   
+/*==============================================================================
+                                Carousel
+==============================================================================*/
   .main-carousel,
   .small-main-carousel {
     width: 100%;
@@ -237,8 +251,10 @@
     background-color: white;
   }
 
-  /* List product-------------------------------------------------------------------------------- */
 
+/*==============================================================================
+                                List Product
+==============================================================================*/
   .list-product {
     padding: 30px 40px 1px 40px;
   }
@@ -254,7 +270,8 @@
     background-color: white;
   }
 
-  /* List in home page */
+/*                          List in home page 
+--------------------------------------------------------------------------------*/
 
   .list-product .row-title {
     font-size: 32px;
@@ -276,9 +293,11 @@
     text-decoration: underline;
   }
 
-  /* List in Phone & Laptop page */
+/*                      List in Phone & Laptop page 
+--------------------------------------------------------------------------------*/
 
-  /* Filter block */
+/*----------------------- Filter block -----------------------------------------*/
+
   .list-product .filter {
     padding: 30px 30px 30px 0;
   }
@@ -306,7 +325,7 @@
     background-color: #960000;
   }
 
-  /* Sort block*/
+/* --------------------------- Sort block --------------------------------------*/
   .list-product .sort-method p {
     font-size: 24px;
     font-weight: 700;
@@ -335,10 +354,34 @@
     }
   }
 
-  /* List all block */
+  
+/*==============================================================================
+                                List Not Found
+==============================================================================*/
+  
+.product-notfound {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.product-notfound p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
 
-  /* Each product-------------------------------------------------------------------------------- */
+.product-notfound a {
+    text-align: center;
+    margin: auto
+}
+  
+  
+/*==============================================================================
+                                Each product
+==============================================================================*/
   .product {  
     border-radius: 10px;
     padding: 12px; 
@@ -415,7 +458,9 @@
     }
   }
   
-/* Profile  -------------------------------------------------------------------------------------*/
+/*==============================================================================
+                                Profile
+==============================================================================*/
 
 .profile {
     padding: 15px 40px 1px 40px;
@@ -536,26 +581,29 @@
       text-align: right;
   }
   
-  /*Product Details ----------------------------------------------------------*/
+ 
+/*==============================================================================
+                              Product Detail
+==============================================================================*/
   
   .product-detail-title {
       padding: 0 8px;
   }
   
-  .product-detail-title .sub-reviews {
+  .product-detail-title .sub-vote {
       text-align: right;
   }
   
-  .product-detail-title .stars {
-      font-size: 20px;
+  .stars {
+      font-size: 18px;
   }
   
-  .product-detail-title .stars i.active {
+  .bi-star-fill.active {
       color: #e0c84a;
   }
   
   @media (max-width: 576px) {
-    .product-detail-title .sub-reviews {
+    .product-detail-title .sub-vote {
         text-align: left;
     }
   }
@@ -583,7 +631,7 @@
       align-items: center;
   }
   
-  .product-detail .fp-btn:hover {
+  .product-detail a.fp-btn:hover {
       background-color: #cccccc;
   }
   
@@ -623,25 +671,65 @@
   }
   
   
+/*-------------------------- Similar product-----------------------------------*/
   .similar-product {
       box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-      border-radius: 18px;
-      
-      
   }
   
   
-  /*Slider Image--------------------------------------------------------------*/
+  /*----------------------Product Description-----------------------------------*/
+  
+  .product-description .cover-block{
+    flex-grow: 1;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin-top: 20px;
+  }
+  
+  .product-description .cover-block p {
+      margin: 0;
+  }
+
+  .product-description .product-description-left {
+    margin-right: 20px;
+    color: white;
+  }
+  
+  /*----------------------Product Vote-----------------------------------*/
+
+  .vote.cover-block {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin-top: 20px;
+  }
+  
+  .vote .vote-left {
+      border-right: 2px solid var(--main-color-lightgray);
+  }
+  
+  .vote .progress {
+      width: 80%;
+      height: 1rem;
+      margin: 0 8px;
+  }
+  .vote span {
+      width: 30px;
+  }
+  
+  
+/*==============================================================================
+                                Slider Images
+==============================================================================*/
   
   .slider-img {
       margin-bottom: 16px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+      overflow: hidden;
+      border-radius: 16px;
   }
   
   .slider-img .main-slider-img {
       width: 100%;
       height: 400px;
-      border-bottom: 3px solid var(--main-bg-color);
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
   
   .slider-img .main-slider-img img {
@@ -661,7 +749,9 @@
   }
   
   
-  /*Quantity input-----------------------------------------------------------*/
+/*==============================================================================
+                             Quantity Input Block
+==============================================================================*/
   
     .quantity-input {
         display: flex;
@@ -699,10 +789,10 @@
         background-color: #ccc;
       }
   
-  
-      
-      
-/*ORDER LOOKUP -----------------------------------------------------------------*/
+
+/*==============================================================================
+                             Order Lookup
+==============================================================================*/
 
 .order-lookup .order-status-group .order-status {
     color: var(--main-color-black);
@@ -725,7 +815,9 @@
     background-color: var(--main-bg-color);
 }
   
-/*** FOOTER ***/
+/*==============================================================================
+                             FOOTER
+==============================================================================*/
 
 .page-footer {
   position: relative;
@@ -956,27 +1048,10 @@
   }
 }
 
-/* List not found */
-.product-notfound {
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-.product-notfound p {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.product-notfound a {
-    text-align: center;
-    margin: auto
-}
-
-/* Range Price product --------------------------------------------------------------*/
+/*==============================================================================
+                             Range Price Input
+==============================================================================*/
 
 .price-input{
   width: 100%;
