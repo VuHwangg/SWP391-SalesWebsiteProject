@@ -246,4 +246,4 @@ Insert into Status(status_name) values ('Preparing'),('Shipping'),('Success'),('
 
 Insert into [Order]([status],customer_id,[date],total_price) values (1,1,'2/2/2023',22190000)
 Insert into Order_Details(order_id,product_id,num,price) values(7,1,1,22190000)
-Select * from Order_Details where order_id =7
+

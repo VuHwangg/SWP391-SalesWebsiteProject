@@ -14,7 +14,7 @@ public class Product {
     private int id;
     private String name;
     private int type;
-    private String requirement;
+    private ArrayList<Requirement> requirement = new ArrayList<>();
     private String os;
     private String color;
     private double original_price;
@@ -98,14 +98,15 @@ public class Product {
         this.type = type;
     }
 
-    public String getRequirement() {
+    public ArrayList<Requirement> getRequirement() {
         return requirement;
     }
 
-    public void setRequirement(String requirement) {
+    public void setRequirement(ArrayList<Requirement> requirement) {
         this.requirement = requirement;
     }
 
+    
     public String getOs() {
         return os;
     }
