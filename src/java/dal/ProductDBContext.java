@@ -17,7 +17,66 @@ import model.Product;
  * @author admin
  */
 public class ProductDBContext extends DBContext {
+    
+    public Product getProduct(int id) {
+        Product product = new Product();
+        try {
+            String sql = "SELECT   [product_id]\n"
+                    + "		  ,[name]\n"
+                    + "		  ,[type]\n"
+                    + "		  ,[os]\n"
+                    + "		  ,[color]\n"
+                    + "		  ,[current_price]\n"
+                    + "           ,[original_price]\n"
+                    + "		  ,[ram]\n"
+                    + "		  ,[memory]\n"
+                    + "		  ,[cpu]\n"
+                    + "		  ,[graphics_card]\n"
+                    + "		  ,[size]\n"
+                    + "		  ,[description]\n"
+                    + "		  ,[discount]\n"
+                    + "		  ,[qty]\n"
+                    + "		  ,[sold]\n"
+                    + "		  ,[status]\n"
+                    + "	  FROM [Product] where  [status] = 1 AND [product_id] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
 
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+                product.setSold(rs.getInt("sold"));
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                RequirementDBContext reqdb = new RequirementDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setRequirement(reqdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+            }
+            return product;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public ArrayList<Product> listProduct(int type, int num, boolean topSale, boolean topSold) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -85,6 +144,8 @@ public class ProductDBContext extends DBContext {
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
                 ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
                 product.setBrands(brdb.listByID(product.getId()));
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));
@@ -166,6 +227,8 @@ public class ProductDBContext extends DBContext {
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
                 ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
                 product.setBrands(brdb.listByID(product.getId()));
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));
@@ -290,6 +353,8 @@ public class ProductDBContext extends DBContext {
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
                 ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
                 product.setBrands(brdb.listByID(product.getId()));
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));

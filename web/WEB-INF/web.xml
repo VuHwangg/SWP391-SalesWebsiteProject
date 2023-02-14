@@ -81,6 +81,14 @@
         <url-pattern>/filter</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ProductDetail</servlet-name>
+        <servlet-class>controller.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetail</servlet-name>
+        <url-pattern>/product_detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.SearchController</servlet-class>
     </servlet>
