@@ -438,6 +438,74 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+    
+    // sản phẩm tương tự
+    public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT TOP (?) pr.[product_id]\n"
+                    + "      ,pr.[name]\n"
+                    + "      ,pr.[type]\n"
+                    + "      ,pr.[os]\n"
+                    + "      ,pr.[feature_product]\n"
+                    + "      ,pr.[color]\n"
+                    + "      ,pr.[current_price]\n"
+                    + "      ,pr.[original_price]\n"
+                    + "      ,pr.[ram]\n"
+                    + "      ,pr.[memory]\n"
+                    + "      ,pr.[cpu]\n"
+                    + "      ,pr.[graphics_card]\n"
+                    + "      ,pr.[size]\n"
+                    + "      ,pr.[description]\n"
+                    + "      ,pr.[discount]\n"
+                    + "      ,pr.[qty]\n"
+                    + "      ,pr.[sold]\n"
+                    + "      ,pr.[status]\n"
+                    + "  FROM [Product] pr\n"
+                    + "  where  pr.[status] = 1\n"
+                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, num);
+            stm.setInt(2, ram);
+            stm.setInt(3, memory);
+            stm.setString(4, cpu);
+            stm.setString(5, graphic_card);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+                product.setSold(rs.getInt("sold"));
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                RequirementDBContext reqdb = new RequirementDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setRequirement(reqdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 //test query
     public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {

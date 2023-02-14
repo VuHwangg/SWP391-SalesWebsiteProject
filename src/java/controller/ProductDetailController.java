@@ -17,7 +17,8 @@ import model.Product;
  *
  * @author admin
  */
-public class ProductDetailController extends HttpServlet{
+public class ProductDetailController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -26,7 +27,9 @@ public class ProductDetailController extends HttpServlet{
         Product product = productList.getProduct(id);
         request.setAttribute("product", product);
         ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
         request.setAttribute("colorList", colorList);
+        request.setAttribute("sameList", sameList);
         request.getRequestDispatcher("product-detail.jsp").forward(request, response);
     }
 
