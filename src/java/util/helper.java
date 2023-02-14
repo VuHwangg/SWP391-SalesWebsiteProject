@@ -28,6 +28,13 @@ public class helper {
         }
         return false;
     }
+    
+    public boolean compareString(String x, String y) {
+        if(x.compareTo(y)==0){
+            return true;
+        }
+        return false;
+    }
 
     public int totalVote(Product product) {
         int totalVote = 0;

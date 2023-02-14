@@ -25,6 +25,8 @@ public class ProductDetailController extends HttpServlet{
         int id = Integer.parseInt(request.getParameter("product_id"));
         Product product = productList.getProduct(id);
         request.setAttribute("product", product);
+        ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        request.setAttribute("colorList", colorList);
         request.getRequestDispatcher("product-detail.jsp").forward(request, response);
     }
 

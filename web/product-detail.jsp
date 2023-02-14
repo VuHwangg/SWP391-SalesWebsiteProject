@@ -82,21 +82,14 @@
                             </div>
 
                             <div class="row filter-product-group">
-                                <a class="col-4 fp-btn" href="#">
-                                    Đỏ
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Xanh
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Vàng
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Trắng
-                                </a>
-                                <a class="col-4 fp-btn active" href="#">
-                                    Đen
-                                </a>
+                                <c:forEach items="${requestScope.colorList}" var="colorList">
+                                    <a class="col-4 fp-btn
+                                       <c:if test="${helper.compareString(colorList.color, requestScope.product.color)}">
+                                           active
+                                       </c:if>" href="product_detail?product_id=${colorList.id}">
+                                        ${colorList.color}
+                                    </a>
+                                </c:forEach>
                             </div>
 
                             <div class="row ">
