@@ -41,11 +41,7 @@
                 <p>Chúng tôi sẽ liên hệ lai ngay để xác nhận đơn hàng.</p>
             </div>
 
-            <div class="row">
-                <div class="col-md-4 btn btn-danger" style="max-width: 25%;"> Xem đơn hàng</div>
-                <div class="col-md-4 d-flex justify-content-center">Hoặc</div>
-                <div class="col-md-4 fw-bolder" style="color: orange;">Đến cửa hàng của chúng tôi</div>
-            </div>
+            
 
             <div class=" border-top border-secondary border-1 my-3"></div>
             <div>

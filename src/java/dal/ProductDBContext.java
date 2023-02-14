@@ -77,6 +77,70 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+    
+    public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
+        Product product = new Product();
+        try {
+            String sql = "SELECT TOP (1)  [product_id]\n"
+                    + "		  ,[name]\n"
+                    + "		  ,[type]\n"
+                    + "		  ,[os]\n"
+                    + "		  ,[color]\n"
+                    + "		  ,[current_price]\n"
+                    + "           ,[original_price]\n"
+                    + "		  ,[ram]\n"
+                    + "		  ,[memory]\n"
+                    + "		  ,[cpu]\n"
+                    + "		  ,[graphics_card]\n"
+                    + "		  ,[size]\n"
+                    + "		  ,[description]\n"
+                    + "		  ,[discount]\n"
+                    + "		  ,[qty]\n"
+                    + "		  ,[sold]\n"
+                    + "		  ,[status]\n"
+                    + "  FROM [Product]\n"
+                    + "  where  [status] = 1 and [name] like ? \n"
+                    + "and [ram] like ? and [memory] like ? and [cpu] like ? and [graphics_card] like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setInt(2, ram);
+            stm.setInt(3, memory);
+            stm.setString(4, cpu);
+            stm.setString(5, graphic_card);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+                product.setSold(rs.getInt("sold"));
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                RequirementDBContext reqdb = new RequirementDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setRequirement(reqdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+            }
+            return product;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     //for home screen
     public ArrayList<Product> listProduct(int type, int num, boolean topSale, boolean topSold) {
@@ -438,7 +502,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-    
+
     // sản phẩm tương tự
     public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card) {
         ArrayList<Product> products = new ArrayList<>();
@@ -498,6 +562,37 @@ public class ProductDBContext extends DBContext {
                 product.setBrands(brdb.listByID(product.getId()));
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    //buffer object
+    public ArrayList<Product> bufferObject(String name) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT \n"
+                    + "      pr.[name]\n"
+                    + "      ,pr.[ram]\n"
+                    + "      ,pr.[memory]\n"
+                    + "      ,pr.[cpu]\n"
+                    + "      ,pr.[graphics_card]\n"
+                    + "  FROM [Product] pr\n"
+                    + "  where  pr.[status] = 1 and pr.[name] LIKE ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setName(rs.getString("name"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
                 products.add(product);
             }
             return products;

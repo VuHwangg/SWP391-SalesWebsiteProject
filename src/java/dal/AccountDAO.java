@@ -22,7 +22,7 @@ public class AccountDAO extends DBContext {
                     + "      ,[customer_name]\n"
                     + "      ,[address]\n"
                     + "      ,[phone]\n"
-                    + "      ,[email]\n"
+                    + "      ,[email],[status]\n"
                     + "  FROM [dbo].[Customer]\n"
                     + "  WHERE [email] = ?";
             PreparedStatement st = connection.prepareStatement(sql);
@@ -77,16 +77,17 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public boolean AddCust(String customer_name, String address, String phone, String email) {
+    public boolean AddCust(String customer_name, String address, String phone, String email,boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Customer "
-                    + "(customer_name,address,phone,email) values (?,?,?,?)";
+                    + "(customer_name,address,phone,email,[status]) values (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, customer_name);
             ps.setString(2, address);
             ps.setString(3, phone);
             ps.setString(4, email);
+            ps.setBoolean(5, status);
 
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -161,7 +162,7 @@ public class AccountDAO extends DBContext {
                     + "      ,[customer_name]\n"
                     + "      ,[address]\n"
                     + "      ,[phone]\n"
-                    + "      ,[email]\n"
+                    + "      ,[email],[status]\n"
                     + "  FROM [dbo].[Customer]\n"
                     + "  WHERE [email] = ?";
             PreparedStatement st = connection.prepareStatement(sql);
@@ -173,7 +174,8 @@ public class AccountDAO extends DBContext {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
-                cust = new Customer(customer_id, customer_name, address, phone, email1);
+                boolean status = rs.getBoolean("status");
+                cust = new Customer(customer_id, customer_name, address, phone, email1,status);
             }
         } catch (SQLException e) {
         }
