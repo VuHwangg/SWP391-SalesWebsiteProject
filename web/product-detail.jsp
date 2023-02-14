@@ -70,15 +70,13 @@
                                 <h4 class="sale-price text-decoration-line-through">${helper.convertBigNum(requestScope.product.original_price)} &#8363</h4>
                             </c:if>                         
                             <div class="row filter-product-group">
-                                <a class="col-4 fp-btn active" href="#">
-                                    128GB
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    256GB
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    512GB
-                                </a>
+                                <c:forEach items="${requestScope.optionList}" var="optionList">
+                                    <a class="col-4 fp-btn <c:if test="${helper.compareProperties(optionList, requestScope.product)}">
+                                           active
+                                       </c:if>" href="product_detail?product_id=${optionList.id}">
+                                        ${optionList.ram}GB-${optionList.memory}GB
+                                    </a>
+                                </c:forEach>
                             </div>
 
                             <div class="row filter-product-group">
