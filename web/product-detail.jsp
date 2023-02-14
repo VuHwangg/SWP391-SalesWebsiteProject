@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <title>Giỏ hàng</title>
+        <title>Chi tiết sản phẩm</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -100,7 +100,7 @@
                                 <button id="minusBtn">-</button>
                                 <input type="number" id="numberInput" value="1" min="1" max="99" readonly />
                                 <button id="plusBtn">+</button>
-                              </div>
+                            </div>
                         </div>
                         <div class="col-8" style="padding: 0 0 0 8px">
                             <a class="add-cart-btn btn w-100" href="cart.jsp">

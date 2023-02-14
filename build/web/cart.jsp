@@ -32,132 +32,142 @@
               <!--Main info-->
               <div class="row mt-3 w-100 mx-auto">
                 <!--Products in cart-->
-                <div class="col-md-9 border border-2 rounded-1">
+                <div class="col-md-9 border border-2 rounded-1 table-responsive">
                   <table class="table w-100">
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
-                          <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center" style="width: 100px; height: 100px;">
                             <img
                               class="align-items-center"
-                              width="100"
+                              style="width: 100%; object-fit: contain;"
                               src="https://dummyimage.com/400x400/ff0000/fff"
                             />
                           </div>
                         </th>
 
-                        <!--Name and color option-->
-                        <td style="width: 100%; padding-left: 20px">
+                        <!--Name-->
+                        <td style="padding-left: 10px" width="60%">
                           <h5 class="fst-normal">Iphone 14 Pro Max 128GB</h5>
-                          <br/>
-                           <!--Quantity-->
-                          <div class="d-flex align-items-center">
-                            <span>Số lượng: </span>
+                        </td>
+                        
+                        <!--Quantity and Delete-->
+                        <td>
+                          <div class="d-flex flex-column align-items-center">
                             <div class="form-outline" style="width: 80px; padding-left: 10px">
                                 <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
                             </div>
+                            <br/>
+                            <a href="#" style="font-size: 18px; text-decoration: none;">
+                                <i class="bi bi-trash3-fill"></i> Xóa
+                            </a>
                           </div>
                         </td>
 
                         <!--Price-->
                         <td>
-                          <p class="fw-bold" style="color: #fb1514; margin: 0">
-                            59.980.000.&#8363;
-                          </p>
-                          <p class="fw-light text-decoration-line-through">
-                            67.980.000&#8363;
-                          </p>
-                          <div class="d-flex justify-content-end ">
-                                <a href="#" style="font-size: 20px;">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </a>
-                            </div>
+                          <div class="d-flex flex-column align-items-center">
+                            <p class="fw-bold" style="color: #fb1514; margin: 0">
+                              59.980.000.&#8363;
+                            </p>
+                            <p class="fw-light text-decoration-line-through">
+                              67.980.000&#8363;
+                            </p>
+                          </div>
                         </td>
                       </tr>
                       
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
-                          <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center" style="width: 100px; height: 100px;">
                             <img
                               class="align-items-center"
-                              width="100"
+                              style="width: 100%; object-fit: contain;"
                               src="https://dummyimage.com/400x400/ff0000/fff"
                             />
                           </div>
                         </th>
 
-                        <!--Name and color option-->
-                        <td style="width: 100%; padding-left: 20px">
-                          <h5 class="fst-normal">Macbook Pro 14 M1 Pro 16GB 1TB 2021</h5>
-                          <br/>
-                           <!--Quantity-->
-                          <div class="d-flex align-items-center">
-                            <span>Số lượng: </span>
+                        <!--Name-->
+                        <td style="padding-left: 10px" width="60%">
+                          <h5 class="fst-normal">Iphone 14 Pro Max 128GB</h5>
+                        </td>
+                        
+                        <!--Quantity and Delete-->
+                        <td>
+                          <div class="d-flex flex-column align-items-center">
                             <div class="form-outline" style="width: 80px; padding-left: 10px">
                                 <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
                             </div>
+                            <br/>
+                            <a href="#" style="font-size: 18px; text-decoration: none;">
+                                <i class="bi bi-trash3-fill"></i> Xóa
+                            </a>
                           </div>
                         </td>
 
                         <!--Price-->
                         <td>
-                          <p class="fw-bold" style="color: #fb1514; margin: 0">
-                            59.980.000.&#8363;
-                          </p>
-                          <p class="fw-light text-decoration-line-through">
-                            67.980.000&#8363;
-                          </p>
-                          <div class="d-flex justify-content-end ">
-                                <a href="#" style="font-size: 20px;">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </a>
-                            </div>
+                          <div class="d-flex flex-column align-items-center">
+                            <p class="fw-bold" style="color: #fb1514; margin: 0">
+                              59.980.000.&#8363;
+                            </p>
+                            <p class="fw-light text-decoration-line-through">
+                              67.980.000&#8363;
+                            </p>
+                          </div>
                         </td>
                       </tr>
                       
                       <tr>
                         <!--Image-->
                         <th class="p-0 py-2">
-                          <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center" style="width: 100px; height: 100px;">
                             <img
                               class="align-items-center"
-                              width="100"
+                              style="width: 100%; object-fit: contain;"
                               src="https://dummyimage.com/400x400/ff0000/fff"
                             />
                           </div>
                         </th>
 
-                        <!--Name and color option-->
-                        <td style="width: 100%; padding-left: 20px">
+                        <!--Name-->
+                        <td style="padding-left: 10px" width="60%">
                           <h5 class="fst-normal">Iphone 14 Pro Max 128GB</h5>
-                          <br/>
-                           <!--Quantity-->
-                          <div class="d-flex align-items-center">
-                            <span>Số lượng: </span>
-                            <div class="form-outline" style="width: 80px; padding-left: 10px">
-                                <input class="form-control" type="number" value="1" step="1" min="1" max="99" />
+                        </td>
+                        
+                        <!--Quantity and Delete-->
+                        <td>
+                          <div class="d-flex flex-column align-items-center">
+                            <div class="quantity">
+                                <button class="plus-btn" type="button" name="button">
+                                    <span>+</span>
+                                </button>
+                                <input type="text" name="name" value="1">
+                                <button class="minus-btn" type="button" name="button">
+                                    <span>-</span>
+                                </button>
                             </div>
+                            <br/>
+                            <a href="#" style="font-size: 18px; text-decoration: none;">
+                                <i class="bi bi-trash3-fill"></i> Xóa
+                            </a>
                           </div>
                         </td>
 
                         <!--Price-->
                         <td>
-                          <p class="fw-bold" style="color: #fb1514; margin: 0">
-                            59.980.000.&#8363;
-                          </p>
-                          <p class="fw-light text-decoration-line-through">
-                            67.980.000&#8363;
-                          </p>
-                          <div class="d-flex justify-content-end ">
-                                <a href="#" style="font-size: 20px;">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </a>
-                            </div>
+                          <div class="d-flex flex-column align-items-center">
+                            <p class="fw-bold" style="color: #fb1514; margin: 0">
+                              59.980.000.&#8363;
+                            </p>
+                            <p class="fw-light text-decoration-line-through">
+                              67.980.000&#8363;
+                            </p>
+                          </div>
                         </td>
                       </tr>
-
-                      
                   </table>
                   <div class="d-flex justify-content-between mb-3">
                     <button type="button" class="btn btn-outline-danger">
@@ -170,7 +180,7 @@
                 </div>
 
                 <!--Payment-->
-                <div class="col-md-3 border border-2 rounded-1">
+                <div class="col-md-3">
                   <div class="d-flex justify-content-between mb-3">
                     <span>Tổng tiền:</span>
                     <span>172.960.000&#8363;</span>
@@ -190,7 +200,7 @@
                   </div>
                   <div class="border-top border-dark border-3 mb-3"></div>
                   <div class="d-flex justify-content-center">
-                    <a type="button" class="btn btn-danger w-100" href="payment.jsp">
+                    <a class="btn btn-danger w-100" href="payment.jsp">
                       Đi tới thanh toán
                     </a>
                   </div>

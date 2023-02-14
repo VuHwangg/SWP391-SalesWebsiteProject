@@ -753,6 +753,7 @@
                              Quantity Input Block
 ==============================================================================*/
   
+/*--------------- Quantity input in Product Detail --------------------------*/
     .quantity-input {
         display: flex;
         align-items: center;
@@ -789,6 +790,40 @@
         background-color: #ccc;
       }
   
+ /*--------------- Quantity input in Cart --------------------------*/     
+      .quantity {
+        padding-top: 20px;
+        margin-right: 60px;
+      }
+      .quantity input {
+        -webkit-appearance: none;
+        border: none;
+        text-align: center;
+        width: 32px;
+        font-size: 16px;
+        color: #43484D;
+        font-weight: 300;
+      }
+
+      button[class*=btn] {
+        width: 30px;
+        height: 30px;
+        background-color: #E1E8EE;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+      }
+      .minus-btn span {
+        margin-bottom: 3px;
+      }
+      .plus-btn span {
+        margin-top: 2px;
+      }
+
+      button:focus,
+      input:focus {
+        outline:0;
+      }
 
 /*==============================================================================
                              Order Lookup
