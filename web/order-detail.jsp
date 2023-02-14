@@ -77,7 +77,7 @@
                             <th class="col-5 fw-normal text-start"><%=arrPro.get(j).getName()%></th>
                             <th class="col-1 fw-normal"><%=arrPro.get(j).getColor()%></th>
                             <th class="col-1 fw-normal"><%=arrOr.get(i).getNum()%></th>
-                    <a href="#"><th class="col-2 fw-normal text-decoration-underline">Xem chi tiết</th></a>
+                     <th class="col-2 fw-normal text-decoration-underline"><a href="product_detail?product_id=<%=arrPro.get(j).getId()%>"> Xem chi tiết</a></th>
                     <th class="col-3 fw-normal text-end"><%=price%></th>
                     </tr>
                     <%}
@@ -114,7 +114,7 @@
                 <div class="mt-3">
                     <div class="row py-3  fs-5">
                         <div class="col-md-6 text-start fs-5 fst-italic text-decoration-underline">
-                            <span>Thông tin vận chuyển</span>
+                           
                         </div>
                         <%if (order.getStatus() == 1){%>
                         <div class="col-md-6 text-end">

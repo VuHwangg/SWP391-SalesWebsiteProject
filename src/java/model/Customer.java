@@ -14,17 +14,28 @@ public class Customer {
     private String address;
     private String phone;
     private String email;
-
+    private boolean status;
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, String address, String phone, String email) {
+    public Customer(int customerId, String customerName, String address, String phone, String email, boolean status) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.status = status;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
 
     public int getCustomerId() {
         return customerId;
