@@ -17,7 +17,7 @@ import model.Vote;
  * @author admin
  */
 public class VoteDBContext extends DBContext{
-    public ArrayList<Vote> list(int product_id) {
+    public ArrayList<Vote> listByID(int product_id) {
         ArrayList<Vote> votes = new ArrayList<>();
         try {
             String sql = "SELECT  [vote_id]\n"
