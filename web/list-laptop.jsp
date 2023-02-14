@@ -173,7 +173,7 @@
                                 <!-- list all product -->
                                 <div class="row">
                                     <c:forEach items="${requestScope.filterList}" var="filter">
-                                        <a class="product col-md-3 col-sm-6" href="#">
+                                        <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${filter.id}">
                                             <div class="product-img">
                                                 <img
                                                     src="${filter.image[0].url}"

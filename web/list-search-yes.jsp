@@ -88,7 +88,7 @@
                             <!-- list all product -->
                             <div class="row">
                                 <c:forEach items="${requestScope.searchList}" var="search">
-                                    <a class="product col-md-3 col-sm-6" href="#">
+                                    <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${search.id}">
                                         <div class="product-img">
                                             <img
                                                 src="${search.image[0].url}"

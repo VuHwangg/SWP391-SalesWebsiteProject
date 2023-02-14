@@ -153,78 +153,6 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a class="product col-md-3 col-sm-6" href="#">
-                                    <div class="product-img">
-                                        <img
-                                            src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>iPhone 14 128GB</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <div class="product-old-price">
-                                                <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                                            </div>
-                                            <div class="product-price">
-                                                <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="sale-percent">-6%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="product col-md-3 col-sm-6" href="#">
-                                    <div class="product-img">
-                                        <img
-                                            src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>iPhone 14 128GB</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <div class="product-old-price">
-                                                <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                                            </div>
-                                            <div class="product-price">
-                                                <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="sale-percent">-6%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="product col-md-3 col-sm-6" href="#">
-                                    <div class="product-img">
-                                        <img
-                                            src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>iPhone 14 128GB</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <div class="product-old-price">
-                                                <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                                            </div>
-                                            <div class="product-price">
-                                                <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="sale-percent">-6%</p>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
 
@@ -282,11 +210,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </c:forEach>
-                                    <!--                                <i class="bi bi-star-fill active"></i>
-                                                                        <i class="bi bi-star-fill active"></i>
-                                                                        <i class="bi bi-star-fill active"></i>
-                                                                        <i class="bi bi-star-fill active"></i>
-                                                                        <i class="bi bi-star-fill"></i>-->
+
                                 </div>
                                 <h6>${helper.totalVote(requestScope.product)} đánh giá</h6>
                             </div>
@@ -300,35 +224,6 @@
                                         <span>${helper.getNumofVote(requestScope.product, i)}</span>
                                     </div>
                                 </c:forEach>
-
-<!--                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>4<i class="bi bi-star-fill active"></i></span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" style="width: 20%"></div>
-                                    </div>
-                                    <span>4</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>3<i class="bi bi-star-fill active"></i></span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" style="width: 0%"></div>
-                                    </div>
-                                    <span>0</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>2<i class="bi bi-star-fill active"></i></span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" style="width: 0%"></div>
-                                    </div>
-                                    <span>0</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>1<i class="bi bi-star-fill active"></i></span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" style="width: 0%"></div>
-                                    </div>
-                                    <span>0</span>
-                                </div>-->
                             </div>
                         </div>
                     </div>
