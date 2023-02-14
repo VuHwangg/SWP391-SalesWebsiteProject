@@ -58,14 +58,4 @@ public class helper {
         }
         return 0;
     }
-    
-    public double getPercent(Product product, int num){
-        int totalVote = this.totalVote(product);
-        for (Vote vote : product.getVotes()) {
-            if(num==vote.getNum()){
-                return (vote.getNum_of_vote()/totalVote)*100;
-            }
-        }
-        return 0;
-    }
 }
