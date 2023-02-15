@@ -37,15 +37,11 @@
                         <form action="SearchOrder" method="post">
                             <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
                                 <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
-                                
-                                    <button
-                                                type="submit"
-                                                
-                                                style=""
-                                                >
-                                                Search
-                                            </button>
-                                
+                                <span class="input-group-append">
+                                    <button class="btn bg-danger" type="submit" style="border-radius: 0">
+                                        <i class="bi bi-search" style="color: white"></i>
+                                    </button>
+                                </span>
                             </div>
                         </form>
                     </div>
