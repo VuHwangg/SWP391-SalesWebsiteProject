@@ -40,15 +40,15 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="btn-group sort-method-selection" role="group">
-                                        <a class="btn btn-outline-danger active" href="search?txtSearch=${param.txtSearch}&sort=none">
+                                        <button class="btn btn-outline-danger active" value="">
                                             Khuyến mãi
-                                        </a>
-                                        <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=ASC">
+                                        </button>
+                                        <button class="btn btn-outline-danger" value="">
                                             Giá tăng dần
-                                        </a>
-                                         <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=DESC">
+                                        </button>
+                                         <button class="btn btn-outline-danger" value="">
                                             Giá giảm dần
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

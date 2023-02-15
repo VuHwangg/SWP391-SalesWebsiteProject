@@ -885,13 +885,21 @@
     background-color: var(--main-bg-color);
 }
 
-.order-lookup-guest {
-    
+.bg-overlookup {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    background-image: url('https://blog.nzcouriers.co.nz/wp-content/uploads/sites/15/2022/05/iStock-1221101939.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(5px);
 }
 
-.order-lookup-guest .container-fluid{
+.bg-overlookup .container-fluid{
     max-width: 600px;
     background-color: gray;
+    filter: blur(0);
 }
   
 /*==============================================================================

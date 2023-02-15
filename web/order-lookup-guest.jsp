@@ -37,7 +37,7 @@
                 </div>
 
                 <!--Order lookup-->
-                <div class="order-lookup-guest d-flex justify-content-center align-items-center">
+                <div class="bg-overlookup d-flex justify-content-center align-items-center">
                     <div class="container-fluid d-inline-block text-center">    
                         <h2>
                             Kiểm tra thông tin đơn hàng 
