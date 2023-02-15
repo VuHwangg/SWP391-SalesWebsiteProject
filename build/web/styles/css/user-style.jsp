@@ -884,6 +884,15 @@
     color: white;
     background-color: var(--main-bg-color);
 }
+
+.order-lookup-guest {
+    
+}
+
+.order-lookup-guest .container-fluid{
+    max-width: 600px;
+    background-color: gray;
+}
   
 /*==============================================================================
                              FOOTER
