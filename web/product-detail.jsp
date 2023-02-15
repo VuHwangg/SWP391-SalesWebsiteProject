@@ -70,33 +70,24 @@
                                 <h4 class="sale-price text-decoration-line-through">${helper.convertBigNum(requestScope.product.original_price)} &#8363</h4>
                             </c:if>                         
                             <div class="row filter-product-group">
-                                <a class="col-4 fp-btn active" href="#">
-                                    128GB
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    256GB
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    512GB
-                                </a>
+                                <c:forEach items="${requestScope.optionList}" var="optionList">
+                                    <a class="col-4 fp-btn <c:if test="${helper.compareProperties(optionList, requestScope.product)}">
+                                           active
+                                       </c:if>" href="product_detail?product_id=${optionList.id}">
+                                        ${optionList.ram}GB-${optionList.memory}GB
+                                    </a>
+                                </c:forEach>
                             </div>
 
                             <div class="row filter-product-group">
-                                <a class="col-4 fp-btn" href="#">
-                                    Đỏ
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Xanh
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Vàng
-                                </a>
-                                <a class="col-4 fp-btn" href="#">
-                                    Trắng
-                                </a>
-                                <a class="col-4 fp-btn active" href="#">
-                                    Đen
-                                </a>
+                                <c:forEach items="${requestScope.colorList}" var="colorList">
+                                    <a class="col-4 fp-btn
+                                       <c:if test="${helper.compareString(colorList.color, requestScope.product.color)}">
+                                           active
+                                       </c:if>" href="product_detail?product_id=${colorList.id}">
+                                        ${colorList.color}
+                                    </a>
+                                </c:forEach>
                             </div>
 
                             <div class="row ">
@@ -129,30 +120,37 @@
                         <div class="row mt-3 w-100 mx-auto cover-block similar-product">
                             <h3>Sản phẩm tương tự: </h3>
                             <div class="row" style="flex-grow: 1">
-                                <a class="product col-md-3 col-sm-6" href="#">
-                                    <div class="product-img">
-                                        <img
-                                            src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>iPhone 14 128GB</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <div class="product-old-price">
-                                                <s> 34.690.000&nbsp;<span>VNĐ</span></s>
-                                            </div>
-                                            <div class="product-price">
-                                                <p>32.690.000&nbsp;<span>VNĐ</span></p>
-                                            </div>
+                                <c:forEach items="${requestScope.sameList}" var="sameList">
+                                    <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${sameList.id}">
+                                        <div class="product-img">
+                                            <img
+                                                src="${sameList.image[0].url}"
+                                                alt="iphone"
+                                                />
                                         </div>
-                                        <div class="col-4">
-                                            <p class="sale-percent">-6%</p>
+                                        <div class="product-name">
+                                            <p>${sameList.name}</p>
                                         </div>
-                                    </div>
-                                </a>
+                                        <div class="row price-block">
+                                            <div class="col-8">
+                                                <c:if test="${sameList.discount>0}">
+                                                    <div class="product-old-price">
+                                                        <s> ${helper.convertBigNum(sameList.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                    </div>
+                                                </c:if>
+
+                                                <div class="product-price">
+                                                    <p> ${helper.convertBigNum(sameList.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                </div>
+                                            </div>
+                                            <c:if test="${sameList.discount>0}">
+                                                <div class="col-4">
+                                                    <p class="sale-percent">-${sameList.discount}%</p>
+                                                </div>
+                                            </c:if>   
+                                        </div>
+                                    </a>
+                                </c:forEach>
                             </div>
                         </div>
 

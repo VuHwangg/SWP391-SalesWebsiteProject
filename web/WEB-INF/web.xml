@@ -52,6 +52,10 @@
         <servlet-name>ViewOrder4</servlet-name>
         <servlet-class>controller.ViewOrder4</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchOrder</servlet-name>
+        <servlet-class>controller.SearchOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>ViewOrder4</servlet-name>
         <url-pattern>/ViewOrder4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrder</servlet-name>
+        <url-pattern>/SearchOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

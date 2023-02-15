@@ -17,7 +17,8 @@ import model.Product;
  *
  * @author admin
  */
-public class ProductDetailController extends HttpServlet{
+public class ProductDetailController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -25,7 +26,20 @@ public class ProductDetailController extends HttpServlet{
         int id = Integer.parseInt(request.getParameter("product_id"));
         Product product = productList.getProduct(id);
         request.setAttribute("product", product);
+        ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> bufferList = productList.bufferObject(product.getName());
+        ArrayList<Product> optionList = new ArrayList<>();
+        for(Product pro : bufferList){
+            Product diffOption = productList.getProduct(pro.getName(), pro.getRam(), pro.getMemory(), pro.getCpu(), pro.getGraphic_card());
+//            response.getWriter().print(diffOption.getName());
+            optionList.add(diffOption);
+        }
+        request.setAttribute("colorList", colorList);
+        request.setAttribute("optionList", optionList);
+        request.setAttribute("sameList", sameList);
         request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+//        response.getWriter().print(bufferList.get(0).getRam());
     }
 
     @Override

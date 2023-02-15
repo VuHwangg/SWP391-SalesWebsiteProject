@@ -6,7 +6,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import model.Account;
+import model.Customer;
 import util.Check;
 
 
@@ -39,23 +42,34 @@ public class SignupUser extends HttpServlet {
             } else {
                 if (place.isEmpty()) {
                     err = "Please input the your place";
-                   
-                    if (ch.CheckPhone(phone)== false){
+
+                    if (ch.CheckPhone(phone) == false) {
                         err = "Your phone is not correct format";
                     }
-                } 
+                }
             }
         }
+        AccountDAO acc = new AccountDAO();
+
         if (err.equals("1") == false) {
             req.setAttribute("err", err);
             req.getRequestDispatcher("register-user.jsp").forward(req, resp);
         } else {
-            AccountDAO acc = new AccountDAO();
-            if(acc.AddAcount(mail,"!!", name) && acc.AddCust(name,place , phone, email)){
-                if(acc.AddRole(4, mail)){
+
+            if (acc.AddAcount(mail, "!!", name) && acc.AddCust(name, place, phone, email, true)) {
+                if (acc.AddRole(4, mail)) {
+                    Account acc1 = acc.checkExistAcc(mail);
+                    Customer cust1 = acc.GetCust(mail);
+//                    resp.getWriter().print(acc1.getDisplayname());
+//                    resp.getWriter().print(cust1.getCustomerName());
+                    HttpSession session = req.getSession();
+                    session.setAttribute("cust", cust1);
+                    session.setAttribute("acc", acc1);
                     req.getRequestDispatcher("home").forward(req, resp);
                 }
-            }else {req.getRequestDispatcher("register-user.jsp").forward(req, resp);}
+            } else {
+                req.getRequestDispatcher("register-user.jsp").forward(req, resp);
+            }
         }
 
     }

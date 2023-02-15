@@ -28,6 +28,28 @@ public class helper {
         }
         return false;
     }
+    
+    public boolean compareString(String x, String y) {
+        if(x.compareTo(y)==0){
+            return true;
+        }
+        return false;
+    }
+    public boolean compareProperties(Product x, Product y) {
+        if(x.getRam()!=y.getRam()){
+            return false;
+        }
+        if(x.getMemory()!=y.getMemory()){
+            return false;
+        }
+        if(x.getCpu().compareTo(y.getCpu())!=0){
+            return false;
+        }
+        if(x.getGraphic_card().compareTo(y.getGraphic_card())!=0){
+            return false;
+        }
+        return true;
+    }
 
     public int totalVote(Product product) {
         int totalVote = 0;

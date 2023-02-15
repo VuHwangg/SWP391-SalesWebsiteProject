@@ -35,14 +35,18 @@
                         <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
                     </div>
                     <div class="col-md-4 col-sm-5 mb-4">
-                        <form action="">
+                        <form action="SearchOrder" method="post">
                             <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
-                                <input class="form-control border-end-0 border" type="search" placeholder="Tìm kiếm theo mã đơn hàng">
-                                <span class="input-group-append">
-                                    <button class="btn bg-danger" type="button" style="border-radius: 0">
-                                        <i class="bi bi-search" style="color: white"></i>
-                                    </button>
-                                </span>
+                                <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
+                                
+                                    <button
+                                                type="submit"
+                                                
+                                                style=""
+                                                >
+                                                Search
+                                            </button>
+                                
                             </div>
                         </form>
                     </div>
@@ -58,27 +62,27 @@
                                                       
                     %>
                     <div class="order-status-group row text-center ">
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewAllOrder">
                             <span><%=session.getAttribute("total") %></span>
                             <br>
                             <span>Tất cả</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-1.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder1">
                             <span><%=session.getAttribute("Preparing") %></span>
                             <br>
                             <span>Đang chuẩn bị</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-2.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder2">
                             <span><%=session.getAttribute("Shipping") %></span>
                             <br>
                             <span>Đang vận chuyển</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-3.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder3">
                             <span><%=session.getAttribute("Success") %></span>
                             <br>
                             <span>Đã nhận hàng</span>
                         </a>
-                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="order-lookup-4.jsp">
+                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="ViewOrder4">
                             <span><%=session.getAttribute("Cancelled") %></span>
                             <br>
                             <span>Đơn đã bị hủy</span>

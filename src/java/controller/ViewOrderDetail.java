@@ -31,7 +31,7 @@ public class ViewOrderDetail extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         int order_id = Integer.parseInt(req.getParameter("id"));
-        resp.getWriter().print(order_id);
+      
         OrderDAO odao = new OrderDAO();
         Order or = odao.GetOrder1(order_id);
         ArrayList<Order_Details> arrDetail = odao.GetOrder_Details(order_id);

@@ -72,10 +72,10 @@
                         %>
 
           <li class="nav-item">
-            <a class="nav-link" href="list-phone.jsp">Điện thoại</a>
+            <a class="nav-link" href="filter?type=0">Điện thoại</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="list-laptop.jsp">Laptop</a>
+            <a class="nav-link" href="filter?type=1">Laptop</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.jsp">Giỏ hàng</a>
