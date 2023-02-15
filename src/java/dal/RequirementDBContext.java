@@ -42,4 +42,31 @@ public class RequirementDBContext extends DBContext {
         }
         return null;
     }
+
+    public ArrayList<Requirement> listByType(int type) {
+        ArrayList<Requirement> requirements = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT p.[requirement_id]\n"
+                    + "      ,p.[requirement_name]\n"
+                    + "      ,p.[description]\n"
+                    + "      FROM [Requirement] p\n"
+                    + "      INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id\n"
+                    + "      INNER JOIN Product prd ON prd.product_id = pr.product_id\n"
+                    + "      WHERE prd.[type] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, type);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Requirement requirement = new Requirement();
+                requirement.setId(rs.getInt("requirement_id"));
+                requirement.setName(rs.getString("requirement_name"));
+                requirement.setDescription(rs.getString("description"));
+                requirements.add(requirement);
+            }
+            return requirements;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

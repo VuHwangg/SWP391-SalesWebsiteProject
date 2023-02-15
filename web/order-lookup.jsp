@@ -23,9 +23,9 @@
             <div class="container min-vh-100">
                 <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
-                    <a href="index.jsp">Trang chủ</a>
+                    <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
-                    <a href="#">Tra đơn</a>
+                    <a href="ViewAllOrder">Tra đơn</a>
                 </div>
 
                 <div class="row">
@@ -58,27 +58,27 @@
                 %>
                     
                     <div class="order-status-group row text-center ">
-                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="order-lookup.jsp">
+                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="ViewAllOrder">
                             <span><%=session.getAttribute("total") %></span>
                             <br>
                             <span>Tất cả</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-1.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder1">
                             <span><%=session.getAttribute("Preparing") %></span>
                             <br>
                             <span>Đang chuẩn bị</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-2.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder2">
                             <span><%=session.getAttribute("Shipping") %></span>
                             <br>
                             <span>Đang vận chuyển</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-3.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder3">
                             <span><%=session.getAttribute("Success") %></span>
                             <br>
                             <span>Đã nhận hàng</span>
                         </a>
-                        <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-4.jsp">
+                        <a class="order-status col-md border border-2 p-0 fw-bold" href="ViewOrder4">
                             <span><%=session.getAttribute("Cancelled") %></span>
                             <br>
                             <span>Đơn đã bị hủy</span>
@@ -112,17 +112,17 @@
                             <th class="col fw-normal"><%=arr.get(i).getOrder_id()%></th>
                             <th class="col fw-normal"><%=arr.get(i).getDate()%></th>
                                 <% if (arr.get(i).getStatus() == 1){
-                                            err = "Preparing";
+                                            err = "Đang chuẩn bị";
                                     }else {
                                         if (arr.get(i).getStatus() == 2){
-                                        err = "Shipping";
+                                        err = "Đang vận chuyển";
                                         
                                         }else {
                                             if (arr.get(i).getStatus() == 3 ){
-                                            err ="Succeeded";
+                                            err ="Đã nhận hàng";
                                             }else {
                                                  if (arr.get(i).getStatus() == 4 ){
-                                                err ="Cancelled";
+                                                err ="Đơn đã bị hủy";
                                                 }
                                             }
                                         }

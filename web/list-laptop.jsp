@@ -46,26 +46,13 @@
                                             <input type="checkbox" name="brand" id="brand1" checked value="all"/>
                                             <label for="brand1">Tất cả</label>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand2" value="Apple" />
-                                            <label for="brand2">Apple</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand3" value="Asus"/>
-                                            <label for="brand3">Asus</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand4" value="HP"/>
-                                            <label for="brand4">HP</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand5" value="MSI"/>
-                                            <label for="brand5">MSI</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand6" value="Dell"/>
-                                            <label for="brand6">Dell</label>
-                                        </div>
+                                        <c:forEach items="${requestScope.allBrands}" var="allBrand">
+                                            <div class="col-lg-6">
+                                                <input type="checkbox" name="brand" id="brand2" value="${allBrand.name}" />
+                                                <label for="brand2">${allBrand.name}</label>
+                                            </div>
+                                        </c:forEach>
+
                                     </div>
 
                                     <div class="row">
@@ -74,18 +61,13 @@
                                             <input type="checkbox" name="needs" id="needs1" checked value="all"/>
                                             <label for="needs1">Tất cả</label>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="needs" id="needs2" value="Office"/>
-                                            <label for="needs2">Văn phòng</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="needs" id="needs3" value="Gaming"/>
-                                            <label for="needs3">Gaming</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="checkbox" name="needs" id="needs3" value="Graphics"/>
-                                            <label for="needs4">Đồ họa</label>
-                                        </div>
+                                        <c:forEach items="${requestScope.allRequirements}" var="allRequirement">
+                                            <div class="col-lg-6">
+                                                <input type="checkbox" name="needs" id="needs2" value="${allRequirement.name}"/>
+                                                <label for="needs2">${allRequirement.name}</label>
+                                            </div>
+                                        </c:forEach>
+                                        
                                     </div>
 
                                     <div class="row">
@@ -191,7 +173,7 @@
                                 <!-- list all product -->
                                 <div class="row">
                                     <c:forEach items="${requestScope.filterList}" var="filter">
-                                        <a class="product col-md-3 col-sm-6" href="#">
+                                        <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${filter.id}">
                                             <div class="product-img">
                                                 <img
                                                     src="${filter.image[0].url}"

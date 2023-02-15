@@ -17,22 +17,15 @@ import model.Product;
  *
  * @author admin
  */
-public class SearchController extends HttpServlet{
-    
-       protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+public class ProductDetailController extends HttpServlet{
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String textSearch = request.getParameter("txtSearch");
-        String sort = request.getParameter("sort");
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> searchList = productList.listProduct(textSearch,sort);
-        request.setAttribute("searchList", searchList);
-        if(searchList.isEmpty()){
-            response.sendRedirect("list-search-no.jsp");
-        }
-        else{
-            request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
-        }     
+        int id = Integer.parseInt(request.getParameter("product_id"));
+        Product product = productList.getProduct(id);
+        request.setAttribute("product", product);
+        request.getRequestDispatcher("product-detail.jsp").forward(request, response);
     }
 
     @Override
@@ -44,5 +37,4 @@ public class SearchController extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
-    
 }

@@ -36,6 +36,22 @@
         <servlet-name>CancelOrder</servlet-name>
         <servlet-class>controller.CancelOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewOrder1</servlet-name>
+        <servlet-class>controller.ViewOrder1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrder2</servlet-name>
+        <servlet-class>controller.ViewOrder2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrder3</servlet-name>
+        <servlet-class>controller.ViewOrder3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrder4</servlet-name>
+        <servlet-class>controller.ViewOrder4</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -63,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
         <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductDetail</servlet-name>
+        <servlet-class>controller.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetail</servlet-name>
+        <url-pattern>/product_detail</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Search</servlet-name>
@@ -95,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>CancelOrder</servlet-name>
         <url-pattern>/CancelOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder1</servlet-name>
+        <url-pattern>/ViewOrder1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder2</servlet-name>
+        <url-pattern>/ViewOrder2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder3</servlet-name>
+        <url-pattern>/ViewOrder3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder4</servlet-name>
+        <url-pattern>/ViewOrder4</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,5 +1,9 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Order" %>
+<%@page import="java.sql.Date" %>
+<%@page import="java.util.ArrayList" %>
+<%@page  import="util.helper"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,9 +24,9 @@
             <div class="container min-vh-100">
               <!-- Breadcrumb -->
               <div class="breadcrumb" style="padding-top: 20px">
-                <a href="index.jsp">Trang chủ</a>
+                <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
-                <a href="#">Tra đơn</a>
+                <a href="ViewAllOrder">Tra đơn</a>
               </div>
 
               <div class="row">
@@ -45,30 +49,36 @@
 
               <!--Order lookup-->
               <div class="order-lookup">
+                   <%
+                                          ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
+                                          String err="";
+                                         
+                                                      
+                %>
                 <!--Order status-->
                 <div class="order-status-group row text-center ">
                     <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup.jsp">
-                        <span>2</span>
+                        <span><%=session.getAttribute("total") %></span>
                         <br>
                         <span>Tất cả</span>
                     </a>
                     <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-1.jsp">
-                        <span>1</span>
+                        <span><%=session.getAttribute("Preparing") %></span>
                         <br>
                         <span>Đang chuẩn bị</span>
                     </a>
                     <a class="active order-status col-md border border-2 p-0 fw-bold" href="order-lookup-2.jsp">
-                        <span>0</span>
+                        <span><%=session.getAttribute("Shipping") %></span>
                         <br>
                         <span>Đang vận chuyển</span>
                     </a>
                     <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-3.jsp">
-                        <span>1</span>
+                        <span><%=session.getAttribute("Success") %></span>
                         <br>
                         <span>Đã nhận hàng</span>
                     </a>
                     <a class="order-status col-md border border-2 p-0 fw-bold" href="order-lookup-4.jsp">
-                        <span>0</span>
+                        <span><%=session.getAttribute("Cancelled") %></span>
                         <br>
                         <span>Đơn đã bị hủy</span>
                     </a>
@@ -76,6 +86,12 @@
             
 
                 <!--Order and detail-->
+                 <%
+                                           arr = (ArrayList<Order>) session.getAttribute("lst");
+                                          err="";
+                                         
+                                                      
+                %>
                 <table class="order-detail table text-center mt-5">
                     <tbody>
                         <tr class="row fw-bold">
@@ -85,24 +101,25 @@
                             <th class="col border border-1 border-white">Xem chi tiết</th>
                             <th class="col border border-1 border-white">Tổng tiền</th>
                         </tr>
+                        <%
+                                    if (arr.isEmpty() == false){
+                                        for (int i = 0; i < arr.size(); i++) {
+                                        helper helper = new helper();
+                                       String price= helper.convertBigNum(arr.get(i).getTotal_price());
+                        
+                        %>
                         <tr class="row">
-                            <th class="col fw-normal">1001</th>
-                            <th class="col fw-normal">17/01/2023</th>
-                            <th class="col fw-normal">Đang chuẩn bị</th>
+                            <th class="col fw-normal"><%=arr.get(i).getOrder_id()%></th>
+                            <th class="col fw-normal"><%=arr.get(i).getDate()%></th>
+                            <th class="col fw-normal">Đang vận chuyển</th>
                             <th class="col fw-normal text-decoration-underline">
-                                <a href="order-detail.jsp">Xem chi tiết</a>
+                                <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
                             </th>
-                            <th class="col fw-normal text-end">151.500.000VND</th>
+                            <th class="col fw-normal text-end"><%=price%></th>
                         </tr>
-                        <tr class="row">
-                            <th class="col fw-normal">1002</th>
-                            <th class="col fw-normal">19/01/2023</th>
-                            <th class="col fw-normal">Đã nhận hàng</th>
-                            <th class="col fw-normal text-decoration-underline">
-                                <a href="order-detail.jsp">Xem chi tiết</a>
-                            </th>
-                            <th class="col fw-normal text-end">7.000.000VND</th>
-                        </tr>
+                           <%}
+}
+                        %>
 
                     </tbody>
                 </table>

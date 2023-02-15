@@ -38,7 +38,7 @@
                             </div>
 
                             <c:forEach items="${requestScope.onSaleList}" var="onSale">
-                                <a class="product col-md-3 col-sm-6" href="#">
+                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${onSale.id}">
                                     <div class="product-img">
                                         <img
                                             src="${onSale.image[0].url}"
@@ -78,7 +78,7 @@
                                 <a href="#">Sản phẩm bán chạy</a>
                             </div>
                             <c:forEach items="${requestScope.topSoldList}" var="topSold">
-                                <a class="product col-md-3 col-sm-6" href="#">
+                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${topSold.id}">
                                     <div class="product-img">
                                         <img
                                             src="${topSold.image[0].url}"
@@ -118,7 +118,7 @@
                                 <a href="phone-list.html">Điện thoại</a>
                             </div>
                             <c:forEach items="${requestScope.phoneList}" var="phone">
-                                <a class="product col-md-3 col-sm-6" href="#">
+                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${phone.id}">
                                     <div class="product-img">
                                         <img
                                             src="${phone.image[0].url}"
@@ -158,7 +158,7 @@
                                 <a href="laptop-list.html">Laptop</a>
                             </div>
                             <c:forEach items="${requestScope.laptopList}" var="laptop">
-                                <a class="product col-md-3 col-sm-6" href="#">
+                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${laptop.id}">
                                     <div class="product-img">
                                         <img
                                             src="${laptop.image[0].url}"
