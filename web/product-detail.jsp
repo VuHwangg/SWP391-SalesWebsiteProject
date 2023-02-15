@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <title>Giỏ hàng</title>
+        <title>Chi tiết sản phẩm</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -97,10 +97,10 @@
                                     </a>
                                 </div>
                                 <div class="col-4" style="padding: 0">
-                                    <div class="quantity-input">
-                                        <button id="minusBtn">-</button>
-                                        <input type="number" id="numberInput" value="1" min="1" max="99" readonly />
-                                        <button id="plusBtn">+</button>
+                                    <div class="quantity-input quantity-input-pd">
+                                        <button class="minus-btn" type="button">-</button>
+                                        <input type="number" class="quantity" value="1" min="1" max="99" readonly/>
+                                        <button class="plus-btn" type="button">+</button>
                                     </div>
                                 </div>
                                 <div class="col-8" style="padding: 0 0 0 8px">
@@ -227,7 +227,6 @@
                 <!--footer-->
                 <%@include file="components/footer.jsp" %>
         </main>
-
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

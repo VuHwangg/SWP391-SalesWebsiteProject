@@ -27,6 +27,7 @@
   
   :root {
     --main-bg-color: #dc3545;
+    --main-bg-color2: #198754;
     --sub-bg-color: rgb(227, 215, 37);
     --main-color-lightgray: #dee2e6;
     --main-color-gray: #404044;
@@ -46,7 +47,6 @@
   .bg-offwhite {
     background-color: rgb(235, 235, 235) !important;
   }
-
 
 /*==============================================================================
                                 Mini banner
@@ -355,6 +355,40 @@
   }
 
   
+/*==============================================================================
+                                Pagination
+==============================================================================*/
+  .pagination a {
+      font-weight: 500;
+      border: 0;
+      border-left: 1px solid var(--main-bg-color);
+      border-right: 1px solid var(--main-bg-color);
+  }
+  
+  .pagination a:hover {
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+  }
+  
+  .pagination a.active{
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+  }
+  
+  .pagination .arrow{
+      width: 50px;
+      border: 2px solid var(--main-bg-color);
+  }
+  .pagination .arrow:hover{
+      border: 2px solid var(--main-bg-color);
+  }
+  
+  .pagination i {
+      font-size: 18px;
+      font-weight: 900;
+  }
+  
+ 
 /*==============================================================================
                                 List Not Found
 ==============================================================================*/
@@ -753,7 +787,8 @@
                              Quantity Input Block
 ==============================================================================*/
   
-    .quantity-input {
+/*--------------- Quantity input in Product Detail --------------------------*/
+    .quantity-input-pd  {
         display: flex;
         align-items: center;
         background-color: #cccccc5c;
@@ -763,7 +798,7 @@
         width: 100%;
         height: 100%;
       }
-      .quantity-input input[type="number"] {
+      .quantity-input-pd input[type="number"] {
         text-align: center;
         color: var(--main-color-black);
         background-color: transparent;
@@ -776,7 +811,7 @@
         cursor: pointer;
         width: 40px;
       }
-      .quantity-input button {
+      .quantity-input-pd button {
         width: 100%;
         height: 100%;
         border: none;
@@ -789,7 +824,42 @@
         background-color: #ccc;
       }
   
+/*--------------- Quantity input in Product Detail --------------------------*/
+    
+    .quantity-input-cart {
+    }
 
+    .quantity-input-cart button {
+        font-size: 20px;
+        font-weight: 700;
+        width: 40px;
+    }
+    
+    .quantity-input-cart button:hover {
+        background: white;
+        color: var(--main-bg-color);
+    }
+    
+    .quantity-input-cart input {
+        border: 3px solid var(--main-bg-color);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .quantity-input-cart button,
+    .quantity-input-cart input {
+        padding: 4px 4px;
+    }
+    
+    @media (max-width: 520px) {
+    .quantity-input-cart button,
+    .quantity-input-cart input {
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+    }
+  }
+    
+    
 /*==============================================================================
                              Order Lookup
 ==============================================================================*/

@@ -40,46 +40,14 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="btn-group sort-method-selection" role="group">
-                                        <input
-                                            type="radio"
-                                            class="btn-check"
-                                            name="btnradio"
-                                            id="btnradio1"
-                                            autocomplete="off"
-                                            checked
-                                            />
-                                        <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=none">
-                                            <label for="btnradio1">
-                                                Khuyến mãi
-                                          </label>
+                                        <a class="btn btn-outline-danger active" href="search?txtSearch=${param.txtSearch}&sort=none">
+                                            Khuyến mãi
                                         </a>
-                                        
-
-                                        <input
-                                            type="radio"
-                                            class="btn-check"
-                                            name="btnradio"
-                                            id="btnradio2"
-                                            autocomplete="off"
-                                            />
                                         <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=ASC">
-                                            <label  for="btnradio2">
-                                                Giá tăng dần
-                                            </label>
+                                            Giá tăng dần
                                         </a>
-                                        
-
-                                        <input
-                                            type="radio"
-                                            class="btn-check"
-                                            name="btnradio"
-                                            id="btnradio3"
-                                            autocomplete="off"
-                                            />
                                          <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=DESC">
-                                            <label  for="btnradio3">
-                                                Giá giảm dần
-                                            </label>
+                                            Giá giảm dần
                                         </a>
                                     </div>
                                 </div>
@@ -120,6 +88,7 @@
                                     </a>
                                 </c:forEach>
                             </div>
+                            <%@include file="components/pagination.jsp" %>  
                         </div>
                     </div>
                 </div>

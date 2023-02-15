@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <title>Giỏ hàng</title>
+        <title>Chi tiết sản phẩm</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -93,7 +93,6 @@
                                 Truy cập vào sản phẩm trong cửa hàng
                             </a>
                         </div>
-                        
                         
                     </div>
                 </div>

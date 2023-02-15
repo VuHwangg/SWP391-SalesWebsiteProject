@@ -120,48 +120,18 @@
                         <p>Sắp xếp theo:</p>
                       </div>
                       <div class="col-md-8">
-                        <div class="btn-group sort-method-selection" role="group">
-                            <input
-                              type="radio"
-                              class="btn-check"
-                              name="btnradio"
-                              id="btnradio1"
-                              autocomplete="off"
-                              checked
-                            />
-                            <a class="btn btn-outline-danger" href="#">
-                                <label for="btnradio1">
+                            <div class="btn-group sort-method-selection" role="group">
+                                <a class="btn btn-outline-danger active" href="search?txtSearch=${param.txtSearch}&sort=none">
                                     Khuyến mãi
-                              </label>
-                            </a>
-
-                            <input
-                              type="radio"
-                              class="btn-check"
-                              name="btnradio"
-                              id="btnradio2"
-                              autocomplete="off"
-                            />
-                            <a class="btn btn-outline-danger" href="#">
-                              <label for="btnradio2">
-                                  Giá tăng dần
-                              </label>
-                            </a>
-
-                            <input
-                              type="radio"
-                              class="btn-check"
-                              name="btnradio"
-                              id="btnradio3"
-                              autocomplete="off"
-                            />
-                            <a class="btn btn-outline-danger" href="#">
-                                <label for="btnradio3">
-                                  Giá giảm dần
-                              </label>
-                            </a>
-                          </div>
-                      </div>
+                                </a>
+                                <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=ASC">
+                                    Giá tăng dần
+                                </a>
+                                 <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=DESC">
+                                    Giá giảm dần
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- list all product -->
@@ -287,6 +257,7 @@
                           </div>
                         </a>
                       </div>
+                    <%@include file="components/pagination.jsp" %>  
                   </div>
                 </div>
               </div>
