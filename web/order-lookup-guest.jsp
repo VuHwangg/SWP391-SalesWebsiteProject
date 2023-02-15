@@ -49,7 +49,7 @@
                             <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
                                 <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
                             </div>
-                            <input type="submit" class="btn btn-danger" value="Kiểm Tra">
+                            <input type="submit" class="btn btn-danger" value="Search">
                         </form>
                     </div>
                 </div>
