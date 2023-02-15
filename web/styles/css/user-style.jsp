@@ -890,6 +890,7 @@
     position: relative;
     width: 100%;
     height: 75vh;
+    background-color: var(--main-color-darkgray);
 }
 
 .overlookup-guest .bg-overlookup {
@@ -897,7 +898,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    opacity: 0.5;
+    opacity: 0.6;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -917,6 +918,7 @@
 .overlookup-guest .search-block h1 {
     text-shadow: 3px 3px 5px #595858;
     text-transform: capitalize;
+    color: white
 }
   
 /*==============================================================================
