@@ -885,21 +885,38 @@
     background-color: var(--main-bg-color);
 }
 
-.bg-overlookup {
+
+.overlookup-guest {
+    position: relative;
     width: 100%;
-    height: 100vh;
-    background-color: black;
-    background-image: url('https://blog.nzcouriers.co.nz/wp-content/uploads/sites/15/2022/05/iStock-1221101939.jpg');
+    height: 75vh;
+}
+
+.overlookup-guest .bg-overlookup {
+    background-image: url('img/bg-overlookup.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    filter: blur(5px);
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
-.bg-overlookup .container-fluid{
+.overlookup-guest .search-block {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.overlookup-guest .search-block .container-fluid {
     max-width: 600px;
-    background-color: gray;
-    filter: blur(0);
+}
+
+.overlookup-guest .search-block h1 {
+    text-shadow: 3px 3px 5px #595858;
+    text-transform: capitalize;
 }
   
 /*==============================================================================

@@ -22,7 +22,8 @@
             <%@include file="components/navbar.jsp" %>
 
             <div class="py-5"></div>
-            <div class="container min-vh-100">
+            <div class="">
+              <div class="container">
                 <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
@@ -31,26 +32,32 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8 col-sm-7">
-                        <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
-                    </div>
+                    <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
                 </div>
-
+              </div>
                 <!--Order lookup-->
-                <div class="bg-overlookup d-flex justify-content-center align-items-center">
-                    <div class="container-fluid d-inline-block text-center">    
-                        <h2>
-                            Kiểm tra thông tin đơn hàng 
+                
+                <div class="overlookup-guest">
+                    <div class="bg-overlookup"></div>
+                    <div class="search-block d-flex justify-content-center align-items-center">
+                        <div class="container-fluid d-inline-block text-center">    
+                            <h1>
+                                Kiểm tra thông tin đơn hàng 
+                                <br/>
+                                & tình trạng vận chuyển
+                            </h1>
                             <br/>
-                            & tình trạng vận chuyển
-                        </h2>
-                        <br/>
-                        <form action="SearchOrder" method="post">
-                            <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
-                                <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
-                            </div>
-                            <input type="submit" class="btn btn-danger" value="Search">
-                        </form>
+                            <form action="SearchOrder" method="post">
+                                <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
+                                    <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
+                                    <span class="input-group-append">
+                                        <button class="btn bg-danger" type="submit" style="border-radius: 0">
+                                            <i class="bi bi-search" style="color: white"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
