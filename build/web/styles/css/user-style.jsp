@@ -1,5 +1,7 @@
 <style>
     
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&family=Tourney&display=swap');
+    
 * {
     padding: 0;
     margin: 0;
@@ -66,7 +68,7 @@
                               Navigation Bar
 ==============================================================================*/
   .navbar {
-    padding: 0;
+    padding: 0 !important;
     margin-top: 30px;
     background-color: var(--main-bg-color);
     position: fixed;
@@ -74,6 +76,23 @@
     box-shadow: 0px 2px 15px rgb(78, 72, 87);
     transition: all 0.1s ease;
     z-index: 1000;
+  }
+  
+  .navbar .navbar-brand {
+      font-family: 'Fredoka One', cursive;
+      font-size: 26px;
+      line-height: 43px;
+      width: 160px;
+      text-align: center;
+      transition: all 0.3s ease-in;
+      border: 3px solid var(--main-bg-color);
+  }
+  
+  .navbar .navbar-brand:hover {
+      color: var(--main-bg-color);
+      background-color: white;
+      font-size: 22px;
+      border: 3px solid white;
   }
 
   .mini-banner-off {
@@ -156,7 +175,7 @@
     padding-left: 35px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 520px) {
     .navbar .search-box {
       width: 50px;
     }

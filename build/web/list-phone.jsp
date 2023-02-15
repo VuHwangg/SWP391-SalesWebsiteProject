@@ -24,7 +24,7 @@
             <div class="content-center bg-offwhite">
               <!-- Breadcrumb -->
               <div class="breadcrumb">
-                <a href="index.jsp">Trang chủ</a>
+                <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
                 <a href="#">Điện thoại</a>
               </div>

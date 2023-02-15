@@ -22,9 +22,8 @@
                 >
                 <div class="d-flex justify-content-start align-items-start">
                     <a
-                        type="button"
                         class="btn btn-outline-light"
-                        href="index.jsp"
+                        href="home"
                         style="font-weight: 500"
                         >
                         <i class="bi bi-house me-1"></i>Trang chủ

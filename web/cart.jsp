@@ -19,7 +19,7 @@
             <div class="container min-vh-100">
               <!-- Breadcrumb -->
               <div class="breadcrumb" style="padding-top: 20px">
-                <a href="index.jsp">Trang chủ</a>
+                <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
                 <a href="#">Giỏ hàng</a>
               </div>
