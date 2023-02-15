@@ -27,6 +27,7 @@
   
   :root {
     --main-bg-color: #dc3545;
+    --main-bg-color2: #198754;
     --sub-bg-color: rgb(227, 215, 37);
     --main-color-lightgray: #dee2e6;
     --main-color-gray: #404044;
@@ -46,7 +47,6 @@
   .bg-offwhite {
     background-color: rgb(235, 235, 235) !important;
   }
-
 
 /*==============================================================================
                                 Mini banner
@@ -355,6 +355,40 @@
   }
 
   
+/*==============================================================================
+                                Pagination
+==============================================================================*/
+  .pagination a {
+      font-weight: 500;
+      border: 0;
+      border-left: 1px solid var(--main-bg-color);
+      border-right: 1px solid var(--main-bg-color);
+  }
+  
+  .pagination a:hover {
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+  }
+  
+  .pagination a.active{
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+  }
+  
+  .pagination .arrow{
+      width: 50px;
+      border: 2px solid var(--main-bg-color);
+  }
+  .pagination .arrow:hover{
+      border: 2px solid var(--main-bg-color);
+  }
+  
+  .pagination i {
+      font-size: 18px;
+      font-weight: 900;
+  }
+  
+ 
 /*==============================================================================
                                 List Not Found
 ==============================================================================*/

@@ -257,6 +257,7 @@
                           </div>
                         </a>
                       </div>
+                    <%@include file="components/pagination.jsp" %>  
                   </div>
                 </div>
               </div>

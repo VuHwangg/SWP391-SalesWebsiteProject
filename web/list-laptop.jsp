@@ -177,6 +177,7 @@
                                         </a>
                                     </c:forEach>
                                 </div>
+                                <%@include file="components/pagination.jsp" %>  
                             </div>
                         </div>
                     </div>
