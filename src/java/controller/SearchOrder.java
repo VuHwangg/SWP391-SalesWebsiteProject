@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import model.Order;
 import model.Order_Details;
 import model.Product;
+import util.Check;
 
 /**
  *
@@ -24,39 +25,43 @@ public class SearchOrder extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        String search = req.getParameter("search");
+        // super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        String search = "";
+        search = req.getParameter("search");
         OrderDAO odao = new OrderDAO();
         String err = "";
         HttpSession session = req.getSession();
-        try {
-            int order_id = Integer.parseInt(search);
-            Order or = new Order();
-            or =odao.GetOrder1(order_id);
+        int order_id = 0;
+        ArrayList<Order_Details> arrDetail = new ArrayList<>();
+        ArrayList<Product> arrPro = new ArrayList<>();
+        Order or = new Order();
+        Check check = new Check();
+        if (check.CheckPhone(search)) {
+            order_id = Integer.parseInt(search);
+
+            or = odao.GetOrder1(order_id);
             if (or.getOrder_id() == 0) {
                 err = "Không có kết quả bạn cần tìm";
 
             } else {
 
-                ArrayList<Order_Details> arrDetail = odao.GetOrder_Details(order_id);
+                arrDetail = odao.GetOrder_Details(order_id);
 
-                ArrayList<Product> arrPro = new ArrayList<>();
+                arrPro = new ArrayList<>();
                 for (int i = 0; i < arrDetail.size(); i++) {
                     arrPro.add(odao.GetProduct(arrDetail.get(i).getProduct_id()));
 
                 }
-                
-                session.setAttribute("Order_Details", arrDetail);
-                session.setAttribute("lstPro", arrPro);
-                session.setAttribute("Order", or);
 
             }
-        } catch (Exception e) {
+        } else {
             err = "Không có kết quả bạn cần tìm";
-
         }
+
         session.setAttribute("err", err);
-      
+        session.setAttribute("Order_Details", arrDetail);
+        session.setAttribute("lstPro", arrPro);
+        session.setAttribute("Order", or);
         req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
     }
 
