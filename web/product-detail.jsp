@@ -97,10 +97,10 @@
                                     </a>
                                 </div>
                                 <div class="col-4" style="padding: 0">
-                                    <div class="quantity-input">
-                                        <button id="minusBtn">-</button>
-                                        <input type="number" id="numberInput" value="1" min="1" max="99" readonly />
-                                        <button id="plusBtn">+</button>
+                                    <div class="quantity-input quantity-input-pd">
+                                        <button class="minus-btn" type="button">-</button>
+                                        <input type="number" class="quantity" value="1" min="1" max="99" readonly/>
+                                        <button class="plus-btn" type="button">+</button>
                                     </div>
                                 </div>
                                 <div class="col-8" style="padding: 0 0 0 8px">

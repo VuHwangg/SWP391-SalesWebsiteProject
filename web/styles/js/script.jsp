@@ -65,58 +65,51 @@
         });
     });
     
-    // Quantity input for Product Detail----------------------------------------
-    const minusBtn = document.querySelector("#minusBtn");
-      const plusBtn = document.querySelector("#plusBtn");
-      const numberInput = document.querySelector("#numberInput");
-      
-      minusBtn.addEventListener("click", function() {
-        let value = parseInt(numberInput.value);
-        if (value > 1) {
-          value--;
-        }
-        numberInput.value = value;
-      });
-      
-      plusBtn.addEventListener("click", function() {
-        let value = parseInt(numberInput.value);
-        if (value < 99) {
-          value++;
-        }
-        numberInput.value = value;
-      });
-      
-      // Quantity input for Cart ----------------------------------------
-      $('.minus-btn').on('click', function(e) {
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
-            var value = parseInt($input.val());
+      // Quantity input ----------------------------------------
+     // Get all the quantity input tags on the page
+        const quantityInputs = document.querySelectorAll('.quantity-input');
 
-            if (value &amp;amp;gt; 1) {
-                value = value - 1;
-            } else {
-                value = 0;
+        // Add click event listeners to each of the quantity input tags
+        quantityInputs.forEach(function(quantityInput) {
+          const minusBtn = quantityInput.querySelector('.minus-btn');
+          const plusBtn = quantityInput.querySelector('.plus-btn');
+          const quantity = quantityInput.querySelector('.quantity');
+
+          minusBtn.addEventListener('click', function() {
+            let value = parseInt(quantity.value);
+            if (value > 1) {
+              value--;
             }
+            quantity.value = value;
+          });
 
-          $input.val(value);
+          plusBtn.addEventListener('click', function() {
+            let value = parseInt(quantity.value);
+            if (value < 99) {
+              value++;
+            }
+            quantity.value = value;
+          });
 
+          quantity.addEventListener('input', function() {
+            validateInput(quantity);
+          });
+
+          quantity.addEventListener('blur', function() {
+            validateInput(quantity);
+          });
+
+          function validateInput(input) {
+            let value = parseInt(input.value);
+            if (isNaN(value) || value < 1 || value > 99) {
+              alert('Value must be an integer, greater than 0 and less than 100!');
+              input.value = 1;
+            } else {
+              input.value = value;
+            }
+          }
         });
 
-        $('.plus-btn').on('click', function(e) {
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
-            var value = parseInt($input.val());
-
-            if (value &amp;amp;lt; 100) {
-                value = value + 1;
-            } else {
-                value =100;
-            }
-
-            $input.val(value);
-        });
       
       
       //Slider images -----------------------------------------------------------

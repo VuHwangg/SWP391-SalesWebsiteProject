@@ -754,7 +754,7 @@
 ==============================================================================*/
   
 /*--------------- Quantity input in Product Detail --------------------------*/
-    .quantity-input {
+    .quantity-input-pd  {
         display: flex;
         align-items: center;
         background-color: #cccccc5c;
@@ -764,7 +764,7 @@
         width: 100%;
         height: 100%;
       }
-      .quantity-input input[type="number"] {
+      .quantity-input-pd input[type="number"] {
         text-align: center;
         color: var(--main-color-black);
         background-color: transparent;
@@ -777,7 +777,7 @@
         cursor: pointer;
         width: 40px;
       }
-      .quantity-input button {
+      .quantity-input-pd button {
         width: 100%;
         height: 100%;
         border: none;
@@ -790,41 +790,42 @@
         background-color: #ccc;
       }
   
- /*--------------- Quantity input in Cart --------------------------*/     
-      .quantity {
-        padding-top: 20px;
-        margin-right: 60px;
-      }
-      .quantity input {
-        -webkit-appearance: none;
-        border: none;
-        text-align: center;
-        width: 32px;
-        font-size: 16px;
-        color: #43484D;
-        font-weight: 300;
-      }
+/*--------------- Quantity input in Product Detail --------------------------*/
+    
+    .quantity-input-cart {
+    }
 
-      button[class*=btn] {
-        width: 30px;
-        height: 30px;
-        background-color: #E1E8EE;
-        border-radius: 6px;
-        border: none;
-        cursor: pointer;
-      }
-      .minus-btn span {
-        margin-bottom: 3px;
-      }
-      .plus-btn span {
-        margin-top: 2px;
-      }
-
-      button:focus,
-      input:focus {
-        outline:0;
-      }
-
+    .quantity-input-cart button {
+        font-size: 20px;
+        font-weight: 700;
+        width: 40px;
+    }
+    
+    .quantity-input-cart button:hover {
+        background: white;
+        color: var(--main-bg-color);
+    }
+    
+    .quantity-input-cart input {
+        border: 3px solid var(--main-bg-color);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .quantity-input-cart button,
+    .quantity-input-cart input {
+        padding: 4px 4px;
+    }
+    
+    @media (max-width: 520px) {
+    .quantity-input-cart button,
+    .quantity-input-cart input {
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+    }
+  }
+    
+    
 /*==============================================================================
                              Order Lookup
 ==============================================================================*/
