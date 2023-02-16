@@ -25,11 +25,9 @@
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="list-phone.jsp">Điện thoại</a>
+                        <a href="filter?type=${requestScope.product.type}">${helper.typeName(requestScope.product.type)}</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Iphone</a>
-                        <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Iphone 13</a>
+                        <a href="#">${requestScope.product.name}</a>
                     </div>
 
                     <div class="row product-detail-title">
@@ -101,12 +99,14 @@
                                 <div class="col-4" style="padding: 0">
                                     <div class="quantity-input quantity-input-pd">
                                         <button class="minus-btn" type="button">-</button>
+                                        <!--We need the same value form this big shit VU##-->
                                         <input type="number" class="quantity" value="1" min="1" max="99" readonly/>
                                         <button class="plus-btn" type="button">+</button>
                                     </div>
                                 </div>
                                 <div class="col-8" style="padding: 0 0 0 8px">
                                     <form action="AddToCart" method="POST">
+                                        <!-- To this shit right here -->
                                         <input type="number" name="quantity" id="numberInput" hidden>
                                         <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         <button type="submit" class="add-cart-btn btn w-100">

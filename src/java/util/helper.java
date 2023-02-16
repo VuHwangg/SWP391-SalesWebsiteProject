@@ -28,24 +28,37 @@ public class helper {
         }
         return false;
     }
-    
+
     public boolean compareString(String x, String y) {
-        if(x.compareTo(y)==0){
+        if (x.compareTo(y) == 0) {
             return true;
         }
         return false;
+    
+    }   
+        
+
+    public boolean compareWithAll(String[] xs) {
+        for(String x : xs){
+            if (x.compareTo("all") == 0) {
+                return true;
+            }
+        }
+        
+        return false;
     }
+
     public boolean compareProperties(Product x, Product y) {
-        if(x.getRam()!=y.getRam()){
+        if (x.getRam() != y.getRam()) {
             return false;
         }
-        if(x.getMemory()!=y.getMemory()){
+        if (x.getMemory() != y.getMemory()) {
             return false;
         }
-        if(x.getCpu().compareTo(y.getCpu())!=0){
+        if (x.getCpu().compareTo(y.getCpu()) != 0) {
             return false;
         }
-        if(x.getGraphic_card().compareTo(y.getGraphic_card())!=0){
+        if (x.getGraphic_card().compareTo(y.getGraphic_card()) != 0) {
             return false;
         }
         return true;
@@ -65,7 +78,7 @@ public class helper {
         int totalVote = this.totalVote(product);
         if (totalVote != 0) {
             for (Vote vote : product.getVotes()) {
-                totalStar += vote.getNum()*vote.getNum_of_vote();
+                totalStar += vote.getNum() * vote.getNum_of_vote();
             }
             avg = totalStar / totalVote;
         }
@@ -74,10 +87,27 @@ public class helper {
 
     public int getNumofVote(Product product, int num) {
         for (Vote vote : product.getVotes()) {
-            if(num==vote.getNum()){
+            if (num == vote.getNum()) {
                 return vote.getNum_of_vote();
             }
         }
         return 0;
     }
+
+    public int checkSort(String x) {
+        if (x.compareTo("ASC") == 0) {
+            return 2;
+        } else if (x.compareTo("DESC") == 0) {
+            return 3;
+        }
+        return 1;
+    }
+
+    public String typeName(int x){
+        if(x==1) return "Laptop";
+        else return "Điện thoại";
+            
+    }
+    
+    
 }

@@ -46,13 +46,25 @@
                                         method="GET"
                                         >
                                         <div class="btn-group sort-method-selection" role="group">
-                                            <button class="btn btn-outline-danger active" name="sort" value="none">
+                                            <button class="btn btn-outline-danger
+                                                    <c:if test="${helper.checkSort(param.sort)==1}">
+                                                        active
+                                                    </c:if>
+                                                    " name="sort" value="none">
                                                 Khuyến mãi
                                             </button>
-                                            <button class="btn btn-outline-danger" name="sort" value="ASC">
+                                            <button class="btn btn-outline-danger
+                                                    <c:if test="${helper.checkSort(param.sort)==2}">
+                                                        active
+                                                    </c:if>
+                                                    " name="sort" value="ASC">
                                                 Giá tăng dần
                                             </button>
-                                            <button class="btn btn-outline-danger" name="sort" value="DESC">
+                                            <button class="btn btn-outline-danger
+                                                    <c:if test="${helper.checkSort(param.sort)==3}">
+                                                        active
+                                                    </c:if>
+                                                    " name="sort" value="DESC">
                                                 Giá giảm dần
                                             </button>
                                         </div>
