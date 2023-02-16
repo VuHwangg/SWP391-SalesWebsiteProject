@@ -56,9 +56,9 @@ public class CartController extends HttpServlet {
                 quantity += cart.getQuantity();
             }
             request.setAttribute("carts", carts);
-            request.setAttribute("originalTotalPrice", (double) Math.round(originalTotalPrice * 10000));
-            request.setAttribute("totalMoney", (double) Math.round(totalMoney * 10000));
-            request.setAttribute("discountTotalPrice", (double) Math.round(discountTotalPrice * 10000));
+            request.setAttribute("originalTotalPrice", originalTotalPrice);
+            request.setAttribute("totalMoney", totalMoney);
+            request.setAttribute("discountTotalPrice", discountTotalPrice);
             request.setAttribute("quantity", quantity);
             request.getRequestDispatcher("cart.jsp").forward(request, response);
         }
