@@ -13,7 +13,7 @@ import model.Vote;
  * @author admin
  */
 public class helper {
-
+//lấy ra dạng số nguyên
     public String convertBigNum(double x) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String result = formatter.format(x);
@@ -28,7 +28,7 @@ public class helper {
         }
         return false;
     }
-
+//so sánh 2 chuỗi
     public boolean compareString(String x, String y) {
         if (x.compareTo(y) == 0) {
             return true;
@@ -37,7 +37,7 @@ public class helper {
     
     }   
         
-
+//so sánh với all
     public boolean compareWithAll(String[] xs) {
         for(String x : xs){
             if (x.compareTo("all") == 0) {
@@ -47,7 +47,7 @@ public class helper {
         
         return false;
     }
-
+//so sanh các thuộc tính của 2 sản phẩm
     public boolean compareProperties(Product x, Product y) {
         if (x.getRam() != y.getRam()) {
             return false;
@@ -63,7 +63,7 @@ public class helper {
         }
         return true;
     }
-
+//tính tổng số vote
     public int totalVote(Product product) {
         int totalVote = 0;
         for (Vote vote : product.getVotes()) {
@@ -71,7 +71,7 @@ public class helper {
         }
         return totalVote;
     }
-
+//lấy số vote trung bình
     public double getAvgRate(Product product) {
         double avg = 0;
         int totalStar = 0;
@@ -84,7 +84,7 @@ public class helper {
         }
         return avg;
     }
-
+//lấy ra số vote của một mức đánh giá
     public int getNumofVote(Product product, int num) {
         for (Vote vote : product.getVotes()) {
             if (num == vote.getNum()) {
@@ -93,7 +93,7 @@ public class helper {
         }
         return 0;
     }
-
+//check type of sort
     public int checkSort(String x) {
         if (x.compareTo("ASC") == 0) {
             return 2;
@@ -102,7 +102,7 @@ public class helper {
         }
         return 1;
     }
-
+//get type name
     public String typeName(int x){
         if(x==1) return "Laptop";
         else return "Điện thoại";

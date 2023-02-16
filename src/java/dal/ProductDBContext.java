@@ -18,7 +18,7 @@ import model.Product;
  */
 public class ProductDBContext extends DBContext {
 
-    //for product detail
+    //for product detail(lấy sản phẩm theo id)
     public Product getProduct(int id) {
         Product product = new Product();
         try {
@@ -77,7 +77,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-    
+    //lấy ra các sản phẩm có thuộc tính cụ thể
     public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
         Product product = new Product();
         try {
@@ -142,7 +142,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-    //for home screen
+    //for home screen(lấy ra các sản phẩm theo phân loại, top sale, top sold)
     public ArrayList<Product> listProduct(int type, int num, boolean topSale, boolean topSold) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -223,7 +223,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-//for search screen
+//for search screen(lấy sản phẩm theo một từ khóa)
 
     public ArrayList<Product> listProduct(String rawTxtSearch, String sort) {
         ArrayList<Product> products = new ArrayList<>();
@@ -307,8 +307,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-//for type screen
-
+//for type screen(lấy sản phẩm theo bộ lọc cho trước)
     public ArrayList<Product> filterProduct(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -435,7 +434,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-    //for product detail(select color)
+    //for product detail(lấy các sản phẩm cùng loại khác màu)
     public ArrayList<Product> listColor(String name, int ram, int memory, String cpu, String graphic_card) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -571,7 +570,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-    //buffer object
+    //buffer object(tạo các đối tượng giả để lấy các thuộc tính cần thiết)
     public ArrayList<Product> bufferObject(String name) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -602,90 +601,90 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-//test query
-    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
-        String sql = "SELECT DISTINCT pr.[product_id]\n"
-                + "      ,pr.[name]\n"
-                + "      ,pr.[type]\n"
-                + "      ,pr.[os]\n"
-                + "      ,pr.[feature_product]\n"
-                + "      ,pr.[color]\n"
-                + "      ,pr.[current_price]\n"
-                + "      ,pr.[original_price]\n"
-                + "      ,pr.[ram]\n"
-                + "      ,pr.[memory]\n"
-                + "      ,pr.[cpu]\n"
-                + "      ,pr.[graphics_card]\n"
-                + "      ,pr.[size]\n"
-                + "      ,pr.[description]\n"
-                + "      ,pr.[discount]\n"
-                + "      ,pr.[qty]\n"
-                + "      ,pr.[sold]\n"
-                + "      ,pr.[status]\n"
-                + "  FROM  [Product] pr "
-                + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
-                + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
-                + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
-                + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
-                + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
-        if (needs != null) {
-            if (needs[0].compareTo("all") != 0) {
-                sql = sql + " AND re.[requirement_name] in (";
-                for (String need : needs) {
-                    sql = sql + "'" + need + "',";
-                }
-                sql = sql.substring(0, sql.length() - 1);
-                sql = sql + ")";
-            }
-
-        }
-
-        if (brands != null) {
-            if (brands[0].compareTo("all") != 0) {
-                sql = sql + " AND br.[brand_name] in (";
-                for (String brand : brands) {
-                    sql = sql + "'" + brand + "',";
-                }
-                sql = sql.substring(0, sql.length() - 1);
-                sql = sql + ")";
-            }
-
-        }
-
-        if (sizes != null) {
-            if (sizes[0].compareTo("all") != 0) {
-                int i = 0;
-                sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
-                for (String size : sizes) {
-                    if (i != 0) {
-                        sql += " OR ";
-                    }
-                    if (size.compareTo("size1") == 0) {
-                        sql = sql + " pr.[size] < 13";
-                    }
-                    if (size.compareTo("size2") == 0) {
-                        sql = sql + " pr.[size] >=14 AND pr.[size]<15";
-                    }
-                    if (size.compareTo("size3") == 0) {
-                        sql = sql + " pr.[size] >=15 AND pr.[size]<17";
-                    }
-                    if (size.compareTo("size4") == 0) {
-                        sql = sql + " pr.[size] >= 17";
-                    }
-                    i++;
-                }
-                sql = sql + ")";
-            }
-        }
-        if (sort.compareTo("none") == 0) {
-            sql = sql + "\n ORDER BY pr.[discount] DESC";
-        }
-        if (sort.compareTo("ASC") == 0) {
-            sql = sql + "\n ORDER BY pr.[current_price] ASC";
-        }
-        if (sort.compareTo("DESC") == 0) {
-            sql = sql + "\n ORDER BY pr.[current_price] DESC";
-        }
-        return sql;
-    }
+//test query cái này bỏ qua
+//    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
+//        String sql = "SELECT DISTINCT pr.[product_id]\n"
+//                + "      ,pr.[name]\n"
+//                + "      ,pr.[type]\n"
+//                + "      ,pr.[os]\n"
+//                + "      ,pr.[feature_product]\n"
+//                + "      ,pr.[color]\n"
+//                + "      ,pr.[current_price]\n"
+//                + "      ,pr.[original_price]\n"
+//                + "      ,pr.[ram]\n"
+//                + "      ,pr.[memory]\n"
+//                + "      ,pr.[cpu]\n"
+//                + "      ,pr.[graphics_card]\n"
+//                + "      ,pr.[size]\n"
+//                + "      ,pr.[description]\n"
+//                + "      ,pr.[discount]\n"
+//                + "      ,pr.[qty]\n"
+//                + "      ,pr.[sold]\n"
+//                + "      ,pr.[status]\n"
+//                + "  FROM  [Product] pr "
+//                + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
+//                + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
+//                + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
+//                + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
+//                + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+//        if (needs != null) {
+//            if (needs[0].compareTo("all") != 0) {
+//                sql = sql + " AND re.[requirement_name] in (";
+//                for (String need : needs) {
+//                    sql = sql + "'" + need + "',";
+//                }
+//                sql = sql.substring(0, sql.length() - 1);
+//                sql = sql + ")";
+//            }
+//
+//        }
+//
+//        if (brands != null) {
+//            if (brands[0].compareTo("all") != 0) {
+//                sql = sql + " AND br.[brand_name] in (";
+//                for (String brand : brands) {
+//                    sql = sql + "'" + brand + "',";
+//                }
+//                sql = sql.substring(0, sql.length() - 1);
+//                sql = sql + ")";
+//            }
+//
+//        }
+//
+//        if (sizes != null) {
+//            if (sizes[0].compareTo("all") != 0) {
+//                int i = 0;
+//                sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
+//                for (String size : sizes) {
+//                    if (i != 0) {
+//                        sql += " OR ";
+//                    }
+//                    if (size.compareTo("size1") == 0) {
+//                        sql = sql + " pr.[size] < 13";
+//                    }
+//                    if (size.compareTo("size2") == 0) {
+//                        sql = sql + " pr.[size] >=14 AND pr.[size]<15";
+//                    }
+//                    if (size.compareTo("size3") == 0) {
+//                        sql = sql + " pr.[size] >=15 AND pr.[size]<17";
+//                    }
+//                    if (size.compareTo("size4") == 0) {
+//                        sql = sql + " pr.[size] >= 17";
+//                    }
+//                    i++;
+//                }
+//                sql = sql + ")";
+//            }
+//        }
+//        if (sort.compareTo("none") == 0) {
+//            sql = sql + "\n ORDER BY pr.[discount] DESC";
+//        }
+//        if (sort.compareTo("ASC") == 0) {
+//            sql = sql + "\n ORDER BY pr.[current_price] ASC";
+//        }
+//        if (sort.compareTo("DESC") == 0) {
+//            sql = sql + "\n ORDER BY pr.[current_price] DESC";
+//        }
+//        return sql;
+//    }
 }
