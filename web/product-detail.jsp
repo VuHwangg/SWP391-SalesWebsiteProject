@@ -104,14 +104,18 @@
                                     </div>
                                 </div>
                                 <div class="col-8" style="padding: 0 0 0 8px">
-                                    <a class="add-cart-btn btn w-100" href="cart.jsp">
-                                        <table>
-                                            <tr>
-                                                <td style="width: 30%"><i class="bi bi-cart-plus-fill"></i></td>
-                                                <td style="width: 70%">Thêm vào giỏ hàng</td>
-                                            </tr>
-                                        </table>
-                                    </a>
+                                    <form action="AddToCart" method="POST">
+                                        <input type="number" name="quantity" id="numberInput" hidden>
+                                        <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+                                        <button type="submit" class="add-cart-btn btn w-100">
+                                            <table>
+                                                <tr>
+                                                    <td style="width: 30%"><i class="bi bi-cart-plus-fill"></i></td>
+                                                    <td style="width: 70%">Thêm vào giỏ hàng</td>
+                                                </tr>
+                                            </table>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

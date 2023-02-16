@@ -15,7 +15,7 @@ public class DBContext {
 
 
             String user = "sa";
-            String pass = "30082002Xyz@";
+            String pass = "12345678";
 
 
 
