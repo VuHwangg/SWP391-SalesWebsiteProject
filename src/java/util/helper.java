@@ -80,4 +80,13 @@ public class helper {
         }
         return 0;
     }
+    
+    public int checkSort(String x){
+        if(x.compareTo("ASC")==0){
+            return 2;
+        }else if(x.compareTo("DESC")==0){
+            return 3;
+        }
+        return 1;
+    }
 }
