@@ -115,7 +115,7 @@
                         <div class="phones-products row cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="phone-list.html">Điện thoại</a>
+                                <a href="filter?type=0">Điện thoại</a>
                             </div>
                             <c:forEach items="${requestScope.phoneList}" var="phone">
                                 <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${phone.id}">
@@ -155,7 +155,7 @@
                         <div class="laptop-products row cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="laptop-list.html">Laptop</a>
+                                <a href="filter?type=1">Laptop</a>
                             </div>
                             <c:forEach items="${requestScope.laptopList}" var="laptop">
                                 <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${laptop.id}">

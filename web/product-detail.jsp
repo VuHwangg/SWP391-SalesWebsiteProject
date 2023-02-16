@@ -68,8 +68,9 @@
                             <h3 class="price fw-bold">${helper.convertBigNum(requestScope.product.current_price)} &#8363</h3>
                             <c:if test="${requestScope.product.discount>0}">
                                 <h4 class="sale-price text-decoration-line-through">${helper.convertBigNum(requestScope.product.original_price)} &#8363</h4>
-                            </c:if>                         
+                            </c:if>   
                             <div class="row filter-product-group">
+                                <h5>Chọn dung lượng sản phẩm (RAM-ROM):</h5>
                                 <c:forEach items="${requestScope.optionList}" var="optionList">
                                     <a class="col-4 fp-btn <c:if test="${helper.compareProperties(optionList, requestScope.product)}">
                                            active
@@ -80,6 +81,7 @@
                             </div>
 
                             <div class="row filter-product-group">
+                                <h5>Chọn màu sắc cho sản phẩm:</h5>
                                 <c:forEach items="${requestScope.colorList}" var="colorList">
                                     <a class="col-4 fp-btn
                                        <c:if test="${helper.compareString(colorList.color, requestScope.product.color)}">
@@ -161,7 +163,7 @@
                         <div class="row mt-3 w-100 mx-auto product-description">
 
                             <div class="cover-block product-description-left col-md-7 bg-danger">
-                                <h3>Đặc điểm nổi bật của iPhone 13:</h3>
+                                <h3>Đặc điểm nổi bật của ${requestScope.product.name}:</h3>
                                 <p>${requestScope.product.description}</p>
                             </div>
 

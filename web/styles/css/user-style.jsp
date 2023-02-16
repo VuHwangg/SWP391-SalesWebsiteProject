@@ -685,30 +685,38 @@
   
   .product-detail .sale-price {
       color: gray;
-      margin-bottom: 12px;
+      margin-bottom: 24px;
+  }
+  
+  .product-detail .filter-product-group h5 {
+      font-size: 18px;
+      font-weight: 700;
   }
   
   .product-detail .fp-btn {
-      color: var(--main-color-black);
-      background-color: #cccccc5c; 
-      border: 2px solid gray;
+      color: var(--main-color-black); 
+      border: 2px solid var(--main-bg-color);
+      padding: 8px 16px;
       text-align: center;
       text-decoration: none;
-      font-size: 18px;
-      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold; 
+     cursor: pointer;
       height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: all 0.3s ease-in-out
   }
   
   .product-detail a.fp-btn:hover {
-      background-color: #cccccc;
+      background-color: var(--main-bg-color);
+      color: white;
   }
   
   .product-detail .fp-btn.active {
-      border: 5px solid var(--main-bg-color);
-      background-color: #cccccc;
+      background-color: var(--main-bg-color);
+      color: white;
   }
   
   .product-detail .row {
