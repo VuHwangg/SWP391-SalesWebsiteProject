@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="home">Logo</a>
+            <a class="navbar-brand logo" href="home">Awns's Store</a>
 
             <!-- Search box -->
             <form

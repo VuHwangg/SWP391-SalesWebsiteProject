@@ -23,7 +23,7 @@
                 <div class="content-center">
                     <!-- Breadcrumb -->
                     <div class="breadcrumb">
-                        <a href="index.jsp">Trang chủ</a>
+                        <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
                         <a href="list-phone.jsp">Điện thoại</a>
                         <span>&nbsp;/&nbsp;</span>
@@ -217,9 +217,9 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span>${i}<i class="bi bi-star-fill active"></i></span>
                                         <!--old-->
-                                        <div class="progress">
+<!--                                        <div class="progress">
                                          <div class="progress-bar bg-danger" style="width: 80%;"></div>
-                                        </div>
+                                        </div>-->
                                         <!--new-->
                                         <progress max="${helper.totalVote(requestScope.product)}" value="${helper.getNumofVote(requestScope.product, i)}" class="progress is-small m-0"></progress>
                                         <span>${helper.getNumofVote(requestScope.product, i)}</span>

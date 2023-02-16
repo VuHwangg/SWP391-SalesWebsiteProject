@@ -22,7 +22,7 @@
             <div class="content-center">
               <!-- Breadcrumb -->
               <div class="breadcrumb">
-                <a href="index.jsp">Trang chủ</a>
+                <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
                 <a href="#">Thông tin cá nhân</a>
               </div>
