@@ -25,6 +25,10 @@
         <servlet-class>controller.Logout</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>EditProfile</servlet-name>
         <servlet-class>controller.EditProfile</servlet-class>
     </servlet>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>SearchOrder</servlet-name>
         <url-pattern>/SearchOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
