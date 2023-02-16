@@ -88,7 +88,7 @@
                                             </div>
                                             <c:if test="${search.discount>0}">
                                                 <div class="col-4">
-                                                    <p class="sale-percent">-${search.discount}%</p>
+                                                    <p class="sale-percent">${search.discount}%</p>
                                                 </div>
                                             </c:if>   
 
