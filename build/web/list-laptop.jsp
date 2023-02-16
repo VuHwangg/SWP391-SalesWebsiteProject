@@ -31,8 +31,31 @@
                         <a href="#">Laptop</a>
                     </div>
                     <!-- carousel -->
-                    <div class="small-main-carousel">
-                        <img src="img/small-main-carousel-demo.png" alt="" />
+                    <div class="small-main-carousel carousel slide" id="carousel-main" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="img/banner/small_banner_1.jpg" class="d-block w-100" alt="banner 1">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="img/banner/small_banner_2.jpg" class="d-block w-100" alt="banner 2">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="img/banner/small_banner_3.jpg" class="d-block w-100" alt="banner 3">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-main" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-main" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                     <!-- list product block -->
                     <div class="list-product">
@@ -123,12 +146,12 @@
                                             <div class="field">
 
                                                 <input name="from" type="number" class="input-min" value="10000000">
-                                                <span>&nbsp;VNĐ</span>
+                                                <span>&nbsp;&#8363</span>
                                             </div>
                                             <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
                                             <div class="field">
                                                 <input name="to" type="number" class="input-max" value="80000000">
-                                                <span>&nbsp;VNĐ</span>
+                                                <span>&nbsp;&#8363</span>
                                             </div>
                                         </div>
                                         <div class="slider">
@@ -203,7 +226,7 @@
                                                     </div>
                                                     <c:if test="${filter.discount>0}">
                                                         <div class="col-4">
-                                                            <p class="sale-percent">-${filter.discount}%</p>
+                                                            <p class="sale-percent">${filter.discount}%</p>
                                                         </div>
                                                     </c:if>   
 

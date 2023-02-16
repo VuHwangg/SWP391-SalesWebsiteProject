@@ -151,7 +151,7 @@
                                             </div>
                                             <c:if test="${sameList.discount>0}">
                                                 <div class="col-4">
-                                                    <p class="sale-percent">-${sameList.discount}%</p>
+                                                    <p class="sale-percent">${sameList.discount}%</p>
                                                 </div>
                                             </c:if>   
                                         </div>

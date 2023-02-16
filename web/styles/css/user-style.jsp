@@ -220,7 +220,7 @@
   .sb-right,
   .sb-left {
     position: fixed;
-    width: 180px;
+    width: 400px;
     height: 100vh;
   }
 
@@ -270,18 +270,29 @@
   .main-carousel,
   .small-main-carousel {
     width: 100%;
+    overflow: hidden;
   }
 
   .main-carousel img,
   .small-main-carousel img{
     object-fit: cover;
     width: 100%;
+    height: 100%;
   }
 
   .main-carousel {
     padding-top: 88px;
     background-color: var(--main-bg-color);
-
+  }
+  
+  .main-carousel .carousel-item {
+      height: 500px;
+      width: 100%;
+  }
+  
+  .small-main-carousel .carousel-item {
+      height: 300px;
+      width: 100%;
   }
 
   .small-main-carousel {
@@ -514,13 +525,14 @@
   .product .col-4 {
     background-image: url('img/seven-pointed-star-svgrepo-com.svg');
     background-repeat: no-repeat;
-    background-size: 54px;
-    background-position: 0px;
+    background-size: 64px;
+    background-position: 0 -6px;
   }
   .product .sale-percent {
     color: white;
     font-weight: 700;
     margin-top: 14px;
+    font-size: 15px;
   }
 
   @media (max-width: 575px) {
