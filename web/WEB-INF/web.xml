@@ -5,6 +5,10 @@
         <servlet-class>controller.LoginUser</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controller.AddToCartController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SignupUser</servlet-name>
         <servlet-class>controller.SignupUser</servlet-class>
     </servlet>
@@ -139,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>ViewOrder4</servlet-name>
         <url-pattern>/ViewOrder4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchOrder</servlet-name>
