@@ -6,7 +6,9 @@
 <header>
     <!-- Mini banner -->
     <div class="mini-banner">
-        <p>Đây là mini-banner chạy liên tục nhưng mà bgio chưa chạy được</p>
+      <div class="banner-text">
+        <span>Đặt trước Galaxy S23 Series - Ưu đãi khủng đến 10 triệu</span>
+      </div>
     </div>
 
     <!-- Navigation Bar -->

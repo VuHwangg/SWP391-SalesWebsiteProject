@@ -54,16 +54,34 @@
                                 Mini banner
 ==============================================================================*/
   .mini-banner {
-    height: 60px;
-    width: 100%;
-    background-color: #ede100;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    z-index: 999;
-  }
-
-
+      height: 60px;
+      width: 100%;
+      background-color: var(--main-color-darkgray);
+      position: absolute;
+      z-index: 999;
+      overflow: hidden;
+    }
+    
+    .mini-banner .banner-text {
+      position: relative;
+      animation: move 40s linear infinite;
+    }
+    
+    .mini-banner span {
+      white-space: nowrap;
+      position: absolute;
+      left: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: white
+    }
+    
+    @keyframes move {
+      0% { left: 0; }
+      50% { left: 73%; }
+      100% { left: 0; }
+    }
+  
 /*==============================================================================
                               Navigation Bar
 ==============================================================================*/
