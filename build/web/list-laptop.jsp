@@ -36,10 +36,11 @@
                     </div>
                     <!-- list product block -->
                     <div class="list-product">
-                        <div class="row">
-                            <!-- list of filter check-box column -->
-                            <div class="filter col-sm-3">
-                                <form action="" method="get">
+                        <form action="" method="get">
+
+                            <div class="row">
+                                <!-- list of filter check-box column -->
+                                <div class="filter col-sm-3">
                                     <div class="row">
                                         <p class="filter-title">Hãng sản xuất</p>
                                         <div class="col-lg-6">
@@ -67,7 +68,7 @@
                                                 <label for="needs2">${allRequirement.name}</label>
                                             </div>
                                         </c:forEach>
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -118,68 +119,72 @@
                                     </div>
                                     <input type="hidden" name="type" value="${param.type}"/>
                                     <input class="btn-filter" type="submit" value=" Tìm kiếm " />
-                                </form>
-                            </div>
-                            <!-- list of product column -->
-                            <div class="list cover-block col-sm-9">
-                                <!-- sort method radio check -->
-                                <div class="sort-method row">
-                                    <div class="col-4 sort-method-title">
-                                        <p>Sắp xếp theo:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="btn-group sort-method-selection" role="group">
-                                            <a class="btn btn-outline-danger active" href="search?txtSearch=${param.txtSearch}&sort=none">
+                                </div>
+                                <!-- list of product column -->
+                                <div class="list cover-block col-sm-9">
+                                    <!-- sort method radio check -->
+                                    <div class="sort-method row">
+                                        <div class="col-4 sort-method-title">
+                                            <p>Sắp xếp theo:</p>
+                                        </div>
+                                        <div class="col-md-8">
+
+                                            <button class="btn btn-outline-danger active" name="sort" value="none">
                                                 Khuyến mãi
-                                            </a>
-                                            <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=ASC">
+                                            </button>
+                                            <button class="btn btn-outline-danger" name="sort" value="ASC">
                                                 Giá tăng dần
-                                            </a>
-                                             <a class="btn btn-outline-danger" href="search?txtSearch=${param.txtSearch}&sort=DESC">
+                                            </button>
+                                            <button class="btn btn-outline-danger" name="sort" value="DESC">
                                                 Giá giảm dần
-                                            </a>
+                                            </button>
+
+                                            <div class="btn-group sort-method-selection" role="group">
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- list all product -->
-                                <div class="row">
-                                    <c:forEach items="${requestScope.filterList}" var="filter">
-                                        <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
-                                            <div class="product-img">
-                                                <img
-                                                    src="${filter.image[0].url}"
-                                                    alt="iphone"
-                                                    />
-                                            </div>
-                                            <div class="product-name">
-                                                <p>${filter.name}</p>
-                                            </div>
-                                            <div class="row price-block">
-                                                <div class="col-8">
-                                                    <c:if test="${filter.discount>0}">
-                                                        <div class="product-old-price">
-                                                            <s> ${helper.convertBigNum(filter.original_price)}&nbsp;<span>VNĐ</span></s>
-                                                        </div>
-                                                    </c:if>
-
-                                                    <div class="product-price">
-                                                        <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
-                                                    </div>
+                                    <!-- list all product -->
+                                    <div class="row">
+                                        <c:forEach items="${requestScope.filterList}" var="filter">
+                                            <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
+                                                <div class="product-img">
+                                                    <img
+                                                        src="${filter.image[0].url}"
+                                                        alt="iphone"
+                                                        />
                                                 </div>
-                                                <c:if test="${filter.discount>0}">
-                                                    <div class="col-4">
-                                                        <p class="sale-percent">-${filter.discount}%</p>
-                                                    </div>
-                                                </c:if>   
+                                                <div class="product-name">
+                                                    <p>${filter.name}</p>
+                                                </div>
+                                                <div class="row price-block">
+                                                    <div class="col-8">
+                                                        <c:if test="${filter.discount>0}">
+                                                            <div class="product-old-price">
+                                                                <s> ${helper.convertBigNum(filter.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                            </div>
+                                                        </c:if>
 
-                                            </div>
-                                        </a>
-                                    </c:forEach>
+                                                        <div class="product-price">
+                                                            <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <c:if test="${filter.discount>0}">
+                                                        <div class="col-4">
+                                                            <p class="sale-percent">-${filter.discount}%</p>
+                                                        </div>
+                                                    </c:if>   
+
+                                                </div>
+                                            </a>
+                                        </c:forEach>
+                                    </div>
+                                    <%@include file="components/pagination.jsp" %>  
                                 </div>
-                                <%@include file="components/pagination.jsp" %>  
                             </div>
-                        </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@ public class DBContext {
             // Edit URL , username, password to authenticate with your MS SQL Server
 
 
-            String user = "sa";
-            String pass = "12345678";
+            String user = "duyct";
+            String pass = "1312002ss";
 
 
 

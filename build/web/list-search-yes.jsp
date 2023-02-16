@@ -39,16 +39,25 @@
                                     <p>Sắp xếp theo:</p>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="btn-group sort-method-selection" role="group">
-                                        <button class="btn btn-outline-danger active" value="">
+                                    <form
+                                        class="d-flex search-box"
+                                        role="search"
+                                        action="search"
+                                        method="GET"
+                                        >
+                                        <button class="btn btn-outline-danger active" name="sort" value="none">
                                             Khuyến mãi
                                         </button>
-                                        <button class="btn btn-outline-danger" value="">
+                                        <button class="btn btn-outline-danger" name="sort" value="ASC">
                                             Giá tăng dần
                                         </button>
-                                         <button class="btn btn-outline-danger" value="">
+                                        <button class="btn btn-outline-danger" name="sort" value="DESC">
                                             Giá giảm dần
                                         </button>
+                                        <input type="hidden" name="txtSearch" value=${param.txtSearch} />
+                                    </form>
+                                    <div class="btn-group sort-method-selection" role="group">
+                                        
                                     </div>
                                 </div>
                             </div>
