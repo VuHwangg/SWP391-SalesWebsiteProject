@@ -25,11 +25,9 @@
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="list-phone.jsp">Điện thoại</a>
+                        <a href="filter?type=${requestScope.product.type}">${helper.typeName(requestScope.product.type)}</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Iphone</a>
-                        <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Iphone 13</a>
+                        <a href="#">${requestScope.product.name}</a>
                     </div>
 
                     <div class="row product-detail-title">

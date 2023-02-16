@@ -44,12 +44,20 @@
                                     <div class="row">
                                         <p class="filter-title">Hãng sản xuất</p>
                                         <div class="col-lg-6">
-                                            <input type="checkbox" name="brand" id="brand1" checked value="all"/>
+                                            <input
+                                                <c:if test="${helper.compareWithAll(requestScope.brands)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="brand" id="brand1" value="all"/>
                                             <label for="brand1">Tất cả</label>
                                         </div>
                                         <c:forEach items="${requestScope.allBrands}" var="allBrand">
                                             <div class="col-lg-6">
-                                                <input type="checkbox" name="brand" id="brand2" value="${allBrand.name}" />
+                                                <input
+                                                    <c:if test="${helper.checked(allBrand.name, requestScope.brands)}">
+                                                        checked="checked"
+                                                    </c:if>
+                                                    type="checkbox" name="brand" id="brand2" value="${allBrand.name}" />
                                                 <label for="brand2">${allBrand.name}</label>
                                             </div>
                                         </c:forEach>
@@ -59,12 +67,20 @@
                                     <div class="row">
                                         <p class="filter-title">Nhu cầu sử dụng</p>
                                         <div class="col-lg-6">
-                                            <input type="checkbox" name="needs" id="needs1" checked value="all"/>
+                                            <input
+                                                <c:if test="${helper.compareWithAll(requestScope.needs)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="needs" id="needs1"  value="all"/>
                                             <label for="needs1">Tất cả</label>
                                         </div>
                                         <c:forEach items="${requestScope.allRequirements}" var="allRequirement">
                                             <div class="col-lg-6">
-                                                <input type="checkbox" name="needs" id="needs2" value="${allRequirement.name}"/>
+                                                <input
+                                                    <c:if test="${helper.checked(allRequirement.name, requestScope.needs)}">
+                                                        checked="checked"
+                                                    </c:if>
+                                                    type="checkbox" name="needs" id="needs2" value="${allRequirement.name}"/>
                                                 <label for="needs2">${allRequirement.name}</label>
                                             </div>
                                         </c:forEach>
@@ -74,11 +90,17 @@
                                     <div class="row">
                                         <p class="filter-title">Kích thước màn hình</p>
                                         <div class="col-12">
-                                            <input type="checkbox" name="size-screen" id="size-screen1" checked value="all"/>
+                                            <input
+                                                <c:if test="${helper.compareWithAll(requestScope.sizes)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="size-screen" id="size-screen1"  value="all"/>
                                             <label for="size-screen1">Tất cả</label>
                                         </div>
                                         <div class="col-12">
-                                            <input type="checkbox" name="size-screen" id="size-screen2" value="size1"/>
+                                            <input
+                                                
+                                                type="checkbox" name="size-screen" id="size-screen2" value="size1"/>
                                             <label for="size-screen2">Dưới 13 inch</label>
                                         </div>
                                         <div class="col-12">

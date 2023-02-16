@@ -44,6 +44,21 @@ public class FilterController extends HttpServlet {
         request.setAttribute("allRequirements", allRequirements);
         request.setAttribute("allBrands", allBrands);
         String sort;
+        if (brands == null) {
+            String[] buffer = {"all"};
+            brands = buffer;
+        }
+        request.setAttribute("brands", brands);
+        if (needs == null) {
+            String[] buffer = {"all"};
+            needs = buffer;
+        }
+        request.setAttribute("needs", needs);
+        if (sizes == null) {
+            String[] buffer = {"all"};
+            sizes = buffer;
+        }
+        request.setAttribute("sizes", sizes);
         double from, to;
         if (rawSort != null) {
             sort = rawSort;
@@ -65,6 +80,10 @@ public class FilterController extends HttpServlet {
         request.setAttribute("filterList", filterList);
         request.getRequestDispatcher("list-laptop.jsp").forward(request, response);
 //        response.getWriter().print(productList.testString(type, sort, from, to, needs, brands,sizes));
+//        for(String size : sizes){
+//            response.getWriter().print(size);
+//        }
+         
 
     }
 
