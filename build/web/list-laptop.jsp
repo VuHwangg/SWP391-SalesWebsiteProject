@@ -128,19 +128,16 @@
                                             <p>Sắp xếp theo:</p>
                                         </div>
                                         <div class="col-md-8">
-
-                                            <button class="btn btn-outline-danger active" name="sort" value="none">
-                                                Khuyến mãi
-                                            </button>
-                                            <button class="btn btn-outline-danger" name="sort" value="ASC">
-                                                Giá tăng dần
-                                            </button>
-                                            <button class="btn btn-outline-danger" name="sort" value="DESC">
-                                                Giá giảm dần
-                                            </button>
-
                                             <div class="btn-group sort-method-selection" role="group">
-
+                                                <button class="btn btn-outline-danger active" name="sort" value="none">
+                                                    Khuyến mãi
+                                                </button>
+                                                <button class="btn btn-outline-danger" name="sort" value="ASC">
+                                                    Giá tăng dần
+                                                </button>
+                                                <button class="btn btn-outline-danger" name="sort" value="DESC">
+                                                    Giá giảm dần
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

@@ -45,20 +45,19 @@
                                         action="search"
                                         method="GET"
                                         >
-                                        <button class="btn btn-outline-danger active" name="sort" value="none">
-                                            Khuyến mãi
-                                        </button>
-                                        <button class="btn btn-outline-danger" name="sort" value="ASC">
-                                            Giá tăng dần
-                                        </button>
-                                        <button class="btn btn-outline-danger" name="sort" value="DESC">
-                                            Giá giảm dần
-                                        </button>
+                                        <div class="btn-group sort-method-selection" role="group">
+                                            <button class="btn btn-outline-danger active" name="sort" value="none">
+                                                Khuyến mãi
+                                            </button>
+                                            <button class="btn btn-outline-danger" name="sort" value="ASC">
+                                                Giá tăng dần
+                                            </button>
+                                            <button class="btn btn-outline-danger" name="sort" value="DESC">
+                                                Giá giảm dần
+                                            </button>
+                                        </div>
                                         <input type="hidden" name="txtSearch" value=${param.txtSearch} />
                                     </form>
-                                    <div class="btn-group sort-method-selection" role="group">
-                                        
-                                    </div>
                                 </div>
                             </div>
 
