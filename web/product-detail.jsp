@@ -99,8 +99,8 @@
                                 <div class="col-4" style="padding: 0">
                                     <div class="quantity-input quantity-input-pd">
                                         <button class="minus-btn" type="button">-</button>
-                                        <!--We need the same value form this big shit VU##-->
-                                        <input type="number" class="quantity" value="1" min="1" max="99" readonly/>
+                                        <!--We need the same value form this big shit VU##--> 
+                                        <input type="number" class="quantity" id="quantityInput" value="1" min="1" max="99" readonly/>
                                         <button class="plus-btn" type="button">+</button>
                                     </div>
                                 </div>

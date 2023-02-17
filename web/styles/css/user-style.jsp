@@ -885,7 +885,7 @@
         background-color: #ccc;
       }
   
-/*--------------- Quantity input in Product Detail --------------------------*/
+/*--------------- Quantity input in Product Cart --------------------------*/
     
     .quantity-input-cart {
     }
