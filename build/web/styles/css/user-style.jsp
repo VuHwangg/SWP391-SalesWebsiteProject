@@ -221,6 +221,12 @@
 /*==============================================================================
                                 Side Banner
 ==============================================================================*/
+.img-bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
   .sb-right,
   .sb-left {
     position: fixed;
@@ -283,15 +289,19 @@
     width: 100%;
     height: 100%;
   }
+  
+  .main-carousel img {
+     border-radius: 30px; 
+  }
 
   .main-carousel {
-    padding-top: 88px;
-    background-color: var(--main-bg-color);
+    padding-top: 110px;
   }
   
   .main-carousel .carousel-item {
       height: 500px;
       width: 100%;
+      border-radius: 30px;
   }
   
   .small-main-carousel .carousel-item {
@@ -301,6 +311,16 @@
 
   .small-main-carousel {
     background-color: white;
+  }
+  
+  @media (max-width: 992px) {
+    .main-carousel {
+        padding-top: 88px;
+      }
+      
+      .main-carousel img {
+        border-radius: 0; 
+     }
   }
 
 
