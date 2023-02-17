@@ -138,7 +138,7 @@
                                 <span class="fw-bolder fs-5">Phí vận chuyển</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">40.000 VND</span>
+                                <span class="fw-light fs-6">0 VND</span>
                             </div>
                         </div>
 
