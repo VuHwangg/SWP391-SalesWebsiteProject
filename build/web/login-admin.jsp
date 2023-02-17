@@ -29,7 +29,7 @@
                         <i class="bi bi-house me-1"></i>Trang chủ
                     </a>
                 </div>
-                <h1 style="color: white">FTECH</h1>
+                <h1 style="color: white">Awns's Store</h1>
                 <h4 style="color: white">
                     Store chuyên cung cấp đồ công nghệ hàng đầu Việt Nam
                 </h4>

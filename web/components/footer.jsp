@@ -6,11 +6,11 @@
       <div class="footer-section footer-about">
           <div class="footer-logo">
 <!--              <img src="index.jsp" alt="Logo">-->
-        <h3 style="color: white">FTECH STORE</h3>
+        <h3 style="color: white">Awns's Store</h3>
           </div>
           <div class="description">
               <p>
-                  FTECH là store chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá phù hợp với chính sách bảo hành lên đến 3 năm cho mọi sản phẩm. 
+                  Awns's Store là store chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá phù hợp với chính sách bảo hành lên đến 3 năm cho mọi sản phẩm. 
               </p>
           </div>
           <div class="media-icons">
