@@ -72,7 +72,7 @@ public class EmailConfig {
 "            <div>\n" +
 "                <div class=\"row\">\n" +
 "                    <div class=\"col-md-6\">\n" +
-"                        <h3>GEARVN.COM</h3>\n" +
+"                        <h3>AWNSSHOP.COM</h3>\n" +
 "                    </div>\n" +
 "                    <div class=\"col-md-6 d-flex justify-content-end\">\n" +
 "                        <h5>ĐƠN HÀNG#1000249704</h5>\n" +
