@@ -113,7 +113,7 @@ public class EmailConfig {
 "                    <div class=\"col-6\">\n" +
 "                        <div class=\"row col\">\n" +
 "                            <div class=\"col \">Tổng giá trị sản phẩm</div>\n" +
-"                            <div class=\"col d-flex justify-content-end fw-bold \">"+h.convertBigNum(total_price)+"</div>\n" +
+"                            <div class=\"col d-flex justify-content-end fw-bold \">"+h.convertBigNum(total_price)+" VND</div>\n" +
 "                        </div>\n" +
 "                        <div class=\"row\">\n" +
 "                            <div class=\"col \">Khuyến mãi</div>\n" +
@@ -127,7 +127,7 @@ public class EmailConfig {
 "                        <div style=\"max-width: 100%;\" class=\" border-top border-secondary border-1 my-3\"></div>\n" +
 "                        <div class=\"row\">\n" +
 "                            <div class=\"col\">Tổng cộng</div>\n" +
-"                            <div class=\"col d-flex justify-content-end fw-bold fs-3\">"+h.convertBigNum(total_price)+"</div>\n" +
+"                            <div class=\"col d-flex justify-content-end fw-bold fs-3\">"+h.convertBigNum(total_price)+"VND</div>\n" +
 "                        </div>\n" +
 "\n" +
 "                    </div>\n" +
