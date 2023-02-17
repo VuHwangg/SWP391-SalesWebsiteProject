@@ -60,7 +60,12 @@ public class CartController extends HttpServlet {
             request.setAttribute("totalMoney", totalMoney);
             request.setAttribute("discountTotalPrice", discountTotalPrice);
             request.setAttribute("quantity", quantity);
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            if (quantity == 0) {
+                request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+            } else{
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
+            }
+            
         }
     }
 

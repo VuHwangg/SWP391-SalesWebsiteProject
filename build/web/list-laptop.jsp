@@ -122,20 +122,34 @@
                                         </div>
                                         <div class="col-12">
                                             <input
-                                                
+                                                <c:if test="${helper.checkSize(1, requestScope.sizes)}">
+                                                    checked="checked"
+                                                </c:if>
                                                 type="checkbox" name="size-screen" id="size-screen2" value="size1"/>
                                             <label for="size-screen2">Dưới 13 inch</label>
                                         </div>
                                         <div class="col-12">
-                                            <input type="checkbox" name="size-screen" id="size-screen3" value="size2"/>
+                                            <input 
+                                                <c:if test="${helper.checkSize(2, requestScope.sizes)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="size-screen" id="size-screen3" value="size2"/>
                                             <label for="size-screen3">Từ 13 inch đến 15 inch</label>
                                         </div>
                                         <div class="col-12">
-                                            <input type="checkbox" name="size-screen" id="size-screen4" value="size3"/>
+                                            <input 
+                                                <c:if test="${helper.checkSize(3, requestScope.sizes)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="size-screen" id="size-screen4" value="size3"/>
                                             <label for="size-screen4">Từ 15 inch đến 17 inch</label>
                                         </div>
                                         <div class="col-12">
-                                            <input type="checkbox" name="size-screen" id="size-screen5" value="size4"/>
+                                            <input 
+                                                <c:if test="${helper.checkSize(4, requestScope.sizes)}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="checkbox" name="size-screen" id="size-screen5" value="size4"/>
                                             <label for="size-screen5">Trên 17 inch</label>
                                         </div>
                                     </div>
@@ -145,12 +159,12 @@
                                         <div class="price-input">
                                             <div class="field">
 
-                                                <input name="from" type="number" class="input-min" value="10000000">
+                                                <input name="from" type="number" class="input-min" value="${param.from}">
                                                 <span>&nbsp;&#8363</span>
                                             </div>
                                             <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
                                             <div class="field">
-                                                <input name="to" type="number" class="input-max" value="80000000">
+                                                <input name="to" type="number" class="input-max" value="${param.to}">
                                                 <span>&nbsp;&#8363</span>
                                             </div>
                                         </div>
@@ -158,8 +172,8 @@
                                             <div class="progress"></div>
                                         </div>
                                         <div class="range-input">
-                                            <input  type="range" class="range-min" min="0" max="100000000" value="10000000" step="2000000">
-                                            <input " type="range" class="range-max" min="0" max="100000000" value="80000000" step="2000000">
+                                            <input  type="range" class="range-min" min="0" max="100000000" value="${requestScope.from}" step="2000000">
+                                            <input " type="range" class="range-max" min="0" max="100000000" value="${requestScope.to}" step="2000000">
                                         </div>
                                     </div>
                                     <input type="hidden" name="type" value="${param.type}"/>

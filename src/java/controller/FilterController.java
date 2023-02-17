@@ -66,15 +66,28 @@ public class FilterController extends HttpServlet {
             sort = "none";
         }
         if (rawFrom != null) {
-            from = Double.parseDouble(rawFrom);
+            try {
+                from = Double.parseDouble(rawFrom);
+            } catch (Exception e) {
+                from = 0;
+            }
+            
         } else {
             from = 0;
         }
         if (rawTo != null) {
-            to = Double.parseDouble(rawTo);
+             try {
+                to = Double.parseDouble(rawTo);
+            } catch (Exception e) {
+                to = 100000000;
+            }
+            
         } else {
-            to = 999999999;
+            to = 100000000;
         }
+        request.setAttribute("from", from);
+        request.setAttribute("to", to);
+
         ProductDBContext productList = new ProductDBContext();
         ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands, sizes);
         request.setAttribute("filterList", filterList);
@@ -83,7 +96,6 @@ public class FilterController extends HttpServlet {
 //        for(String size : sizes){
 //            response.getWriter().print(size);
 //        }
-         
 
     }
 
