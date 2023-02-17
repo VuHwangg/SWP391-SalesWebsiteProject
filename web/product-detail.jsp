@@ -107,7 +107,7 @@
                                 <div class="col-8" style="padding: 0 0 0 8px">
                                     <form action="AddToCart" method="POST">
                                         <!-- To this shit right here -->
-                                        <input type="number" name="quantity" id="numberInput" hidden>
+                                        <input type="number" name="quantityAdd" id="numberInput" value="1" hidden>
                                         <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         <button type="submit" class="add-cart-btn btn w-100">
                                             <table>
