@@ -64,7 +64,7 @@ public class AccountDAO extends DBContext {
     public boolean AddAcount(String username, String password, String displayname) {
         boolean check = false;
         try {
-            String sql = "Insert Account "
+            String sql = "Insert into Account "
                     + "(username,password,displayname) values (?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);

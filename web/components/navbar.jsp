@@ -2,6 +2,8 @@
 <%@page import="model.Account"%> 
 <%@page import="model.Customer"%> 
 <%@page import="jakarta.servlet.http.HttpSession" %>
+<%@page import="java.util.Map" %>
+<%@page import="model.Cart" %>
 
 <header>
     <!-- Mini banner -->

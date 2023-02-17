@@ -35,17 +35,24 @@
                             <h3 class="fw-bold mb-4">THÔNG TIN GIAO HÀNG</h3>
                         </div>
                         <%
-                            cus = (Customer) session.getAttribute("cust");
+                            Customer cus1 = (Customer) session.getAttribute("cust");
                             String email = "";
                             String name = "";
                             String address = "";
                             String phone = "";
                             if(cus != null){
-                            email = cus.getEmail();
-                            name = cus.getCustomerName();
-                            address = cus.getAddress();
-                            phone = cus.getPhone();
+                            email = cus1.getEmail();
+                            name = cus1.getCustomerName();
+                            address = cus1.getAddress();
+                            phone = cus1.getPhone();
                             }
+                            int total_price = 0;
+                            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+                            if(carts != null)        
+                            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                            total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
+                            }
+
                         %>
                         <form action="Payment2" method="post">
                             
@@ -138,7 +145,7 @@
                                 <span class="fw-bolder fs-5">Phí vận chuyển</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">0 VND</span>
+                                <span class="fw-light fs-6">00.000 VND</span>
                             </div>
                         </div>
 
@@ -149,7 +156,7 @@
                                 <span class="fw-bolder fs-4">Tổng cộng</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #fb1514;">151.460.000 VND</span>
+                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=total_price%></span>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
