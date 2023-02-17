@@ -71,8 +71,8 @@
                                 <h5>Chọn dung lượng sản phẩm (RAM-ROM):</h5>
                                 <c:forEach items="${requestScope.optionList}" var="optionList">
                                     <a class="col-4 fp-btn <c:if test="${helper.compareProperties(optionList, requestScope.product)}">
-                                           active
-                                       </c:if>" href="product_detail?product_id=${optionList.id}">
+                                       active
+                                        </c:if>" href="product_detail?product_id=${optionList.id}">
                                         ${optionList.ram}GB-${optionList.memory}GB
                                     </a>
                                 </c:forEach>
@@ -91,23 +91,30 @@
                             </div>
 
                             <div class="row ">
-                                <div class="col-12" style="padding: 0">
-                                    <a class="buy-btn btn btn-danger w-100" href="cart.jsp">
-                                        Mua ngay
-                                    </a>
-                                </div>
-                                <div class="col-4" style="padding: 0">
-                                    <div class="quantity-input quantity-input-pd">
-                                        <button class="minus-btn" type="button">-</button>
-                                        <!--We need the same value form this big shit VU##--> 
-                                        <input type="number" class="quantity" id="quantityInput" value="1" min="1" max="99" readonly/>
-                                        <button class="plus-btn" type="button">+</button>
+                                <form action="AddToCart" method="GET">
+                                    <div class="col-12" style="padding: 0">
+
+                                        <button type="submit" class="buy-btn btn btn-danger w-100" >
+                                            Mua ngay
+                                        </button>
                                     </div>
-                                </div>
+                                    <div class="col-4" style="padding: 0">
+                                        <div class="quantity-input quantity-input-pd">
+                                            <button class="minus-btn" type="button">-</button>
+                                            <!--We need the same value form this big shit VU##--> 
+                                            <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="99" readonly/>
+                                            <button class="plus-btn" type="button">+</button>
+                                            <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+                                        </div>
+                                    </div>    
+
+                                </form>
+
                                 <div class="col-8" style="padding: 0 0 0 8px">
                                     <form action="AddToCart" method="POST">
                                         <!-- To this shit right here -->
-                                        <input type="number" name="quantityAdd" id="numberInput" value="1" hidden>
+                                        <input type="number" name="whichAdd" value="1" hidden>
+                                        <input type="number" name="quantity" id="numberInput" value="1" hidden>
                                         <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         <button type="submit" class="add-cart-btn btn w-100">
                                             <table>
@@ -223,9 +230,9 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span>${i}<i class="bi bi-star-fill active"></i></span>
                                         <!--old-->
-<!--                                        <div class="progress">
-                                         <div class="progress-bar bg-danger" style="width: 80%;"></div>
-                                        </div>-->
+                                        <!--                                        <div class="progress">
+                                                                                 <div class="progress-bar bg-danger" style="width: 80%;"></div>
+                                                                                </div>-->
                                         <!--new-->
                                         <progress max="${helper.totalVote(requestScope.product)}" value="${helper.getNumofVote(requestScope.product, i)}" class="progress is-small m-0"></progress>
                                         <span>${helper.getNumofVote(requestScope.product, i)}</span>
