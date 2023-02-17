@@ -119,7 +119,7 @@ public class Payment2 extends HttpServlet {
             session.setAttribute("Order", od.GetOrder1(NewOrderId));
             session.setAttribute("OrderDetails", od.GetOrder_Details(NewOrderId));
             }
-            request.getRequestDispatcher("order-confirmation-page.jsp").forward(request, response);
+            request.getRequestDispatcher("home").forward(request, response);
         } catch (MessagingException ex) {
             request.getRequestDispatcher("404-page.jsp").forward(request, response);
         }

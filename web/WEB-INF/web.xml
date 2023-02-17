@@ -64,6 +64,14 @@
         <servlet-name>SearchOrder</servlet-name>
         <servlet-class>controller.SearchOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Payment</servlet-name>
+        <servlet-class>controller.Payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Payment2</servlet-name>
+        <servlet-class>controller.Payment2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Payment</servlet-name>
+        <url-pattern>/Payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Payment2</servlet-name>
+        <url-pattern>/Payment2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
