@@ -19,7 +19,61 @@ import model.Product;
  * @author xuank
  */
 public class OrderDAO extends DBContext {
+    
+    
+    
+    public boolean AddOrder(int status, int cusId, String date, String note, float totalPrice) {
+        boolean check = false;
+        try {
+            String sql = "Insert into [Order] "
+                    + "(status,customer_id,date,note,total_price) values (?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, status);
+            ps.setInt(2, cusId);
+            ps.setString(3,date);
+            ps.setString(4,note);
+            ps.setFloat(5, totalPrice);
 
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+    
+     public boolean AddOrder_Detail(int order_id, int product_id, int num, float price) {
+        boolean check = false;
+        try {
+            String sql = "Insert into Order_Details "
+                    + "(order_id,product_id,num,price) values (?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, order_id);
+            ps.setInt(2, product_id);
+            ps.setInt(3, num);
+            ps.setFloat(4, price);
+
+            check = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+        }
+        return check;
+    }
+     
+    public int getLastOrderId(){
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT TOP 1 order_id FROM [Order] ORDER BY order_id DESC;";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("order_id");
+            }
+
+        } catch (Exception ex) {
+         return 1;
+        }
+        return 1;
+    }
+    
     public ArrayList<Order> GetOrder(int Custid) {
         ArrayList<Order> arr = new ArrayList<>();
         PreparedStatement stm = null;

@@ -46,22 +46,22 @@
                             phone = cus.getPhone();
                             }
                         %>
-                        <form>
+                        <form action="Payment2" method="post">
                             
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>">
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name==null?"readonly":""%>>
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>">
+                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>" required <%=phone==null?"readonly":""%>>
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>">
+                                <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>" required <%=email==null?"readonly":""%>>
 
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Địa chỉ nhận hàng" ><%=address%></textarea>
+                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Địa chỉ nhận hàng" required <%=address==null?"readonly":""%>><%=address%></textarea>
                             </div>
 
                             <div>
@@ -82,7 +82,7 @@
                                 </div>
 
                             </div>
-                        </form>
+                        
 
 
                     </div>
@@ -164,10 +164,10 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
-                                <button type="button" class="btn btn-danger w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
+                                <button type="submit" class="btn btn-danger w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
-
+                    </form>
                     </div>
                 </div>
            </div>

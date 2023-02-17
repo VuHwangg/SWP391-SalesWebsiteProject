@@ -27,7 +27,7 @@ import util.EmailConfig;
  *
  * @author toden
  */
-public class Payment extends HttpServlet {
+public class Payment2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +46,10 @@ public class Payment extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Payment</title>");            
+            out.println("<title>Servlet Payment2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Payment at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Payment2 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -81,35 +81,48 @@ public class Payment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         HttpSession session = request.getSession();
-        //send email
-        EmailConfig Ec = new EmailConfig();
-        String email = (String)request.getParameter("email");
-        //            Ec.SendEmail(email, "");
-        //create cus and add cus if guest
-        if(session.getAttribute("cust") == null){
-            AccountDAO ad = new AccountDAO();
-            String name = request.getParameter("name");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
-            ad.AddCust(name, address, phone, email, false);
-            session.setAttribute("cust", ad.GetCust(email));
+        try {
+            //send email
+            EmailConfig Ec = new EmailConfig();
+            String email = (String)request.getParameter("email");
+            //create cus and add cus if guest
+            if(session.getAttribute("cust") == null){
+                AccountDAO ad = new AccountDAO();
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String phone = request.getParameter("phone");
+                ad.AddCust(name, address, phone, email, false);
+                session.setAttribute("cust", ad.GetCust(email));
+                
+            }
+            //add order  va orderdetail
+            if(session.getAttribute("carts")!=null){
+            OrderDAO od = new OrderDAO();
+            Customer cus = (Customer) session.getAttribute("cust");
+            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            float total_price=0;
+            //loop qua map
+            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+            total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
             
         }
-        //add order  va order
-        OrderDAO od = new OrderDAO();
-        Customer cus = (Customer) session.getAttribute("cust");
-        Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-        float total_price=0;
-        //loop qua map
-        for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-            total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
+            //add order, send email. lay order id vua add
+            od.AddOrder(1, cus.getCustomerId(), LocalDate.now().toString(), "",total_price);
+            int NewOrderId = od.getLastOrderId();
+            Ec.SendEmail(email, total_price, Ec.MessageProduct(carts) );
+            
+            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
             float price=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"");
-            od.AddOrder_Detail(od.getLastOrderId()+1,cart.getKey(),cart.getValue().getQuantity(), price);
+            od.AddOrder_Detail(NewOrderId,cart.getKey(),cart.getValue().getQuantity(), price);   
+        }            
+            session.setAttribute("Order", od.GetOrder1(NewOrderId));
+            session.setAttribute("OrderDetails", od.GetOrder_Details(NewOrderId));
+            }
+            request.getRequestDispatcher("order-confirmation-page.jsp").forward(request, response);
+        } catch (MessagingException ex) {
+            request.getRequestDispatcher("404-page.jsp").forward(request, response);
         }
-        od.AddOrder(1, cus.getCustomerId(), LocalDate.now().toString(), cus.getEmail(),total_price);
-        request.getRequestDispatcher("order-confirmation-page.jsp").forward(request, response);
     }
 
     /**
