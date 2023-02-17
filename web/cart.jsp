@@ -88,10 +88,10 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
-                            <a class="btn btn-outline-danger" href="#">
+                            <a class="btn btn-outline-danger" href="home">
                                 Tiếp tục mua hàng
                             </a>
-                            <a class="btn btn-outline-danger" href="#">
+                            <a class="btn btn-outline-danger" href="DeleteAllCart">
                                 Xóa hết
                             </a>
                         </div>
