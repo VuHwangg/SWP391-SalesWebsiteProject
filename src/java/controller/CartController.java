@@ -49,7 +49,7 @@ public class CartController extends HttpServlet {
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
                 Integer key = entry.getKey();
                 Cart cart = entry.getValue();
-                totalMoney += cart.getQuantity() * cart.getProduct().getOriginal_price();
+                totalMoney += cart.getQuantity() * cart.getProduct().getCurrent_price();
                 originalTotalPrice += cart.getQuantity() * cart.getProduct().getOriginal_price();
                 discountTotalPrice += cart.getQuantity() * ((cart.getProduct().
                         getOriginal_price() / 100) * cart.getProduct().getDiscount());
