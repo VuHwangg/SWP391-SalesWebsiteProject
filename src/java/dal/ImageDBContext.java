@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Image;
+import model.Order;
 
 /**
  *
@@ -38,5 +40,25 @@ public class ImageDBContext extends DBContext{
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public String GetImageUrl(int Proid) {
+        String url="";
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "Select url from image where product_id = ? ";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, Proid);
+
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                url=rs.getString(url);
+            }
+
+        } catch (Exception ex) {
+
+        }
+        return url;
     }
 }

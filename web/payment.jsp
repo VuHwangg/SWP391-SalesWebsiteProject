@@ -1,5 +1,6 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -95,10 +96,26 @@
                             <h3 class="fw-bold mb-4">HÓA ĐƠN ĐẶT HÀNG</h3>
                         </div>
                         <div class="border-top border-dark border-3 my-3"></div>
+                        
+                        <c:forEach items="${carts}" var="cart">
+                             <div class="row">
+                            <div class="col-md-6">
+                                <span class="fw-bolder fs-5" style="color: #555555;">${cart.getValue().getProduct().getName()}</span>
+                                <br>
+                                <span class="fw-light fs-6">Mầu sắc: ${cart.getValue().getProduct().getColor()}</span>
+                                <br>
+                                <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-end ">
+                                <span class="fw-light fs-6">${cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price()}</span>
+                            </div>
+                        </div>
+                        <div class="border-top border-dark border-1 my-2"></div>
+                        </c:forEach>
 
 
                         <!--Like a table just edit it-->
-                        <div class="row">
+<!--                        <div class="row">
                             <div class="col-md-6">
                                 <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
                                 <br>
@@ -110,37 +127,9 @@
                                 <span class="fw-light fs-6">55.980.000 VND</span>
                             </div>
                         </div>
-                        <div class="border-top border-dark border-1 my-2"></div>
+                        <div class="border-top border-dark border-1 my-2"></div>-->
 
-                        <!--Like a table just edit it-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
-                                <br>
-                                <span class="fw-light fs-6">Mầu sắc: Tím</span>
-                                <br>
-                                <span class="fw-light fs-6">Số lượng: 2</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">55.980.000 VND</span>
-                            </div>
-                        </div>
-                        <div class="border-top border-dark border-1 my-2"></div>
-
-                        <!--Like a table just edit it-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
-                                <br>
-                                <span class="fw-light fs-6">Mầu sắc: Tím</span>
-                                <br>
-                                <span class="fw-light fs-6">Số lượng: 2</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">55.980.000 VND</span>
-                            </div>
-                        </div>
-                        <div class="border-top border-dark border-1 my-2"></div>
+                        
 
 
                         <!---Shipment cost-->

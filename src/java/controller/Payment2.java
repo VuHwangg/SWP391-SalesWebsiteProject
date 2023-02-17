@@ -110,7 +110,7 @@ public class Payment2 extends HttpServlet {
             //add order, send email. lay order id vua add
             od.AddOrder(1, cus.getCustomerId(), LocalDate.now().toString(), "",total_price);
             int NewOrderId = od.getLastOrderId();
-            Ec.SendEmail(email, total_price, Ec.MessageProduct(carts) );
+            Ec.SendEmail(email, total_price, Ec.MessageProduct(carts),cus );
             
             for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
             float price=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"");
@@ -119,7 +119,7 @@ public class Payment2 extends HttpServlet {
             session.setAttribute("Order", od.GetOrder1(NewOrderId));
             session.setAttribute("OrderDetails", od.GetOrder_Details(NewOrderId));
             }
-            request.getRequestDispatcher("home").forward(request, response);
+            request.getRequestDispatcher("order-confirmation-page.jsp").forward(request, response);
         } catch (MessagingException ex) {
             request.getRequestDispatcher("404-page.jsp").forward(request, response);
         }
