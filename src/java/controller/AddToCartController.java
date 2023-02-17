@@ -57,7 +57,7 @@ public class AddToCartController extends HttpServlet{
         }
         // Save cart in session
         session.setAttribute("carts", carts);
-        resp.sendRedirect("product_detail?product_id=" + productId);
+        req.getRequestDispatcher("product_detail?product_id=" + productId).forward(req, resp);
     }
 
     @Override

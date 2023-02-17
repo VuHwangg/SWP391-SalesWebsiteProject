@@ -86,7 +86,7 @@
                         <a class="nav-link" href="filter?type=1">Laptop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.jsp">Giỏ hàng</a>
+                        <a class="nav-link" href="cart">Giỏ hàng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=<%=link%>>Tra đơn</a>
