@@ -156,7 +156,7 @@
                                 <span class="fw-bolder fs-4">Tổng cộng</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=total_price%></span>
+                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=total_price%> VND</span>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">

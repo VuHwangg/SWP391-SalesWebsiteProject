@@ -93,7 +93,7 @@ public class Payment2 extends HttpServlet {
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 ad.AddCust(name, address, phone, email, false);
-                session.setAttribute("cust", ad.GetCust(email));
+                session.setAttribute("cust", ad.GetCust(email,false));
                 
             }
             //add order  va orderdetail
