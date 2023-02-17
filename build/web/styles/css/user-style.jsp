@@ -41,6 +41,10 @@
     margin: 0;
     padding: 0;
   }
+  
+  input[type="checkbox"] {
+    accent-color: var(--main-bg-color);    
+}
 
   .bg-red {
     background-color: var(--main-bg-color);
