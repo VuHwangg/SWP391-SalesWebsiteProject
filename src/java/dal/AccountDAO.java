@@ -64,7 +64,7 @@ public class AccountDAO extends DBContext {
     public boolean AddAcount(String username, String password, String displayname) {
         boolean check = false;
         try {
-            String sql = "Insert Account "
+            String sql = "Insert into Account "
                     + "(username,password,displayname) values (?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
@@ -155,7 +155,7 @@ public class AccountDAO extends DBContext {
         return role;
     }
 
-    public Customer GetCust(String email) {
+    public Customer GetCust(String email, boolean status) {
         Customer cust = null;
         try {
             String sql = "SELECT [customer_id]\n"
@@ -164,9 +164,10 @@ public class AccountDAO extends DBContext {
                     + "      ,[phone]\n"
                     + "      ,[email],[status]\n"
                     + "  FROM [dbo].[Customer]\n"
-                    + "  WHERE [email] = ?";
+                    + "  WHERE [email] = ? and status =?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
+            st.setBoolean(2, status);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 int customer_id = rs.getInt("customer_id");
@@ -174,7 +175,7 @@ public class AccountDAO extends DBContext {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
-                boolean status = rs.getBoolean("status");
+               
                 cust = new Customer(customer_id, customer_name, address, phone, email1,status);
             }
         } catch (SQLException e) {

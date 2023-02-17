@@ -29,6 +29,9 @@ public class AddToCartController extends HttpServlet{
         String rawProductId = req.getParameter("product_id");
         int productId = Integer.parseInt(rawProductId);
         
+        String rawQuantity = req.getParameter("quantityAdd");
+        int productQuantity = Integer.parseInt(rawQuantity);
+        
         // Get carts from session
         HttpSession session = req.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
@@ -41,7 +44,7 @@ public class AddToCartController extends HttpServlet{
         // When product is exist in cart update quantity
         if (carts.containsKey(productId)) {
             int oldQuantity = carts.get(productId).getQuantity();
-            carts.get(productId).setQuantity(oldQuantity + 1);
+            carts.get(productId).setQuantity(oldQuantity + productQuantity);
             
         // When product is not exist in cart insert new product
         } else {
@@ -52,12 +55,12 @@ public class AddToCartController extends HttpServlet{
             Cart cart = new Cart();
             cart.setProduct(product);
             cart.setCustomer(customer);
-            cart.setQuantity(1);
+            cart.setQuantity(productQuantity);
             carts.put(productId, cart);
         }
         // Save cart in session
         session.setAttribute("carts", carts);
-        req.getRequestDispatcher("product_detail?product_id=" + productId).forward(req, resp);
+        resp.sendRedirect("product_detail?product_id=" + productId);
     }
 
     @Override

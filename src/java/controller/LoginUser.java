@@ -46,7 +46,7 @@ public class LoginUser extends HttpServlet {
         mail = user.getEmail();
         AccountDAO adao = new AccountDAO();
         Account acc = adao.checkExistAcc(mail);
-        Customer cust = adao.GetCust(mail);
+        Customer cust = adao.GetCust(mail,true);
         int role = adao.GetRole(mail);
         
 

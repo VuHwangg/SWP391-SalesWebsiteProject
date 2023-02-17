@@ -84,7 +84,7 @@ public class OrderDAO extends DBContext {
             stm.setInt(1, Custid);
 
             rs = stm.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int order_id = rs.getInt("order_id");
                 int status = rs.getInt("status");
                 int customer_id = rs.getInt("customer_id");
@@ -110,7 +110,7 @@ public class OrderDAO extends DBContext {
             stm.setInt(1, order_id);
 
             rs = stm.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
 
                 int product_id = rs.getInt("product_id");
                 int num = rs.getInt("num");

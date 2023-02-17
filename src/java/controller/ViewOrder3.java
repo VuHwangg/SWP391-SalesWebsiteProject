@@ -33,7 +33,7 @@ public class ViewOrder3 extends HttpServlet{
       //  super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
        AccountDAO adao = new AccountDAO();
         OrderDAO ord = new OrderDAO();
-        Customer cust = adao.GetCust(mail);
+        Customer cust = adao.GetCust(mail,true);
         int Preparing = 0;
         int Shipping = 0;
         int Success = 0;

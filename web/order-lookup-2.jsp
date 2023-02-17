@@ -26,12 +26,12 @@
               <div class="breadcrumb" style="padding-top: 20px">
                 <a href="home">Trang chủ</a>
                 <span>&nbsp;/&nbsp;</span>
-                <a href="ViewAllOrder">Tra đơn</a>
+                <a href="ViewAllOrder">Đơn hàng của tôi</a>
               </div>
 
               <div class="row">
                   <div class="col-md-8 col-sm-7">
-                      <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
+                      <h3 class="fw-bolder mb-4">DANH SÁCH ĐƠN HÀNG</h3>
                   </div>
                   <div class="col-md-4 col-sm-5 mb-4">
                       <form action="SearchOrder" method="post">

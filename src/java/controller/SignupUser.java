@@ -59,7 +59,7 @@ public class SignupUser extends HttpServlet {
             if (acc.AddAcount(mail, "!!", name) && acc.AddCust(name, place, phone, email, true)) {
                 if (acc.AddRole(4, mail)) {
                     Account acc1 = acc.checkExistAcc(mail);
-                    Customer cust1 = acc.GetCust(mail);
+                    Customer cust1 = acc.GetCust(mail,true);
 //                    resp.getWriter().print(acc1.getDisplayname());
 //                    resp.getWriter().print(cust1.getCustomerName());
                     HttpSession session = req.getSession();

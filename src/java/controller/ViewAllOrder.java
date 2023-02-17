@@ -35,7 +35,7 @@ public class ViewAllOrder extends HttpServlet {
         //super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         AccountDAO adao = new AccountDAO();
         OrderDAO ord = new OrderDAO();
-        Customer cust = adao.GetCust(mail);
+        Customer cust = adao.GetCust(mail,true);
         int Preparing = 0;
         int Shipping = 0;
         int Success = 0;
@@ -68,6 +68,7 @@ public class ViewAllOrder extends HttpServlet {
 
         session.setAttribute("total", total);
         session.setAttribute("lst", arr);
+//        resp.getWriter().print(arr.size());
 
         req.getRequestDispatcher("order-lookup.jsp").forward(req, resp);
 

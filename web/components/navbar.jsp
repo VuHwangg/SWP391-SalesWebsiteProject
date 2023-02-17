@@ -2,6 +2,8 @@
 <%@page import="model.Account"%> 
 <%@page import="model.Customer"%> 
 <%@page import="jakarta.servlet.http.HttpSession" %>
+<%@page import="java.util.Map" %>
+<%@page import="model.Cart" %>
 
 <header>
     <!-- Mini banner -->
@@ -89,7 +91,7 @@
                         <a class="nav-link" href="cart">Giỏ hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=<%=link%>>Tra đơn</a>
+                        <a class="nav-link" href="order-lookup-guest.jsp">Tra đơn</a>
                     </li>
                     <li class="nav-item dropdown">
                         <%if (cus == null){%>
@@ -125,9 +127,15 @@
                             <%} else { %>
                             <!--sau khi login user account-->
                             <li>
-                                <a class="dropdown-item" href="profile.jsp"
-                                   >Thông tin cá nhân</a
-                                >
+                                <a class="dropdown-item" href="profile.jsp">
+                                    Thông tin cá nhân
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a class="dropdown-item" href="<%=link%>">
+                                    Đơn hàng của tôi
+                                </a>
                             </li>
 
                             <li>
