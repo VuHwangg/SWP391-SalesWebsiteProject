@@ -47,6 +47,27 @@ public class helper {
         
         return false;
     }
+    
+    public boolean checkSize(int num, String[] xs) {
+        String name = "";
+        if(num ==1 ){
+            name += "size1";
+        }else if(num == 2){
+            name += "size2";
+        }else if(num == 3){
+            name += "size3";
+        }else if(num == 4){
+            name += "size4";
+        }
+        for(String x : xs){
+            if (name.compareTo(x) == 0) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
 //so sanh các thuộc tính của 2 sản phẩm
     public boolean compareProperties(Product x, Product y) {
         if (x.getRam() != y.getRam()) {
