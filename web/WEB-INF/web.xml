@@ -72,6 +72,10 @@
         <servlet-name>Payment2</servlet-name>
         <servlet-class>controller.Payment2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteAllCartController</servlet-name>
+        <servlet-class>controller.DeleteAllCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -178,6 +182,10 @@
     <servlet-mapping>
         <servlet-name>Payment2</servlet-name>
         <url-pattern>/Payment2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAllCartController</servlet-name>
+        <url-pattern>/DeleteAllCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
