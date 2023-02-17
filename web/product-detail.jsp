@@ -93,7 +93,6 @@
                             <div class="row ">
                                 <form action="AddToCart" method="GET">
                                     <div class="col-12" style="padding: 0">
-
                                         <button type="submit" class="buy-btn btn btn-danger w-100" >
                                             Mua ngay
                                         </button>
@@ -107,7 +106,6 @@
                                             <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         </div>
                                     </div>    
-
                                 </form>
 
                                 <div class="col-8" style="padding: 0 0 0 8px">
