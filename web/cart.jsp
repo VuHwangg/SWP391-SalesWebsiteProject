@@ -23,7 +23,7 @@
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
-                    <a href="#">Giỏ hàng</a>
+                    <a href="cart">Giỏ hàng</a>
                 </div>
 
                 <div>

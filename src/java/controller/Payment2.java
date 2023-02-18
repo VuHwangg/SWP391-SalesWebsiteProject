@@ -4,7 +4,6 @@
  */
 package controller;
 
-import static controller.LoginUser.mail;
 import dal.AccountDAO;
 import dal.OrderDAO;
 import java.io.IOException;
@@ -119,10 +118,10 @@ public class Payment2 extends HttpServlet {
         }            
             session.setAttribute("Order", od.GetOrder1(NewOrderId));
             session.setAttribute("OrderDetails", od.GetOrder_Details(NewOrderId));
+            session.setAttribute("carts",null);
+            if(!cus.isStatus()) session.setAttribute("cus",null);
             }
-            if(mail == null){
-                session.invalidate();
-            }
+            
             request.getRequestDispatcher("home").forward(request, response);
         } catch (MessagingException ex) {
             request.getRequestDispatcher("404-page.jsp").forward(request, response);
