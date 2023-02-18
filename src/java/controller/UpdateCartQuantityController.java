@@ -10,6 +10,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import model.Cart;
 
 /**
  *
@@ -34,7 +38,7 @@ public class UpdateCartQuantityController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateCartQuantityController</title>");            
+            out.println("<title>Servlet UpdateCartQuantityController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateCartQuantityController at " + request.getContextPath() + "</h1>");
@@ -55,7 +59,21 @@ public class UpdateCartQuantityController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String rawProductId = request.getParameter("product_id");
+        int productId = Integer.parseInt(rawProductId);
+        String rawQuantity = request.getParameter("quantity");
+        int quantity = Integer.parseInt(rawQuantity);
+
+        HttpSession session = request.getSession();
+        Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+        if (carts == null) {
+            carts = new LinkedHashMap<>();
+        }
+        if (carts.containsKey(productId)) {
+            carts.get(productId).setQuantity(quantity);
+        }
+        session.setAttribute("carts", carts);
+        response.sendRedirect("cart");
     }
 
     /**

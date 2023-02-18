@@ -38,53 +38,57 @@
                         <div class="row table-responsive">
                             <table class="table w-100">
                                 <c:forEach items="${requestScope.carts}" var="cart">
-                                    <tr>
-                                        <!--Image-->
-                                        <th class="p-0 py-2" style="width: 120px;">
-                                            <div class="d-flex justify-content-center" style="width: 100px; height: 100px; margin-left: 12px;">
-                                                <img
-                                                    class="align-items-center"
-                                                    style="width: 100%; object-fit: contain;"
-                                                    src="${cart.value.product.image[0].url}"
-                                                    />
-                                            </div>
-                                        </th>
+                                    <form action="UpdateCartQuantity" method="GET">
+                                        <input type="text" name="product_id" value="${cart.value.product.id}" hidden>
 
-                                        <!--Name-->
-                                        <td style="padding-left: 10px; vertical-align: middle">
-                                            <h5 class="fst-normal" style="height: 100%; margin: auto">${cart.value.product.name}</h5>
-                                        </td>
+                                        <tr>
+                                            <!--Image-->
+                                            <th class="p-0 py-2" style="width: 120px;">
+                                                <div class="d-flex justify-content-center" style="width: 100px; height: 100px; margin-left: 12px;">
+                                                    <img
+                                                        class="align-items-center"
+                                                        style="width: 100%; object-fit: contain;"
+                                                        src="${cart.value.product.image[0].url}"
+                                                        />
+                                                </div>
+                                            </th>
 
-                                        <!--Quantity Delete-->
-                                        <td style="vertical-align: middle; width: 150px">
-                                            <div class="input-group quantity-input quantity-input-cart">
-                                                <button class="btn btn-danger minus-btn" type="button">-</button>
-                                                <input type="number" class="form-control quantity text-center" value="${cart.value.quantity}" min="1" max="99" />
-                                                <button class="btn btn-danger plus-btn" type="button">+</button>
-                                            </div>
-                                        </td>
+                                            <!--Name-->
+                                            <td style="padding-left: 10px; vertical-align: middle">
+                                                <h5 class="fst-normal" style="height: 100%; margin: auto">${cart.value.product.name}</h5>
+                                            </td>
 
-                                        <!--Delete-->
-                                        <td style="vertical-align: middle; text-align: center">
-                                            <a href="#" style="font-size: 18px; text-decoration: none;">
-                                                <i class="bi bi-trash3-fill"></i>Xóa
-                                            </a>
-                                        </td>
+                                            <!--Quantity Delete-->
+                                            <td style="vertical-align: middle; width: 150px">
+                                                <div onchange="this.form.submit()" class="input-group quantity-input quantity-input-cart">
+                                                    <button class="btn btn-danger minus-btn" type="button">-</button>
+                                                    <input onchange="this.form.submit()" name="quantity" type="number" class="form-control quantity text-center" value="${cart.value.quantity}" min="1" max="99" />
+                                                    <button class="btn btn-danger plus-btn" type="button">+</button>
+                                                </div>
+                                            </td>
 
-                                        <!--Price-->
-                                        <td style="vertical-align: middle;">
-                                            <div class="d-flex flex-column align-items-center">
-                                                <span class="fw-bold" style="color: #fb1514; margin: 0">
-                                                    ${helper.convertBigNum(cart.value.product.current_price)}&#8363;
-                                                </span>
-                                                <span class="fw-light text-decoration-line-through">
-                                                    ${helper.convertBigNum(cart.value.product.original_price)}&#8363;
-                                                </span>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <!--Delete-->
+                                            <td style="vertical-align: middle; text-align: center">
+                                                <a href="#" style="font-size: 18px; text-decoration: none;">
+                                                    <i class="bi bi-trash3-fill"></i>Xóa
+                                                </a>
+                                            </td>
+
+                                            <!--Price-->
+                                            <td style="vertical-align: middle;">
+                                                <div class="d-flex flex-column align-items-center">
+                                                    <span class="fw-bold" style="color: #fb1514; margin: 0">
+                                                        ${helper.convertBigNum(cart.value.product.current_price)}&#8363;
+                                                    </span>
+                                                    <span class="fw-light text-decoration-line-through">
+                                                        ${helper.convertBigNum(cart.value.product.original_price)}&#8363;
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </form>
                                 </c:forEach>
-                                
+
                             </table>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
