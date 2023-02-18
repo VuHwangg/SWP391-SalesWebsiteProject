@@ -91,11 +91,18 @@
                             </div>
 
                             <div class="row ">
-                                <form action="AddToCart" method="GET">
+                                
                                     <div class="col-12" style="padding: 0">
+<<<<<<< Updated upstream
+=======
+                                        <form action="AddToCart" method="GET">
+                                            <input type="number" name="quantity" id="numberInput" value="1" hidden>
+                                            <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+>>>>>>> Stashed changes
                                         <button type="submit" class="buy-btn btn btn-danger w-100" >
                                             Mua ngay
                                         </button>
+                                        </form>
                                     </div>
                                     <div class="col-4" style="padding: 0">
                                         <div class="quantity-input quantity-input-pd">
@@ -103,10 +110,15 @@
                                             <!--We need the same value form this big shit VU##--> 
                                             <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="99" readonly/>
                                             <button class="plus-btn" type="button">+</button>
-                                            <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+                                            
                                         </div>
                                     </div>    
+<<<<<<< Updated upstream
                                 </form>
+=======
+
+                                
+>>>>>>> Stashed changes
 
                                 <div class="col-8" style="padding: 0 0 0 8px">
                                     <form action="AddToCart" method="POST">
