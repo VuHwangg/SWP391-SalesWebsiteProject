@@ -74,7 +74,9 @@
           const minusBtn = quantityInput.querySelector('.minus-btn');
           const plusBtn = quantityInput.querySelector('.plus-btn');
           const quantity = quantityInput.querySelector('.quantity');
-          const numberInputz = document.getElementById('numberInput');
+          
+          const numberInputs = document.querySelectorAll('.numberInputHidden');
+          
 
           minusBtn.addEventListener('click', function() {
             let value = parseInt(quantity.value);
@@ -82,7 +84,9 @@
               value--;
             }
             quantity.value = value;
-            numberInput.value = value;
+            for(let i = 0; i < numberInputs.length; i++) {
+                numberInputs[i].value = value;
+            }
           });
 
           plusBtn.addEventListener('click', function() {
@@ -91,7 +95,9 @@
               value++;
             }
             quantity.value = value;
-            numberInput.value = value;
+            for(let i = 0; i < numberInputs.length; i++) {
+                numberInputs[i].value = value;
+            }
           });
 
           quantity.addEventListener('input', function() {

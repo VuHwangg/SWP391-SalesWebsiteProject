@@ -95,7 +95,7 @@
                                 <div class="col-12" style="padding: 0">
                                     <form action="AddToCart" method="GET">
                                         <!--Here-->
-                                        <input type="number" name="quantity" id="number" value="1" hidden >
+                                        <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
                                         <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         <button type="submit" class="buy-btn btn btn-danger w-100" >
                                             Mua ngay
@@ -105,7 +105,6 @@
                                 <div class="col-4" style="padding: 0">
                                     <div class="quantity-input quantity-input-pd">
                                         <button class="minus-btn" type="button">-</button>
-                                        
                                         <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="99" readonly/>
                                         <button class="plus-btn" type="button">+</button>
 
@@ -116,7 +115,7 @@
 
                                 <div class="col-8" style="padding: 0 0 0 8px">
                                     <form action="AddToCart" method="POST">
-                                        <input type="number" name="quantity" id="numberInput" value="1" hidden >
+                                        <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
                                         <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
                                         <button type="submit" class="add-cart-btn btn w-100">
                                             <table>
