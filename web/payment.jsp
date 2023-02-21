@@ -1,6 +1,7 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="helper" class="util.helper"/>
 
 <!DOCTYPE html>
 <html>
@@ -114,7 +115,7 @@
                                 <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">${cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price()}</span>
+                                <span class="fw-light fs-6">${helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
                             </div>
                         </div>
                         <div class="border-top border-dark border-1 my-2"></div>
@@ -156,11 +157,11 @@
                                 <span class="fw-bolder fs-4">Tổng cộng</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=total_price%> VND</span>
+                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=helper.convertBigNum(total_price)%> VND</span>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
-                                <button type="submit" class="btn btn-danger w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
+                                <button type="submit" class="btn btn-danger w-100 fs-4" data-toggle="modal" data-target="#exampleModal">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
                     </form>
@@ -168,6 +169,25 @@
                 </div>
            </div>
           <!--footer-->
+          <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thank you for supporting Awn's Store</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Payment success!
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
           <%@include file="components/footer.jsp" %>
     </main>
 
