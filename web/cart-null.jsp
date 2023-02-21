@@ -17,10 +17,11 @@
 
             <div class="py-5"></div>
             <div class="container min-vh-100">
-                <div>
-                    <p class="fw-bold mt-3" style="color: black">
-                        Trang chủ / Giỏ hàng
-                    </p>
+                <!-- Breadcrumb -->
+                <div class="breadcrumb" style="padding-top: 20px">
+                    <a href="home">Trang chủ</a>
+                    <span>&nbsp;/&nbsp;</span>
+                    <a href="cart">Giỏ hàng</a>
                 </div>
                 <i style="font-size: 250px;" class="bi bi-cart4 d-flex justify-content-center"></i>
                 <h3 style="text-align: center;">Bạn không có sản phẩm nào trong giỏ hàng</h3>

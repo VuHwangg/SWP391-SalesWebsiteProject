@@ -23,7 +23,7 @@
                 <!--Side banner-->
                 <%@include file="components/side-banner.jsp" %>
                 <!-- Content Center -->
-                <div class="content-center bg-red">
+                <div class="content-center">
                     <!-- carousel -->
                     <div class="main-carousel carousel slide" id="carousel-main" data-bs-ride="carousel">
                         <div class="carousel-indicators">
