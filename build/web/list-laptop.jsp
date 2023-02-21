@@ -11,7 +11,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <title>Laptop</title>
+        <c:if test="${param.type == 1}">
+            <title>Laptop</title>
+        </c:if>
+        <c:if test="${param.type == 0}">
+            <title>Điện thoại</title>
+        </c:if>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -28,7 +33,13 @@
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Laptop</a>
+                        <c:if test="${param.type == 1}">
+                            <a href="#">Laptop</a>
+                        </c:if>
+                        <c:if test="${param.type == 0}">
+                            <a href="#">Điện thoại</a>
+                        </c:if>
+                            
                     </div>
                     <!-- carousel -->
                     <div class="small-main-carousel carousel slide" id="carousel-main" data-bs-ride="carousel">

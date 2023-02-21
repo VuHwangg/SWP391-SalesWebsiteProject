@@ -65,7 +65,7 @@
         });
     });
     
-      // Quantity input ----------------------------------------
+      // Quantity input buy plus and minus button -----------------------------
      // Get all the quantity input tags on the page
         const quantityInputs = document.querySelectorAll('.quantity-input');
 
