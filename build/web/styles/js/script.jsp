@@ -84,6 +84,7 @@
               value--;
             }
             quantity.value = value;
+            quantity.dispatchEvent(new Event('change'));
             for(let i = 0; i < numberInputs.length; i++) {
                 numberInputs[i].value = value;
             }
@@ -95,6 +96,7 @@
               value++;
             }
             quantity.value = value;
+            quantity.dispatchEvent(new Event('change'));
             for(let i = 0; i < numberInputs.length; i++) {
                 numberInputs[i].value = value;
             }
