@@ -83,19 +83,31 @@
                     %>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="filter?type=0">Điện thoại</a>
+                        <a class="nav-link" href="filter?type=0">
+                            <i class="bi bi-phone-landscape"></i>
+                            Điện thoại
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="filter?type=1">Laptop</a>
+                        <a class="nav-link" href="filter?type=1">
+                            <i class="bi bi-laptop"></i>
+                            Laptop
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart">Giỏ hàng</a>
+                        <a class="nav-link" href="order-lookup-guest.jsp">
+                            <i class="bi bi-truck"></i>
+                            Tra đơn
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<%=link%>">Tra đơn</a>
+                        <a class="nav-link" href="cart">
+                            <i class="bi bi-cart3"></i>
+                            Giỏ hàng
+                        </a>
                     </li>
+                    
                     <li class="nav-item dropdown">
-                        <%if (cus == null||cus.isStatus()==false){%>
                         <a
                             class="nav-link dropdown-toggle"
                             href="#"
@@ -103,20 +115,23 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                             >
-                            Khách
+                            <i class="bi bi-person"></i>
+                            Hồ sơ
                         </a>
-                        <%}else{%>
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            >
-                            <%= cus.getCustomerName()%>
-                        </a>
-                        <%}%>
                         <ul class="dropdown-menu">
+                            <li>
+                                <%if (cus == null||cus.isStatus()==false){%>
+                                <div class="dropdown-item">
+                                    <i class="bi bi-person-circle"></i>
+                                    <span>Tài khoản khách</span>
+                                </div>
+                                <%}else{%>
+                                <div class="dropdown-item">
+                                    <i class="bi bi-person-circle"></i>
+                                    <span><%= cus.getCustomerName()%></span>
+                                </div>
+                                <%}%>
+                            </li>
                             <!--Trước khi login-->
                             <% if (session.getAttribute("acc") == null) {%>
                             <li>
