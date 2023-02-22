@@ -226,6 +226,13 @@
     background-size: 20px;
     padding-left: 35px;
   }
+  
+  .navbar .mini-quantity {
+      top: 5%;
+      left: 58%;
+      background-color: var(--main-color-darkgray);
+      color: white;
+  }
 
   @media (max-width: 520px) {
     .navbar .search-box {

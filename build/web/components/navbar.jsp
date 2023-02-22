@@ -101,9 +101,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart">
+                        <a class="nav-link position-relative" href="cart">
                             <i class="bi bi-cart3"></i>
                             Giỏ hàng
+                            <!--Số lượng sản phẩm trong giỏ hàng-->
+                            <span class="mini-quantity position-absolute badge rounded-pill">
+                                0
+                            </span>
                         </a>
                     </li>
                     
