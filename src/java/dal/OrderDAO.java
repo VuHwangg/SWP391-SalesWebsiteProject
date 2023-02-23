@@ -22,7 +22,7 @@ public class OrderDAO extends DBContext {
     
     
     
-    public boolean AddOrder(int status, int cusId, String date, String note, float totalPrice) {
+    public boolean addOrder(int status, int cusId, String date, String note, float totalPrice) {
         boolean check = false;
         try {
             String sql = "Insert into [Order] "
@@ -40,7 +40,7 @@ public class OrderDAO extends DBContext {
         return check;
     }
     
-     public boolean AddOrder_Detail(int order_id, int product_id, int num, float price) {
+     public boolean addOrder_Detail(int order_id, int product_id, int num, float price) {
         boolean check = false;
         try {
             String sql = "Insert into Order_Details "
@@ -74,7 +74,7 @@ public class OrderDAO extends DBContext {
         return 1;
     }
     
-    public ArrayList<Order> GetOrder(int Custid) {
+    public ArrayList<Order> getOrder(int Custid) {
         ArrayList<Order> arr = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -100,7 +100,7 @@ public class OrderDAO extends DBContext {
         return arr;
     }
 
-    public ArrayList<Order_Details> GetOrder_Details(int order_id) {
+    public ArrayList<Order_Details> getOrder_Details(int order_id) {
         ArrayList<Order_Details> arr = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -125,7 +125,7 @@ public class OrderDAO extends DBContext {
         return arr;
     }
 
-    public Product GetProduct(int product_id) {
+    public Product getProduct(int product_id) {
         Product pro = new Product();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -149,7 +149,7 @@ public class OrderDAO extends DBContext {
         }
         return pro;
     }
-    public Order GetOrder1(int order_id) {
+    public Order getOrder1(int order_id) {
         Order arr = new Order();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -174,7 +174,7 @@ public class OrderDAO extends DBContext {
         }
         return arr;
     }
-    public boolean UpdateStatusOrder(int order_id){
+    public boolean updateStatusOrder(int order_id){
        boolean check = false;
         try {
             String sql = "Update  [Order] set [status] = 4 where order_id = ?";
@@ -185,6 +185,31 @@ public class OrderDAO extends DBContext {
             
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
+        }
+        return check;
+    }
+    public boolean checkExist(int cust_id) {
+        boolean check = false;
+        Product pro = new Product();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int[] arr = null;
+        int a =0;
+        try {
+
+            String sql = "select cart_id from Cart where customer_id = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, cust_id);
+
+            rs = stm.executeQuery();
+            if (rs.next()) {
+
+                arr[a] = rs.getInt("cart_id");
+                a++;
+            }
+            if(a!=0) check = true;
+        } catch (Exception ex) {
+
         }
         return check;
     }

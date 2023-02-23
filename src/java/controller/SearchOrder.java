@@ -39,17 +39,17 @@ public class SearchOrder extends HttpServlet {
         if (check.CheckPhone(search)) {
             order_id = Integer.parseInt(search);
 
-            or = odao.GetOrder1(order_id);
+            or = odao.getOrder1(order_id);
             if (or.getOrder_id() == 0) {
                 err = "Không có kết quả bạn cần tìm";
 
             } else {
 
-                arrDetail = odao.GetOrder_Details(order_id);
+                arrDetail = odao.getOrder_Details(order_id);
 
                 arrPro = new ArrayList<>();
                 for (int i = 0; i < arrDetail.size(); i++) {
-                    arrPro.add(odao.GetProduct(arrDetail.get(i).getProduct_id()));
+                    arrPro.add(odao.getProduct(arrDetail.get(i).getProduct_id()));
 
                 }
 

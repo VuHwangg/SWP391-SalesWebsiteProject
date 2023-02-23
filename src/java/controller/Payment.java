@@ -23,10 +23,7 @@ import model.Cart;
 import model.Customer;
 import util.EmailConfig;
 
-/**
- *
- * @author toden
- */
+
 public class Payment extends HttpServlet {
 
     /**
@@ -93,8 +90,8 @@ public class Payment extends HttpServlet {
             String name = request.getParameter("name");
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
-            ad.AddCust(name, address, phone, email, false);
-            session.setAttribute("cust", ad.GetCust(email,false));
+            ad.addCust(name, address, phone, email, false);
+            session.setAttribute("cust", ad.getCust(email,false));
             
         }
         //add order  va order
@@ -106,9 +103,9 @@ public class Payment extends HttpServlet {
         for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
             total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
             float price=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"");
-            od.AddOrder_Detail(od.getLastOrderId()+1,cart.getKey(),cart.getValue().getQuantity(), price);
+            od.addOrder_Detail(od.getLastOrderId()+1,cart.getKey(),cart.getValue().getQuantity(), price);
         }
-        od.AddOrder(1, cus.getCustomerId(), LocalDate.now().toString(), cus.getEmail(),total_price);
+        od.addOrder(1, cus.getCustomerId(), LocalDate.now().toString(), cus.getEmail(),total_price);
         request.getRequestDispatcher("order-confirmation-page.jsp").forward(request, response);
     }
 

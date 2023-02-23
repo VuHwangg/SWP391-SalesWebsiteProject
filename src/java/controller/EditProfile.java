@@ -30,7 +30,7 @@ public class EditProfile extends HttpServlet {
         String phone = req.getParameter("phone");
         String err = "1";
         AccountDAO adao = new AccountDAO();
-        Customer cust = adao.GetCust(mail,true); 
+        Customer cust = adao.getCust(mail,true); 
         Check check = new Check();
         if(check.CheckPhone(phone) == false){
             err = "Please input Phone Number again";
@@ -47,9 +47,9 @@ public class EditProfile extends HttpServlet {
             req.setAttribute("err", err);
             req.getRequestDispatcher("profile-edit.jsp").forward(req, resp);
         } else {
-            if (adao.UpdateCust(customer_name, address, phone, mail)== true) {
-                if (adao.UpdateAccName(customer_name, mail) == true) {
-                    cust = adao.GetCust(mail,true);
+            if (adao.updateCust(customer_name, address, phone, mail)== true) {
+                if (adao.updateAccName(customer_name, mail) == true) {
+                    cust = adao.getCust(mail,true);
                     Account acc = adao.checkExistAcc(mail);
                     session.setAttribute("acc", acc);
                     session.setAttribute("cust", cust);

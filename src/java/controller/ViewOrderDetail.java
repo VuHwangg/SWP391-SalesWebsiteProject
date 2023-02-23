@@ -33,13 +33,13 @@ public class ViewOrderDetail extends HttpServlet {
         int order_id = Integer.parseInt(req.getParameter("id"));
       
         OrderDAO odao = new OrderDAO();
-        Order or = odao.GetOrder1(order_id);
-        ArrayList<Order_Details> arrDetail = odao.GetOrder_Details(order_id);
+        Order or = odao.getOrder1(order_id);
+        ArrayList<Order_Details> arrDetail = odao.getOrder_Details(order_id);
 
       
         ArrayList<Product> arrPro = new ArrayList<>();
         for (int i = 0; i < arrDetail.size(); i++) {
-            arrPro.add(odao.GetProduct(arrDetail.get(i).getProduct_id()));
+            arrPro.add(odao.getProduct(arrDetail.get(i).getProduct_id()));
 
         }
         HttpSession session = req.getSession();

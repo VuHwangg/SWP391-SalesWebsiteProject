@@ -61,7 +61,7 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean AddAcount(String username, String password, String displayname) {
+    public boolean addAcount(String username, String password, String displayname) {
         boolean check = false;
         try {
             String sql = "Insert into Account "
@@ -77,7 +77,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public boolean AddCust(String customer_name, String address, String phone, String email,boolean status) {
+    public boolean addCust(String customer_name, String address, String phone, String email,boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Customer "
@@ -95,7 +95,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public boolean AddRole(int roleid, String username) {
+    public boolean addRole(int roleid, String username) {
         boolean check = false;
         try {
             String sql = "Insert into Role_Account"
@@ -134,7 +134,7 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public int GetRole(String username) {
+    public int getRole(String username) {
         int role = 0;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -155,7 +155,7 @@ public class AccountDAO extends DBContext {
         return role;
     }
 
-    public Customer GetCust(String email, boolean status) {
+    public Customer getCust(String email, boolean status) {
         Customer cust = null;
         try {
             String sql = "SELECT [customer_id]\n"
@@ -183,7 +183,7 @@ public class AccountDAO extends DBContext {
         return cust;
     }
 
-    public boolean UpdateCust(String name, String adress, String phone, String mail) {
+    public boolean updateCust(String name, String adress, String phone, String mail) {
         boolean check = false;
         try {
             String sql = "Update Customer "
@@ -199,7 +199,7 @@ public class AccountDAO extends DBContext {
         }
         return check;
     }
-     public boolean UpdateAccName(String name, String mail) {
+     public boolean updateAccName(String name, String mail) {
         boolean check = false;
         try {
             String sql = "Update  Account set displayname = ? where username = ?";

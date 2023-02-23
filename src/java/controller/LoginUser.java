@@ -7,6 +7,7 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dal.AccountDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -45,13 +46,17 @@ public class LoginUser extends HttpServlet {
         GooglePojo user = getUserInfo(accessToken);
         mail = user.getEmail();
         AccountDAO adao = new AccountDAO();
+        OrderDAO odao = new OrderDAO();
+        HttpSession session = request.getSession();
         Account acc = adao.checkExistAcc(mail);
-        Customer cust = adao.GetCust(mail,true);
-        int role = adao.GetRole(mail);
-        
+        Customer cust = adao.getCust(mail,true);
+        int role = adao.getRole(mail);
+        if (odao.checkExist(cust.getCustomerId())){
+            session.invalidate();
+        }
 
         if (adao.loginGoogle(user.getEmail())) {
-            HttpSession session = request.getSession();
+            
             session.setAttribute("cust", cust);
             session.setAttribute("acc", acc);
             session.setAttribute("role", role);
