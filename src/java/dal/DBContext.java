@@ -15,7 +15,7 @@ public class DBContext {
 
             String user = "sa";          
 
-            String pass = "12345678";
+            String pass = "sa";
 
 
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
