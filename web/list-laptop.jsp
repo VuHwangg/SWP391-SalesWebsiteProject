@@ -166,6 +166,7 @@
                                     </div>
 
                                     <div class="row">
+                                      <div class="wrapper">
                                         <p class="filter-title">Mức giá</p>
                                         <div class="price-input">
                                             <div class="field">
@@ -180,13 +181,14 @@
                                             </div>
                                         </div>
                                         <div class="slider">
-                                            <div class="progress"></div>
+                                            <div class="progress" style="left: 0%; right: 100%"></div>
                                         </div>
                                         <div class="range-input">
                                             <input  type="range" class="range-min" min="0" max="100000000" value="${requestScope.from}" step="2000000">
-                                            <input " type="range" class="range-max" min="0" max="100000000" value="${requestScope.to}" step="2000000">
+                                            <input type="range" class="range-max" min="0" max="100000000" value="${requestScope.to}" step="2000000">
                                         </div>
                                     </div>
+                                  </div>
                                     <input type="hidden" name="type" value="${param.type}"/>
                                     <input class="btn-filter" type="submit" value=" Tìm kiếm " />
                                 </div>

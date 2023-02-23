@@ -103,7 +103,7 @@
   .navbar .navbar-brand {
       font-family: 'Fredoka One', cursive;
       font-size: 26px;
-      line-height: 43px;
+      line-height: 49px;
       width: 160px;
       text-align: center;
       transition: all 0.3s ease-in;
@@ -129,11 +129,19 @@
   }
 
   .navbar .nav-link {
-    padding: 16px 8px;
+    padding: 6px 8px;
     position: relative;
     font-weight: 700;
+    font-size: 14px;
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
+  }
+  
+  .navbar .nav-link i {
+      display: block;
+      font-size: 30px;
+      line-height: 0.5;
+      text-align: center;
   }
 
   .navbar .nav-link:before {
@@ -149,9 +157,6 @@
     transform: translateX(-50%);
     transition: all 0.5s ease;
   
-    /* animation left to right 
-          transition: all 0.5s ease;    
-      */
   }
   
   .navbar .nav-link:hover:before {
@@ -171,6 +176,8 @@
     border: 2px solid #c3c3c3;;
     padding: 0;
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    min-width: 220px;
   }
 
   .navbar .dropdown-menu .dropdown-item {
@@ -180,10 +187,33 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #c3c3c3;;
   }
+  
+  .navbar .dropdown-menu li:first-child .dropdown-item{
+      padding-top: 6px;
+      padding-bottom: 6px;
+      text-align: center;
+  }
+  
+  .navbar .dropdown-menu li:first-child .dropdown-item:hover {
+      color: #404044;
+      background-color: white;
+  }
+  
 
   .navbar .dropdown-menu .dropdown-item:hover {
     background-color: #d0d0d0;
     color: var(--main-bg-color);
+  }
+  
+  .navbar .dropdown-menu i {
+      display: block;
+      font-size: 36px;
+      line-height: 1.2;
+  }
+  
+  .dropdown-menu[data-bs-popper] {
+      right: 0%;
+      left: auto;
   }
 
   .navbar .search-box {
@@ -195,6 +225,13 @@
     background-repeat: no-repeat;
     background-size: 20px;
     padding-left: 35px;
+  }
+  
+  .navbar .mini-quantity {
+      top: 5%;
+      left: 58%;
+      background-color: var(--main-color-darkgray);
+      color: white;
   }
 
   @media (max-width: 520px) {
@@ -208,6 +245,26 @@
       padding-top: 8px;
       padding-bottom: 8px;
     }
+    
+    .navbar .nav-link {
+      padding: 16px 8px;
+      position: relative;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .navbar .nav-link:before {
+        /* animation left to right */
+        left: 0%;
+        transform: translateX(0%);
+        transition: all 1s ease;
+    }
+    
+    .navbar .nav-link i {
+      display: inline;
+    }
+    
   }
 
 /*==============================================================================
@@ -258,7 +315,7 @@
                                  Breadcrumb
 ==============================================================================*/
   .breadcrumb {
-    padding: 100px 20px 10px;
+    padding: 110px 20px 10px;
     margin-bottom: 0;
     background-color: white;
   }
