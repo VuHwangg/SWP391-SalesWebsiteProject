@@ -31,6 +31,7 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 return true;
             }
+           
         } catch (SQLException e) {
         }
         return false;
@@ -72,6 +73,7 @@ public class AccountDAO extends DBContext {
             ps.setString(3, displayname);
 
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
@@ -90,6 +92,7 @@ public class AccountDAO extends DBContext {
             ps.setBoolean(5, status);
 
             check = ps.executeUpdate() > 0;
+           
         } catch (Exception e) {
         }
         return check;
@@ -104,6 +107,7 @@ public class AccountDAO extends DBContext {
             ps.setInt(1, roleid);
             ps.setString(2, username);
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
@@ -148,6 +152,7 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 role = rs.getInt("role_id");
             }
+            
         } catch (Exception e) {
 
         }
@@ -178,6 +183,7 @@ public class AccountDAO extends DBContext {
                
                 cust = new Customer(customer_id, customer_name, address, phone, email1,status);
             }
+           
         } catch (SQLException e) {
         }
         return cust;
@@ -195,6 +201,7 @@ public class AccountDAO extends DBContext {
             ps.setString(4, mail);
             
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
@@ -209,6 +216,7 @@ public class AccountDAO extends DBContext {
             ps.setString(2, mail);
             
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;

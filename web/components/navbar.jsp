@@ -80,7 +80,9 @@
                         } else {
                             link = "ViewAllOrder";
                         }
-
+                        String mess = "Khách";
+                        if (session.getAttribute("acc") != null)
+                            mess = "Hồ sơ";
                     %>
 
                     <li class="nav-item">
@@ -106,14 +108,16 @@
                             <i class="bi bi-cart3"></i>
                             Giỏ hàng
                             <!--Số lượng sản phẩm trong giỏ hàng-->
-                            <span class="mini-quantity position-absolute badge rounded-pill">
-                                <c:if test="${sessionScope.carts == null}" var="condition">
-                                    0
-                                </c:if>
-                                <c:if test="${!condition}">
+
+                            <c:if test="${sessionScope.carts == null}" var="condition">
+
+                            </c:if>
+                            <c:if test="${!condition}">
+                                <span class="mini-quantity position-absolute badge rounded-pill">
                                     ${sessionScope.carts.size()}
+                                    </span>
                                 </c:if>
-                            </span>
+                            
                         </a>
                     </li>
 
@@ -126,15 +130,12 @@
                             aria-expanded="false"
                             >
                             <i class="bi bi-person"></i>
-                            Hồ sơ
+                            <%=mess%>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <%if (cus == null || cus.isStatus() == false) {%>
-                                <div class="dropdown-item">
-                                    <i class="bi bi-person-circle"></i>
-                                    <span>Tài khoản khách</span>
-                                </div>
+
                                 <%} else {%>
                                 <div class="dropdown-item">
                                     <i class="bi bi-person-circle"></i>
