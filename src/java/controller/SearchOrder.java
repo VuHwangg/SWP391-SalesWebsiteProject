@@ -4,6 +4,8 @@
  */
 package controller;
 
+import static controller.LoginUser.mail;
+import dal.AccountDAO;
 import dal.OrderDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import model.Customer;
 import model.Order;
 import model.Order_Details;
 import model.Product;
@@ -35,17 +38,21 @@ public class SearchOrder extends HttpServlet {
         ArrayList<Order_Details> arrDetail = new ArrayList<>();
         ArrayList<Product> arrPro = new ArrayList<>();
         Order or = new Order();
+        AccountDAO adao = new AccountDAO();
         Check check = new Check();
+        //  resp.getWriter().print(adao.getCust(mail,true).getCustomerId());
         if (check.CheckPhone(search)) {
             order_id = Integer.parseInt(search);
-
-            or = odao.getOrder1(order_id);
-            if (or.getOrder_id() == 0) {
-                err = "Không có kết quả bạn cần tìm";
+            if (mail == null) {
+                or = odao.getOrder1(order_id);
 
             } else {
+                or = odao.getOrder2(order_id, adao.getCust(mail, true).getCustomerId());
 
-                arrDetail = odao.getOrder_Details(order_id);
+            }
+            if (or.getOrder_id() != 0) {
+
+                arrDetail = odao.getOrder_Details(or.getOrder_id());
 
                 arrPro = new ArrayList<>();
                 for (int i = 0; i < arrDetail.size(); i++) {
@@ -62,7 +69,11 @@ public class SearchOrder extends HttpServlet {
         session.setAttribute("Order_Details", arrDetail);
         session.setAttribute("lstPro", arrPro);
         session.setAttribute("Order", or);
-        req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
+        if (or.getOrder_id() == 0) {
+            req.getRequestDispatcher("404-page.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
+        }
     }
 
     @Override

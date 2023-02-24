@@ -1,8 +1,4 @@
-<%-- 
-    Document   : formSendEmail
-    Created on : Feb 23, 2023, 12:04:36 AM
-    Author     : bonne
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

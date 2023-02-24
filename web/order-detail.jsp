@@ -120,6 +120,7 @@
                         <div class="col-md-6 text-start fs-5 fst-italic text-decoration-underline">
 
                         </div>
+                        <% if (session.getAttribute("acc") != null) {%>
                         <%if (order.getStatus() == 1){%>
                         <div class="col-md-6 text-end">
 
@@ -128,7 +129,7 @@
                         </div>
                         <%}%>
                     </div>
-
+                    <%}%>
                 </div>
             
             </div>

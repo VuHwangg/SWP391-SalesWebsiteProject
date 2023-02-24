@@ -33,7 +33,7 @@ public class OrderDAO extends DBContext {
             ps.setFloat(5, totalPrice);
 
             check = ps.executeUpdate() > 0;
-            
+
         } catch (Exception e) {
         }
         return check;
@@ -51,7 +51,7 @@ public class OrderDAO extends DBContext {
             ps.setFloat(4, price);
 
             check = ps.executeUpdate() > 0;
-           
+
         } catch (Exception e) {
         }
         return check;
@@ -67,7 +67,7 @@ public class OrderDAO extends DBContext {
             if (rs.next()) {
                 return rs.getInt("order_id");
             }
-           
+
         } catch (Exception ex) {
             return 1;
         }
@@ -93,7 +93,7 @@ public class OrderDAO extends DBContext {
                 float total_price = rs.getFloat("total_price");
                 arr.add(new Order(order_id, status, customer_id, date, total_price));
             }
-            
+
         } catch (Exception ex) {
 
         }
@@ -118,7 +118,7 @@ public class OrderDAO extends DBContext {
 
                 arr.add(new Order_Details(order_id, product_id, num, price));
             }
-            
+
         } catch (Exception ex) {
 
         }
@@ -143,7 +143,7 @@ public class OrderDAO extends DBContext {
                 String color = rs.getString("color");
                 pro = new Product(product_id, name, color);
             }
-           
+
         } catch (Exception ex) {
 
         }
@@ -169,7 +169,33 @@ public class OrderDAO extends DBContext {
                 float total_price = rs.getFloat("total_price");
                 arr = new Order(order_id, status, customer_id, date, total_price);
             }
-            
+
+        } catch (Exception ex) {
+
+        }
+        return arr;
+    }
+
+    public Order getOrder2(int order_id, int customer_id) {
+        Order arr = new Order();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "Select * from [Order] where order_id = ? and customer_id = ?  ";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, order_id);
+            stm.setInt(2, customer_id);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+
+                int status = rs.getInt("status");
+         
+                Date date = rs.getDate("date");
+                String note = rs.getString("note");
+                float total_price = rs.getFloat("total_price");
+                arr = new Order(order_id, status, customer_id, date, total_price);
+            }
+
         } catch (Exception ex) {
 
         }
@@ -184,7 +210,7 @@ public class OrderDAO extends DBContext {
             ps.setInt(1, order_id);
 
             check = ps.executeUpdate() > 0;
-            
+
         } catch (Exception e) {
         }
         return check;
@@ -212,7 +238,7 @@ public class OrderDAO extends DBContext {
             if (a != 0) {
                 check = true;
             }
-           
+
         } catch (Exception ex) {
 
         }
