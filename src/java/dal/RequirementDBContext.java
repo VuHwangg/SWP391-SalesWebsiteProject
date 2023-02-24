@@ -36,6 +36,8 @@ public class RequirementDBContext extends DBContext {
                 requirement.setDescription(rs.getString("description"));
                 requirements.add(requirement);
             }
+            stm.close();
+            rs.close();
             return requirements;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,6 +65,8 @@ public class RequirementDBContext extends DBContext {
                 requirement.setDescription(rs.getString("description"));
                 requirements.add(requirement);
             }
+            stm.close();
+            rs.close();
             return requirements;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);

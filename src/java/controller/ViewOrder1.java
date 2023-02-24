@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import model.Customer;
 import model.Order;
-import util.helper;
+import util.Helper;
 
 /**
  *
@@ -57,7 +57,7 @@ public class ViewOrder1 extends HttpServlet {
             }
 
         }
-        helper helper = new helper();
+        Helper helper = new Helper();
         ArrayList<Order> arr1 = new ArrayList<>();
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).getStatus()==1) arr1.add(arr.get(i));

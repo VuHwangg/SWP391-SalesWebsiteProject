@@ -23,14 +23,12 @@
                     <span>&nbsp;/&nbsp;</span>
                     <a href="cart">Giỏ hàng</a>
                 </div>
-                <i style="font-size: 250px;" class="bi bi-cart4 d-flex justify-content-center"></i>
-                <h3 style="text-align: center;">Bạn không có sản phẩm nào trong giỏ hàng</h3>
-                <div class="d-flex justify-content-center">
-
-                    <div style="width: 60%;" class=" border-top border-dark border-1 my-3"></div>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="home" type="button" class="btn btn-danger w-50">Quay Lại Trang Chủ</a>
+                
+                <div class="d-flex justify-content-center align-items-center flex-column" style="height: 60vh">
+                    <i style="font-size: 250px; line-height: 1.3" class="bi bi-cart4"></i>
+                    <h3>Bạn không có sản phẩm nào trong giỏ hàng</h3>
+                        <div style="width: 60%;" class=" border-top border-dark border-1 my-3"></div>
+                        <a href="home" class="btn btn-danger w-50" style="font-weight: bold">Quay Lại Trang Chủ</a>
                 </div>
 
             </div>
