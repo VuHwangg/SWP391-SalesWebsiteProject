@@ -19,7 +19,7 @@ import model.Product;
 public class ProductDBContext extends DBContext {
 
     //for product detail(lấy sản phẩm theo id)
-    public Product getProduct(int id) {
+    public Product getProductByID(int id) {
         Product product = new Product();
         try {
             String sql = "SELECT   [product_id]\n"
@@ -71,6 +71,8 @@ public class ProductDBContext extends DBContext {
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));
             }
+            stm.close();
+            rs.close();
             return product;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,6 +137,8 @@ public class ProductDBContext extends DBContext {
                 product.setRequirement(reqdb.listByID(product.getId()));
                 product.setImage(imgdb.listByID(product.getId()));
             }
+            stm.close();
+            rs.close();
             return product;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,6 +221,8 @@ public class ProductDBContext extends DBContext {
                 product.setImage(imgdb.listByID(product.getId()));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -301,6 +307,8 @@ public class ProductDBContext extends DBContext {
                 product.setImage(imgdb.listByID(product.getId()));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -427,6 +435,8 @@ public class ProductDBContext extends DBContext {
                 product.setImage(imgdb.listByID(product.getId()));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -495,6 +505,8 @@ public class ProductDBContext extends DBContext {
                 product.setImage(imgdb.listByID(product.getId()));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -563,6 +575,8 @@ public class ProductDBContext extends DBContext {
                 product.setImage(imgdb.listByID(product.getId()));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -594,6 +608,8 @@ public class ProductDBContext extends DBContext {
                 product.setGraphic_card(rs.getString("graphics_card"));
                 products.add(product);
             }
+            stm.close();
+            rs.close();
             return products;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);

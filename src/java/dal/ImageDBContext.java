@@ -18,7 +18,8 @@ import model.Order;
  *
  * @author admin
  */
-public class ImageDBContext extends DBContext{
+public class ImageDBContext extends DBContext {
+
     public ArrayList<Image> listByID(int product_id) {
         ArrayList<Image> images = new ArrayList<>();
         try {
@@ -35,15 +36,17 @@ public class ImageDBContext extends DBContext{
                 image.setUrl(rs.getString("url"));
                 images.add(image);
             }
+            stm.close();
+            rs.close();
             return images;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    public String GetImageUrl(int Proid) {
-        String url="";
+
+    public String getImageUrl(int Proid) throws SQLException {
+        String url = "";
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -53,11 +56,14 @@ public class ImageDBContext extends DBContext{
 
             rs = stm.executeQuery();
             if (rs.next()) {
-                url=rs.getString(url);
+                url = rs.getString(url);
             }
 
-        } catch (Exception ex) {
-
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            stm.close();
+            rs.close();
         }
         return url;
     }

@@ -24,7 +24,7 @@ public class ProductDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ProductDBContext productList = new ProductDBContext();
         int id = Integer.parseInt(request.getParameter("product_id"));
-        Product product = productList.getProduct(id);
+        Product product = productList.getProductByID(id);
         request.setAttribute("product", product);
         ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
         ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());

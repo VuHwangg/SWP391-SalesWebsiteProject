@@ -12,7 +12,7 @@ import model.Vote;
  *
  * @author admin
  */
-public class helper {
+public class Helper {
 //lấy ra dạng số nguyên
     public String convertBigNum(double x) {
         DecimalFormat formatter = new DecimalFormat("#,###");

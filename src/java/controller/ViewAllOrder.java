@@ -17,7 +17,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import model.Customer;
 import model.Order;
-import util.helper;
+import util.Helper;
 
 /**
  *
@@ -58,7 +58,7 @@ public class ViewAllOrder extends HttpServlet {
             }
 
         }
-        helper helper = new helper();
+        Helper helper = new Helper();
         total = Preparing + Shipping + Success + Cancelled;
         HttpSession session = req.getSession();
         session.setAttribute("Preparing", Preparing);
