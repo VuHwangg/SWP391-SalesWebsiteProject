@@ -5,6 +5,7 @@
 package util;
 
 import dal.ImageDBContext;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -26,7 +27,7 @@ import model.Order;
  */
 public class EmailConfig {
     
-    public String MessageProduct(Map<Integer, Cart> carts){
+    public String MessageProduct(Map<Integer, Cart> carts) throws SQLException{
         String Message = "";
         ImageDBContext idc = new ImageDBContext();
         Helper h = new Helper();

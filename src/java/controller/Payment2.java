@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
@@ -122,6 +123,8 @@ public class Payment2 extends HttpServlet {
             request.getRequestDispatcher("home").forward(request, response);
         } catch (MessagingException ex) {
             request.getRequestDispatcher("404-page.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Payment2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
