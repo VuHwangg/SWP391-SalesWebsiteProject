@@ -1,7 +1,7 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="helper" class="util.helper"/>
+<jsp:useBean id="helper" class="util.Helper"/>
 
 <!DOCTYPE html>
 <html>
@@ -115,7 +115,7 @@
                                 <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">${helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
+                                <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
                             </div>
                         </div>
                         <div class="border-top border-dark border-1 my-2"></div>

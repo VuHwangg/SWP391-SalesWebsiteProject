@@ -1,7 +1,7 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList" %>
-<%@page  import="util.helper"%>
+<%@page  import="util.Helper"%>
 <%@page import="model.Product" %>
 <%@page import="model.Order_Details" %>
 <%@page import="model.Order" %>
@@ -67,7 +67,7 @@
 
                         <%
                    
-                     helper helper = new helper();
+                     Helper helper = new Helper();
                      String err= "";
                     for (int i = 0; i < arrOr.size(); i++) {
                        String price= helper.convertBigNum(arrOr.get(i).getPrice());
