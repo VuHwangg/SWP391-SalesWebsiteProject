@@ -3,7 +3,7 @@
 <%@page import="model.Order" %>
 <%@page import="java.sql.Date" %>
 <%@page import="java.util.ArrayList" %>
-<%@page  import="util.helper"%>
+<%@page  import="util.Helper"%>
 
 <!DOCTYPE html>
 <html>
@@ -104,7 +104,7 @@
                         <%
                                     if (arr.isEmpty() == false){
                                         for (int i = 0; i < arr.size(); i++) {
-                                        helper helper = new helper();
+                                        Helper helper = new Helper();
                                        String price= helper.convertBigNum(arr.get(i).getTotal_price());
                         
                         %>
