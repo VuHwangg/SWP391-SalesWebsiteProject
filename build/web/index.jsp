@@ -11,12 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
-        <!--Thư viện bổ sung dành riêng cho trang này-->
+
+        <!-- Light Slider CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <title>Trang chủ</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
-        
+
         <main>
             <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
@@ -29,45 +31,45 @@
                     <!-- carousel -->
                     <div class="main-carousel carousel slide" id="carousel-main" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="img/banner/banner_1.jpg" class="d-block w-100" alt="banner 1">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="img/banner/banner_2.jpg" class="d-block w-100" alt="banner 2">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="img/banner/banner_3.jpg" class="d-block w-100" alt="banner 3">
-                          </div>
+                            <div class="carousel-item active">
+                                <img src="img/banner/banner_1.jpg" class="d-block w-100" alt="banner 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/banner/banner_2.jpg" class="d-block w-100" alt="banner 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/banner/banner_3.jpg" class="d-block w-100" alt="banner 3">
+                            </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-main" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carousel-main" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                     <!-- list product -->
-                    <div class="list-product">
-                        
+                    <div class="list-product home" >
+
                         <!-- Test -->
-<!--                        <div class="sale-product row cover-block">
+
+                        <div class="sale-product cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Test</a>
+                                <a href="#">Sản phẩm khuyến mại</a>
                             </div>
 
-                            <c:forEach items="${requestScope.onSaleList}" var="onSale">
-                                
-                                <ul id="autoWidth" class="cs-hidden">
+                            <ul class="list-slider" id="autoWidth" class="cs-hidden">
+                                <c:forEach items="${requestScope.onSaleList}" var="onSale">
                                     <li>
-                                        <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${onSale.id}">
+                                        <a class="slider-product product" href="product_detail?product_id=${onSale.id}">
                                             <div class="product-img">
                                                 <img
                                                     src="${onSale.image[0].url}"
@@ -98,14 +100,11 @@
                                             </div>
                                         </a>
                                     </li>
-                                </ul>
-                            </c:forEach>
-                        </div>-->
-                        
-                        
-                        
-                        
-                        
+                                </c:forEach>
+                            </ul>
+                        </div>
+
+
                         <!-- Hàng sản phẩm khuyến mại -->
                         <div class="sale-product row cover-block">
                             <div class="row-title">
@@ -272,14 +271,24 @@
             <!--footer-->
             <%@include file="components/footer.jsp" %>
         </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+        <%@include file="styles/js/script.jsp" %>
+
+        <!--Bootstrap 5.3 script-->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"
         ></script>
-        <%@include file="styles/js/script.jsp" %>
+
+        <!--JQuery 3.6.3 (used for Light Slider)-->
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+        <!--Light Slider JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
     </body>
 </html>
 

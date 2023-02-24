@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="helper" class="util.helper"/>
+<jsp:useBean id="helper" class="util.Helper"/>
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
