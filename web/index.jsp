@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
+        <!--Thư viện bổ sung dành riêng cho trang này-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Trang chủ</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
@@ -53,6 +55,57 @@
                     </div>
                     <!-- list product -->
                     <div class="list-product">
+                        
+                        <!-- Test -->
+<!--                        <div class="sale-product row cover-block">
+                            <div class="row-title">
+                                <i class="bi bi-caret-right-fill"></i>
+                                <a href="#">Test</a>
+                            </div>
+
+                            <c:forEach items="${requestScope.onSaleList}" var="onSale">
+                                
+                                <ul id="autoWidth" class="cs-hidden">
+                                    <li>
+                                        <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${onSale.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${onSale.image[0].url}"
+                                                    alt="iphone"
+                                                    />
+                                            </div>
+                                            <div class="product-name">
+                                                <p>${onSale.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${onSale.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(onSale.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(onSale.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
+                                                </div>
+                                                <c:if test="${onSale.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${onSale.discount}%</p>
+                                                    </div>
+                                                </c:if>   
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:forEach>
+                        </div>-->
+                        
+                        
+                        
+                        
+                        
                         <!-- Hàng sản phẩm khuyến mại -->
                         <div class="sale-product row cover-block">
                             <div class="row-title">
@@ -219,7 +272,8 @@
             <!--footer-->
             <%@include file="components/footer.jsp" %>
         </main>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

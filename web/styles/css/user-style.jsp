@@ -265,6 +265,9 @@
       display: inline;
     }
     
+    .mini-quantity {
+        display: none;
+    }
   }
 
 /*==============================================================================
@@ -406,7 +409,7 @@
     font-size: 32px;
     font-weight: 700;
     text-transform: capitalize;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     color: var(--main-bg-color);
   }
   
