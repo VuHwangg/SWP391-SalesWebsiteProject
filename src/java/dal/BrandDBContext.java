@@ -36,6 +36,8 @@ public class BrandDBContext extends DBContext{
                 brand.setDescription(rs.getString("description"));
                 brands.add(brand);
             }
+            stm.close();
+            rs.close();
             return brands;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,6 +65,8 @@ public class BrandDBContext extends DBContext{
                 brand.setDescription(rs.getString("description"));
                 brands.add(brand);
             }
+            stm.close();
+            rs.close();
             return brands;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);

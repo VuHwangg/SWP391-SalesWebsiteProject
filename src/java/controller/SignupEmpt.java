@@ -48,8 +48,8 @@ public class SignupEmpt extends HttpServlet {
              req.getRequestDispatcher("register-admin.jsp").forward(req, resp);
         }else{
             
-            if(acc.AddAcount(user, pass, "")){
-                if(acc.AddRole(role, user)){
+            if(acc.addAcount(user, pass, "")){
+                if(acc.addRole(role, user)){
                      req.getRequestDispatcher("#").forward(req, resp);
                 }
             }

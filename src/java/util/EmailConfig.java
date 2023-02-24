@@ -29,13 +29,13 @@ public class EmailConfig {
     public String MessageProduct(Map<Integer, Cart> carts){
         String Message = "";
         ImageDBContext idc = new ImageDBContext();
-        helper h = new helper();
+        Helper h = new Helper();
         for(Map.Entry<Integer, Cart> cart : carts.entrySet()){
             int Quantity = cart.getValue().getQuantity();
             float Price = (float) cart.getValue().getProduct().getCurrent_price();
             Message+="<tr>\n" +
 "                            <td scope=\"col\">\n" +
-"                                <img style=\"height: 100px;\" src=\""+ idc.GetImageUrl(cart.getKey()) +"\">\n" +
+"                                <img style=\"height: 100px;\" src=\""+ idc.getImageUrl(cart.getKey()) +"\">\n" +
 "                            </td>\n" +
 "                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ "x" + Quantity + "</td>\n" +
 "                            <td class=\"p-0\" scope=\"col\"> <span class=\"d-flex justify-content-end\">"+h.convertBigNum(Price*Quantity) +"</span></td>\n" +
@@ -49,7 +49,7 @@ public class EmailConfig {
     public void SendEmail(String to, float total_price, String messageTo, int ordId) throws AddressException, MessagingException {
     final String username = "awnsshop@gmail.com";
         final String password = "domesnykgatzcmuh";
-        helper h = new helper();         
+        Helper h = new Helper();         
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");

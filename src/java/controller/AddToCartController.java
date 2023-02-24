@@ -49,7 +49,7 @@ public class AddToCartController extends HttpServlet {
 
             // When product is not exist in cart insert new product
         } else {
-            Product product = new ProductDBContext().getProduct(productId);
+            Product product = new ProductDBContext().getProductByID(productId);
 
             Customer customer = new Customer();
             customer.setCustomerName("NVA");
@@ -92,7 +92,7 @@ public class AddToCartController extends HttpServlet {
 
             // When product is not exist in cart insert new product
         } else {
-            Product product = new ProductDBContext().getProduct(productId);
+            Product product = new ProductDBContext().getProductByID(productId);
 
             Customer customer = new Customer();
             customer.setCustomerName("NVA");

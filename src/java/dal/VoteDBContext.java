@@ -16,7 +16,8 @@ import model.Vote;
  *
  * @author admin
  */
-public class VoteDBContext extends DBContext{
+public class VoteDBContext extends DBContext {
+
     public ArrayList<Vote> listByID(int product_id) {
         ArrayList<Vote> votes = new ArrayList<>();
         try {
@@ -34,6 +35,8 @@ public class VoteDBContext extends DBContext{
                 vote.setNum_of_vote(rs.getInt("num_of_vote"));
                 votes.add(vote);
             }
+            stm.close();
+            rs.close();
             return votes;
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);

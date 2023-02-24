@@ -69,7 +69,7 @@
 
                                             <!--Delete-->
                                             <td style="vertical-align: middle; text-align: center">
-                                                <a href="#" style="font-size: 18px; text-decoration: none;">
+                                                <a href="DeleteProductFromCart?product_id=${cart.value.product.id}" style="font-size: 18px; text-decoration: none;">
                                                     <i class="bi bi-trash3-fill"></i>Xóa
                                                 </a>
                                             </td>

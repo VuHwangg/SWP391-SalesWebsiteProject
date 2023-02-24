@@ -27,7 +27,7 @@ public class CancelOrder extends HttpServlet{
        // super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
        int order_id = Integer.parseInt(req.getParameter("id"));
         OrderDAO odao = new OrderDAO();
-        boolean check  = odao.UpdateStatusOrder(order_id);
+        boolean check  = odao.updateStatusOrder(order_id);
         if (check == true){
             req.getRequestDispatcher("ViewAllOrder").forward(req, resp);
         }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@page import="model.Account"%> 
 <%@page import="model.Customer"%> 
@@ -9,9 +10,9 @@
 <header>
     <!-- Mini banner -->
     <div class="mini-banner">
-      <div class="banner-text">
-        <span>Đặt trước Galaxy S23 Series - Ưu đãi khủng đến 10 triệu</span>
-      </div>
+        <div class="banner-text">
+            <span>Đặt trước Galaxy S23 Series - Ưu đãi khủng đến 10 triệu</span>
+        </div>
     </div>
 
     <!-- Navigation Bar -->
@@ -55,31 +56,33 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <%
-                         
-                                   Account acc = (Account) session.getAttribute("acc");
-                                   Customer cus = (Customer) session.getAttribute("cust");
-                         
-         //                           // chuyen sang trang admin
-         //                           if ((int)session.getAttribute("role") == 1){
-         //                               request.getRequestDispatcher("#").forward(request, response);
-         //                            }
-         //                           // chuyen sang trang empt
-         //                           if ((int)session.getAttribute("role") == 2){
-         //                               request.getRequestDispatcher("#").forward(request, response);
-         //                            }
-         //                           // chuyen sang trang mana
-         //                            if ((int)session.getAttribute("role") == 3){
-         //                               request.getRequestDispatcher("#").forward(request, response);
-         //                            }
-         //                            if ((int)session.getAttribute("role") == 4 && (int)session.getAttribute("role") ==0){
-         //                           
-                                     String link ="";
-                                     if (cus == null){
-                                     link = "order-lookup-guest.jsp";
-                        }else{
-                                    link =  "ViewAllOrder";
+
+                        Account acc = (Account) session.getAttribute("acc");
+                        Customer cus = (Customer) session.getAttribute("cust");
+
+                        //                           // chuyen sang trang admin
+                        //                           if ((int)session.getAttribute("role") == 1){
+                        //                               request.getRequestDispatcher("#").forward(request, response);
+                        //                            }
+                        //                           // chuyen sang trang empt
+                        //                           if ((int)session.getAttribute("role") == 2){
+                        //                               request.getRequestDispatcher("#").forward(request, response);
+                        //                            }
+                        //                           // chuyen sang trang mana
+                        //                            if ((int)session.getAttribute("role") == 3){
+                        //                               request.getRequestDispatcher("#").forward(request, response);
+                        //                            }
+                        //                            if ((int)session.getAttribute("role") == 4 && (int)session.getAttribute("role") ==0){
+                        //                           
+                        String link = "";
+                        if (cus == null) {
+                            link = "order-lookup-guest.jsp";
+                        } else {
+                            link = "ViewAllOrder";
                         }
-                           
+                        String mess = "Khách";
+                        if (session.getAttribute("acc") != null)
+                            mess = "Hồ sơ";
                     %>
 
                     <li class="nav-item">
@@ -105,12 +108,19 @@
                             <i class="bi bi-cart3"></i>
                             Giỏ hàng
                             <!--Số lượng sản phẩm trong giỏ hàng-->
-                            <span class="mini-quantity position-absolute badge rounded-pill">
-                                0
-                            </span>
+
+                            <c:if test="${sessionScope.carts == null}" var="condition">
+
+                            </c:if>
+                            <c:if test="${!condition}">
+                                <span class="mini-quantity position-absolute badge rounded-pill">
+                                    ${sessionScope.carts.size()}
+                                    </span>
+                                </c:if>
+                            
                         </a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a
                             class="nav-link dropdown-toggle"
@@ -120,16 +130,13 @@
                             aria-expanded="false"
                             >
                             <i class="bi bi-person"></i>
-                            Hồ sơ
+                            <%=mess%>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <%if (cus == null||cus.isStatus()==false){%>
-                                <div class="dropdown-item">
-                                    <i class="bi bi-person-circle"></i>
-                                    <span>Tài khoản khách</span>
-                                </div>
-                                <%}else{%>
+                                <%if (cus == null || cus.isStatus() == false) {%>
+
+                                <%} else {%>
                                 <div class="dropdown-item">
                                     <i class="bi bi-person-circle"></i>
                                     <span><%= cus.getCustomerName()%></span>
@@ -144,7 +151,7 @@
                             <li>
                                 <a class="dropdown-item" href="login-admin.jsp">Đăng nhập cho nhân viên</a>
                             </li>
-                            <%} else { %>
+                            <%} else {%>
                             <!--sau khi login user account-->
                             <li>
                                 <a class="dropdown-item" href="profile.jsp">

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import model.Customer;
 import model.Order;
-import util.helper;
+import util.Helper;
 
 /**
  *
@@ -34,13 +34,13 @@ public class ViewOrder1 extends HttpServlet {
       //  super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
        AccountDAO adao = new AccountDAO();
         OrderDAO ord = new OrderDAO();
-        Customer cust = adao.GetCust(mail,true);
+        Customer cust = adao.getCust(mail,true);
         int Preparing = 0;
         int Shipping = 0;
         int Success = 0;
         int Cancelled = 0;
         int total = 0;
-        ArrayList<Order> arr = ord.GetOrder(cust.getCustomerId());
+        ArrayList<Order> arr = ord.getOrder(cust.getCustomerId());
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).getStatus() == 1) {
                 Preparing++;
@@ -57,7 +57,7 @@ public class ViewOrder1 extends HttpServlet {
             }
 
         }
-        helper helper = new helper();
+        Helper helper = new Helper();
         ArrayList<Order> arr1 = new ArrayList<>();
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).getStatus()==1) arr1.add(arr.get(i));

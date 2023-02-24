@@ -31,6 +31,7 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 return true;
             }
+           
         } catch (SQLException e) {
         }
         return false;
@@ -61,7 +62,7 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean AddAcount(String username, String password, String displayname) {
+    public boolean addAcount(String username, String password, String displayname) {
         boolean check = false;
         try {
             String sql = "Insert into Account "
@@ -72,12 +73,13 @@ public class AccountDAO extends DBContext {
             ps.setString(3, displayname);
 
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
     }
 
-    public boolean AddCust(String customer_name, String address, String phone, String email,boolean status) {
+    public boolean addCust(String customer_name, String address, String phone, String email,boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Customer "
@@ -90,12 +92,13 @@ public class AccountDAO extends DBContext {
             ps.setBoolean(5, status);
 
             check = ps.executeUpdate() > 0;
+           
         } catch (Exception e) {
         }
         return check;
     }
 
-    public boolean AddRole(int roleid, String username) {
+    public boolean addRole(int roleid, String username) {
         boolean check = false;
         try {
             String sql = "Insert into Role_Account"
@@ -104,6 +107,7 @@ public class AccountDAO extends DBContext {
             ps.setInt(1, roleid);
             ps.setString(2, username);
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
@@ -134,7 +138,7 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public int GetRole(String username) {
+    public int getRole(String username) {
         int role = 0;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -148,6 +152,7 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 role = rs.getInt("role_id");
             }
+            
         } catch (Exception e) {
 
         }
@@ -155,7 +160,7 @@ public class AccountDAO extends DBContext {
         return role;
     }
 
-    public Customer GetCust(String email, boolean status) {
+    public Customer getCust(String email, boolean status) {
         Customer cust = null;
         try {
             String sql = "SELECT [customer_id]\n"
@@ -178,12 +183,13 @@ public class AccountDAO extends DBContext {
                
                 cust = new Customer(customer_id, customer_name, address, phone, email1,status);
             }
+           
         } catch (SQLException e) {
         }
         return cust;
     }
 
-    public boolean UpdateCust(String name, String adress, String phone, String mail) {
+    public boolean updateCust(String name, String adress, String phone, String mail) {
         boolean check = false;
         try {
             String sql = "Update Customer "
@@ -195,11 +201,12 @@ public class AccountDAO extends DBContext {
             ps.setString(4, mail);
             
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
     }
-     public boolean UpdateAccName(String name, String mail) {
+     public boolean updateAccName(String name, String mail) {
         boolean check = false;
         try {
             String sql = "Update  Account set displayname = ? where username = ?";
@@ -209,6 +216,7 @@ public class AccountDAO extends DBContext {
             ps.setString(2, mail);
             
             check = ps.executeUpdate() > 0;
+            
         } catch (Exception e) {
         }
         return check;
