@@ -106,21 +106,54 @@
         z-index: 1000;
     }
 
-    .navbar .navbar-brand {
-        font-family: 'Fredoka One', cursive;
-        font-size: 26px;
-        line-height: 49px;
-        width: 160px;
-        text-align: center;
-        transition: all 0.3s ease-in;
-        border: 3px solid var(--main-bg-color);
+    /*Navbar Brand Button*/
+    /*Navbar Brand Button*/
+    .button-92 {
+        --c: #fff;
+        /* text color */
+        background: linear-gradient(90deg, #0000 33%, #a0a0a0, #0000 67%) var(--_p,100%)/300% no-repeat,
+            #fff;
+        border-radius: 50%;
+        /* background color */
+        color: var(--main-bg-color) !important;
+        border: none;
+        transform: perspective(500px) rotateY(calc(-25deg*var(--_i,-1)));
+        text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+            calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+        outline-offset: .1em;
+        transition: 0.3s;
     }
 
-    .navbar .navbar-brand:hover {
-        color: var(--main-bg-color);
-        background-color: white;
-        font-size: 22px;
-        border: 3px solid white;
+    .button-92:hover,
+    .button-92:focus-visible {
+        --_p: 0%;
+        --_i: 1;
+    }
+
+    .button-92:active {
+        text-shadow: none;
+        color: var(--c);
+        box-shadow: inset 0 0 9e9q #0005;
+        transition: 0s;
+    }
+
+    .button-92 {
+        font-weight: bold;
+        font-size: 2rem;
+        margin: 0;
+        cursor: pointer;
+        padding: .1em .3em;
+    }
+    /*Navbar Brand Button*/
+    /*Navbar Brand Button*/
+
+    .navbar .navbar-brand {
+        font-family: 'Fredoka One', cursive;
+        font-size: 24px;
+    }
+
+    .navbar .mobile-logo {
+        display: none;
     }
 
     .mini-banner-off {
@@ -246,12 +279,20 @@
         .navbar .search-box {
             width: 50px;
         }
+
+        .navbar .button-92 {
+            display: none
+        }
+
+        .navbar .mobile-logo {
+            display: block;
+        }
     }
 
     @media (max-width: 992px) {
         .navbar {
-            padding-top: 8px;
-            padding-bottom: 8px;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
         }
 
         .navbar .nav-link {
@@ -398,7 +439,7 @@
     .list-product {
         padding: 30px 40px 1px 40px;
     }
-    
+
     .list-product.home {
         padding: 30px 0 1px;
     }
@@ -413,7 +454,7 @@
     .list-product .cover-block {
         background-color: white;
     }
-    
+
     @media (max-width: 1200px) {
         .list-product.home {
             padding: 30px 18px 1px 18px;
@@ -652,11 +693,11 @@
         .list-product .product .product-name {
             height: auto;
         }
-        
+
         .slider-product {
             margin: 10px 10px 20px 10px;
         }
-        
+
         .product {
             padding: 8px;
         }
@@ -672,11 +713,11 @@
         width: 265px;
         margin: 10px 0 20px 10px;
     }
-    
+
     .slider-product.slider-product-similar {
         width: 260px;
     }
-    
+
     .lSAction > a {
         background-color: rgb(0, 0, 0, 0.2);
         width: 42px !important;
@@ -686,7 +727,7 @@
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-    } 
+    }
 
     .lSAction > a::after {
         position: absolute !important;
@@ -697,12 +738,12 @@
         display: inline-block !important;
         padding: 5px !important;
     }
-    
+
     .lSAction > .lSPrev::after {
         transform: rotate(135deg) !important;
         -webkit-transform: rotage(135px) !important;
     }
-    
+
     .lSAction > .lSNext::after {
         transform: rotate(-45deg) !important;
         -webkit-transform: rotage(-45px) !important;

@@ -19,7 +19,9 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand logo" href="home">Awns's Store</a>
+            <a class="navbar-brand logo button-92" role="button" href="home">Awns's Store</a>
+            
+            <a class="navbar-brand logo mobile-logo" role="button" href="home">Awns's Store</a>
 
             <!-- Search box -->
             <form
@@ -115,9 +117,9 @@
                             <c:if test="${!condition}">
                                 <span class="mini-quantity position-absolute badge rounded-pill">
                                     ${sessionScope.carts.size()}
-                                    </span>
-                                </c:if>
-                            
+                                </span>
+                            </c:if>
+
                         </a>
                     </li>
 
