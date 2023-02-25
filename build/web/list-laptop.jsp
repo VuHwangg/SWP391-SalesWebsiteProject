@@ -82,8 +82,8 @@
                                                 <c:if test="${helper.compareWithAll(requestScope.brands)}">
                                                     checked="checked"
                                                 </c:if>
-                                                type="checkbox" name="brand" id="brand1" value="all"/>
-                                            <label for="brand1">Tất cả</label>
+                                                type="checkbox" name="brand" id="brand0" value="all"/>
+                                            <label for="brand0">Tất cả</label>
                                         </div>
                                         <c:forEach items="${requestScope.allBrands}" var="allBrand">
                                             <div class="col-lg-6">
@@ -91,8 +91,8 @@
                                                     <c:if test="${helper.checked(allBrand.name, requestScope.brands)}">
                                                         checked="checked"
                                                     </c:if>
-                                                    type="checkbox" name="brand" id="brand2" value="${allBrand.name}" />
-                                                <label for="brand2">${allBrand.name}</label>
+                                                    type="checkbox" name="brand" id="brand${allBrand.id}" value="${allBrand.name}" />
+                                                <label for="brand${allBrand.id}">${allBrand.name}</label>
                                             </div>
                                         </c:forEach>
 
@@ -105,8 +105,8 @@
                                                 <c:if test="${helper.compareWithAll(requestScope.needs)}">
                                                     checked="checked"
                                                 </c:if>
-                                                type="checkbox" name="needs" id="needs1"  value="all"/>
-                                            <label for="needs1">Tất cả</label>
+                                                type="checkbox" name="needs" id="needs"  value="all"/>
+                                            <label for="needs">Tất cả</label>
                                         </div>
                                         <c:forEach items="${requestScope.allRequirements}" var="allRequirement">
                                             <div class="col-lg-6">
@@ -114,8 +114,8 @@
                                                     <c:if test="${helper.checked(allRequirement.name, requestScope.needs)}">
                                                         checked="checked"
                                                     </c:if>
-                                                    type="checkbox" name="needs" id="needs2" value="${allRequirement.name}"/>
-                                                <label for="needs2">${allRequirement.name}</label>
+                                                    type="checkbox" name="needs" id="needs${allRequirement.id}" value="${allRequirement.name}"/>
+                                                <label for="needs${allRequirement.id}">${allRequirement.name}</label>
                                             </div>
                                         </c:forEach>
 
