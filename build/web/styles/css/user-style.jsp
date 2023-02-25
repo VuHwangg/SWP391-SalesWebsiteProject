@@ -444,7 +444,7 @@
 
     @media (max-width: 575px) {
         .list-product .row-title {
-            font-size: 20px;
+            font-size: 26px;
             margin-bottom: 0;
         }
     }
@@ -575,10 +575,12 @@
     ==============================================================================*/
     .product {
         border-radius: 10px;
-        padding: 12px;
+        padding: 24px 12px;
         overflow: hidden;
         text-decoration: none;
         color: var(--main-color-black);
+        transform: scale(1.008);
+        transition: all ease 0.2s;
     }
 
     .product p {
@@ -586,19 +588,21 @@
     }
 
     .product:hover {
+        transform: scale(1.015);
         border: 1px solid #c3c3c3;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
 
     .product:hover .product-img{
+        transform: scale(1.1);
         padding: 0;
     }
 
     .product .product-img {
         width: 100%;
         height: 200px;
+        padding: 4px;
         margin-bottom: 10px;
-        padding: 10px;
         transition: all 0.5s ease;
     }
 
@@ -648,6 +652,14 @@
         .list-product .product .product-name {
             height: auto;
         }
+        
+        .slider-product {
+            margin: 10px 10px 20px 10px;
+        }
+        
+        .product {
+            padding: 8px;
+        }
     }
 
     /*==============================================================================
@@ -661,14 +673,40 @@
         margin: 10px 0 20px 10px;
     }
     
-    .ISAction > a {
-        background-color: #00000003;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        
+    .slider-product.slider-product-similar {
+        width: 260px;
+    }
+    
+    .lSAction > a {
+        background-color: rgb(0, 0, 0, 0.2);
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 50% !important;
+        background-image: none !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     } 
 
+    .lSAction > a::after {
+        position: absolute !important;
+        content: '' !important;
+        margin: auto !important;
+        border: solid #fff !important;
+        border-width: 0 4px 4px 0 !important;
+        display: inline-block !important;
+        padding: 5px !important;
+    }
+    
+    .lSAction > .lSPrev::after {
+        transform: rotate(135deg) !important;
+        -webkit-transform: rotage(135px) !important;
+    }
+    
+    .lSAction > .lSNext::after {
+        transform: rotate(-45deg) !important;
+        -webkit-transform: rotage(-45px) !important;
+    }
 
 
     /*==============================================================================

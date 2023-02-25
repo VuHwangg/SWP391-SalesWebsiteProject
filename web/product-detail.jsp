@@ -10,6 +10,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
+
+        <!-- Light Slider CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <title>Chi tiết sản phẩm</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
@@ -131,41 +135,43 @@
                         </div>
                     </div>
                     <div style="padding: 0 12px">
-                        <div class="row mt-3 w-100 mx-auto cover-block similar-product">
+                        <div class="cover-block similar-product">
                             <h3>Sản phẩm tương tự: </h3>
-                            <div class="row" style="flex-grow: 1">
+                            <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.sameList}" var="sameList">
-                                    <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${sameList.id}">
-                                        <div class="product-img">
-                                            <img
-                                                src="${sameList.image[0].url}"
-                                                alt="iphone"
-                                                />
-                                        </div>
-                                        <div class="product-name">
-                                            <p>${sameList.name}</p>
-                                        </div>
-                                        <div class="row price-block">
-                                            <div class="col-8">
-                                                <c:if test="${sameList.discount>0}">
-                                                    <div class="product-old-price">
-                                                        <s> ${helper.convertBigNum(sameList.original_price)}&nbsp;<span>VNĐ</span></s>
-                                                    </div>
-                                                </c:if>
-
-                                                <div class="product-price">
-                                                    <p> ${helper.convertBigNum(sameList.current_price)}&nbsp;<span>VNĐ</span></p>
-                                                </div>
+                                    <li>
+                                        <a class="slider-product slider-product-similar product" href="product_detail?product_id=${sameList.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${sameList.image[0].url}"
+                                                    alt="iphone"
+                                                    />
                                             </div>
-                                            <c:if test="${sameList.discount>0}">
-                                                <div class="col-4">
-                                                    <p class="sale-percent">${sameList.discount}%</p>
+                                            <div class="product-name">
+                                                <p>${sameList.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${sameList.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(sameList.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(sameList.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
                                                 </div>
-                                            </c:if>   
-                                        </div>
-                                    </a>
+                                                <c:if test="${sameList.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${sameList.discount}%</p>
+                                                    </div>
+                                                </c:if>   
+                                            </div>
+                                        </a>
+                                    </li>
                                 </c:forEach>
-                            </div>
+                            </ul>
                         </div>
 
                         <div class="row mt-3 w-100 mx-auto product-description">
@@ -246,11 +252,19 @@
                 <!--footer-->
                 <%@include file="components/footer.jsp" %>
         </main>
+
+        <%@include file="styles/js/script.jsp" %>
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"
         ></script>
-        <%@include file="styles/js/script.jsp" %>
+
+        <!--JQuery 3.6.3 (used for Light Slider)-->
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+        <!--Light Slider JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>

@@ -58,15 +58,14 @@
                     <!-- list product -->
                     <div class="list-product home" >
 
-                        <!-- Test -->
-
+                        <!-- Hàng sản phẩm khuyến mại -->
                         <div class="sale-product cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Sản phẩm khuyến mại</a>
+                                <a href="#">Khuyến mại</a>
                             </div>
 
-                            <ul class="list-slider" id="autoWidth" class="cs-hidden">
+                            <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.onSaleList}" var="onSale">
                                     <li>
                                         <a class="slider-product product" href="product_detail?product_id=${onSale.id}">
@@ -104,166 +103,133 @@
                             </ul>
                         </div>
 
-
-                        <!-- Hàng sản phẩm khuyến mại -->
-                        <div class="sale-product row cover-block">
-                            <div class="row-title">
-                                <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Sản phẩm khuyến mại</a>
-                            </div>
-
-                            <c:forEach items="${requestScope.onSaleList}" var="onSale">
-                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${onSale.id}">
-                                    <div class="product-img">
-                                        <img
-                                            src="${onSale.image[0].url}"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>${onSale.name}</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <c:if test="${onSale.discount>0}">
-                                                <div class="product-old-price">
-                                                    <s> ${helper.convertBigNum(onSale.original_price)}&nbsp;<span>VNĐ</span></s>
-                                                </div>
-                                            </c:if>
-
-                                            <div class="product-price">
-                                                <p> ${helper.convertBigNum(onSale.current_price)}&nbsp;<span>VNĐ</span></p>
-                                            </div>
-                                        </div>
-                                        <c:if test="${onSale.discount>0}">
-                                            <div class="col-4">
-                                                <p class="sale-percent">${onSale.discount}%</p>
-                                            </div>
-                                        </c:if>   
-
-                                    </div>
-                                </a>
-                            </c:forEach>
-                        </div>
-
                         <!-- Hàng sản phẩm bán chạy -->
-                        <div class="bestseller-products row cover-block">
+                        <div class="bestseller-products cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Sản phẩm bán chạy</a>
+                                <a href="#">Bán chạy</a>
                             </div>
-                            <c:forEach items="${requestScope.topSoldList}" var="topSold">
-                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${topSold.id}">
-                                    <div class="product-img">
-                                        <img
-                                            src="${topSold.image[0].url}"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>${topSold.name}</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <c:if test="${topSold.discount>0}">
-                                                <div class="product-old-price">
-                                                    <s> ${helper.convertBigNum(topSold.original_price)}&nbsp;<span>VNĐ</span></s>
+                            <ul class="list-slider autoWidth cs-hidden">
+                                <c:forEach items="${requestScope.topSoldList}" var="topSold">
+                                    <li>
+                                        <a class="slider-product product" href="product_detail?product_id=${topSold.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${topSold.image[0].url}"
+                                                    alt="iphone"
+                                                    />
+                                            </div>
+                                            <div class="product-name">
+                                                <p>${topSold.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${topSold.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(topSold.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(topSold.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
                                                 </div>
-                                            </c:if>
-
-                                            <div class="product-price">
-                                                <p> ${helper.convertBigNum(topSold.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                <c:if test="${topSold.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${topSold.discount}%</p>
+                                                    </div>
+                                                </c:if>   
                                             </div>
-                                        </div>
-                                        <c:if test="${topSold.discount>0}">
-                                            <div class="col-4">
-                                                <p class="sale-percent">${topSold.discount}%</p>
-                                            </div>
-                                        </c:if>   
-                                    </div>
-                                </a>
-                            </c:forEach>
-
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
 
                         <!-- Hàng sản phẩm điện thoại -->
-                        <div class="phones-products row cover-block">
+                        <div class="phones-products cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
                                 <a href="filter?type=0">Điện thoại</a>
                             </div>
-                            <c:forEach items="${requestScope.phoneList}" var="phone">
-                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${phone.id}">
-                                    <div class="product-img">
-                                        <img
-                                            src="${phone.image[0].url}"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>${phone.name}</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <c:if test="${phone.discount>0}">
-                                                <div class="product-old-price">
-                                                    <s> ${helper.convertBigNum(phone.original_price)}&nbsp;<span>VNĐ</span></s>
+                            <ul class="list-slider autoWidth cs-hidden">
+                                <c:forEach items="${requestScope.phoneList}" var="phone">
+                                    <li>
+                                        <a class="slider-product product" href="product_detail?product_id=${phone.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${phone.image[0].url}"
+                                                    alt="iphone"
+                                                    />
+                                            </div>
+                                            <div class="product-name">
+                                                <p>${phone.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${phone.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(phone.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(phone.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
                                                 </div>
-                                            </c:if>
-
-                                            <div class="product-price">
-                                                <p> ${helper.convertBigNum(phone.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                <c:if test="${phone.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${phone.discount}%</p>
+                                                    </div>
+                                                </c:if>   
                                             </div>
-                                        </div>
-                                        <c:if test="${phone.discount>0}">
-                                            <div class="col-4">
-                                                <p class="sale-percent">${phone.discount}%</p>
-                                            </div>
-                                        </c:if>   
-                                    </div>
-                                </a>
-                            </c:forEach>
-
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
 
                         <!-- Hàng sản phẩm laptop -->
-                        <div class="laptop-products row cover-block">
+                        <div class="laptop-products cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
                                 <a href="filter?type=1">Laptop</a>
                             </div>
-                            <c:forEach items="${requestScope.laptopList}" var="laptop">
-                                <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${laptop.id}">
-                                    <div class="product-img">
-                                        <img
-                                            src="${laptop.image[0].url}"
-                                            alt="iphone"
-                                            />
-                                    </div>
-                                    <div class="product-name">
-                                        <p>${laptop.name}</p>
-                                    </div>
-                                    <div class="row price-block">
-                                        <div class="col-8">
-                                            <c:if test="${laptop.discount>0}">
-                                                <div class="product-old-price">
-                                                    <s> ${helper.convertBigNum(laptop.original_price)}&nbsp;<span>VNĐ</span></s>
+                            <ul class="list-slider autoWidth cs-hidden">
+                                <c:forEach items="${requestScope.laptopList}" var="laptop">
+                                    <li>
+                                        <a class="slider-product product" href="product_detail?product_id=${laptop.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${laptop.image[0].url}"
+                                                    alt="iphone"
+                                                    />
+                                            </div>
+                                            <div class="product-name">
+                                                <p>${laptop.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${laptop.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(laptop.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(laptop.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
                                                 </div>
-                                            </c:if>
-
-                                            <div class="product-price">
-                                                <p> ${helper.convertBigNum(laptop.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                <c:if test="${laptop.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${laptop.discount}%</p>
+                                                    </div>
+                                                </c:if>   
                                             </div>
-                                        </div>
-                                        <c:if test="${laptop.discount>0}">
-                                            <div class="col-4">
-                                                <p class="sale-percent">${laptop.discount}%</p>
-                                            </div>
-                                        </c:if>   
-                                    </div>
-                                </a>
-                            </c:forEach>
-
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
