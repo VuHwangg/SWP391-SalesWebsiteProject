@@ -41,6 +41,13 @@ public class LoginUser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //request -> gg -> send form login
+        //gg -> respond cho servlet (gmail)
+        //check gmail
+        
+        //chua co tk -> dki tk
+        //home
         String code = request.getParameter("code");
         String accessToken = getToken(code);
         GooglePojo user = getUserInfo(accessToken);
@@ -67,7 +74,8 @@ public class LoginUser extends HttpServlet {
         
 
     }
-
+    //phiên dịch mã từ respond của gg
+    //mã -> gg
     public static String getToken(String code) throws ClientProtocolException, IOException {
         // call api to get token
         String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
@@ -82,6 +90,7 @@ public class LoginUser extends HttpServlet {
         return accessToken;
     }
 
+    //gg -> info
     public static GooglePojo getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
         String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
         String response = Request.Get(link).execute().returnContent().asString();
