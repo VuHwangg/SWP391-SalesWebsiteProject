@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller;
+package controller_Cust;
 
-import static controller.LoginUser.mail;
+import static controller_Cust.LoginUser.mail;
 import dal.AccountDAO;
 import dal.OrderDAO;
 import jakarta.servlet.ServletException;
@@ -22,9 +22,8 @@ import util.Helper;
  *
  * @author xuank
  */
-public class ViewOrder1 extends HttpServlet {
-
-    @Override
+public class ViewOrder4 extends HttpServlet{
+        @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
@@ -60,7 +59,7 @@ public class ViewOrder1 extends HttpServlet {
         Helper helper = new Helper();
         ArrayList<Order> arr1 = new ArrayList<>();
         for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i).getStatus()==1) arr1.add(arr.get(i));
+            if (arr.get(i).getStatus()==4) arr1.add(arr.get(i));
             
         }
         total = Preparing + Shipping + Success + Cancelled;
@@ -73,7 +72,7 @@ public class ViewOrder1 extends HttpServlet {
         session.setAttribute("total", total);
         session.setAttribute("lst", arr1);
 
-        req.getRequestDispatcher("order-lookup-1.jsp").forward(req, resp);
+        req.getRequestDispatcher("order-lookup-4.jsp").forward(req, resp);
     }
     
 }

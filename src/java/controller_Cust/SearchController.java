@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller;
+package controller_Cust;
 
 import dal.ProductDBContext;
 import jakarta.servlet.ServletException;
@@ -17,21 +17,22 @@ import model.Product;
  *
  * @author admin
  */
-public class HomeController extends HttpServlet{
-
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+public class SearchController extends HttpServlet{
+    
+       protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String textSearch = request.getParameter("txtSearch");
+        String sort = request.getParameter("sort");
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> laptopList = productList.listProduct(1, 8, false, false);
-        ArrayList<Product> phoneList = productList.listProduct(0, 8, false, false);
-        ArrayList<Product> onSaleList = productList.listProduct(-1, 8, true, false);
-        ArrayList<Product> topSoldList = productList.listProduct(-1, 8, false, true);
-        request.setAttribute("laptopList", laptopList);
-        request.setAttribute("phoneList", phoneList);
-        request.setAttribute("onSaleList", onSaleList);
-        request.setAttribute("topSoldList", topSoldList);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        ArrayList<Product> searchList = productList.listProduct(textSearch,sort);
+        request.setAttribute("searchList", searchList);
+        if(searchList.isEmpty()){
+            response.sendRedirect("list-search-no.jsp");
+        }
+        else{
+            request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
+        }     
     }
 
     @Override
@@ -43,5 +44,5 @@ public class HomeController extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
+    
 }
-

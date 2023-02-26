@@ -2,87 +2,87 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>LoginUser</servlet-name>
-        <servlet-class>controller.LoginUser</servlet-class>
+        <servlet-class>controller_Cust.LoginUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddToCart</servlet-name>
-        <servlet-class>controller.AddToCartController</servlet-class>
+        <servlet-class>controller_Cust.AddToCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SignupUser</servlet-name>
-        <servlet-class>controller.SignupUser</servlet-class>
+        <servlet-class>controller_Cust.SignupUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginEmpt</servlet-name>
-        <servlet-class>controller.LoginEmpt</servlet-class>
+        <servlet-class>controller_Cust.LoginEmpt</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SignupEmpt</servlet-name>
-        <servlet-class>controller.SignupEmpt</servlet-class>
+        <servlet-class>controller_Cust.SignupEmpt</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.Logout</servlet-class>
+        <servlet-class>controller_Cust.Logout</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
-        <servlet-class>controller.CartController</servlet-class>
+        <servlet-class>controller_Cust.CartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditProfile</servlet-name>
-        <servlet-class>controller.EditProfile</servlet-class>
+        <servlet-class>controller_Cust.EditProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewAllOrder</servlet-name>
-        <servlet-class>controller.ViewAllOrder</servlet-class>
+        <servlet-class>controller_Cust.ViewAllOrder</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrderDetail</servlet-name>
-        <servlet-class>controller.ViewOrderDetail</servlet-class>
+        <servlet-class>controller_Cust.ViewOrderDetail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CancelOrder</servlet-name>
-        <servlet-class>controller.CancelOrder</servlet-class>
+        <servlet-class>controller_Cust.CancelOrder</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrder1</servlet-name>
-        <servlet-class>controller.ViewOrder1</servlet-class>
+        <servlet-class>controller_Cust.ViewOrder1</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrder2</servlet-name>
-        <servlet-class>controller.ViewOrder2</servlet-class>
+        <servlet-class>controller_Cust.ViewOrder2</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrder3</servlet-name>
-        <servlet-class>controller.ViewOrder3</servlet-class>
+        <servlet-class>controller_Cust.ViewOrder3</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrder4</servlet-name>
-        <servlet-class>controller.ViewOrder4</servlet-class>
+        <servlet-class>controller_Cust.ViewOrder4</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchOrder</servlet-name>
-        <servlet-class>controller.SearchOrder</servlet-class>
+        <servlet-class>controller_Cust.SearchOrder</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Payment</servlet-name>
-        <servlet-class>controller.Payment</servlet-class>
+        <servlet-class>controller_Cust.Payment</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Payment2</servlet-name>
-        <servlet-class>controller.Payment2</servlet-class>
+        <servlet-class>controller_Cust.Payment2</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteAllCartController</servlet-name>
-        <servlet-class>controller.DeleteAllCartController</servlet-class>
+        <servlet-class>controller_Cust.DeleteAllCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateCartQuantityController</servlet-name>
-        <servlet-class>controller.UpdateCartQuantityController</servlet-class>
+        <servlet-class>controller_Cust.UpdateCartQuantityController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteProductFromCartController</servlet-name>
-        <servlet-class>controller.DeleteProductFromCartController</servlet-class>
+        <servlet-class>controller_Cust.DeleteProductFromCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
@@ -98,7 +98,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>
-        <servlet-class>controller.HomeController</servlet-class>
+        <servlet-class>controller_Cust.HomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
@@ -106,7 +106,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Filter</servlet-name>
-        <servlet-class>controller.FilterController</servlet-class>
+        <servlet-class>controller_Cust.FilterController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
@@ -114,7 +114,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ProductDetail</servlet-name>
-        <servlet-class>controller.ProductDetailController</servlet-class>
+        <servlet-class>controller_Cust.ProductDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductDetail</servlet-name>
@@ -122,7 +122,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Search</servlet-name>
-        <servlet-class>controller.SearchController</servlet-class>
+        <servlet-class>controller_Cust.SearchController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
