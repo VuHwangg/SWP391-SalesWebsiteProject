@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import model.Cart;
+import model.Customer;
 
 /**
  *
@@ -66,11 +68,16 @@ public class UpdateCartQuantityController extends HttpServlet {
 
         HttpSession session = request.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+        Customer sessionCustomer = (Customer) session.getAttribute("cust");
+        CartDAO cartDAO = new CartDAO();
         if (carts == null) {
             carts = new LinkedHashMap<>();
         }
         if (carts.containsKey(productId)) {
             carts.get(productId).setQuantity(quantity);
+            if (sessionCustomer != null) {
+                cartDAO.updateQuantity(carts.get(productId));
+            }
         }
         session.setAttribute("carts", carts);
         response.sendRedirect("cart");
