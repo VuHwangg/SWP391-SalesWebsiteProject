@@ -461,7 +461,8 @@
         bottom: 0;
         width: 100%;
         height: 56px;
-        background-color: #e9ecef;
+        background-color: #dc3545;
+        color: white;
         line-height: 55px;
     }
 

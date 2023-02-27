@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
 
     <!-- LOGO -->
-    <a class="navbar-brand" href="index.html">Anwn's Store Management</a>
+    <a class="navbar-brand" href="admin-dashmap.jsp">Anwn's Store Management</a>
 
     <!-- MENU BUTTON FOR RESPONSIVE -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
 
             <!-- 1 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="admin-dashmap.jsp">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Thống kê</span>
                 </a>
@@ -36,7 +36,7 @@
                         <a href="#">Quản lý nhân viên</a>
                     </li>
                     <li>
-                        <a href="#">Tạo tài khoản</a>
+                        <a href="register-admin.jsp">Tạo tài khoản</a>
                     </li>
                 </ul>
             </li>
