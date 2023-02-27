@@ -29,9 +29,9 @@
               <!-- list product block -->
               <div class="profile">
                    <%
-                                            cus = (Customer) session.getAttribute("cust");
-                                            String mess = (String)request.getAttribute("err");
-                                            if(mess == null) mess="";           
+                        cus = (Customer) session.getAttribute("cust");
+                        mess = (String)request.getAttribute("err");
+                        if(mess == null) mess="";           
                     %>
                     <p><%=mess%></p>
                 <div class="row">

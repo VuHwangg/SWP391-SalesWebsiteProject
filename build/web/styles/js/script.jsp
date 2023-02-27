@@ -1,3 +1,4 @@
+
 <script>
 //    Navbar script
     let nav = document.querySelector(".navbar");
