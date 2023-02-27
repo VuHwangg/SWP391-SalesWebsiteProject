@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller;
+package controller_Cust;
 
-import static controller.LoginUser.mail;
+import static controller_Cust.LoginUser.mail;
 import dal.AccountDAO;
 import dal.OrderDAO;
 import jakarta.servlet.ServletException;
@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import model.Customer;
 import model.Order;
@@ -22,16 +23,17 @@ import util.Helper;
  *
  * @author xuank
  */
-public class ViewOrder3 extends HttpServlet{
-        @Override
+public class ViewAllOrder extends HttpServlet {
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      //  super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-       AccountDAO adao = new AccountDAO();
+        //super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        AccountDAO adao = new AccountDAO();
         OrderDAO ord = new OrderDAO();
         Customer cust = adao.getCust(mail,true);
         int Preparing = 0;
@@ -57,11 +59,6 @@ public class ViewOrder3 extends HttpServlet{
 
         }
         Helper helper = new Helper();
-        ArrayList<Order> arr1 = new ArrayList<>();
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i).getStatus()==3) arr1.add(arr.get(i));
-            
-        }
         total = Preparing + Shipping + Success + Cancelled;
         HttpSession session = req.getSession();
         session.setAttribute("Preparing", Preparing);
@@ -70,8 +67,11 @@ public class ViewOrder3 extends HttpServlet{
         session.setAttribute("Cancelled", Cancelled);
 
         session.setAttribute("total", total);
-        session.setAttribute("lst", arr1);
+        session.setAttribute("lst", arr);
+//        resp.getWriter().print(arr.size());
 
-        req.getRequestDispatcher("order-lookup-3.jsp").forward(req, resp);
+        req.getRequestDispatcher("order-lookup.jsp").forward(req, resp);
+
     }
+
 }

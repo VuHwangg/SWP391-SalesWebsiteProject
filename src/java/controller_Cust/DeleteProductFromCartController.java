@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller_Cust;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +19,7 @@ import model.Cart;
  *
  * @author Admin
  */
-public class UpdateCartQuantityController extends HttpServlet {
+public class DeleteProductFromCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +35,19 @@ public class UpdateCartQuantityController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateCartQuantityController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateCartQuantityController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String rawProductId = request.getParameter("product_id");
+            int productId = Integer.parseInt(rawProductId);
+
+            HttpSession session = request.getSession();
+            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            if (carts == null) {
+                carts = new LinkedHashMap<>();
+            }
+            if(carts.containsKey(productId)) {
+                carts.remove(productId);
+            }
+            session.setAttribute("carts", carts);
+            response.sendRedirect("cart");
         }
     }
 
@@ -59,21 +63,7 @@ public class UpdateCartQuantityController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rawProductId = request.getParameter("product_id");
-        int productId = Integer.parseInt(rawProductId);
-        String rawQuantity = request.getParameter("quantity");
-        int quantity = Integer.parseInt(rawQuantity);
-
-        HttpSession session = request.getSession();
-        Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-        if (carts == null) {
-            carts = new LinkedHashMap<>();
-        }
-        if (carts.containsKey(productId)) {
-            carts.get(productId).setQuantity(quantity);
-        }
-        session.setAttribute("carts", carts);
-        response.sendRedirect("cart");
+        processRequest(request, response);
     }
 
     /**

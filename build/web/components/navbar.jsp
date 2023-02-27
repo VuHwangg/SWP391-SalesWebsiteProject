@@ -62,10 +62,10 @@
                         Account acc = (Account) session.getAttribute("acc");
                         Customer cus = (Customer) session.getAttribute("cust");
 
-                        //                           // chuyen sang trang admin
-                        //                           if ((int)session.getAttribute("role") == 1){
-                        //                               request.getRequestDispatcher("#").forward(request, response);
-                        //                            }
+                                                   // chuyen sang trang admin
+//                                                   if ((int)session.getAttribute("role") == 1){
+//                                                       response.sendRedirect("login-user.jsp");
+//                                                    }
                         //                           // chuyen sang trang empt
                         //                           if ((int)session.getAttribute("role") == 2){
                         //                               request.getRequestDispatcher("#").forward(request, response);

@@ -1,6 +1,6 @@
-package controller;
+package controller_Cust;
 
-import static controller.LoginUser.mail;
+import static controller_Cust.LoginUser.mail;
 import dal.AccountDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

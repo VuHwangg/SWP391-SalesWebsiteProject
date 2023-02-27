@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller;
+package controller_Cust;
 
+import dal.CartDAO;
 import dal.ProductDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -32,11 +33,11 @@ public class AddToCartController extends HttpServlet {
         String rawQuantity = req.getParameter("quantity");
         int productQuantity = Integer.parseInt(rawQuantity);
 
-
         // Get carts from session
         HttpSession session = req.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-
+        Customer sessionCustomer = (Customer) session.getAttribute("cust");
+        CartDAO cartDAO = new CartDAO();
         // if carts dosen't exist creat new one
         if (carts == null) {
             carts = new LinkedHashMap<>();
@@ -46,19 +47,25 @@ public class AddToCartController extends HttpServlet {
         if (carts.containsKey(productId)) {
             int oldQuantity = carts.get(productId).getQuantity();
             carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            if (sessionCustomer != null) {
+                cartDAO.updateQuantity(carts.get(productId));
+            }
 
             // When product is not exist in cart insert new product
         } else {
             Product product = new ProductDBContext().getProductByID(productId);
-
-            Customer customer = new Customer();
-            customer.setCustomerName("NVA");
+            Customer customer = sessionCustomer;
             Cart cart = new Cart();
             cart.setProduct(product);
             cart.setCustomer(customer);
             cart.setQuantity(productQuantity);
             carts.put(productId, cart);
+            // Save cart to DB
+            if (sessionCustomer != null) {
+                cartDAO.saveCartToDB(carts.get(productId));
+            }
         }
+
         // Save cart in session
         session.setAttribute("carts", carts);
 
@@ -75,11 +82,11 @@ public class AddToCartController extends HttpServlet {
         String rawQuantity = req.getParameter("quantity");
         int productQuantity = Integer.parseInt(rawQuantity);
 
-
         // Get carts from session
         HttpSession session = req.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-
+        Customer sessionCustomer = (Customer) session.getAttribute("cust");
+        CartDAO cartDAO = new CartDAO();
         // if carts dosen't exist creat new one
         if (carts == null) {
             carts = new LinkedHashMap<>();
@@ -89,18 +96,23 @@ public class AddToCartController extends HttpServlet {
         if (carts.containsKey(productId)) {
             int oldQuantity = carts.get(productId).getQuantity();
             carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            if (sessionCustomer != null) {
+                cartDAO.updateQuantity(carts.get(productId));
+            }
 
             // When product is not exist in cart insert new product
         } else {
             Product product = new ProductDBContext().getProductByID(productId);
-
-            Customer customer = new Customer();
-            customer.setCustomerName("NVA");
+            Customer customer = sessionCustomer;
             Cart cart = new Cart();
             cart.setProduct(product);
             cart.setCustomer(customer);
             cart.setQuantity(productQuantity);
             carts.put(productId, cart);
+            // Save cart to DB
+            if (sessionCustomer != null) {
+                cartDAO.saveCartToDB(carts.get(productId));
+            }
         }
         // Save cart in session
         session.setAttribute("carts", carts);
