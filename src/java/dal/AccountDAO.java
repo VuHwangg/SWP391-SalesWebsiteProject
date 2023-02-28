@@ -16,7 +16,7 @@ import model.Customer;
  */
 public class AccountDAO extends DBContext {
 
-    public boolean loginGoogle(String email) {
+    public boolean loginGoogle(String email,  boolean status) {
         try {
             String sql = "SELECT [customer_id]\n"
                     + "      ,[customer_name]\n"
@@ -24,9 +24,10 @@ public class AccountDAO extends DBContext {
                     + "      ,[phone]\n"
                     + "      ,[email],[status]\n"
                     + "  FROM [dbo].[Customer]\n"
-                    + "  WHERE [email] = ?";
+                    + "  WHERE [email] = ? and status =?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
+            st.setBoolean(2, status);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return true;

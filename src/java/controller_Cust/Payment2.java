@@ -24,7 +24,6 @@ import model.Cart;
 import model.Customer;
 import util.EmailConfig;
 
-
 public class Payment2 extends HttpServlet {
 
     /**
@@ -44,7 +43,7 @@ public class Payment2 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Payment2</title>");            
+            out.println("<title>Servlet Payment2</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Payment2 at " + request.getContextPath() + "</h1>");
@@ -83,44 +82,49 @@ public class Payment2 extends HttpServlet {
         try {
             //send email
             EmailConfig Ec = new EmailConfig();
-            String email = (String)request.getParameter("email");
+            String email = (String) request.getParameter("email");
             //create cus and add cus if guest
-            if(session.getAttribute("cust") == null){
+            if (session.getAttribute("cust") == null) {
                 AccountDAO ad = new AccountDAO();
                 String name = request.getParameter("name");
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 ad.addCust(name, address, phone, email, false);
-                session.setAttribute("cust", ad.getCust(email,false));
+                session.setAttribute("cust", ad.getCust(email, false));
                 
             }
             //add order  va orderdetail
-            if(session.getAttribute("carts")!=null){
-            OrderDAO od = new OrderDAO();
-            Customer cus = (Customer) session.getAttribute("cust");
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            float total_price=0;
-            //loop qua map
-            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-            total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
-            
-        }
-            //add order, send email. lay order id vua add
-            od.addOrder(1, cus.getCustomerId(), LocalDate.now().toString(), "",total_price);
-            int NewOrderId = od.getLastOrderId();
-            Ec.SendEmail(email, total_price, Ec.MessageProduct(carts),NewOrderId );
-            
-            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-            float price=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"");
-            od.addOrder_Detail(NewOrderId,cart.getKey(),cart.getValue().getQuantity(), price);   
-        }            
-            session.setAttribute("Order", od.getOrder1(NewOrderId));
-            session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
-            session.setAttribute("carts",null);
-            if(!cus.isStatus()) session.setAttribute("cus",null);
+            if (session.getAttribute("carts") != null) {
+                OrderDAO od = new OrderDAO();
+                Customer cus = (Customer) session.getAttribute("cust");
+                Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+                float total_price = 0;
+                //loop qua map
+                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                    total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                    
+                }
+                //add order, send email. lay order id vua add
+                od.addOrder(1, cus.getCustomerId(), LocalDate.now().toString(), "", total_price);
+                int NewOrderId = od.getLastOrderId();
+                
+                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                    float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
+                    od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price);
+                    if(od.deleteCart(cart.getValue().getCartId())== false) request.getRequestDispatcher("404-page.jsp").forward(request, response); 
+//                    
+                }
+                Ec.SendEmail(email, total_price, Ec.MessageProduct(carts), NewOrderId);
+                session.setAttribute("Order", od.getOrder1(NewOrderId));
+                session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
+                session.setAttribute("carts", null);
+                if (!cus.isStatus()) {
+                    session.setAttribute("cus", null);
+                }
             }
             
             request.getRequestDispatcher("home").forward(request, response);
+  
         } catch (MessagingException ex) {
             request.getRequestDispatcher("404-page.jsp").forward(request, response);
         } catch (SQLException ex) {

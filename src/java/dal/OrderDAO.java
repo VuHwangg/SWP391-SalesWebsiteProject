@@ -189,7 +189,7 @@ public class OrderDAO extends DBContext {
             if (rs.next()) {
 
                 int status = rs.getInt("status");
-         
+
                 Date date = rs.getDate("date");
                 String note = rs.getString("note");
                 float total_price = rs.getFloat("total_price");
@@ -243,6 +243,22 @@ public class OrderDAO extends DBContext {
 
         }
         return check;
+    }
+
+    public boolean deleteCart(int cart_id) {
+        boolean check = false;
+        try {
+            String sql = "delete from Cart where cart_id =?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, cart_id);
+
+            int rowsAffected = ps.executeUpdate();
+            if(rowsAffected > 0) check = true;
+
+        } catch (Exception e) {
+        }
+        return check;
+
     }
 
 //    public static void main(String[] args) {
