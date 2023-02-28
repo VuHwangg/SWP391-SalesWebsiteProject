@@ -70,7 +70,7 @@ public class SearchOrder extends HttpServlet {
         session.setAttribute("lstPro", arrPro);
         session.setAttribute("Order", or);
         if (or.getOrder_id() == 0) {
-            req.getRequestDispatcher("404-page.jsp").forward(req, resp);
+            req.getRequestDispatcher("order-lookup-null.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
         }
