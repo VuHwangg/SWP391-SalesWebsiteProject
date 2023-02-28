@@ -44,8 +44,8 @@
                                     <span>Số liệu 1</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1 mr-5">
-                                <span>2,000</span>
+                            <a class="card-footer text-white z-1">
+                                <span class="mr-5">2,000</span>
                             </a>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                                     <span>Số liệu 2</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1 mr-5">
-                                <span>2,000,000</span>
+                            <a class="card-footer text-white z-1">
+                                <span class="mr-5">2,000,000</span>
                             </a>
                         </div>
                     </div>
@@ -78,8 +78,8 @@
                                     <span>Số liệu 3</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1 mr-5">
-                                <span>200</span>
+                            <a class="card-footer text-white z-1">
+                                <span class="mr-5">200</span>
                             </a>
                         </div>
                     </div>
@@ -95,8 +95,8 @@
                                     <span>Số liệu 4</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1 mr-5">
-                                <span>50</span>
+                            <a class="card-footer text-white z-1">
+                                <span class="mr-5">50</span>
                             </a>
                         </div>
                     </div>

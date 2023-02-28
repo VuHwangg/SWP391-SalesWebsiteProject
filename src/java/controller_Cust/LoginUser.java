@@ -7,17 +7,22 @@ package controller_Cust;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dal.AccountDAO;
+import dal.CartDAO;
 import dal.OrderDAO;
+import dal.ProductDBContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Map;
 import model.Account;
+import model.Cart;
 import model.Constants;
 import model.Customer;
 import model.GooglePojo;
+import model.Product;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
@@ -58,12 +63,21 @@ public class LoginUser extends HttpServlet {
         Account acc = adao.checkExistAcc(mail);
         Customer cust = adao.getCust(mail,true);
         int role = adao.getRole(mail);
-        if (odao.checkExist(cust.getCustomerId())){
-            session.invalidate();
-        }
-
+//        if (odao.checkExist(cust.getCustomerId())){
+//            session.invalidate();
+//        }
+// response.getWriter().print(mail);
         if (adao.loginGoogle(user.getEmail())) {
-            
+            CartDAO cartDAO = new CartDAO();
+            Map<Integer, Cart> carts = cartDAO.getCartsByCustomerId(cust.getCustomerId());
+            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
+                int key = entry.getKey();
+                Cart val = entry.getValue();
+                Product product = new ProductDBContext().getProductByID(key);
+                val.setProduct(product);
+                val.setCustomer(cust);
+            }
+            session.setAttribute("carts", carts);
             session.setAttribute("cust", cust);
             session.setAttribute("acc", acc);
             session.setAttribute("role", role);

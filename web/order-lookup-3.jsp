@@ -83,7 +83,7 @@
                                          
                                                       
                     %>
-                    <table class="order-detail table text-center mt-5">
+                    <table class="order-detail-table table text-center mt-5">
                         <tbody>
                             <tr class="row fw-bold">
                                 <th class="col border border-1 border-white">Mã đơn hàng</th>
@@ -106,7 +106,7 @@
                                 <th class="col fw-normal text-decoration-underline">
                                     <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
                                 </th>
-                                <th class="col fw-normal text-end"><%=price%></th>
+                                <th class="col fw-normal text-end"><%=price%> &#8363;</th>
                             </tr>
                             
                         <%}

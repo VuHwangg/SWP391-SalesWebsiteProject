@@ -4,6 +4,7 @@
  */
 package controller_Cust;
 
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import model.Cart;
+import model.Customer;
 
 /**
  *
@@ -40,10 +42,15 @@ public class DeleteProductFromCartController extends HttpServlet {
 
             HttpSession session = request.getSession();
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            Customer sessionCustomer = (Customer) session.getAttribute("cust");
             if (carts == null) {
                 carts = new LinkedHashMap<>();
             }
             if(carts.containsKey(productId)) {
+                if (sessionCustomer != null) {
+                    CartDAO cartDAO = new CartDAO();
+                    cartDAO.deleteProduct(productId, sessionCustomer.getCustomerId());
+                }
                 carts.remove(productId);
             }
             session.setAttribute("carts", carts);

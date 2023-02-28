@@ -83,13 +83,6 @@
                                       Thanh toán trực tiếp khi nhận hàng
                                     </label>
                                 </div>
-                                <div class="form-check mt-2 mb-4">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                      Thanh toán bằng ngân hàng nội địa
-                                    </label>
-                                </div>
-
                             </div>
                         
 
@@ -157,7 +150,7 @@
                                 <span class="fw-bolder fs-4">Tổng cộng</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #fb1514;"><%=helper.convertBigNum(total_price)%> VND</span>
+                                <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> VND</span>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
