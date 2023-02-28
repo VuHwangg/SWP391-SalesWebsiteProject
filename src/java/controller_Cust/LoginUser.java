@@ -46,11 +46,10 @@ public class LoginUser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         //request -> gg -> send form login
         //gg -> respond cho servlet (gmail)
         //check gmail
-        
         //chua co tk -> dki tk
         //home
         String code = request.getParameter("code");
@@ -61,13 +60,14 @@ public class LoginUser extends HttpServlet {
         OrderDAO odao = new OrderDAO();
         HttpSession session = request.getSession();
         Account acc = adao.checkExistAcc(mail);
-        Customer cust = adao.getCust(mail,true);
+        Customer cust = adao.getCust(mail, true);
         int role = adao.getRole(mail);
 //        if (odao.checkExist(cust.getCustomerId())){
 //            session.invalidate();
 //        }
 // response.getWriter().print(mail);
-        if (adao.loginGoogle(user.getEmail())) {
+       
+        if (adao.loginGoogle(mail,true)) {
             CartDAO cartDAO = new CartDAO();
             Map<Integer, Cart> carts = cartDAO.getCartsByCustomerId(cust.getCustomerId());
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
@@ -85,9 +85,10 @@ public class LoginUser extends HttpServlet {
         } else {
             request.getRequestDispatcher("register-user.jsp").forward(request, response);
         }
-        
+//        
 
     }
+
     //phiên dịch mã từ respond của gg
     //mã -> gg
     public static String getToken(String code) throws ClientProtocolException, IOException {

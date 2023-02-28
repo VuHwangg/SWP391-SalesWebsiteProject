@@ -244,6 +244,20 @@ public class OrderDAO extends DBContext {
         }
         return check;
     }
+    public boolean deleteCart(int cart_id){
+      boolean check = false;
+        try {
+            String sql = "delete from Cart where cart_id =?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, cart_id);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+        }
+        return check;
+        
+    }
 
 //    public static void main(String[] args) {
 //         ArrayList<Order_Details> arr = new ArrayList<>();
