@@ -1,4 +1,4 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
+ <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Order" %>
 <%@page import="java.sql.Date" %>
@@ -83,7 +83,7 @@
                                          
                                                       
                 %>
-                <table class="order-detail table text-center mt-5">
+                <table class="order-detail-table table text-center mt-5">
                     <tbody>
                         <tr class="row fw-bold">
                             <th class="col border border-1 border-white">Mã đơn hàng</th>
@@ -99,7 +99,7 @@
                                        String price= helper.convertBigNum(arr.get(i).getTotal_price());
                         
                         %>
-                        <tr class="row">
+                        <tr class="row py-1">
                             <th class="col fw-normal"><%=arr.get(i).getOrder_id()%></th>
                             <th class="col fw-normal"><%=arr.get(i).getDate()%></th>
                                 <% if (arr.get(i).getStatus() == 1){
@@ -123,7 +123,7 @@
                             <th class="col fw-normal text-decoration-underline">
                                 <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
                             </th>
-                            <th class="col fw-normal text-end"> <%=price%></th>
+                            <th class="col fw-normal text-end"> <%=price%> &#8363;</th>
                         </tr>
                         <%}
 }

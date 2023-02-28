@@ -36,6 +36,12 @@
         --main-color-darkgray: #243238;
         --main-color-black: rgb(39, 39, 39);
     }
+    
+    table tr,
+    table td,
+    table th {
+        overflow: hidden;
+    }
 
     ul {
         margin: 0;
@@ -1147,7 +1153,7 @@
         color: white;
     }
 
-    .order-lookup .order-detail tr:first-child{
+    .order-detail-table tr:first-child{
         color: white;
         background-color: var(--main-bg-color);
     }
