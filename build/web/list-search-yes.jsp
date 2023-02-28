@@ -108,7 +108,40 @@
                                     </a>
                                 </c:forEach>
                             </div>
-                            <%@include file="components/pagination.jsp" %>  
+                            <form action="" method="get">
+                                <div class="pagination d-flex justify-content-center mt-5">
+
+                                    <div class="btn-group" role="group">
+                                        <c:if test="${requestScope.page!=1}">
+                                            <button class="btn btn-outline-danger arrow
+                                                    " name="page" value="${requestScope.page-1}">
+                                                <i class="bi bi-chevron-double-left"></i>
+                                            </button>
+                                        </c:if>
+
+                                        <c:forEach var = "i" begin = "1" end = "${requestScope.totalPage}">
+                                            <button class="btn btn-outline-danger
+                                                    <c:if test="${requestScope.page==i}">
+                                                        active
+                                                    </c:if>
+                                                    " name="page" value="${i}">
+                                                ${i}
+                                            </button>
+                                        </c:forEach>
+                                        <c:if test="${requestScope.page!=requestScope.totalPage}">
+                                            <button class="btn btn-outline-danger arrow
+
+                                                    " name="page" value="${requestScope.page+1}">
+                                                <i class="bi bi-chevron-double-right"></i>
+                                            </button>
+                                        </c:if>
+
+                                    </div>
+                                </div>
+                                <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
+                                <input type="hidden" name="sort" value="${param.sort}" />
+                            </form>
+
                         </div>
                     </div>
                 </div>

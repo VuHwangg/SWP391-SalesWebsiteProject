@@ -23,9 +23,20 @@ public class SearchController extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String textSearch = request.getParameter("txtSearch");
+        String rawNumOfPage = request.getParameter("page");
         String sort = request.getParameter("sort");
+        int numOfPage;
+        if (rawNumOfPage != null) {
+            numOfPage = Integer.parseInt(request.getParameter("page"));
+        } else {
+            numOfPage = 1;
+        }
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> searchList = productList.listProduct(textSearch,sort);
+        ArrayList<Product> searchList = productList.listProduct(textSearch,sort,numOfPage);
+        double totalPage = productList.countProductKey(textSearch);
+        totalPage= Math.ceil(totalPage/12);
+        request.setAttribute("page", numOfPage);
+        request.setAttribute("totalPage", totalPage);
         request.setAttribute("searchList", searchList);
         if(searchList.isEmpty()){
             response.sendRedirect("list-search-no.jsp");
@@ -33,6 +44,7 @@ public class SearchController extends HttpServlet{
         else{
             request.getRequestDispatcher("list-search-yes.jsp").forward(request, response);
         }     
+//            response.getWriter().print(productList.countProductKey(textSearch));
     }
 
     @Override

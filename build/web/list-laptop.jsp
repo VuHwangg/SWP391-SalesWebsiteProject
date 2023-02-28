@@ -39,33 +39,33 @@
                         <c:if test="${param.type == 0}">
                             <a href="#">Điện thoại</a>
                         </c:if>
-                            
+
                     </div>
                     <!-- carousel -->
                     <div class="small-main-carousel carousel slide" id="carousel-main" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carousel-main" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="img/banner/small_banner_1.jpg" class="d-block w-100" alt="banner 1">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="img/banner/small_banner_2.jpg" class="d-block w-100" alt="banner 2">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="img/banner/small_banner_3.jpg" class="d-block w-100" alt="banner 3">
-                          </div>
+                            <div class="carousel-item active">
+                                <img src="img/banner/small_banner_1.jpg" class="d-block w-100" alt="banner 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/banner/small_banner_2.jpg" class="d-block w-100" alt="banner 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/banner/small_banner_3.jpg" class="d-block w-100" alt="banner 3">
+                            </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-main" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carousel-main" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                     <!-- list product block -->
@@ -166,29 +166,29 @@
                                     </div>
 
                                     <div class="row">
-                                      <div class="wrapper">
-                                        <p class="filter-title">Mức giá</p>
-                                        <div class="price-input">
-                                            <div class="field">
+                                        <div class="wrapper">
+                                            <p class="filter-title">Mức giá</p>
+                                            <div class="price-input">
+                                                <div class="field">
 
-                                                <input name="from" type="number" class="input-min" value="${param.from}">
-                                                <span>&nbsp;&#8363</span>
+                                                    <input name="from" type="number" class="input-min" value="${param.from}">
+                                                    <span>&nbsp;&#8363</span>
+                                                </div>
+                                                <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
+                                                <div class="field">
+                                                    <input name="to" type="number" class="input-max" value="${param.to}">
+                                                    <span>&nbsp;&#8363</span>
+                                                </div>
                                             </div>
-                                            <div class="separator">&nbsp;<i class="bi bi-arrow-right"></i>&nbsp;</div>
-                                            <div class="field">
-                                                <input name="to" type="number" class="input-max" value="${param.to}">
-                                                <span>&nbsp;&#8363</span>
+                                            <div class="slider">
+                                                <div class="progress" style="left: 0%; right: 100%"></div>
                                             </div>
-                                        </div>
-                                        <div class="slider">
-                                            <div class="progress" style="left: 0%; right: 100%"></div>
-                                        </div>
-                                        <div class="range-input">
-                                            <input  type="range" class="range-min" min="0" max="100000000" value="${requestScope.from}" step="2000000">
-                                            <input type="range" class="range-max" min="0" max="100000000" value="${requestScope.to}" step="2000000">
+                                            <div class="range-input">
+                                                <input  type="range" class="range-min" min="0" max="100000000" value="${requestScope.from}" step="2000000">
+                                                <input type="range" class="range-max" min="0" max="100000000" value="${requestScope.to}" step="2000000">
+                                            </div>
                                         </div>
                                     </div>
-                                  </div>
                                     <input type="hidden" name="type" value="${param.type}"/>
                                     <input class="btn-filter" type="submit" value=" Tìm kiếm " />
                                 </div>
@@ -261,7 +261,35 @@
                                             </a>
                                         </c:forEach>
                                     </div>
-                                    <%@include file="components/pagination.jsp" %>  
+                                    <div class="pagination d-flex justify-content-center mt-5">
+
+                                        <div class="btn-group" role="group">
+                                            <c:if test="${requestScope.page!=1}">
+                                                <button class="btn btn-outline-danger arrow
+                                                        " name="page" value="${requestScope.page-1}">
+                                                    <i class="bi bi-chevron-double-left"></i>
+                                                </button>
+                                            </c:if>
+                                            
+                                            <c:forEach var = "i" begin = "1" end = "${requestScope.totalPage}">
+                                                <button class="btn btn-outline-danger
+                                                        <c:if test="${requestScope.page==i}">
+                                                            active
+                                                        </c:if>
+                                                        " name="page" value="${i}">
+                                                    ${i}
+                                                </button>
+                                            </c:forEach>
+                                            <c:if test="${requestScope.page!=requestScope.totalPage}">
+                                                <button class="btn btn-outline-danger arrow
+
+                                                        " name="page" value="${requestScope.page+1}">
+                                                    <i class="bi bi-chevron-double-right"></i>
+                                                </button>
+                                            </c:if>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>

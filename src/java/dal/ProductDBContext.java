@@ -79,6 +79,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+
     //lấy ra các sản phẩm có thuộc tính cụ thể
     public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
         Product product = new Product();
@@ -229,10 +230,66 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+
+    //count num of product
+    public int countProductByType(int type) {
+        int count = 0;
+        try {
+            String sql = "SELECT [product_id]\n"
+                    + "  FROM [Product] where [type] = ? AND [status] = 1 ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, type);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                count++;
+            }
+            stm.close();
+            rs.close();
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public int countProductKey(String rawTxtSearch) {
+        int count = 0;
+        String txtSearch = "%" + rawTxtSearch + "%";
+        try {
+            String sql = "SELECT [product_id]\n"
+                    + "  FROM   [Product] \n"
+                    + "  WHERE [name] LIKE ?\n"
+                    + "   OR [os] LIKE ?\n"
+                    + "   OR [color] LIKE ?\n"
+                    + "   OR [ram] LIKE ?\n"
+                    + "   OR [memory] LIKE ?\n"
+                    + "   OR [cpu] LIKE ?\n"
+                    + "   OR [graphics_card] LIKE ? AND [status] = 1";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, txtSearch);
+            stm.setString(2, txtSearch);
+            stm.setString(3, txtSearch);
+            stm.setString(4, txtSearch);
+            stm.setString(5, txtSearch);
+            stm.setString(6, txtSearch);
+            stm.setString(7, txtSearch);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                count++;
+            }
+            stm.close();
+            rs.close();
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 //for search screen(lấy sản phẩm theo một từ khóa)
 
-    public ArrayList<Product> listProduct(String rawTxtSearch, String sort) {
+    public ArrayList<Product> listProduct(String rawTxtSearch, String sort, int numOfPage) {
         ArrayList<Product> products = new ArrayList<>();
+        int skip = (numOfPage - 1) * 12;
         String txtSearch = "%" + rawTxtSearch + "%";
         try {
             String sql = "SELECT [product_id]\n"
@@ -269,6 +326,7 @@ public class ProductDBContext extends DBContext {
             if (sort.compareTo("DESC") == 0) {
                 sql = sql + "\n ORDER BY [current_price] DESC";
             }
+             sql = sql + " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, txtSearch);
             stm.setString(2, txtSearch);
@@ -277,6 +335,7 @@ public class ProductDBContext extends DBContext {
             stm.setString(5, txtSearch);
             stm.setString(6, txtSearch);
             stm.setString(7, txtSearch);
+            stm.setInt(8, skip);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -316,7 +375,9 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 //for type screen(lấy sản phẩm theo bộ lọc cho trước)
-    public ArrayList<Product> filterProduct(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
+
+    public ArrayList<Product> filterProduct(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes, int numOfPage) {
+        int skip = (numOfPage - 1) * 9;
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT pr.[product_id]\n"
@@ -401,10 +462,12 @@ public class ProductDBContext extends DBContext {
             if (sort.compareTo("DESC") == 0) {
                 sql = sql + "\n ORDER BY pr.[current_price] DESC";
             }
+            sql = sql + " OFFSET ? ROWS FETCH NEXT 9 ROWS ONLY";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDouble(1, from);
             stm.setDouble(2, to);
             stm.setInt(3, type);
+            stm.setInt(4, skip);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();

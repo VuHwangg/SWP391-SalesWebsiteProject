@@ -32,6 +32,7 @@ public class FilterController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int type = Integer.parseInt(request.getParameter("type"));
         String rawSort = request.getParameter("sort");
+        String rawNumOfPage = request.getParameter("page");
         String rawFrom = request.getParameter("from");
         String rawTo = request.getParameter("to");
         String[] brands = request.getParameterValues("brand");
@@ -44,6 +45,7 @@ public class FilterController extends HttpServlet {
         request.setAttribute("allRequirements", allRequirements);
         request.setAttribute("allBrands", allBrands);
         String sort;
+        int numOfPage;
         if (brands == null) {
             String[] buffer = {"all"};
             brands = buffer;
@@ -65,31 +67,40 @@ public class FilterController extends HttpServlet {
         } else {
             sort = "none";
         }
+        if (rawNumOfPage != null) {
+            numOfPage = Integer.parseInt(request.getParameter("page"));
+        } else {
+            numOfPage = 1;
+        }
         if (rawFrom != null) {
             try {
                 from = Double.parseDouble(rawFrom);
             } catch (Exception e) {
                 from = 0;
             }
-            
+
         } else {
             from = 0;
         }
         if (rawTo != null) {
-             try {
+            try {
                 to = Double.parseDouble(rawTo);
             } catch (Exception e) {
                 to = 100000000;
             }
-            
+
         } else {
             to = 100000000;
         }
         request.setAttribute("from", from);
         request.setAttribute("to", to);
-
+        request.setAttribute("page", numOfPage);
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands, sizes);
+        ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands, sizes, numOfPage);
+        double totalPage = productList.countProductByType(type);
+        totalPage= Math.ceil(totalPage/9);
+//        response.getWriter().print(totalPage);
+        request.setAttribute("totalPage", totalPage);
         request.setAttribute("filterList", filterList);
         request.getRequestDispatcher("list-laptop.jsp").forward(request, response);
 //        response.getWriter().print(productList.testString(type, sort, from, to, needs, brands,sizes));
