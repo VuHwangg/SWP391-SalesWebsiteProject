@@ -58,20 +58,20 @@ public class LoginUser extends HttpServlet {
         Account acc = adao.checkExistAcc(mail);
         Customer cust = adao.getCust(mail,true);
         int role = adao.getRole(mail);
-        if (odao.checkExist(cust.getCustomerId())){
-            session.invalidate();
-        }
-
-        if (adao.loginGoogle(user.getEmail())) {
-            
-            session.setAttribute("cust", cust);
-            session.setAttribute("acc", acc);
-            session.setAttribute("role", role);
-            request.getRequestDispatcher("home").forward(request, response);
-        } else {
-            request.getRequestDispatcher("register-user.jsp").forward(request, response);
-        }
-        
+//        if (odao.checkExist(cust.getCustomerId())){
+//            session.invalidate();
+//        }
+ response.getWriter().print(mail);
+//        if (adao.loginGoogle(user.getEmail())) {
+//            
+//            session.setAttribute("cust", cust);
+//            session.setAttribute("acc", acc);
+//            session.setAttribute("role", role);
+//            request.getRequestDispatcher("home").forward(request, response);
+//        } else {
+//            request.getRequestDispatcher("register-user.jsp").forward(request, response);
+//        }
+//        
 
     }
     //phiên dịch mã từ respond của gg
