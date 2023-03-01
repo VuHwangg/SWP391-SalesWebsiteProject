@@ -140,9 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8 d-flex justify-content-end align-items-end">
-                                    <a class="save-btn btn btn-danger m-1" href="#">
-                                        Lưu Lại Thay Đổi
-                                    </a>
+                                    <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu lại thay đổi">
                                     <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
                                         Quay Lại
                                     </a>
