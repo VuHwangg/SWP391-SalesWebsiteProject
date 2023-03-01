@@ -239,7 +239,7 @@ Insert into Role(role_name) values ('Admin'),
 										   ('Employee'),
 										   ('Manage'),
 										   ('Customer')
-Insert into Account(username,[password],displayname) values	('admin','admin','admin')	
+Insert into Account(username,[password],displayname,image_url,[status]) values	('admin','admin','admin','',1)	
 Insert into Role_Account(role_id,username) values (1,'admin')
 Insert into Status(status_name) values ('Preparing'),('Shipping'),('Success'),('Cancelled')
 
