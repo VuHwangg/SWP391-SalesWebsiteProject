@@ -19,7 +19,7 @@
           <div class="main-container">
 
             <!-- Content Center -->
-            <div class="content-center">
+            <div class="content-center min-vh-100">
               <!-- Breadcrumb -->
               <div class="breadcrumb">
                 <a href="home">Trang chủ</a>
@@ -27,14 +27,14 @@
                 <a href="#">Thông tin cá nhân</a>
               </div>
               <!-- list product block -->
-              <div class="profile">
+              <div class="profile d-flex justify-content-center align-items-center flex-column">
                    <%
                         cus = (Customer) session.getAttribute("cust");
                         mess = (String)request.getAttribute("err");
                         if(mess == null) mess="";           
                     %>
                     <p><%=mess%></p>
-                <div class="row">
+                <div class="row w-100">
                   <!-- list of filter check-box column -->
                   <div class="cover-block profile-left col-sm-3 bg-offwhite">
                       <div class="avatar">
