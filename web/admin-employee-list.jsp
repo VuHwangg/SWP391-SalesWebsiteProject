@@ -1,5 +1,8 @@
+<%@page import="java.util.ArrayList" %>
+<%@page import="model.Account" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,6 +19,15 @@
         <%@include file="components/admin-navbar.jsp" %>
 
         <!-- CONTENT PART -->
+         <%
+                                             ArrayList<Account> arr = (ArrayList<Account>) session.getAttribute("arrAcc");
+                                             int mana = (int) session.getAttribute("mana");
+                                             int empt =(int) session.getAttribute("empt");
+                                             int total = mana + empt;
+                                             String err ="";
+                                         
+                                                      
+                    %>
         <div class="content-wrapper">
             <div class="container-fluid">
 
@@ -42,7 +54,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">5</span>
+                                <span class="mr-5"><%=total%></span>
                             </a>
                         </div>
                     </div>
@@ -59,7 +71,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">2</span>
+                                <span class="mr-5"><%=mana%></span>
                             </a>
                         </div>
                     </div>
@@ -76,7 +88,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">3</span>
+                                <span class="mr-5"><%=empt%></span>
                             </a>
                         </div>
                     </div>
@@ -107,15 +119,16 @@
                                         <th>Vai trò</th>
                                         <th>Quản lý</th>
                                     </tr>
-
+                                    <%for (int i = 0; i < arr.size(); i++) {%>
                                     <!--Nhập dữ liệu vào đây-->
                                     <tr style="border-bottom: 2px solid #dee2e6" >
-                                        <td>1</td>
-                                        <td>Chu Thành Duy</td>
-                                        <td>chuthanhduy</td>
+                                        
+                                        <td><%=(i+1)%></td>
+                                        <td><%=arr.get(i).getDisplayname()%></td>
+                                        <td><%=arr.get(i).getUsername()%></td>
                                         <td>
                                             <div class="password-input-group multi-input input-group">
-                                                <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="yeuanh123" required readonly>
+                                                <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="<%=arr.get(i).getPassword()%>" required readonly>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">
                                                         <a href="" class="toggle-password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
@@ -123,37 +136,19 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>Quản kho</td>
+                                        <%if(arr.get(i).getRole() == 2) err = "Quản kho";
+                                        if(arr.get(i).getRole() == 3) err = "Bán Hàng";
+                                        %>
+                                        <td><%=err%></td>
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-success w-100" href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Nghỉ việc</button>
+                                                <a href="cancelEmpt?id=<%=arr.get(i).getUsername()%>"><button class="btn btn-danger w-100">Nghỉ việc</button></a>
                                             </div>
                                         </td>
                                     </tr>
-
-                                    <tr style="border-bottom: 2px solid #dee2e6" >
-                                        <td>2</td>
-                                        <td>Chu Thành Duy</td>
-                                        <td>chuthanhduy</td>
-                                        <td>
-                                            <div class="password-input-group multi-input input-group">
-                                                <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="yeuanh123" required readonly>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <a href="" class="toggle-password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                                    </span> 
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Bán hàng</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a class="btn btn-success w-100" href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Nghỉ việc</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <%}%>
+                                  
                                 </tbody>
                             </table>
                         </div>

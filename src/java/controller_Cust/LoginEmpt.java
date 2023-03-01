@@ -47,7 +47,7 @@ public class LoginEmpt extends HttpServlet {
                 req.setAttribute("err", "Username is not exist");
                 req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
             }else{
-                req.getRequestDispatcher("#").forward(req, resp);
+                req.getRequestDispatcher("admin-dashmap.jsp").forward(req, resp);
             }
         }
 
