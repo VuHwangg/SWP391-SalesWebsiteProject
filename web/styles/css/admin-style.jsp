@@ -564,15 +564,15 @@
     }
     
     .table-pro tr th:nth-child(2) {
-        width: 23%;
+        width: 19%;
     }
-
+    
     .table-pro tr th:nth-child(3) {
         width: 10%;
     }
 
     .table-pro tr th:nth-child(4) {
-        width: 8%;
+        width: 10%;
     }
 
     .table-pro tr th:nth-child(5) {
@@ -580,15 +580,19 @@
     }
 
     .table-pro tr th:nth-child(6) {
-        width: 12%;
+        width: 8%;
     }
-    
+
     .table-pro tr th:nth-child(7) {
-        width: 12%;
+        width: 10%;
     }
     
     .table-pro tr th:nth-child(8) {
-        width: 22%;
+        width: 10%;
+    }
+    
+    .table-pro tr th:nth-child(9) {
+        width: 20%;
     }
     
     /*Custom Design Of Table Defalt*/

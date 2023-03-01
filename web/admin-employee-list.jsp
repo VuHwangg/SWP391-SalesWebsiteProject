@@ -35,7 +35,7 @@
                         <div class="card card-r1 text-white bg-danger o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-comments"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <div>
                                     <span>Tổng số nhân viên</span>
@@ -52,7 +52,7 @@
                         <div class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-list"></i>
+                                    <i class="fa fa-archive"></i>
                                 </div>
                                 <div>
                                     <span>Số quản kho</span>

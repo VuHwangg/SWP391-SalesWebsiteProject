@@ -35,7 +35,7 @@
                         <div class="card card-r1 text-white bg-danger o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-comments"></i>
+                                    <i class="fa fa-shopping-bag"></i>
                                 </div>
                                 <div>
                                     <span>Tổng số sản phẩm</span>
@@ -52,7 +52,7 @@
                         <div class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-list"></i>
+                                    <i class="fa fa-phone"></i>
                                 </div>
                                 <div>
                                     <span>Số điện thoại</span>
@@ -69,7 +69,7 @@
                         <div class="card card-r1 text-white bg-success o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-shopping-cart"></i>
+                                    <i class="fa fa-laptop"></i>
                                 </div>
                                 <div>
                                     <span>Số máy tính</span>
@@ -102,6 +102,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên sản phẩm</th>
+                                        <th>Phân loại</th>
                                         <th>Màu sắc</th>
                                         <th>RAM</th>
                                         <th>ROM</th>
@@ -116,6 +117,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Iphone 14</td>
+                                        <td>Điện thoại</td>
                                         <td>Black</td>
                                         <td>6<span>GB</span></td>
                                         <td>128<span>GB</span></td>
@@ -135,6 +137,7 @@
                                     <tr>
                                         <td>2</td>
                                         <td>Aphone 14</td>
+                                        <td>Điện thoại</td>
                                         <td>Red</td>
                                         <td>6<span>GB</span></td>
                                         <td>128<span>GB</span></td>
@@ -154,6 +157,7 @@
                                     <tr>
                                         <td>3</td>
                                         <td>Bphone 14</td>
+                                        <td>Điện thoại</td>
                                         <td>Blue</td>
                                         <td>6<span>GB</span></td>
                                         <td>128<span>GB</span></td>
@@ -173,6 +177,7 @@
                                     <tr>
                                         <td>4</td>
                                         <td>Cphone 14</td>
+                                        <td>Điện thoại</td>
                                         <td>Black</td>
                                         <td>6<span>GB</span></td>
                                         <td>128<span>GB</span></td>
