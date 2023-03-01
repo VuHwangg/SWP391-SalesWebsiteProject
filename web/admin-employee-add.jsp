@@ -27,7 +27,7 @@
                     <li class="breadcrumb-item">
                         <a href="admin-employee-list.jsp">Quản lý nhân viên</a>
                     </li> 
-                    <li class="breadcrumb-item active">Chỉnh sửa</li>
+                    <li class="breadcrumb-item active">Thêm nhân viên</li>
                 </ol>
 
                 <!-- Icon Cards-->
@@ -95,25 +95,21 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
                     
                     <div class="card-header">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên số 
-                        <!--ID của nhân viên-->
-                        <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                            #1
-                        </span>
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Thêm mới nhân viên
                     </div>
                     <div class="card-body p-3">
                         <form>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="Chu Thành Duy" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" required>
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="phone" name="username" placeholder="Tài khoản" value="chuthanhduy" required>
+                                <input type="text" class="form-control" id="phone" name="username" placeholder="Tài khoản" required>
 
                             </div>
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
-                                    <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="yeuanh123" required>
+                                    <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <a href="" class="toggle-password" style="color: #dc3545;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
@@ -140,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8 d-flex justify-content-end align-items-end">
-                                    <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu lại thay đổi">
+                                    <input type="submit" class="save-btn btn btn-danger m-1" value="Tạo mới">
                                     <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
                                         Quay Lại
                                     </a>
