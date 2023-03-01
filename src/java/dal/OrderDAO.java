@@ -8,6 +8,7 @@ import com.mysql.cj.Messages;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Account;
 import model.Order;
@@ -255,7 +256,7 @@ public class OrderDAO extends DBContext {
             int rowsAffected = ps.executeUpdate();
             if(rowsAffected > 0) check = true;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return check;
 

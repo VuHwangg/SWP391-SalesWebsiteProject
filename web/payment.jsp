@@ -103,7 +103,7 @@
                             <div class="col-md-6">
                                 <span class="fw-bolder fs-5" style="color: #555555;">${cart.getValue().getProduct().getName()}</span>
                                 <br>
-                                <span class="fw-light fs-6">Mầu sắc: ${cart.getValue().getProduct().getColor()}</span>
+                                <span class="fw-light fs-6">Màu sắc: ${cart.getValue().getProduct().getColor()}</span>
                                 <br>
                                 <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
                             </div>
