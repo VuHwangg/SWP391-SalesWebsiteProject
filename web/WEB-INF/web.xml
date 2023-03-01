@@ -96,6 +96,10 @@
         <servlet-name>logoutEmpt</servlet-name>
         <servlet-class>controller_Empt.logoutEmpt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editEmpt</servlet-name>
+        <servlet-class>controller_Empt.editEmpt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -226,6 +230,10 @@
     <servlet-mapping>
         <servlet-name>logoutEmpt</servlet-name>
         <url-pattern>/logoutEmpt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editEmpt</servlet-name>
+        <url-pattern>/editEmpt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

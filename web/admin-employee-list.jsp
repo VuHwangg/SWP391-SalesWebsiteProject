@@ -137,12 +137,12 @@
                                             </div>
                                         </td>
                                         <%if(arr.get(i).getRole() == 2) err = "Quản kho";
-                                        if(arr.get(i).getRole() == 3) err = "Bán Hàng";
+                                        else err = "Bán Hàng";
                                         %>
                                         <td><%=err%></td>
                                         <td>
                                             <div class="d-flex">
-                                                <a class="btn btn-success w-100" href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;
+                                                <a class="btn btn-success w-100" href="editEmpt?id=<%=arr.get(i).getUsername()%>">Chỉnh sửa</a>&nbsp;
                                                 <a href="cancelEmpt?id=<%=arr.get(i).getUsername()%>"><button class="btn btn-danger w-100">Nghỉ việc</button></a>
                                             </div>
                                         </td>
