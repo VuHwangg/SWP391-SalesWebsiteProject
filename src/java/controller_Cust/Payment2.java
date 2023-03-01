@@ -111,8 +111,8 @@ public class Payment2 extends HttpServlet {
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
                     od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price);
-                    if(od.deleteCart(cart.getValue().getCartId())== false) request.getRequestDispatcher("404-page.jsp").forward(request, response); 
-//                    
+                    if(od.deleteCart(cart.getValue().getCartId())){} else request.getRequestDispatcher("404-page.jsp").forward(request, response);                    
+                
                 }
                 Ec.SendEmail(email, total_price, Ec.MessageProduct(carts), NewOrderId);
                 session.setAttribute("Order", od.getOrder1(NewOrderId));
@@ -124,9 +124,9 @@ public class Payment2 extends HttpServlet {
             }
             
             request.getRequestDispatcher("home").forward(request, response);
-  
+      
         } catch (MessagingException ex) {
-            request.getRequestDispatcher("404-page.jsp").forward(request, response);
+            request.getRequestDispatcher("home").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(Payment2.class.getName()).log(Level.SEVERE, null, ex);
         }
