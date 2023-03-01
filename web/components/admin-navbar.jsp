@@ -33,7 +33,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseEmployee">
                     <li>
-                        <a href="admin-employee-list.jsp">Quản lý nhân viên</a>
+                        <a href="controllerEmployee">Quản lý nhân viên</a>
                     </li>
                     <li>
                         <a href="register-admin.jsp">Tạo tài khoản</a>

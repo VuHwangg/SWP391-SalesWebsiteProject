@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Account;
 import model.Customer;
 
@@ -54,7 +55,9 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                acc = new Account(name, pass, displayname);
+                boolean status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                acc = new Account(username, password, displayname, status, img_url);
             }
 
         } catch (Exception ex) {
@@ -63,16 +66,17 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean addAcount(String username, String password, String displayname) {
+    public boolean addAcount(String username, String password, String displayname,String url,boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Account "
-                    + "(username,password,displayname) values (?,?,?)";
+                    + "(username,password,displayname,[status],image_url) values (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, displayname);
-
+            ps.setBoolean(4, status);
+            ps.setString(5, url);
             check = ps.executeUpdate() > 0;
             
         } catch (Exception e) {
@@ -130,7 +134,9 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                acc = new Account(name, pass, displayname);
+               boolean status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                acc = new Account(name, pass, displayname, status, img_url);
             }
 
         } catch (Exception ex) {
@@ -218,6 +224,40 @@ public class AccountDAO extends DBContext {
             
             check = ps.executeUpdate() > 0;
             
+        } catch (Exception e) {
+        }
+        return check;
+    }
+     public ArrayList<Account> arrAcc (){
+         ArrayList<Account> arr = new ArrayList<>();
+         try {
+            String sql ="select * from Account  inner join Role_Account  on Account.username = Role_Account.username where (Role_Account.role_id =2 or Role_Account.role_id =3) and Account.status = 1  ";
+            PreparedStatement st = connection.prepareStatement(sql);
+          
+            ResultSet rs = st.executeQuery();
+           while (rs.next()) {
+                String name = rs.getString("username");
+                String pass = rs.getString("password");
+                String displayname = rs.getString("displayname");
+               boolean status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                int role_id = rs.getInt("role_id");
+                arr.add(new Account(name, pass, displayname, status, img_url,role_id));
+            }
+           
+        } catch (SQLException e) {
+        }
+         return arr;
+     }
+     public boolean updateStatusAccount(String username) {
+        boolean check = false;
+        try {
+            String sql = "Update Account set [status] = 0 where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+
+            check = ps.executeUpdate() > 0;
+
         } catch (Exception e) {
         }
         return check;
