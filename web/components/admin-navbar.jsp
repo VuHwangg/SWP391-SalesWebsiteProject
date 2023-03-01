@@ -85,11 +85,15 @@
 
         <!--  UPPER NAVIGATION BAR ============================================================================= -->
         <ul class="navbar-nav ml-auto">
-            
+
             <!-- LOGOUT BUTTON ============================================================================= -->
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="logoutEmpt">
-                    <i class="fa fa-fw fa-sign-out"></i>Đăng xuất</a>
+                <!--<a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
+                </a>-->
+                <a class="nav-link" href="home">
+                    <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
+                </a>
             </li>
         </ul>
     </div>

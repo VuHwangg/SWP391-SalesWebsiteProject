@@ -48,7 +48,7 @@
                         <div class="card card-r1 text-white bg-danger o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-comments"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <div>
                                     <span>Tổng số nhân viên</span>
@@ -65,7 +65,7 @@
                         <div class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-list"></i>
+                                    <i class="fa fa-archive"></i>
                                 </div>
                                 <div>
                                     <span>Số quản kho</span>
@@ -111,11 +111,13 @@
                     <div class="card-body p-3">
                         <form action="editEmpt" method="post" id="<%=acc.getUsername()%>">
                             <div class="mb-3">
+
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="<%=acc.getDisplayname()%>" required>
 
                             </div>
                          
                             <div class="mb-3">
+                                <!--Mật khẩu-->
                                 <div class="password-input-group input-group">
                                     <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="<%=acc.getPassword()%>" required>
                                     <div class="input-group-append">
@@ -123,6 +125,13 @@
                                             <a href="" class="toggle-password" style="color: #dc3545;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <!--Thêm ảnh 1 ảnh-->
+                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg">
+                                <div class="input-group-append" >
+                                    <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
                                 </div>
                             </div>
                             <div>
