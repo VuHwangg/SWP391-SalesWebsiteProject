@@ -62,11 +62,12 @@
                                         <p class="mb-3" style="color: #fb1514; font-size: 20px">
                                             * Phần đăng ký dành cho nhân viên *
                                         </p>
-                                        
+
                                         <form action="SignupEmpt" method="post">
-                                              <%
-                                String mess = (String)request.getAttribute("err");
-                                if(mess == null) mess="Bạn vui lòng hoàn thiện thông tin bên dưới";           
+                                            <%
+                                                String mess = (String) request.getAttribute("err");
+                                                if (mess == null)
+                                                    mess = "Bạn vui lòng hoàn thiện thông tin bên dưới";
                                             %>
                                             <p><%=mess%></p>
                                             <div class="mb-3">
@@ -103,38 +104,42 @@
                                                     placeholder="Nhập lại mật khẩu"
                                                     />
                                             </div>
+                                            <div class="input-group mb-3">
+                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg">
+                                                <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
+                                            </div>
                                             <div class="mb-3 row" style="text-align: left">
-                                              <h6>Vai trò của nhân viên:</h6>
-                                              <div class="col-md-6">
-                                                <ul class="list-group">
-                                                  <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="manager" name="role" value="3" checked>
-                                                    <label class="form-check-label" for="manager">Quản lý kho</label>
-                                                    <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
-                                                        <i class="bi bi-info-circle"></i>
-                                                    </a>
-                                                  </li>
-                                                  <li class="list-group-item">
-                                                    <input class="form-check-input me-1" type="radio" id="employee" name="role" value="2">
-                                                    <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
-                                                    <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
-                                                        <i class="bi bi-info-circle"></i>
-                                                    </a>
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="collapse collapse-info" id="manager-info">
-                                                    <div class="card card-body">
-                                                      Quản lý xuất nhập kho, và sô lượng sản phẩm hiện có 
+                                                <h6>Vai trò của nhân viên:</h6>
+                                                <div class="col-md-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <input class="form-check-input me-1" type="radio" id="manager" name="role" value="3" checked>
+                                                            <label class="form-check-label" for="manager">Quản lý kho</label>
+                                                            <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
+                                                                <i class="bi bi-info-circle"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <input class="form-check-input me-1" type="radio" id="employee" name="role" value="2">
+                                                            <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
+                                                            <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
+                                                                <i class="bi bi-info-circle"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="collapse collapse-info" id="manager-info">
+                                                        <div class="card card-body">
+                                                            Quản lý xuất nhập kho, và sô lượng sản phẩm hiện có 
+                                                        </div>
                                                     </div>
-                                                  </div>
-                                                  <div class="collapse collapse-info" id="employee-info">
-                                                    <div class="card card-body">
-                                                      Quản lý đơn hàng được bán
+                                                    <div class="collapse collapse-info" id="employee-info">
+                                                        <div class="card card-body">
+                                                            Quản lý đơn hàng được bán
+                                                        </div>
                                                     </div>
-                                                  </div>
-                                              </div>
+                                                </div>
                                             </div>
 
                                             <button

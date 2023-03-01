@@ -130,14 +130,13 @@
                                     </div>
                                     <!--Loại sản phẩm-->
                                     <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Choose...</option>
-                                        <option value="phone">Điện thoại</option>
+                                        <option selected value="phone">Điện thoại</option>
                                         <option value="laptop">Laptop</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="input-group mb-3">
-                                <!--Thêm ảnh-->
+                                <!--Thêm nhiều ảnh-->
                                 <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg" multiple required>
                                 <div class="input-group-append" >
                                     <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
@@ -163,8 +162,7 @@
                                     </div>
                                     <!--Hệ điều hành-->
                                     <select class="custom-select" id="inputGroupSelect02">
-                                        <option selected>Choose...</option>
-                                        <option value="android">Android</option>
+                                        <option selected value="android">Android</option>
                                         <option value="ios">IOS</option>
                                         <option value="window">Windows</option>
                                         <option value="macos">MacOS</option>
