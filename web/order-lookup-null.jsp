@@ -21,7 +21,7 @@
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
-                    <a href="#">Đơn hàng của tôi</a>
+                    <a href="#">Tra đơn</a>
                 </div>
                 
                 <div class="d-flex justify-content-center align-items-center flex-column" style="height: 60vh">
