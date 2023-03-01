@@ -92,6 +92,10 @@
         <servlet-name>cancelEmpt</servlet-name>
         <servlet-class>controller_Empt.cancelEmpt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutEmpt</servlet-name>
+        <servlet-class>controller_Empt.logoutEmpt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -218,6 +222,10 @@
     <servlet-mapping>
         <servlet-name>cancelEmpt</servlet-name>
         <url-pattern>/cancelEmpt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutEmpt</servlet-name>
+        <url-pattern>/logoutEmpt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

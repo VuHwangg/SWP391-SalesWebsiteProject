@@ -88,7 +88,7 @@
             
             <!-- LOGOUT BUTTON ============================================================================= -->
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="logoutEmpt">
                     <i class="fa fa-fw fa-sign-out"></i>Đăng xuất</a>
             </li>
         </ul>
