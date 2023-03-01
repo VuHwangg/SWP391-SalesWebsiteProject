@@ -95,7 +95,12 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
                     
                     <div class="card-header">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên</div>
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên số 
+                        <!--ID của nhân viên-->
+                        <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
+                            #1
+                        </span>
+                    </div>
                     <div class="card-body p-3">
                         <form>
                             <div class="mb-3">
