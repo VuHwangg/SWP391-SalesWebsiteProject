@@ -125,8 +125,9 @@
                                         </td>
                                         <td>Quản kho</td>
                                         <td>
-                                            <div>
-                                                <a href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;<button>Nghỉ việc</button>
+                                            <div class="d-flex">
+                                                <a class="btn btn-success w-100" href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;
+                                                <button class="btn btn-danger w-100">Nghỉ việc</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -147,8 +148,9 @@
                                         </td>
                                         <td>Bán hàng</td>
                                         <td>
-                                            <div>
-                                                <a href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;<button>Nghỉ việc</button>
+                                            <div class="d-flex">
+                                                <a class="btn btn-success w-100" href="admin-employee-edit.jsp">Chỉnh sửa</a>&nbsp;
+                                                <button class="btn btn-danger w-100">Nghỉ việc</button>
                                             </div>
                                         </td>
                                     </tr>

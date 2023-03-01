@@ -545,32 +545,6 @@
         width: 20%;
     }
 
-    .table-emp tr td div:last-child {
-        display: flex;
-    }
-
-    .table-emp tr td:last-child a{
-        background-color: var(--green);
-        color: white;
-        width: 100%;
-    }
-
-    .table-emp tr td:last-child a:hover{
-        background-color: var(--green-hover);
-        color: white;
-    }
-
-    .table-emp tr td:last-child button{
-        background-color: var(--red);
-        color: white;
-        width: 100%;
-    }
-
-    .table-emp tr td:last-child button:hover{
-        background-color: var(--red-hover);
-        color: white;
-    }
-
     @media (max-width: 576px) {
         .save-btn {
             width: 100%;
