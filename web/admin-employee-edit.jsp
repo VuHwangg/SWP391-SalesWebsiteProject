@@ -121,13 +121,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div class="form-check">
+                                    <div class="form-check mb-2">
                                         <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             Người quản kho
                                         </label>
                                     </div>
-                                    <div class="form-check mt-2">
+                                    <div class="form-check mb-2">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             Người bán hàng
@@ -135,8 +135,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8 d-flex justify-content-end align-items-end">
-                                    <a class="save-btn btn btn-danger" href="#">
+                                    <a class="save-btn btn btn-danger m-1" href="#">
                                         Lưu Lại Thay Đổi
+                                    </a>
+                                    <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
+                                        Quay Lại
                                     </a>
                                 </div>
                             </div>

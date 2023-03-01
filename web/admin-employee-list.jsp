@@ -92,7 +92,9 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
                     
                     <div class="card-header">
-                        <i class="fa fa-table"></i>&nbsp;Danh sách nhân viên</div>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách nhân viên</span>
+                        <a href="admin-employee-edit.jsp" class="add-btn btn btn-danger text-white" style="float: right"><i class="fa fa-plus-circle"></i> Thêm nhân viên</a>
+                    </div>
                     <div class="card-body p-3">
                         <div class="table-responsive">
                             <table class="table-emp table text-center border-white" border="1">

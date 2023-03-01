@@ -564,6 +564,10 @@
             margin-top: 10px;
         }
     }
+    
+    .add-btn {
+        padding: 4px 8px;
+    }
 
 
     /*Password Input Group (Hide/Show)*/
