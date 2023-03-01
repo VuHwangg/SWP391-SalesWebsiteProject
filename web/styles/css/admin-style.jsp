@@ -488,17 +488,39 @@
     }
 
 
-    /*Table Employee Management*/
+    /*
+    ======================================
+    Table Management
+    ======================================
+    */
 
     .table-emp tr th,
-    .table-emp tr td {
+    .table-emp tr td,
+    .table-pro tr th,
+    .table-pro tr td {
         vertical-align: middle;
     }
-
-    .table-emp tr th {
+    
+    .table-emp tr th,
+    .table-pro tr th{
         padding: 12px 6px
     }
+    
+    .table-emp tr td button,
+    .table-emp tr td a,
+    .table-pro tr td button,
+    .table-pro tr td a {
+        border: none;
+        border-radius: 8px;
+        padding: 4px 8px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
 
+    
+    /*  Table Employee Management ===============================*/
+    
     .table-emp tr th:nth-child(1) {
         width: 10%;
     }
@@ -521,15 +543,6 @@
 
     .table-emp tr th:nth-child(6) {
         width: 20%;
-    }
-
-    .table-emp tr td button,
-    .table-emp tr td a{
-        border: none;
-        border-radius: 8px;
-        padding: 4px 8px;
-        cursor: pointer;
-        text-decoration: none;
     }
 
     .table-emp tr td div:last-child {
@@ -568,7 +581,48 @@
     .add-btn {
         padding: 4px 8px;
     }
+    
+    
+    /*  Table Product Management =============================*/
+    
+    .table-pro tr th:nth-child(1) {
+        width: 5%;
+    }
+    
+    .table-pro tr th:nth-child(2) {
+        width: 23%;
+    }
 
+    .table-pro tr th:nth-child(3) {
+        width: 10%;
+    }
+
+    .table-pro tr th:nth-child(4) {
+        width: 8%;
+    }
+
+    .table-pro tr th:nth-child(5) {
+        width: 8%;
+    }
+
+    .table-pro tr th:nth-child(6) {
+        width: 12%;
+    }
+    
+    .table-pro tr th:nth-child(7) {
+        width: 12%;
+    }
+    
+    .table-pro tr th:nth-child(8) {
+        width: 22%;
+    }
+    
+    /*Custom Design Of Table Defalt*/
+    
+    .page-item.active .page-link{
+        background-color: var(--red);
+        border-color: var(--red);
+    }
 
     /*Password Input Group (Hide/Show)*/
 
@@ -589,9 +643,6 @@
     .password-input-group a:hover {
         color: var(--red-hover);
     }
-    
-    
-
 
 
     footer.sticky-footer {
