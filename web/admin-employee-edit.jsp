@@ -35,7 +35,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="admin-employee-list.jsp">Quản lý nhân viên</a>
+                        <a href="controllerEmployee">Quản lý nhân viên</a>
                     </li> 
                     <li class="breadcrumb-item active">Chỉnh sửa</li>
                 </ol>
@@ -106,7 +106,10 @@
                     
                     <div class="card-header">
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên <%=acc.getUsername()%>
-                     
+                        <!--ID của sản phẩm-->
+                        <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
+                            #1
+                        </span>
                     </div>
                     <div class="card-body p-3">
                         <form action="editEmpt" method="post" id="<%=acc.getUsername()%>">
