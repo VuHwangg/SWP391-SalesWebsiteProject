@@ -105,7 +105,7 @@
                                                     />
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" >
+                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" value="" >
                                                 <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
                                             </div>
                                             <div class="mb-3 row" style="text-align: left">
