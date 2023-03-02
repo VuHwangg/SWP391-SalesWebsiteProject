@@ -50,7 +50,7 @@ public class EditProfile extends HttpServlet {
             if (adao.updateCust(customer_name, address, phone, mail)== true) {
                 if (adao.updateAccName(customer_name, mail) == true) {
                     cust = adao.getCust(mail,true);
-                    Account acc = adao.checkExistAcc(mail);
+                    Account acc = adao.checkExistAcc(mail,true);
                     session.setAttribute("acc", acc);
                     session.setAttribute("cust", cust);
                     req.getRequestDispatcher("profile.jsp").forward(req, resp);

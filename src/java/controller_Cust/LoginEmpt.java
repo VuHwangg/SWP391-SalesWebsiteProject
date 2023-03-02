@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import model.Account;
 
@@ -24,6 +25,7 @@ public class LoginEmpt extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
         String err = "1";
+        HttpSession session = req.getSession();
         if (email.isEmpty()) {
             err = " Please input the your Username";
 
@@ -41,12 +43,14 @@ public class LoginEmpt extends HttpServlet {
             req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
         } else {
             AccountDAO acc = new AccountDAO();
-            Account accout = acc.checkLoginCus(email, password);
+            Account accout = acc.checkLoginCus(email, password,true);
             
             if (accout == null) {
                 req.setAttribute("err", "Username is not exist");
                 req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
             }else{
+                accout = acc.getAcc(email);
+                session.setAttribute("acc", accout);
                 req.getRequestDispatcher("admin-dashmap.jsp").forward(req, resp);
             }
         }
