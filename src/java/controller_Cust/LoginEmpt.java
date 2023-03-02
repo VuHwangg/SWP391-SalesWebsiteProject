@@ -50,7 +50,7 @@ public class LoginEmpt extends HttpServlet {
                 req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
             }else{
                 accout = acc.getAcc(email);
-                session.setAttribute("acc", accout);
+                session.setAttribute("acc1", accout);
                 req.getRequestDispatcher("admin-dashmap.jsp").forward(req, resp);
             }
         }

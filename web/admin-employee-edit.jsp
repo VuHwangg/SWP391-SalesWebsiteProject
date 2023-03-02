@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <% acc = (Account) session.getAttribute("acc");%>
+                <% Account acc = (Account) session.getAttribute("acc");%>
                 <!-- EDIT CARD-->
                 <div class="card mb-3">
                     
@@ -129,7 +129,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <!--Thêm ảnh 1 ảnh-->
-                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img">
+                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
                                 <div class="input-group-append" >
                                     <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
                                 </div>
