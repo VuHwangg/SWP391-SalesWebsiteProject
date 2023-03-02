@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <% acc = (Account) session.getAttribute("acc");%>
+                <% Account acc = (Account) session.getAttribute("acc");%>
                 <!-- EDIT CARD-->
                 <div class="card mb-3">
                     
