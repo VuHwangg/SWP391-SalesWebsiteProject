@@ -184,6 +184,12 @@
                                     <input type="text" class="form-control" placeholder="GPU (Card đồ họa)" value="">
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <h5 class="fw-bold">Mô tả sản phẩm</h5>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" placeholder="Mô tả" required></textarea>
+                            </div>
                             <div class="d-flex justify-content-end align-items-end">
                                 <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">
                                 <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
