@@ -24,13 +24,13 @@ public class SignupEmpt extends HttpServlet {
         String name = req.getParameter("name");
         String pass = req.getParameter("pass");
         String repass = req.getParameter("repass");
-        String img = "";
+        String img = req.getParameter("img");
         int role = Integer.parseInt(req.getParameter("role"));
         String err = "1";
         AccountDAO acc = new AccountDAO();
         if (user.isEmpty()) {
             err = "Please input Username";
-        }if(acc.checkExistAcc(user) != null){
+        }if(acc.checkExistAcc(user,true) != null){
             err = "The Username is Exist. Please input anothor username";
         } 
         else {

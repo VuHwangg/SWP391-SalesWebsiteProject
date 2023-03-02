@@ -39,14 +39,14 @@ public class AccountDAO extends DBContext {
         return false;
     }
 
-    public Account checkLoginCus(String username, String password) {
+    public Account checkLoginCus(String username, String password,boolean status) {
         Account acc = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             String sql = "SELECT * "
                     + " FROM Account "
-                    + " WHERE username =? AND password=? ";
+                    + " WHERE username =? AND password=? and [status] =1 ";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -55,7 +55,7 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                boolean status = rs.getBoolean("status");
+                status = rs.getBoolean("status");
                 String img_url = rs.getString("image_url");
                 acc = new Account(username, password, displayname, status, img_url);
             }
@@ -118,14 +118,14 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public Account checkExistAcc(String username) {
+    public Account checkExistAcc(String username,boolean status) {
         Account acc = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             String sql = "SELECT * "
                     + " FROM Account "
-                    + " WHERE username =? ";
+                    + " WHERE username =? and [status] = 1";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
 
@@ -134,7 +134,7 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                boolean status = rs.getBoolean("status");
+                status = rs.getBoolean("status");
                 String img_url = rs.getString("image_url");
                 acc = new Account(name, pass, displayname, status, img_url);
             }
@@ -324,6 +324,6 @@ public class AccountDAO extends DBContext {
         } catch (Exception e) {
         }
         return check;
-
+    
     }
 }

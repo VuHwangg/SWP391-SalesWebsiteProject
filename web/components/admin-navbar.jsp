@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-
+<%@page import="jakarta.servlet.http.HttpSession" %>
+<%@page import="model.Account"%>
 <!-- NAVIGATION BAR-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
 
@@ -18,6 +19,11 @@
         <ul class="navbar-nav navbar-sidenav" id="MainAccordion">
 
             <!-- 1 -->
+            <%  Account acc = (Account) session.getAttribute("acc");
+                int role = acc.getRole();
+                if (role == 1) {
+            %>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
                 <a class="nav-link" href="admin-dashmap.jsp">
                     <i class="fa fa-fw fa-dashboard"></i>
@@ -40,28 +46,35 @@
                     </li>
                 </ul>
             </li>
-
+            <%}%>
             <!-- 3 -->
+            <%if(role ==3 || role ==2){%>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phầm">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProduct" data-parent="#MainAccordion">
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                     <span class="nav-link-text">Sản phẩm</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseProduct">
+                    <%if(role ==3){%>
                     <li>
                         <a href="admin-product-list.jsp">Quản lý sản phẩm</a>
                     </li>
+                    <%}
+                    if (role ==2){%>
                     <li>
                         <a href="#">Quản lý kho hàng</a>
                     </li>
                     <li>
                         <a href="#">Tra cứu lịch sử nhập hàng</a>
                     </li>
+                    <%}%>
                 </ul>
             </li>
-
+             <%}%>
 
             <!-- 4 -->
+             <%
+                    if (role ==3){%>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrder" data-parent="#MainAccordion">
                     <i class="fa fa-truck" aria-hidden="true"></i>
@@ -73,6 +86,7 @@
                     </li>
                 </ul>
             </li>
+            <%}%>
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">

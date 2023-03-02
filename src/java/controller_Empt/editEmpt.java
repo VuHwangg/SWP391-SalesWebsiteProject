@@ -26,7 +26,7 @@ public class editEmpt extends HttpServlet {
         String name = req.getParameter("name");
         String pass = req.getParameter("password");
         int role = Integer.parseInt(req.getParameter("flexRadioDefault"));
-        String url = "";
+        String url = req.getParameter("img");
         AccountDAO adao = new AccountDAO();
 //        resp.getWriter().println(adao.updateAcc(name, user, pass, url));
 //        resp.getWriter().println(user);

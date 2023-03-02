@@ -105,7 +105,7 @@
                                                     />
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg">
+                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" >
                                                 <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
                                             </div>
                                             <div class="mb-3 row" style="text-align: left">
@@ -114,14 +114,14 @@
                                                 <div class="col-md-6">
                                                     <ul class="list-group">
                                                         <li class="list-group-item">
-                                                            <input class="form-check-input me-1" type="radio" id="manager" name="role" value="3" checked>
+                                                            <input class="form-check-input me-1" type="radio" id="manager" name="role" value="2" checked>
                                                             <label class="form-check-label" for="manager">Quản lý kho</label>
                                                             <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
                                                                 <i class="bi bi-info-circle"></i>
                                                             </a>
                                                         </li>
                                                         <li class="list-group-item">
-                                                            <input class="form-check-input me-1" type="radio" id="employee" name="role" value="2">
+                                                            <input class="form-check-input me-1" type="radio" id="employee" name="role" value="3">
                                                             <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
                                                             <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
                                                                 <i class="bi bi-info-circle"></i>

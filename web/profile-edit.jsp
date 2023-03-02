@@ -30,6 +30,7 @@
               <div class="profile d-flex justify-content-center align-items-center flex-column">
                    <%
                         cus = (Customer) session.getAttribute("cust");
+                        acc = (Account) session.getAttribute("acc");
                         mess = (String)request.getAttribute("err");
                         if(mess == null) mess="";           
                     %>
@@ -41,7 +42,7 @@
                           <img src="img/avatar-profile.png" alt="avatar"/>
                       </div>
                       <div class="profile-name">
-                          <p><%=cus.getCustomerName()%></p>
+                          <p><%=acc.getImg_url()%></p>
                       </div>
                       <div class="profile-email">
                           <p><%=cus.getEmail()%></p>

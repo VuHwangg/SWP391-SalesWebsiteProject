@@ -59,7 +59,7 @@ public class LoginUser extends HttpServlet {
         AccountDAO adao = new AccountDAO();
         OrderDAO odao = new OrderDAO();
         HttpSession session = request.getSession();
-        Account acc = adao.checkExistAcc(mail);
+        Account acc = adao.checkExistAcc(mail,true);
         Customer cust = adao.getCust(mail, true);
         int role = adao.getRole(mail);
 //        if (odao.checkExist(cust.getCustomerId())){
