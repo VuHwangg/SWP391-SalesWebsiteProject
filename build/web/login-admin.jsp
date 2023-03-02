@@ -75,15 +75,16 @@
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Username"
+                                                    required
                                                     />
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-3 password">
                                                 <input
                                                     name="pass"
                                                     type="password"
                                                     class="form-control"
-                                                    id="exampleInputPassword1"
                                                     placeholder="Password"
+                                                    required
                                                     />
                                             </div>
 

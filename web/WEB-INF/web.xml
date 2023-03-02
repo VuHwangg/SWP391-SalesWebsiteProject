@@ -84,6 +84,22 @@
         <servlet-name>DeleteProductFromCartController</servlet-name>
         <servlet-class>controller_Cust.DeleteProductFromCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controllerEmployee</servlet-name>
+        <servlet-class>controller_Empt.controllerEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cancelEmpt</servlet-name>
+        <servlet-class>controller_Empt.cancelEmpt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logoutEmpt</servlet-name>
+        <servlet-class>controller_Empt.logoutEmpt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editEmpt</servlet-name>
+        <servlet-class>controller_Empt.editEmpt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -202,6 +218,22 @@
     <servlet-mapping>
         <servlet-name>DeleteProductFromCartController</servlet-name>
         <url-pattern>/DeleteProductFromCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controllerEmployee</servlet-name>
+        <url-pattern>/controllerEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cancelEmpt</servlet-name>
+        <url-pattern>/cancelEmpt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutEmpt</servlet-name>
+        <url-pattern>/logoutEmpt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editEmpt</servlet-name>
+        <url-pattern>/editEmpt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

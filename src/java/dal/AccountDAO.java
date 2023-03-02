@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Account;
 import model.Customer;
 
@@ -16,7 +17,7 @@ import model.Customer;
  */
 public class AccountDAO extends DBContext {
 
-    public boolean loginGoogle(String email,  boolean status) {
+    public boolean loginGoogle(String email, boolean status) {
         try {
             String sql = "SELECT [customer_id]\n"
                     + "      ,[customer_name]\n"
@@ -32,20 +33,20 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 return true;
             }
-           
+
         } catch (SQLException e) {
         }
         return false;
     }
 
-    public Account checkLoginCus(String username, String password) {
+    public Account checkLoginCus(String username, String password,boolean status) {
         Account acc = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             String sql = "SELECT * "
                     + " FROM Account "
-                    + " WHERE username =? AND password=? ";
+                    + " WHERE username =? AND password=? and [status] =1 ";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -54,7 +55,9 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                acc = new Account(name, pass, displayname);
+                status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                acc = new Account(username, password, displayname, status, img_url);
             }
 
         } catch (Exception ex) {
@@ -63,24 +66,25 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean addAcount(String username, String password, String displayname) {
+    public boolean addAcount(String username, String password, String displayname, String url, boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Account "
-                    + "(username,password,displayname) values (?,?,?)";
+                    + "(username,password,displayname,[status],image_url) values (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, displayname);
-
+            ps.setBoolean(4, status);
+            ps.setString(5, url);
             check = ps.executeUpdate() > 0;
-            
+
         } catch (Exception e) {
         }
         return check;
     }
 
-    public boolean addCust(String customer_name, String address, String phone, String email,boolean status) {
+    public boolean addCust(String customer_name, String address, String phone, String email, boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Customer "
@@ -93,7 +97,7 @@ public class AccountDAO extends DBContext {
             ps.setBoolean(5, status);
 
             check = ps.executeUpdate() > 0;
-           
+
         } catch (Exception e) {
         }
         return check;
@@ -108,20 +112,20 @@ public class AccountDAO extends DBContext {
             ps.setInt(1, roleid);
             ps.setString(2, username);
             check = ps.executeUpdate() > 0;
-            
+
         } catch (Exception e) {
         }
         return check;
     }
 
-    public Account checkExistAcc(String username) {
+    public Account checkExistAcc(String username,boolean status) {
         Account acc = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             String sql = "SELECT * "
                     + " FROM Account "
-                    + " WHERE username =? ";
+                    + " WHERE username =? and [status] = 1";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
 
@@ -130,7 +134,9 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                acc = new Account(name, pass, displayname);
+                status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                acc = new Account(name, pass, displayname, status, img_url);
             }
 
         } catch (Exception ex) {
@@ -153,7 +159,7 @@ public class AccountDAO extends DBContext {
             if (rs.next()) {
                 role = rs.getInt("role_id");
             }
-            
+
         } catch (Exception e) {
 
         }
@@ -181,10 +187,10 @@ public class AccountDAO extends DBContext {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
-               
-                cust = new Customer(customer_id, customer_name, address, phone, email1,status);
+
+                cust = new Customer(customer_id, customer_name, address, phone, email1, status);
             }
-           
+
         } catch (SQLException e) {
         }
         return cust;
@@ -200,27 +206,124 @@ public class AccountDAO extends DBContext {
             ps.setString(2, adress);
             ps.setString(3, phone);
             ps.setString(4, mail);
-            
+
             check = ps.executeUpdate() > 0;
-            
-        } catch (Exception e) {
-        }
-        return check;
-    }
-     public boolean updateAccName(String name, String mail) {
-        boolean check = false;
-        try {
-            String sql = "Update  Account set displayname = ? where username = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, name);
-            
-            ps.setString(2, mail);
-            
-            check = ps.executeUpdate() > 0;
-            
+
         } catch (Exception e) {
         }
         return check;
     }
 
+    public boolean updateAccName(String name, String mail) {
+        boolean check = false;
+        try {
+            String sql = "Update  Account set displayname = ? where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+
+            ps.setString(2, mail);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+        }
+        return check;
+    }
+
+    public ArrayList<Account> arrAcc() {
+        ArrayList<Account> arr = new ArrayList<>();
+        try {
+            String sql = "select * from Account  inner join Role_Account  on Account.username = Role_Account.username where (Role_Account.role_id =2 or Role_Account.role_id =3) and Account.status = 1  ";
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("username");
+                String pass = rs.getString("password");
+                String displayname = rs.getString("displayname");
+                boolean status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                int role_id = rs.getInt("role_id");
+                arr.add(new Account(name, pass, displayname, status, img_url, role_id));
+            }
+
+        } catch (SQLException e) {
+        }
+        return arr;
+    }
+
+    public boolean updateStatusAccount(String username) {
+        boolean check = false;
+        try {
+            String sql = "Update Account set [status] = 0 where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+        }
+        return check;
+    }
+
+    public Account getAcc(String username) {
+        Account acc = new Account();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from Account  inner join Role_Account  on Account.username = Role_Account.username where Account.username= ? and Account.status = 1   ";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                username = rs.getString("username");
+                String pass = rs.getString("password");
+                String displayname = rs.getString("displayname");
+                boolean status = rs.getBoolean("status");
+                String img_url = rs.getString("image_url");
+                int role = rs.getInt("role_id");
+                acc = new Account(username, pass, displayname, status, img_url, role);
+            }
+
+        } catch (Exception ex) {
+
+        }
+        return acc;
+    }
+
+    public boolean updateAcc(String name, String username, String pass, String url) {
+        boolean check = false;
+        try {
+            String sql = "Update Account "
+                    + "set  [password] = ? ,displayname = ? ,image_url=? where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setString(2, name);
+            ps.setString(3, url);
+            ps.setString(4, username);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+        }
+        return check;
+    }
+
+    public boolean updateRole_Acc(int role_id, String username) {
+        boolean check = false;
+        try {
+            String sql = "Update Role_Account "
+                    + "set role_id = ? where username = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, role_id);
+            ps.setString(2, username);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+        }
+        return check;
+    
+    }
 }

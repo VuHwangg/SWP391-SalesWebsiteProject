@@ -51,6 +51,10 @@
     input[type="checkbox"] {
         accent-color: var(--main-bg-color);
     }
+    
+    input[type="radio"] {
+        accent-color: var(--main-bg-color);
+    }
 
     .bg-red {
         background-color: var(--main-bg-color);
@@ -762,6 +766,13 @@
 
     .profile {
         padding: 15px 40px 1px 40px;
+        height: 70vh;
+    }
+    
+    @media (max-width: 576px) {
+        .profile {
+            height: 100%;
+        }
     }
 
     .profile .cover-block{

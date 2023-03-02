@@ -14,21 +14,21 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-          <!--navigation bar-->
-          <%@include file="components/navbar.jsp" %>
+            <!--navigation bar-->
+            <%@include file="components/navbar.jsp" %>
 
-          <div class="py-5"></div>
+            <div class="py-5"></div>
             <div class="container min-vh-100">
-              <!-- Breadcrumb -->
-              <div class="breadcrumb" style="padding-top: 20px">
-                <a href="home">Trang chủ</a>
-                <span>&nbsp;/&nbsp;</span>
-                <a href="cart.jsp">Giỏ hàng</a>
-                <span>&nbsp;/&nbsp;</span>
-                <a href="#">Thanh toán</a>
-              </div>
+                <!-- Breadcrumb -->
+                <div class="breadcrumb" style="padding-top: 20px">
+                    <a href="home">Trang chủ</a>
+                    <span>&nbsp;/&nbsp;</span>
+                    <a href="cart.jsp">Giỏ hàng</a>
+                    <span>&nbsp;/&nbsp;</span>
+                    <a href="#">Thanh toán</a>
+                </div>
 
-              <!--Main info-->
+                <!--Main info-->
                 <div class="row mt-3 w-100 mx-auto">
                     <!--Shipment Details-->
                     <div class="col-md-6 border border-2 rounded-1 p-4">
@@ -41,36 +41,37 @@
                             String name = "";
                             String address = "";
                             String phone = "";
-                            if(cus != null){
-                            email = cus1.getEmail();
-                            name = cus1.getCustomerName();
-                            address = cus1.getAddress();
-                            phone = cus1.getPhone();
+                            if (cus != null) {
+                                email = cus1.getEmail();
+                                name = cus1.getCustomerName();
+                                address = cus1.getAddress();
+                                phone = cus1.getPhone();
                             }
                             int total_price = 0;
                             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-                            if(carts != null)        
-                            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-                            total_price+=Float.parseFloat(cart.getValue().getProduct().getCurrent_price()+"")*cart.getValue().getQuantity();
+                            if (carts != null) {
+                                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                                    total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                                }
                             }
 
                         %>
                         <form action="Payment2" method="post">
-                            
+
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name==null?"readonly":""%>>
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name == null ? "readonly" : ""%>>
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>" required <%=phone==null?"readonly":""%>>
+                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>" required <%=phone == null ? "readonly" : ""%>>
 
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>" required <%=email==null?"readonly":""%>>
+                                <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>" required <%=email == null ? "readonly" : ""%>>
 
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Địa chỉ nhận hàng" required <%=address==null?"readonly":""%>><%=address%></textarea>
+                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Địa chỉ nhận hàng" required <%=address == null ? "readonly" : ""%>><%=address%></textarea>
                             </div>
 
                             <div>
@@ -80,13 +81,11 @@
                                 <div class="form-check mt-3">
                                     <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                      Thanh toán trực tiếp khi nhận hàng
+                                        Thanh toán trực tiếp khi nhận hàng
                                     </label>
                                 </div>
                             </div>
-                        
-
-
+                        </form>
                     </div>
 
 
@@ -97,40 +96,40 @@
                             <h3 class="fw-bold mb-4">HÓA ĐƠN ĐẶT HÀNG</h3>
                         </div>
                         <div class="border-top border-dark border-3 my-3"></div>
-                        
+
                         <c:forEach items="${carts}" var="cart">
-                             <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5" style="color: #555555;">${cart.getValue().getProduct().getName()}</span>
-                                <br>
-                                <span class="fw-light fs-6">Màu sắc: ${cart.getValue().getProduct().getColor()}</span>
-                                <br>
-                                <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="fw-bolder fs-5" style="color: #555555;">${cart.getValue().getProduct().getName()}</span>
+                                    <br>
+                                    <span class="fw-light fs-6">Màu sắc: ${cart.getValue().getProduct().getColor()}</span>
+                                    <br>
+                                    <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end ">
+                                    <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
+                                </div>
                             </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
-                            </div>
-                        </div>
-                        <div class="border-top border-dark border-1 my-2"></div>
+                            <div class="border-top border-dark border-1 my-2"></div>
                         </c:forEach>
 
 
                         <!--Like a table just edit it-->
-<!--                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
-                                <br>
-                                <span class="fw-light fs-6">Mầu sắc: Tím</span>
-                                <br>
-                                <span class="fw-light fs-6">Số lượng: 2</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">55.980.000 VND</span>
-                            </div>
-                        </div>
-                        <div class="border-top border-dark border-1 my-2"></div>-->
+                        <!--                        <div class="row">
+                                                    <div class="col-md-6">
+                                                        <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
+                                                        <br>
+                                                        <span class="fw-light fs-6">Mầu sắc: Tím</span>
+                                                        <br>
+                                                        <span class="fw-light fs-6">Số lượng: 2</span>
+                                                    </div>
+                                                    <div class="col-md-6 d-flex justify-content-end ">
+                                                        <span class="fw-light fs-6">55.980.000 VND</span>
+                                                    </div>
+                                                </div>
+                                                <div class="border-top border-dark border-1 my-2"></div>-->
 
-                        
+
 
 
                         <!---Shipment cost-->
@@ -157,38 +156,38 @@
                                 <button type="submit" class="btn btn-danger w-100 fs-4" data-toggle="modal" data-target="#exampleModal">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
-           </div>
-          <!--footer-->
-          <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
+            </div>
+            <!--footer-->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Thank you for supporting Awn's Store</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                          </div>
-                          <div class="modal-body">
-                            Payment success!
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </div>
                         </div>
-                      </div>
+                        <div class="modal-body">
+                            Payment success!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-          <%@include file="components/footer.jsp" %>
-    </main>
+                </div>
+            </div>
+            <%@include file="components/footer.jsp" %>
+        </main>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-    <%@include file="styles/js/script.jsp" %>
-  </body>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+        ></script>
+        <%@include file="styles/js/script.jsp" %>
+    </body>
 </html>

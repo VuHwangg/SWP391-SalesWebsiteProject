@@ -3,6 +3,34 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&family=Tourney&display=swap');
 
+    ::selection {
+        color: #fff;
+        background: var(--main-bg-color);
+    }
+
+    :root {
+        --red: #dc3545;
+        --red-hover: #b82a37;
+        --green: #28a745;
+        --green-hover: #107827;
+        --yellow: #ffc107;
+        --main-bg-color: #dc3545;
+        --main-bg-color2: #198754;
+        --sub-bg-color: rgb(227, 215, 37);
+        --main-color-lightgray: #dee2e6;
+        --main-color-gray: #404044;
+        --main-color-darkgray: #243238;
+        --main-color-black: rgb(39, 39, 39);
+    }
+
+    input[type="checkbox"] {
+        accent-color: var(--main-bg-color);
+    }
+
+    input[type="radio"] {
+        accent-color: var(--main-bg-color);
+    }
+
     html {
         position: relative;
         min-height: 100%;
@@ -260,6 +288,10 @@
     body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-link {
         width: 55px !important;
     }
+    
+    #sidenavToggler:hover {
+        background-color: var(--red-hover) !important;
+    }
 
     body.sidenav-toggled #mainNav.fixed-top #sidenavToggler i {
         -webkit-transform: scaleX(-1);
@@ -455,6 +487,142 @@
         max-width: 40rem;
     }
 
+
+    /*
+    ======================================
+    Table Management
+    ======================================
+    */
+
+    .table-emp tr th,
+    .table-emp tr td,
+    .table-pro tr th,
+    .table-pro tr td {
+        vertical-align: middle;
+    }
+    
+    .table-emp tr th,
+    .table-pro tr th{
+        padding: 12px 6px
+    }
+    
+    .table-emp tr td button,
+    .table-emp tr td a,
+    .table-pro tr td button,
+    .table-pro tr td a {
+        border: none;
+        border-radius: 8px;
+        padding: 4px 8px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+
+    
+    /*  Table Employee Management ===============================*/
+    
+    .table-emp tr th:nth-child(1) {
+        width: 10%;
+    }
+
+    .table-emp tr th:nth-child(2) {
+        width: 20%;
+    }
+
+    .table-emp tr th:nth-child(3) {
+        width: 20%;
+    }
+
+    .table-emp tr th:nth-child(4) {
+        width: 20%;
+    }
+
+    .table-emp tr th:nth-child(5) {
+        width: 10%;
+    }
+
+    .table-emp tr th:nth-child(6) {
+        width: 20%;
+    }
+
+    @media (max-width: 576px) {
+        .save-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+    
+    .add-btn {
+        padding: 4px 8px;
+    }
+    
+    
+    /*  Table Product Management =============================*/
+    
+    .table-pro tr th:nth-child(1) {
+        width: 5%;
+    }
+    
+    .table-pro tr th:nth-child(2) {
+        width: 19%;
+    }
+    
+    .table-pro tr th:nth-child(3) {
+        width: 10%;
+    }
+
+    .table-pro tr th:nth-child(4) {
+        width: 10%;
+    }
+
+    .table-pro tr th:nth-child(5) {
+        width: 8%;
+    }
+
+    .table-pro tr th:nth-child(6) {
+        width: 8%;
+    }
+
+    .table-pro tr th:nth-child(7) {
+        width: 10%;
+    }
+    
+    .table-pro tr th:nth-child(8) {
+        width: 10%;
+    }
+    
+    .table-pro tr th:nth-child(9) {
+        width: 20%;
+    }
+    
+    /*Custom Design Of Table Defalt*/
+    
+    .page-item.active .page-link{
+        background-color: var(--red);
+        border-color: var(--red);
+    }
+
+    /*Password Input Group (Hide/Show)*/
+
+    .password-input-group.multi-input input,
+    .password-input-group.multi-input span {
+        border: none;
+        background-color: white !important;
+    }
+    
+    .password-input-group.multi-input input {
+        text-align: center;
+    }
+
+    .password-input-group a {
+        color: var(--red);
+    }
+    
+    .password-input-group a:hover {
+        color: var(--red-hover);
+    }
+
+
     footer.sticky-footer {
         position: absolute;
         right: 0;
@@ -477,6 +645,5 @@
             width: calc(100% - 55px);
         }
     }
-
 
 </style>
