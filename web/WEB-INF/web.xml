@@ -102,7 +102,7 @@
     </servlet>
     <servlet>
         <servlet-name>ProductManagementController</servlet-name>
-        <servlet-class>controller_Cust.ProductManagementController</servlet-class>
+        <servlet-class>controller_Empt.ProductManagementController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
@@ -134,7 +134,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ProductDetail</servlet-name>
-        <servlet-class>controller_Cust.ProductDetailController</servlet-class>
+        <servlet-class>controller_Empt.ProductDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductDetail</servlet-name>
