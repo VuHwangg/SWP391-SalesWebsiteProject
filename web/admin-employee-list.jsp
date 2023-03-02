@@ -143,7 +143,7 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-success w-100" href="editEmpt?id=<%=arr.get(i).getUsername()%>">Chỉnh sửa</a>&nbsp;
-                                                <a href="cancelEmpt?id=<%=arr.get(i).getUsername()%>"><button class="btn btn-danger w-100">Nghỉ việc</button></a>
+                                                <a class="btn btn-danger w-100" href="cancelEmpt?id=<%=arr.get(i).getUsername()%>">Nghỉ việc</a>
                                             </div>
                                         </td>
                                     </tr>
