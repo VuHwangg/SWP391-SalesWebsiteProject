@@ -307,7 +307,7 @@ public class ProductDBContext extends DBContext {
         }
         return 0;
     }
-    
+
     public int countProductKey(String rawTxtSearch) {
         int count = 0;
         String txtSearch = "%" + rawTxtSearch + "%";
@@ -382,7 +382,7 @@ public class ProductDBContext extends DBContext {
             if (sort.compareTo("DESC") == 0) {
                 sql = sql + "\n ORDER BY [current_price] DESC";
             }
-             sql = sql + " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+            sql = sql + " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, txtSearch);
             stm.setString(2, txtSearch);
@@ -734,6 +734,76 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public ArrayList<Product> getAllProduct() {
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            String sql = "SELECT [product_id]\n"
+                    + "      ,[name]\n"
+                    + "      ,[type]\n"
+                    + "      ,[color]\n"
+                    + "      ,[current_price]\n"
+                    + "      ,[original_price]\n"
+                    + "      ,[ram]\n"
+                    + "      ,[memory]\n"
+                    + "  FROM [dbo].[Product]";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("name"));
+                p.setType(rs.getInt("type"));
+                p.setColor(rs.getString("color"));
+                p.setRam(rs.getInt("ram"));
+                p.setMemory(rs.getInt("memory"));
+                p.setOriginal_price(rs.getDouble("original_price"));
+                p.setCurrent_price(rs.getDouble("current_price"));
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listProduct;
+    }
+
+    public int totalProduct() {
+        int total = -1;
+        try {
+            String sql = "SELECT COUNT(product_id)[total] FROM Product";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+
+    public int totalProduct(int type) {
+        int total = -1;
+        try {
+            String sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, type);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        ProductDBContext p = new ProductDBContext();
+        int x = p.getAllProduct().size();
+        System.out.println(x);
     }
 
 //test query cái này bỏ qua

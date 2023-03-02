@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">50</span>
+                                <span class="mr-5">${requestScope.totalAllProduct}</span>
                             </a>
                         </div>
                     </div>
@@ -59,7 +60,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">30</span>
+                                <span class="mr-5">${requestScope.totalPhone}</span>
                             </a>
                         </div>
                     </div>
@@ -76,7 +77,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">20</span>
+                                <span class="mr-5">${requestScope.totalComputer}</span>
                             </a>
                         </div>
                     </div>
@@ -112,87 +113,29 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    
-                                    <!--1 Sản phẩm-->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Iphone 14</td>
-                                        <td>Điện thoại</td>
-                                        <td>Black</td>
-                                        <td>6<span>GB</span></td>
-                                        <td>128<span>GB</span></td>
-                                        <td class="text-right">300,000,000&nbsp;&#8363;</td>
-                                        <td class="text-right">18,000,000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
-                                                <!----------->
-                                                <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Xóa</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Aphone 14</td>
-                                        <td>Điện thoại</td>
-                                        <td>Red</td>
-                                        <td>6<span>GB</span></td>
-                                        <td>128<span>GB</span></td>
-                                        <td class="text-right">300,000,000&nbsp;&#8363;</td>
-                                        <td class="text-right">18,000,000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
-                                                <!----------->
-                                                <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Xóa</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Bphone 14</td>
-                                        <td>Điện thoại</td>
-                                        <td>Blue</td>
-                                        <td>6<span>GB</span></td>
-                                        <td>128<span>GB</span></td>
-                                        <td class="text-right">300,000,000&nbsp;&#8363;</td>
-                                        <td class="text-right">18,000,000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
-                                                <!----------->
-                                                <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Xóa</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Cphone 14</td>
-                                        <td>Điện thoại</td>
-                                        <td>Black</td>
-                                        <td>6<span>GB</span></td>
-                                        <td>128<span>GB</span></td>
-                                        <td class="text-right">300,000,000&nbsp;&#8363;</td>
-                                        <td class="text-right">18,000,000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
-                                                <!----------->
-                                                <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
-                                                <button class="btn btn-danger w-100">Xóa</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+
+                                    <!-- Sản phẩm-->
+                                    <c:forEach items="${requestScope.products}" var="p">
+                                        <tr>
+                                            <td>${p.id}</td>
+                                            <td>${p.name}</td>
+                                            <td>${p.type}</td>
+                                            <td>${p.color}</td>
+                                            <td>${p.ram}<span>GB</span></td>
+                                            <td>${p.memory}<span>GB</span></td>
+                                            <td class="text-right">${p.original_price}&nbsp;&#8363;</td>
+                                            <td class="text-right">${p.current_price}&nbsp;&#8363;</td>
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
+                                                    <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
+                                                    <!----------->
+                                                    <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
+                                                    <button class="btn btn-danger w-100">Xóa</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
