@@ -97,9 +97,9 @@ public class FilterController extends HttpServlet {
         request.setAttribute("page", numOfPage);
         ProductDBContext productList = new ProductDBContext();
         ArrayList<Product> filterList = productList.filterProduct(type, sort, from, to, needs, brands, sizes, numOfPage);
-        double totalPage = productList.countProductByType(type);
+        double totalPage = productList.countProductByType(type, from, to, needs, brands, sizes);
         totalPage= Math.ceil(totalPage/9);
-//        response.getWriter().print(totalPage);
+        response.getWriter().print(totalPage);
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("filterList", filterList);
         request.getRequestDispatcher("list-laptop.jsp").forward(request, response);

@@ -232,13 +232,69 @@ public class ProductDBContext extends DBContext {
     }
 
     //count num of product
-    public int countProductByType(int type) {
+    public int countProductByType(int type, double from, double to, String[] needs, String[] brands, String[] sizes) {
         int count = 0;
         try {
-            String sql = "SELECT [product_id]\n"
-                    + "  FROM [Product] where [type] = ? AND [status] = 1 ";
+            String sql = "SELECT pr.[product_id]\n"
+                    + "  FROM  [Product] pr "
+                    + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
+                    + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
+                    + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
+                    + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+            if (needs != null) {
+                if (needs[0].compareTo("all") != 0) {
+                    sql = sql + " AND re.[requirement_name] in (";
+                    for (String need : needs) {
+                        sql = sql + "'" + need + "',";
+                    }
+                    sql = sql.substring(0, sql.length() - 1);
+                    sql = sql + ")";
+                }
+
+            }
+
+            if (brands != null) {
+                if (brands[0].compareTo("all") != 0) {
+                    sql = sql + " AND br.[brand_name] in (";
+                    for (String brand : brands) {
+                        sql = sql + "'" + brand + "',";
+                    }
+                    sql = sql.substring(0, sql.length() - 1);
+                    sql = sql + ")";
+                }
+
+            }
+
+            if (sizes != null) {
+                if (sizes[0].compareTo("all") != 0) {
+                    int i = 0;
+                    sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
+                    for (String size : sizes) {
+                        if (i != 0) {
+                            sql += " OR ";
+                        }
+                        if (size.compareTo("size1") == 0) {
+                            sql = sql + " pr.[size] < 13";
+                        }
+                        if (size.compareTo("size2") == 0) {
+                            sql = sql + " pr.[size] >=13 AND pr.[size]<15";
+                        }
+                        if (size.compareTo("size3") == 0) {
+                            sql = sql + " pr.[size] >=15 AND pr.[size]<17";
+                        }
+                        if (size.compareTo("size4") == 0) {
+                            sql = sql + " pr.[size] >= 17";
+                        }
+                        i++;
+                    }
+                    sql = sql + ")";
+                }
+            }
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, type);
+            stm.setDouble(1, from);
+            stm.setDouble(2, to);
+            stm.setInt(3, type);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 count++;
