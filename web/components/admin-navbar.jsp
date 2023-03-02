@@ -105,7 +105,7 @@
                 <!--<a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                   <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
                 </a>-->
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="logoutEmpt">
                     <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
                 </a>
             </li>
