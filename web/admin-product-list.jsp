@@ -1,4 +1,4 @@
-
+<jsp:useBean id="helper" class="util.Helper"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -123,15 +123,18 @@
                                             <td>${p.color}</td>
                                             <td>${p.ram}<span>GB</span></td>
                                             <td>${p.memory}<span>GB</span></td>
-                                            <td class="text-right">${p.original_price}&nbsp;&#8363;</td>
-                                            <td class="text-right">${p.current_price}&nbsp;&#8363;</td>
+                                            <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
+                                            <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
                                             <td>
                                                 <div class="d-flex ">
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
                                                     <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
-                                                    <a class="btn btn-success w-100" href="admin-product-edit.jsp">Sửa</a>&nbsp;
-                                                    <button class="btn btn-danger w-100">Xóa</button>
+                                                    <a class="btn btn-success w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
+                                                    <form action="EditProduct" method="POST">
+                                                        <input type="text" value="${p.id}" name="product_id" hidden>
+                                                        <button type="submit" class="btn btn-danger w-100">Xóa</button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
