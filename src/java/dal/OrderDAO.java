@@ -62,7 +62,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT TOP 1 order_id FROM [Order] ORDER BY order_id DESC;";
+            String sql = "SELECT TOP 1 order_id FROM [Order] ORDER BY order_id DESC";
             stm = connection.prepareStatement(sql);
             rs = stm.executeQuery();
             if (rs.next()) {

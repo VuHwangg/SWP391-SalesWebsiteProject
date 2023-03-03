@@ -85,7 +85,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </form>
+                       
                     </div>
 
 
@@ -156,13 +156,14 @@
                                 <button type="submit" class="btn btn-danger w-100 fs-4" data-toggle="modal" data-target="#exampleModal">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
-                        </form>
+                    </form>
                     </div>
+
                 </div>
             </div>
             <!--footer-->
             <!-- Modal -->
-    
+   
             </div>
             <%@include file="components/footer.jsp" %>
         </main>
