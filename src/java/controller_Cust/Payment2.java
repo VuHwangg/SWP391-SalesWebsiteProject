@@ -6,6 +6,7 @@ package controller_Cust;
 
 import dal.AccountDAO;
 import dal.OrderDAO;
+import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -79,6 +80,7 @@ public class Payment2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        ProductDBContext pdo = new ProductDBContext();
         try {
             Customer cus = (Customer) session.getAttribute("cust");
             //send email
@@ -101,6 +103,7 @@ public class Payment2 extends HttpServlet {
                 cus = (Customer) session.getAttribute("cust");
                 Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
                 float total_price = 0;
+               
                 //loop qua map
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
@@ -116,8 +119,11 @@ public class Payment2 extends HttpServlet {
 
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
+                     pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
                     if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
+                        
                         if (session.getAttribute("acc") != null) {
+                            
                             if (od.deleteCart(cart.getValue().getCartId())) {
 
                             } else {
