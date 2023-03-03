@@ -104,6 +104,10 @@
         <servlet-name>ProductManagementController</servlet-name>
         <servlet-class>controller_Empt.ProductManagementController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>controller_Cust.EditProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -242,6 +246,10 @@
     <servlet-mapping>
         <servlet-name>ProductManagementController</servlet-name>
         <url-pattern>/ProductManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/EditProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

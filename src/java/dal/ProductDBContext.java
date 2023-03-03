@@ -747,7 +747,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,[original_price]\n"
                     + "      ,[ram]\n"
                     + "      ,[memory]\n"
-                    + "  FROM [dbo].[Product]";
+                    + "  FROM [dbo].[Product] Where [status] = 'true'";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -772,7 +772,7 @@ public class ProductDBContext extends DBContext {
     public int totalProduct() {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product";
+            String sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = 'true'";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -784,12 +784,13 @@ public class ProductDBContext extends DBContext {
         return total;
     }
 
-    public int totalProduct(int type) {
+    public int totalProduct(int type, int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ?";
+            String sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, type);
+            ps.setInt(2, status);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
@@ -798,12 +799,25 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
+    }
+
+    public void changeProductStatus(int id, boolean status) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [status] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setBoolean(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static void main(String[] args) {
         ProductDBContext p = new ProductDBContext();
-        int x = p.getAllProduct().size();
-        System.out.println(x);
+        p.changeProductStatus(1, true);
     }
 
 //test query cái này bỏ qua
