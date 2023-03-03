@@ -90,8 +90,9 @@ public class Payment2 extends HttpServlet {
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 ad.addCust(name, address, phone, email, false);
-                session.setAttribute("cust", ad.getCust(email, false));
                 
+                session.setAttribute("cust", ad.getCust(email, false));
+
             }
             //add order  va orderdetail
             if (session.getAttribute("carts") != null) {
@@ -102,18 +103,30 @@ public class Payment2 extends HttpServlet {
                 //loop qua map
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
-                    
+
                 }
                 //add order, send email. lay order id vua add
                 od.addOrder(1, cus.getCustomerId(), LocalDate.now().toString(), "", total_price);
-                int NewOrderId = od.getLastOrderId();
+//                response.getWriter().print( cus.getCustomerId());
+//                response.getWriter().print(LocalDate.now().toString());
+//                response.getWriter().print( total_price);
                 
+        
+    
+                int NewOrderId = od.getLastOrderId();
+
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
-                    od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price);
-                    if(od.deleteCart(cart.getValue().getCartId())){} else request.getRequestDispatcher("404-page.jsp").forward(request, response);                    
-                
+                    if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
+                        if (session.getAttribute("acc") != null) {
+                            if (od.deleteCart(cart.getValue().getCartId())) {
+                            } else {
+                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
+                            }
+                        }
+                    }else  request.getRequestDispatcher("404-page.jsp").forward(request, response);
                 }
+
                 Ec.SendEmail(email, total_price, Ec.MessageProduct(carts), NewOrderId);
                 session.setAttribute("Order", od.getOrder1(NewOrderId));
                 session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
@@ -122,9 +135,9 @@ public class Payment2 extends HttpServlet {
                     session.setAttribute("cus", null);
                 }
             }
-            
+
             request.getRequestDispatcher("home").forward(request, response);
-      
+
         } catch (MessagingException ex) {
             request.getRequestDispatcher("home").forward(request, response);
         } catch (SQLException ex) {
