@@ -326,4 +326,27 @@ public class AccountDAO extends DBContext {
         return check;
     
     }
+     public Customer getlastCust(String email, boolean status) {
+        Customer cust = null;
+        try {
+            String sql = "SELECT TOP 1 * FROM  Customer where email = ? and [status] =?  ORDER BY customer_id DESC";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            st.setBoolean(2, status);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                int customer_id = rs.getInt("customer_id");
+                String customer_name = rs.getString("customer_name");
+                String address = rs.getString("address");
+                String phone = rs.getString("phone");
+                String email1 = rs.getString("email");
+
+                cust = new Customer(customer_id, customer_name, address, phone, email1, status);
+            }
+
+        } catch (SQLException e) {
+        }
+        return cust;
+    }
+
 }

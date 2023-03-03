@@ -80,24 +80,25 @@ public class Payment2 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         try {
+             Customer cus = (Customer) session.getAttribute("cust");
             //send email
             EmailConfig Ec = new EmailConfig();
             String email = (String) request.getParameter("email");
             //create cus and add cus if guest
-            if (session.getAttribute("cust") == null) {
+            if (cus == null) {
                 AccountDAO ad = new AccountDAO();
                 String name = request.getParameter("name");
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 ad.addCust(name, address, phone, email, false);
                 
-                session.setAttribute("cust", ad.getCust(email, false));
+                session.setAttribute("cust", ad.getlastCust(email, false));
 
             }
             //add order  va orderdetail
             if (session.getAttribute("carts") != null) {
                 OrderDAO od = new OrderDAO();
-                Customer cus = (Customer) session.getAttribute("cust");
+                cus = (Customer) session.getAttribute("cust");
                 Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
                 float total_price = 0;
                 //loop qua map
@@ -120,17 +121,21 @@ public class Payment2 extends HttpServlet {
                     if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
                         if (session.getAttribute("acc") != null) {
                             if (od.deleteCart(cart.getValue().getCartId())) {
+                              
                             } else {
                                 request.getRequestDispatcher("404-page.jsp").forward(request, response);
                             }
                         }
-                    }else  request.getRequestDispatcher("404-page.jsp").forward(request, response);
+                    }else  request.getRequestDispatcher("cart-null.jsp").forward(request, response);
                 }
 
                 Ec.SendEmail(email, total_price, Ec.MessageProduct(carts), NewOrderId);
                 session.setAttribute("Order", od.getOrder1(NewOrderId));
                 session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
-                session.setAttribute("carts", null);
+               
+                 session.removeAttribute("carts");
+                cus = (Customer) session.getAttribute("cust");
+                
                 if (!cus.isStatus()) {
                     session.setAttribute("cus", null);
                 }
