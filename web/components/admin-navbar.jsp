@@ -20,10 +20,10 @@
 
             <!-- 1 -->
 
-            <%-- <%  Account acc1 = (Account) session.getAttribute("acc1");
+            < <%  Account acc1 = (Account) session.getAttribute("acc1");
                 int roles = acc1.getRole();
                 if (roles == 1) {
-            %>--%>
+            %>
 
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
@@ -50,7 +50,8 @@
             </li>
             <!-- 3 -->
 
-            <%--  <%if(roles ==3 || roles ==2){%>--%>
+            <%}
+                 if (roles == 3 || roles == 2) {%>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phầm">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProduct" data-parent="#MainAccordion">
@@ -59,16 +60,14 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseProduct">
 
-                    <%--  <%if(roles ==3){%>--%>
+                    <%if (roles == 3) {%>
                     <li>
                         <a href="ProductManagement">Quản lý sản phẩm</a>
                     </li>
-                    <%-- <%}
-                    if (roles ==2){%>--%>
+                    <%}
+                        if (roles == 2) {%>
 
-                    <li>
-                        <a href="admin-product-list.jsp">Quản lý sản phẩm</a>
-                    </li>
+                   
 
                     <li>
                         <a href="#">Quản lý kho hàng</a>
@@ -78,11 +77,12 @@
                     </li>
                 </ul>
             </li>
-            <%-- <%}%>--%>
+            <%}%>
 
             <!-- 4 -->
-            <%-- <%
-                    if (roles ==3){%>--%>
+            <%
+                 
+                 if (roles == 3) {%>
 
 
             <!-- 4 -->
@@ -99,7 +99,8 @@
                 </ul>
             </li>
 
-             <%-- <%}%>--%>
+            <%}
+}%>
 
         </ul>
         <ul class="navbar-nav sidenav-toggler">
@@ -116,9 +117,9 @@
 
             <!-- LOGOUT BUTTON ============================================================================= -->
             <li class="nav-item">
-                <!--<a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
-                </a>-->
+                <!--                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                  <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
+                                </a>-->
                 <a class="nav-link" href="logoutEmpt">
                     <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
                 </a>
