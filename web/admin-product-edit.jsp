@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="helper" class="util.Helper"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -45,7 +46,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">50</span>
+                                <span class="mr-5">${requestScope.totalAllProduct}</span>
                             </a>
                         </div>
                     </div>
@@ -62,7 +63,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">30</span>
+                                <span class="mr-5">${requestScope.totalComputer}</span>
                             </a>
                         </div>
                     </div>
@@ -79,7 +80,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">20</span>
+                                <span class="mr-5">${requestScope.totalPhone}</span>
                             </a>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa sản phẩm số
                         <!--ID của sản phẩm-->
                         <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                            #1
+                            #${requestScope.product.id}
                         </span>
                     </div>
                     <div class="card-body p-3">
@@ -106,23 +107,23 @@
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <!--Tên sản phẩm-->
-                                    <input type="text" class="form-control" placeholder="Tên sản phẩm" value="" required>
+                                    <input type="text" class="form-control" placeholder="Tên sản phẩm" value="${requestScope.product.name}" required>
                                 </div>
                                 <div class="input-group col-sm-3 mb-3">
                                     <!--Giá gốc-->
-                                    <input type="text" class="form-control" placeholder="Giá gốc" value="" required>
+                                    <input type="text" class="form-control" placeholder="Giá gốc" value="${helper.convertBigNum(product.original_price)}" required>
                                     <span class="input-group-text">VNĐ</span>
                                 </div>
                                 <div class="input-group col-sm-3 mb-3">
                                     <!--Giá sale-->
-                                    <input type="text" class="form-control" placeholder="Giá sale" value="">
+                                    <input type="text" class="form-control" placeholder="Giá sale" value=" ${helper.convertBigNum(product.current_price)}">
                                     <span class="input-group-text">VNĐ</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <!--Màu sắc-->
-                                    <input type="text" class="form-control" placeholder="Màu sắc sản phẩm" value="" required>
+                                    <input type="text" class="form-control" placeholder="Màu sắc sản phẩm" value="${requestScope.product.color}" required>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
@@ -130,8 +131,15 @@
                                     </div>
                                     <!--Loại sản phẩm-->
                                     <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected value="phone">Điện thoại</option>
-                                        <option value="laptop">Laptop</option>
+                                        <c:if test="${product.type == 1}">
+                                            <option  value="phone">Điện thoại</option>
+                                            <option  selected value="laptop">Laptop</option>
+                                        </c:if>
+                                        <c:if test="${product.type == 0}">
+                                            <option selected value="phone">Điện thoại</option>
+                                            <option value="laptop">Laptop</option>
+                                        </c:if>
+
                                     </select>
                                 </div>
                             </div>
@@ -148,12 +156,12 @@
                             <div class="row">
                                 <div class="input-group col-sm-3 mb-3">
                                     <!--RAM-->
-                                    <input type="text" class="form-control" placeholder="RAM" value="" required>
+                                    <input type="text" class="form-control" placeholder="RAM" value="${requestScope.product.ram}" required>
                                     <span class="input-group-text">GB</span>
                                 </div>
                                 <div class="input-group col-sm-3 mb-3">
                                     <!--ROM-->
-                                    <input type="text" class="form-control" placeholder="ROM (bộ nhớ trong)" value="" required>
+                                    <input type="text" class="form-control" placeholder="ROM (bộ nhớ trong)" value="${requestScope.product.memory}" required>
                                     <span class="input-group-text">GB</span>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
@@ -161,7 +169,32 @@
                                         <label class="input-group-text" for="inputGroupSelect02">Hệ điều hành</label>
                                     </div>
                                     <!--Hệ điều hành-->
+
                                     <select class="custom-select" id="inputGroupSelect02">
+                                        <c:if>
+                                            <option selected value="android">Android</option>
+                                            <option value="ios">IOS</option>
+                                            <option value="window">Windows</option>
+                                            <option value="macos">MacOS</option>
+                                        </c:if>
+                                        <c:if>
+                                            <option selected value="android">Android</option>
+                                            <option value="ios">IOS</option>
+                                            <option value="window">Windows</option>
+                                            <option value="macos">MacOS</option>
+                                        </c:if>
+                                        <c:if>
+                                            <option selected value="android">Android</option>
+                                            <option value="ios">IOS</option>
+                                            <option value="window">Windows</option>
+                                            <option value="macos">MacOS</option>
+                                        </c:if>
+                                        <c:if>
+                                            <option selected value="android">Android</option>
+                                            <option value="ios">IOS</option>
+                                            <option value="window">Windows</option>
+                                            <option value="macos">MacOS</option>
+                                        </c:if>
                                         <option selected value="android">Android</option>
                                         <option value="ios">IOS</option>
                                         <option value="window">Windows</option>
