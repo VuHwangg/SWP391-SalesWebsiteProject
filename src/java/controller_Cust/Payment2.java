@@ -80,7 +80,7 @@ public class Payment2 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         try {
-             Customer cus = (Customer) session.getAttribute("cust");
+            Customer cus = (Customer) session.getAttribute("cust");
             //send email
             EmailConfig Ec = new EmailConfig();
             String email = (String) request.getParameter("email");
@@ -91,7 +91,7 @@ public class Payment2 extends HttpServlet {
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 ad.addCust(name, address, phone, email, false);
-                
+
                 session.setAttribute("cust", ad.getlastCust(email, false));
 
             }
@@ -111,9 +111,7 @@ public class Payment2 extends HttpServlet {
 //                response.getWriter().print( cus.getCustomerId());
 //                response.getWriter().print(LocalDate.now().toString());
 //                response.getWriter().print( total_price);
-                
-        
-    
+
                 int NewOrderId = od.getLastOrderId();
 
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
@@ -121,24 +119,26 @@ public class Payment2 extends HttpServlet {
                     if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
                         if (session.getAttribute("acc") != null) {
                             if (od.deleteCart(cart.getValue().getCartId())) {
-                              
+
                             } else {
-                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
+//                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
+                                response.getWriter().print(cart.getValue().getCartId());
                             }
                         }
-                    }else  request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                    }
                 }
 
                 Ec.SendEmail(email, total_price, Ec.MessageProduct(carts), NewOrderId);
                 session.setAttribute("Order", od.getOrder1(NewOrderId));
                 session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
-               
-                 session.removeAttribute("carts");
-                cus = (Customer) session.getAttribute("cust");
-                
+
+                session.setAttribute("carts", null);
                 if (!cus.isStatus()) {
                     session.setAttribute("cus", null);
                 }
+
             }
 
             request.getRequestDispatcher("home").forward(request, response);
