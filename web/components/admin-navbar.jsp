@@ -61,7 +61,7 @@
 
                     <%--  <%if(roles ==3){%>--%>
                     <li>
-                        <a href="admin-product-list.jsp">Quản lý sản phẩm</a>
+                        <a href="ProductManagement">Quản lý sản phẩm</a>
                     </li>
                     <%-- <%}
                     if (roles ==2){%>--%>

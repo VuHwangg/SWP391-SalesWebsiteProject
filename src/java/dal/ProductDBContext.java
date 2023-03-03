@@ -818,6 +818,7 @@ public class ProductDBContext extends DBContext {
     public static void main(String[] args) {
         ProductDBContext p = new ProductDBContext();
         p.changeProductStatus(1, true);
+        p.changeProductStatus(2, true);
     }
 
 //test query cái này bỏ qua
