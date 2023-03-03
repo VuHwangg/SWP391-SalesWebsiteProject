@@ -171,57 +171,53 @@
                                     <!--Hệ điều hành-->
 
                                     <select class="custom-select" id="inputGroupSelect02">
-                                        <c:if>
+                                        <c:if test="${helper.osCompare(product.os) == 0}">
                                             <option selected value="android">Android</option>
                                             <option value="ios">IOS</option>
                                             <option value="window">Windows</option>
                                             <option value="macos">MacOS</option>
                                         </c:if>
-                                        <c:if>
-                                            <option selected value="android">Android</option>
-                                            <option value="ios">IOS</option>
+                                        <c:if test="${helper.osCompare(product.os) == 1}">
+                                            <option value="android">Android</option>
+                                            <option selected value="ios">IOS</option>
                                             <option value="window">Windows</option>
                                             <option value="macos">MacOS</option>
                                         </c:if>
-                                        <c:if>
-                                            <option selected value="android">Android</option>
+                                        <c:if test="${helper.osCompare(product.os) == 2}">
+                                            <option value="android">Android</option>
                                             <option value="ios">IOS</option>
-                                            <option value="window">Windows</option>
+                                            <option selected value="window">Windows</option>
                                             <option value="macos">MacOS</option>
                                         </c:if>
-                                        <c:if>
-                                            <option selected value="android">Android</option>
+                                        <c:if test="${helper.osCompare(product.os) == 3}">
+                                            <option value="android">Android</option>
                                             <option value="ios">IOS</option>
                                             <option value="window">Windows</option>
-                                            <option value="macos">MacOS</option>
+                                            <option selected value="macos">MacOS</option>
                                         </c:if>
-                                        <option selected value="android">Android</option>
-                                        <option value="ios">IOS</option>
-                                        <option value="window">Windows</option>
-                                        <option value="macos">MacOS</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-group col-sm-4 mb-3">
                                     <!--Kích thước màn hình-->
-                                    <input type="text" class="form-control" placeholder="Kích thước màn hình" value="">
+                                    <input type="text" class="form-control" placeholder="Kích thước màn hình" value="${requestScope.product.size}">
                                     <span class="input-group-text">Inchs</span>
                                 </div>
                                 <div class="col-sm-4 mb-3">
                                     <!--CPU-->
-                                    <input type="text" class="form-control" placeholder="CPU (Chipset)" value="">
+                                    <input type="text" class="form-control" placeholder="CPU (Chipset)" value="${requestScope.product.cpu}">
                                 </div>
                                 <div class="col-sm-4 mb-3">
                                     <!--GPU-->
-                                    <input type="text" class="form-control" placeholder="GPU (Card đồ họa)" value="">
+                                    <input type="text" class="form-control" placeholder="GPU (Card đồ họa)" value="${requestScope.product.graphic_card}">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <h5 class="fw-bold">Mô tả sản phẩm</h5>
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" rows="3" placeholder="Mô tả" required></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Mô tả" required>${requestScope.product.description}</textarea>
                             </div>
                             <div class="d-flex justify-content-end align-items-end">
                                 <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">

@@ -14,6 +14,7 @@ import model.Vote;
  */
 public class Helper {
 //lấy ra dạng số nguyên
+
     public String convertBigNum(double x) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String result = formatter.format(x);
@@ -29,45 +30,46 @@ public class Helper {
         return false;
     }
 //so sánh 2 chuỗi
+
     public boolean compareString(String x, String y) {
         if (x.compareTo(y) == 0) {
             return true;
         }
         return false;
-    
-    }   
-        
+
+    }
+
 //so sánh với all
     public boolean compareWithAll(String[] xs) {
-        for(String x : xs){
+        for (String x : xs) {
             if (x.compareTo("all") == 0) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     public boolean checkSize(int num, String[] xs) {
         String name = "";
-        if(num ==1 ){
+        if (num == 1) {
             name += "size1";
-        }else if(num == 2){
+        } else if (num == 2) {
             name += "size2";
-        }else if(num == 3){
+        } else if (num == 3) {
             name += "size3";
-        }else if(num == 4){
+        } else if (num == 4) {
             name += "size4";
         }
-        for(String x : xs){
+        for (String x : xs) {
             if (name.compareTo(x) == 0) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
 //so sanh các thuộc tính của 2 sản phẩm
     public boolean compareProperties(Product x, Product y) {
         if (x.getRam() != y.getRam()) {
@@ -85,6 +87,7 @@ public class Helper {
         return true;
     }
 //tính tổng số vote
+
     public int totalVote(Product product) {
         int totalVote = 0;
         for (Vote vote : product.getVotes()) {
@@ -93,6 +96,7 @@ public class Helper {
         return totalVote;
     }
 //lấy số vote trung bình
+
     public double getAvgRate(Product product) {
         double avg = 0;
         int totalStar = 0;
@@ -106,6 +110,7 @@ public class Helper {
         return avg;
     }
 //lấy ra số vote của một mức đánh giá
+
     public int getNumofVote(Product product, int num) {
         for (Vote vote : product.getVotes()) {
             if (num == vote.getNum()) {
@@ -115,6 +120,7 @@ public class Helper {
         return 0;
     }
 //check type of sort
+
     public int checkSort(String x) {
         if (x.compareTo("ASC") == 0) {
             return 2;
@@ -124,11 +130,27 @@ public class Helper {
         return 1;
     }
 //get type name
-    public String typeName(int x){
-        if(x==1) return "Laptop";
-        else return "Điện thoại";
-            
+
+    public String typeName(int x) {
+        if (x == 1) {
+            return "Laptop";
+        } else {
+            return "Điện thoại";
+        }
+
     }
-    
-    
+
+    public int osCompare(String os) {
+        if (os.equalsIgnoreCase("Android")) {
+            return 0;
+        } else if (os.equalsIgnoreCase("IOS")) {
+            return 1;
+        } else if (os.equalsIgnoreCase("Window11")) {
+            return 2;
+        } else {
+            return 3;
+        }
+
+    }
+
 }
