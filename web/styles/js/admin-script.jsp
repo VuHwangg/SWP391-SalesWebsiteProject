@@ -171,4 +171,23 @@
         });
     })(jQuery); // End of use strict
 
+    
+    // Edit Status of each order
+    $(document).ready(function () {
+        $(".change-status-btn").on('click', function (event) {
+            event.preventDefault();
+            var disableEdit = $(this).closest('.change-order-status').find('.edit-off');
+            var enableEdit = $(this).closest('.change-order-status').find('.edit-on');
+
+            if (enableEdit.hasClass('disable')) {
+                disableEdit.addClass("disable");
+                enableEdit.removeClass("disable");
+            } else if (disableEdit.hasClass('disable')) {
+                enableEdit.addClass("disable");
+                disableEdit.removeClass("disable");
+            }
+        });
+    });
+
+
 </script>

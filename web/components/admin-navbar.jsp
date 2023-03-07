@@ -19,13 +19,6 @@
         <ul class="navbar-nav navbar-sidenav" id="MainAccordion">
 
             <!-- 1 -->
-
-            < <%  Account acc1 = (Account) session.getAttribute("acc1");
-                int roles = acc1.getRole();
-                if (roles == 1) {
-            %>
-
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
                 <a class="nav-link" href="admin-dashmap.jsp">
                     <i class="fa fa-fw fa-dashboard"></i>
@@ -48,27 +41,17 @@
                     </li>
                 </ul>
             </li>
+            
             <!-- 3 -->
-
-            <%}
-                 if (roles == 3 || roles == 2) {%>
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phầm">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProduct" data-parent="#MainAccordion">
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                     <span class="nav-link-text">Sản phẩm</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseProduct">
-
-                    <%if (roles == 3) {%>
                     <li>
                         <a href="ProductManagement">Quản lý sản phẩm</a>
                     </li>
-                    <%}
-                        if (roles == 2) {%>
-
-                   
-
                     <li>
                         <a href="#">Quản lý kho hàng</a>
                     </li>
@@ -77,16 +60,8 @@
                     </li>
                 </ul>
             </li>
-            <%}%>
-
+            
             <!-- 4 -->
-            <%
-                 
-                 if (roles == 3) {%>
-
-
-            <!-- 4 -->
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrder" data-parent="#MainAccordion">
                     <i class="fa fa-truck" aria-hidden="true"></i>
@@ -94,14 +69,10 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseOrder">
                     <li>
-                        <a href="#">Quản lý đơn hàng</a>
+                        <a href="admin-order-list.jsp">Quản lý đơn hàng</a>
                     </li>
                 </ul>
             </li>
-
-            <%}
-}%>
-
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
@@ -114,7 +85,6 @@
 
         <!--  UPPER NAVIGATION BAR ============================================================================= -->
         <ul class="navbar-nav ml-auto">
-
             <!-- LOGOUT BUTTON ============================================================================= -->
             <li class="nav-item">
                 <!--                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

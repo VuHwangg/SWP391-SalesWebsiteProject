@@ -66,8 +66,8 @@
         });
     });
     
-      // Quantity input buy plus and minus button -----------------------------
-     // Get all the quantity input tags on the page
+    // Quantity input buy plus and minus button -----------------------------
+        // Get all the quantity input tags on the page
         const quantityInputs = document.querySelectorAll('.quantity-input');
 
         // Add click event listeners to each of the quantity input tags

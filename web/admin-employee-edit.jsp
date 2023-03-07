@@ -21,14 +21,14 @@
 
         <!-- CONTENT PART -->
         <%
-                                             ArrayList<Account> arr = (ArrayList<Account>) session.getAttribute("arrAcc");
-                                             int mana = (int) session.getAttribute("mana");
-                                             int empt =(int) session.getAttribute("empt");
-                                             int total = mana + empt;
-                                             String err ="";
-                                         
-                                                      
-                    %>
+            ArrayList<Account> arr = (ArrayList<Account>) session.getAttribute("arrAcc");
+            int mana = (int) session.getAttribute("mana");
+            int empt = (int) session.getAttribute("empt");
+            int total = mana + empt;
+            String err = "";
+
+
+        %>
         <div class="content-wrapper">
             <div class="container-fluid">
 
@@ -97,32 +97,38 @@
                 <% Account acc = (Account) session.getAttribute("acc");%>
                 <!-- EDIT CARD-->
                 <div class="card mb-3">
-                    
+
                     <!--DO NOT TOUCH ON THIS SHIT BELOW-->
                     <canvas id="myAreaChart" width="100%" height="30" hidden></canvas>
                     <canvas id="myBarChart" width="100" height="70" hidden></canvas>
                     <canvas id="myPieChart" width="100%" height="100" hidden></canvas>
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
-                    
+
                     <div class="card-header">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên <%=acc.getUsername()%>
-                        <!--ID của sản phẩm-->
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên 
+                        <!--Tên đăng nhập của nhân viên-->
                         <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                            #1
+                            <%=acc.getUsername()%>
                         </span>
                     </div>
                     <div class="card-body p-3">
                         <form action="editEmpt" method="post" id="<%=acc.getUsername()%>">
-                            <div class="mb-3">
-
+                            
+                            <!--Họ và tên-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="name">Họ và tên</label>
+                                </div>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="<%=acc.getDisplayname()%>" required>
-
                             </div>
-                         
+                            
+                            <!--Mật khẩu-->
                             <div class="mb-3">
-                                <!--Mật khẩu-->
                                 <div class="password-input-group input-group">
-                                    <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="<%=acc.getPassword()%>" required>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="password">Mật khẩu</label>
+                                    </div>
+                                    <input type="password" class="form-control password-toggle" id="password" name="password" placeholder="Mật khẩu" value="<%=acc.getPassword()%>" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <a href="" class="toggle-password" style="color: #dc3545;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
@@ -142,8 +148,8 @@
                             </div>
                             <div class="row">
                                 <%if (acc.getRole() == 2) {
-    
-%>
+
+                                %>
                                 <div class="col-sm-4">
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2">
@@ -158,8 +164,8 @@
                                         </label>
                                     </div>
                                 </div>
-                                <%}else{%>
-                                 <div class="col-sm-4">
+                                <%} else {%>
+                                <div class="col-sm-4">
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2">
                                         <label class="form-check-label" for="flexRadioDefault1">
@@ -173,7 +179,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                 <%}%>
+                                <%}%>
                                 <div class="col-sm-8 d-flex justify-content-end align-items-end">
                                     <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu lại thay đổi">
                                     <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">

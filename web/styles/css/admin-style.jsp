@@ -30,6 +30,14 @@
     input[type="radio"] {
         accent-color: var(--main-bg-color);
     }
+    
+    .enable-block {
+        display: block;
+    }
+    
+    .disable {
+        display: none;
+    }
 
     html {
         position: relative;
@@ -494,10 +502,8 @@
     ======================================
     */
 
-    .table-emp tr th,
-    .table-emp tr td,
-    .table-pro tr th,
-    .table-pro tr td {
+    .table tr th,
+    .table tr td {
         vertical-align: middle;
     }
     
