@@ -108,6 +108,18 @@
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>controller_Empt.EditProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewOrder</servlet-name>
+        <servlet-class>controller_Empt.ViewOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Orderdetail</servlet-name>
+        <servlet-class>controller_Empt.Orderdetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangestatusOrder</servlet-name>
+        <servlet-class>controller_Empt.ChangestatusOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -250,6 +262,18 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/EditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder</servlet-name>
+        <url-pattern>/ViewOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Orderdetail</servlet-name>
+        <url-pattern>/Orderdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangestatusOrder</servlet-name>
+        <url-pattern>/ChangestatusOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -203,12 +203,13 @@ public class OrderDAO extends DBContext {
         return arr;
     }
 
-    public boolean updateStatusOrder(int order_id) {
+    public boolean updateStatusOrder(int order_id,int status) {
         boolean check = false;
         try {
-            String sql = "Update  [Order] set [status] = 4 where order_id = ?";
+            String sql = "Update  [Order] set [status] = ? where order_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, order_id);
+             ps.setInt(1, status);
+            ps.setInt(2, order_id);
 
             check = ps.executeUpdate() > 0;
 
@@ -260,6 +261,31 @@ public class OrderDAO extends DBContext {
         }
         return check;
 
+    }
+        public ArrayList<Order> getallOrder() {
+        ArrayList<Order> arr = new ArrayList<>();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "Select * from [Order] ";
+            stm = connection.prepareStatement(sql);
+           
+
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                int order_id = rs.getInt("order_id");
+                int status = rs.getInt("status");
+                int customer_id = rs.getInt("customer_id");
+                Date date = rs.getDate("date");
+                String note = rs.getString("note");
+                float total_price = rs.getFloat("total_price");
+                arr.add(new Order(order_id, status, customer_id, date, total_price));
+            }
+
+        } catch (Exception ex) {
+
+        }
+        return arr;
     }
 
 //    public static void main(String[] args) {

@@ -69,7 +69,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseOrder">
                     <li>
-                        <a href="admin-order-list-all.jsp">Quản lý đơn hàng</a>
+                        <a href="ViewOrder">Quản lý đơn hàng</a>
                     </li>
                 </ul>
             </li>

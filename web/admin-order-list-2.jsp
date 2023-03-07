@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Order" %>
+<%@page import="java.sql.Date" %>
+<%@page import="java.util.ArrayList" %>
+<%@page  import="util.Helper"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +30,12 @@
                     </li> 
                     <li class="breadcrumb-item active">Danh sách đơn hàng đang vận chuyển</li>
                 </ol>
+                <%
+                    ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
+                    String err = "";
 
+
+                %>
                 <!-- Icon Cards-->
                 <div class="row">
 
@@ -41,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
+                                <span class="mr-5"><%=session.getAttribute("Preparing")%></span>
                             </div>
                         </a>
                     </div>
@@ -58,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
+                                <span class="mr-5"><%=session.getAttribute("Shipping")%></span>
                             </div>
                         </a>
                     </div>
@@ -75,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
+                                <span class="mr-5"><%=session.getAttribute("Success")%></span>
                             </div>
                         </a>
                     </div>
@@ -92,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
+                                <span class="mr-5"><%=session.getAttribute("Cancelled")%></span>
                             </div>
                         </a>
                     </div>
@@ -127,23 +137,30 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
+ <%
+                                        if (arr.isEmpty() == false) {
+                                            for (int i = 0; i < arr.size(); i++) {
+                                                Helper helper = new Helper();
+                                                String price = helper.convertBigNum(arr.get(i).getTotal_price());
+                                                if (arr.get(i).getStatus() == 2) {
 
+                                    %>
                                     <!-- Order-->
                                     <tr>
-                                        <td>1</td>
-                                        <td>19/2/1999</td>
+                                        <td><%=arr.get(i).getOrder_id()%></td>
+                                        <td><%=arr.get(i).getDate()%></td>
                                         <td>
                                             <div class="change-order-status">
                                                 <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
+                                                    <span class="text-center">Đang vận chuyển</span>
                                                     <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
                                                 </div>
                                                 <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
+                                                    <form class="d-flex" method="post" action="ChangestatusOrder" id="<%=arr.get(i).getOrder_id()%>">
+                                                        <select class="custom-select" name="status">
+                                                            
                                                             <option value="2">Đang vận chuyển</option>
                                                             <option value="3">Hoàn thành</option>
                                                             <option value="4">Bị hủy</option>
@@ -153,46 +170,17 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>19.200.000&nbsp;&#8363;</td>
+                                        <td><%=price%>&nbsp;&#8363;</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
+                                                <a class="btn btn-secondary w-100" href="Orderdetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
                                             </div>
                                         </td>
                                     </tr>
 
-                                    <!-- Order-->
-                                    <tr>
-                                        <td>2</td>
-                                        <td>19/2/1999</td>
-                                        <td>
-                                            <div class="change-order-status">
-                                                <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
-                                                        </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>19.200.000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                      <%}
+                                            }
+                                        }%>
                                 </tbody>
                             </table>
                         </div>
