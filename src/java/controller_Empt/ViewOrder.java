@@ -1,0 +1,67 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package controller_Empt;
+
+import dal.OrderDAO;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import model.Order;
+import util.Helper;
+
+/**
+ *
+ * @author xuank
+ */
+public class ViewOrder extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //   super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+         OrderDAO ord = new OrderDAO();
+        int Preparing = 0;
+        int Shipping = 0;
+        int Success = 0;
+        int Cancelled = 0;
+        int total = 0;
+        ArrayList<Order> arr = ord.getallOrder();
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getStatus() == 1) {
+                Preparing++;
+            } else {
+                if (arr.get(i).getStatus() == 2) {
+                    Shipping++;
+                } else {
+                    if (arr.get(i).getStatus() == 3) {
+                        Success++;
+                    } else if (arr.get(i).getStatus() == 4) {
+                        Cancelled++;
+                    }
+                }
+            }
+
+        }
+        Helper helper = new Helper();
+        total = Preparing + Shipping + Success + Cancelled;
+        HttpSession session = req.getSession();
+        session.setAttribute("Preparing", Preparing);
+        session.setAttribute("Shipping", Shipping);
+        session.setAttribute("Success", Success);
+        session.setAttribute("Cancelled", Cancelled);
+
+        session.setAttribute("total", total);
+        session.setAttribute("lst", arr);
+//        resp.getWriter().print(arr.size());
+
+        req.getRequestDispatcher("admin-order-list-1.jsp").forward(req, resp);
+
+    }
+}
+
+
