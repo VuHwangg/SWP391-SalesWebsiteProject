@@ -27,9 +27,9 @@
                 </ol>
 
                 <!-- Icon Cards-->
-                <div class="row">
+<!--                <div class="row">
 
-                    <!-- CARD 1 -->
+                     CARD 1 
                     <div class="col-xl-3 col-sm-6 mb-3">
                         <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
@@ -46,7 +46,7 @@
                         </a>
                     </div>
 
-                    <!-- CARD 2 -->
+                     CARD 2 
                     <div class="col-xl-3 col-sm-6 mb-3">
                         <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-warning o-hidden h-100">
                             <div class="card-body mr-5">
@@ -63,7 +63,7 @@
                         </a>
                     </div>
 
-                    <!-- CARD 3 -->
+                     CARD 3 
                     <div class="col-xl-3 col-sm-6 mb-3">
                         <a href="admin-order-list-3.jsp" class="card card-r1 text-white bg-success o-hidden h-100">
                             <div class="card-body mr-5">
@@ -80,7 +80,7 @@
                         </a>
                     </div>
 
-                    <!-- CARD 4 -->
+                     CARD 4 
                     <div class="col-xl-3 col-sm-6 mb-3">
                         <a href="admin-order-list-4.jsp" class="card card-r1 text-white bg-danger o-hidden h-100">
                             <div class="card-body mr-5">
@@ -96,11 +96,10 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- DATA TABLE CARD-->
                 <div class="card mb-3">
-
                     <!--DO NOT TOUCH ON THIS SHIT BELOW-->
                     <canvas id="myAreaChart" width="100%" height="30" hidden></canvas>
                     <canvas id="myBarChart" width="100" height="70" hidden></canvas>
@@ -121,32 +120,22 @@
                                     <tr class="fw-bold bg-danger text-white">
                                         <th>ID</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Tài khoản</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Vai trò</th>
-                                        <th>Quản lý</th>
+                                        <th>Màu sắc</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá tiền</th>
+                                        <th>Xem sản phẩm</th>
                                     </tr>
                                     <!--Nhập dữ liệu vào đây-->
                                     <tr style="border-bottom: 2px solid #dee2e6" >
 
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>1</td>
+                                        <td>Iphone14</td>
+                                        <td>Đen</td>
+                                        <td>2</td>
+                                        <td>16,990,000&nbsp;&#8363;</td>
                                         <td>
-                                            <div class="password-input-group multi-input input-group">
-                                                <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="" required readonly>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <a href="" class="toggle-password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                                    </span> 
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a class="btn btn-success w-100" href="#">Chỉnh sửa</a>&nbsp;
-                                                <a class="btn btn-danger w-100" href="#">Nghỉ việc</a>
+                                            <div class="d-flex ">
+                                                <a class="btn btn-secondary w-100" href="#">Xem sản phẩm</a>
                                             </div>
                                         </td>
                                     </tr>
