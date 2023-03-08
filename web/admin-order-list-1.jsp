@@ -166,7 +166,7 @@
                                                             
                                                             <option value="4">Bị hủy</option>
                                                         </select>&nbsp;
-                                                        <input type="submit"  value="Lưu">
+                                                        <input type="submit" class="btn btn-success" value="Lưu">
                                                     </form>
                                                 </div>
                                             </div>
