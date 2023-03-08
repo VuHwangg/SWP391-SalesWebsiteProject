@@ -136,7 +136,7 @@
                                         <td>19.200.000&nbsp;&#8363;</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
+                                                <a class="btn btn-secondary w-100" href="admin-order-detail.jsp">Xem chi tiết</a>
                                             </div>
                                         </td>
                                     </tr>

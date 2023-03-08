@@ -20,10 +20,10 @@
 
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <!-- <li class="breadcrumb-item">
-                      <a href="#">Thống kê</a>
-                    </li> -->
-                    <li class="breadcrumb-item active">Quản lý đơn hàng</li>
+                    <li class="breadcrumb-item">
+                        <a href="admin-order-list-all.jsp">Quản lý đơn hàng</a>
+                    </li> 
+                    <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
                 </ol>
 
                 <!-- Icon Cards-->
@@ -31,7 +31,7 @@
 
                     <!-- CARD 1 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
+                        <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-shopping-cart"></i>
@@ -40,15 +40,15 @@
                                     <span>Số đơn đang chuẩn bị</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
+                            <div class="card-footer text-white z-1">
                                 <span class="mr-5">0</span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
 
                     <!-- CARD 2 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-warning o-hidden h-100">
+                        <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-warning o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-truck"></i>
@@ -57,15 +57,15 @@
                                     <span>Số đơn đang vận chuyển</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
+                            <div class="card-footer text-white z-1">
                                 <span class="mr-5">0</span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
 
                     <!-- CARD 3 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-success o-hidden h-100">
+                        <a href="admin-order-list-3.jsp" class="card card-r1 text-white bg-success o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-check"></i>
@@ -74,15 +74,15 @@
                                     <span>Số đơn đã hoàn thành</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
+                            <div class="card-footer text-white z-1">
                                 <span class="mr-5">0</span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
 
                     <!-- CARD 4 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
+                        <a href="admin-order-list-4.jsp" class="card card-r1 text-white bg-danger o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-times"></i>
@@ -91,10 +91,10 @@
                                     <span>Số đơn đã bị hủy</span>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
+                            <div class="card-footer text-white z-1">
                                 <span class="mr-5">0</span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
@@ -108,88 +108,49 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách đơn hàng</span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Chi tiết đơn hàng
+                            <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
+                                #1
+                            </span>
+                        </span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead class="text-center bg-danger text-white">
-                                    <tr>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Ngày đặt hàng</th>
-                                        <th style="width: 30%">Trạng thái</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Xem chi tiết</th>
+                            <table class="table text-center border-white" border="1">
+                                <tbody>
+                                    <tr class="fw-bold bg-danger text-white">
+                                        <th>ID</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Tài khoản</th>
+                                        <th>Mật khẩu</th>
+                                        <th>Vai trò</th>
+                                        <th>Quản lý</th>
                                     </tr>
-                                </thead>
-                                <tbody class="text-center">
+                                    <!--Nhập dữ liệu vào đây-->
+                                    <tr style="border-bottom: 2px solid #dee2e6" >
 
-                                    <!-- Order-->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>19/2/1999</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
-                                            <div class="change-order-status">
-                                                <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
-                                                        </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
-                                                    </form>
+                                            <div class="password-input-group multi-input input-group">
+                                                <input class="form-control password-toggle" type="password" name="password" placeholder="Mật khẩu" value="" required readonly>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <a href="" class="toggle-password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                    </span> 
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>19.200.000&nbsp;&#8363;</td>
+                                        <td></td>
                                         <td>
-                                            <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
+                                            <div class="d-flex">
+                                                <a class="btn btn-success w-100" href="#">Chỉnh sửa</a>&nbsp;
+                                                <a class="btn btn-danger w-100" href="#">Nghỉ việc</a>
                                             </div>
                                         </td>
                                     </tr>
-                                    
-                                    <!-- Order-->
-                                    <tr>
-                                        <td>2</td>
-                                        <td>19/2/1999</td>
-                                        <td>
-                                            <div class="change-order-status">
-                                                <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
-                                                        </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>19.200.000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>

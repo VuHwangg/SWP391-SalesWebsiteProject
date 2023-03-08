@@ -132,67 +132,15 @@
                                     <tr>
                                         <td>1</td>
                                         <td>19/2/1999</td>
-                                        <td>
-                                            <div class="change-order-status">
-                                                <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
-                                                        </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>Đã hoàn thành</td>
                                         <td>19.200.000&nbsp;&#8363;</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
+                                                <a class="btn btn-secondary w-100" href="admin-order-detail.jsp">Xem chi tiết</a>
                                             </div>
                                         </td>
                                     </tr>
 
-                                    <!-- Order-->
-                                    <tr>
-                                        <td>2</td>
-                                        <td>19/2/1999</td>
-                                        <td>
-                                            <div class="change-order-status">
-                                                <div class="edit-off">
-                                                    <span class="text-center">Đang chuẩn bị</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="edit-on disable">
-                                                    <form class="d-flex">
-                                                        <select class="custom-select">
-                                                            <option selected value="1">Đang chuẩn bị</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
-                                                        </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>19.200.000&nbsp;&#8363;</td>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem chi tiết</a>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
