@@ -605,6 +605,46 @@
         width: 20%;
     }
     
+    
+    /*  Table Warehouse Management =============================*/
+    
+    .table-wareh tr th:nth-child(1) {
+        width: 5%;
+    }
+    
+    .table-wareh tr th:nth-child(2) {
+        width: 22%;
+    }
+    
+    .table-wareh tr th:nth-child(3) {
+        width: 10%;
+    }
+
+    .table-wareh tr th:nth-child(4) {
+        width: 10%;
+    }
+
+    .table-wareh tr th:nth-child(5) {
+        width: 9%;
+    }
+
+    .table-wareh tr th:nth-child(6) {
+        width: 9%;
+    }
+
+    .table-wareh tr th:nth-child(7) {
+        width: 10%;
+    }
+    
+    .table-wareh tr th:nth-child(8) {
+        width: 10%;
+    }
+    
+    .table-wareh tr th:nth-child(9) {
+        width: 15%;
+    }
+    
+    
     /*Custom Design Of Table Defalt*/
     
     .page-item.active .page-link{
