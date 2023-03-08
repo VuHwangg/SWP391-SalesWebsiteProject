@@ -158,14 +158,15 @@
                                                     </a>
                                                 </div>
                                                 <div class="edit-on disable">
-                                                    <form class="d-flex"  action="ChangestatusOrder" id="<%=arr.get(i).getOrder_id()%>"method="post">
+                                                    <form class="d-flex"  action="ChangestatusOrder"  method="post">
+                                                        <%session.setAttribute("Odid", arr.get(i).getOrder_id());%>
                                                         <select class="custom-select" name="status">
                                                             <option selected value="1">Đang chuẩn bị</option>
                                                             <option value="2">Đang vận chuyển</option>
                                                             
                                                             <option value="4">Bị hủy</option>
                                                         </select>&nbsp;
-                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
+                                                        <input type="submit"  value="Lưu">
                                                     </form>
                                                 </div>
                                             </div>

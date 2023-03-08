@@ -153,9 +153,7 @@
                                             <div class="change-order-status">
                                                 <div class="edit-off">
                                                     <span class="text-center">Hoàn thành</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
+                                                   
                                                 </div>
                                                 <div class="edit-on disable">
                                                     <form class="d-flex">

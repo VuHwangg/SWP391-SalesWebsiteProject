@@ -22,11 +22,18 @@ import util.Helper;
 public class ChangestatusOrder extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        int order_id = Integer.parseInt(req.getParameter("id"));
-        int status = Integer.parseInt("status");
+       
+        //super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+         HttpSession session = req.getSession();
+        int order_id = Integer.parseInt(session.getAttribute("Odid").toString());
+        int status = Integer.parseInt(req.getParameter("status"));
 
         OrderDAO odao = new OrderDAO();
         Order orde = odao.getOrder1(order_id);
@@ -56,7 +63,7 @@ public class ChangestatusOrder extends HttpServlet {
         }
         Helper helper = new Helper();
         total = Preparing + Shipping + Success + Cancelled;
-        HttpSession session = req.getSession();
+       
         session.setAttribute("Preparing", Preparing);
         session.setAttribute("Shipping", Shipping);
         session.setAttribute("Success", Success);
@@ -65,22 +72,14 @@ public class ChangestatusOrder extends HttpServlet {
         session.setAttribute("total", total);
         session.setAttribute("lst", arr);
         if (check == true) {
-            if (orde.getStatus() == 1) {
-                req.getRequestDispatcher("order-lookup-1.jsp").forward(req, resp);
-            } else {
-                if (orde.getStatus() == 2) {
-                    req.getRequestDispatcher("order-lookup-2.jsp").forward(req, resp);
-                } else {
-                    if (orde.getStatus() == 3) {
-                        req.getRequestDispatcher("order-lookup-3.jsp").forward(req, resp);
-                    }else{
-                         if(orde.getStatus() == 4){
-                req.getRequestDispatcher("order-lookup-4.jsp").forward(req, resp);
+            if(orde.getStatus()== 1){
+                req.getRequestDispatcher("admin-order-list-1.jsp").forward(req, resp);
             }
-                    }
-                }
+            else{
+                 req.getRequestDispatcher("admin-order-list-2.jsp").forward(req, resp);
             }
-        }
+          
+  
     }
-
+    }
 }
