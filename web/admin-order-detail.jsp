@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList" %>
+<%@page  import="util.Helper"%>
+<%@page import="model.Product" %>
+<%@page import="model.Order_Details" %>
+<%@page import="model.Order" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,77 +32,82 @@
                 </ol>
 
                 <!-- Icon Cards-->
-<!--                <div class="row">
+                <!--                <div class="row">
+                
+                                     CARD 1 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số đơn đang chuẩn bị</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-white z-1">
+                                                <span class="mr-5">0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                
+                                     CARD 2 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-warning o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số đơn đang vận chuyển</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-white z-1">
+                                                <span class="mr-5">0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                
+                                     CARD 3 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <a href="admin-order-list-3.jsp" class="card card-r1 text-white bg-success o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số đơn đã hoàn thành</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-white z-1">
+                                                <span class="mr-5">0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                
+                                     CARD 4 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <a href="admin-order-list-4.jsp" class="card card-r1 text-white bg-danger o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số đơn đã bị hủy</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-white z-1">
+                                                <span class="mr-5">0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>-->
+                <%
+                    ArrayList<Order_Details> arrOr = (ArrayList<Order_Details>) session.getAttribute("Order_Details");
+                    ArrayList<Product> arrPro = (ArrayList<Product>) session.getAttribute("lstPro");
 
-                     CARD 1 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </div>
-                                <div>
-                                    <span>Số đơn đang chuẩn bị</span>
-                                </div>
-                            </div>
-                            <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
-                            </div>
-                        </a>
-                    </div>
 
-                     CARD 2 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-warning o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-truck"></i>
-                                </div>
-                                <div>
-                                    <span>Số đơn đang vận chuyển</span>
-                                </div>
-                            </div>
-                            <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
-                            </div>
-                        </a>
-                    </div>
-
-                     CARD 3 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-3.jsp" class="card card-r1 text-white bg-success o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-check"></i>
-                                </div>
-                                <div>
-                                    <span>Số đơn đã hoàn thành</span>
-                                </div>
-                            </div>
-                            <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
-                            </div>
-                        </a>
-                    </div>
-
-                     CARD 4 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-4.jsp" class="card card-r1 text-white bg-danger o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-times"></i>
-                                </div>
-                                <div>
-                                    <span>Số đơn đã bị hủy</span>
-                                </div>
-                            </div>
-                            <div class="card-footer text-white z-1">
-                                <span class="mr-5">0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>-->
-
+                %>
                 <!-- DATA TABLE CARD-->
                 <div class="card mb-3">
                     <!--DO NOT TOUCH ON THIS SHIT BELOW-->
@@ -109,7 +119,7 @@
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Chi tiết đơn hàng
                             <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                                #1
+                                <%=arrOr.get(0).getOrder_id()%>
                             </span>
                         </span>
                     </div>
@@ -118,7 +128,7 @@
                             <table class="table text-center border-white" border="1">
                                 <tbody>
                                     <tr class="fw-bold bg-danger text-white">
-                                        <th>ID</th>
+                                        
                                         <th>Tên sản phẩm</th>
                                         <th>Màu sắc</th>
                                         <th>Số lượng</th>
@@ -126,20 +136,35 @@
                                         <th>Xem sản phẩm</th>
                                     </tr>
                                     <!--Nhập dữ liệu vào đây-->
+                                    <%
+                                        arrOr = (ArrayList<Order_Details>) session.getAttribute("Order_Details");
+                                        arrPro = (ArrayList<Product>) session.getAttribute("lstPro");
+
+                                        Helper helper = new Helper();
+                                        String err = "";
+                                        for (int i = 0; i < arrOr.size(); i++) {
+                                            String price = helper.convertBigNum(arrOr.get(i).getPrice());
+                                            for (int j = 0; j < arrPro.size(); j++) {
+                                                if ((int) arrPro.get(j).getId() == (int) arrOr.get(i).getProduct_id()) {
+
+
+                                    %>
                                     <tr style="border-bottom: 2px solid #dee2e6" >
 
-                                        <td>1</td>
-                                        <td>Iphone14</td>
-                                        <td>Đen</td>
-                                        <td>2</td>
-                                        <td>16,990,000&nbsp;&#8363;</td>
+
+                                        <td><%=arrPro.get(j).getName()%></td>
+                                        <td><%=arrPro.get(j).getColor()%></td>
+                                        <td><%=arrOr.get(i).getNum()%></td>
+                                        <td><%=price%>&nbsp;&#8363;</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="#">Xem sản phẩm</a>
+                                                <a class="btn btn-secondary w-100" href="product_detail?product_id=<%=arrPro.get(j).getId()%>">Xem sản phẩm</a>
                                             </div>
                                         </td>
                                     </tr>
-
+                                    <%}
+           }
+       }%>
                                 </tbody>
                             </table>
                         </div>
