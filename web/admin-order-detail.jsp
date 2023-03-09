@@ -119,7 +119,7 @@
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Chi tiết đơn hàng
                             <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                                <%=arrOr.get(0).getOrder_id()%>
+                                #<%=arrOr.get(0).getOrder_id()%>
                             </span>
                         </span>
                     </div>

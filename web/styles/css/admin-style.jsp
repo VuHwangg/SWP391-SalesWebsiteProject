@@ -511,15 +511,12 @@
         vertical-align: middle;
     }
     
-    .table-emp tr th,
-    .table-pro tr th{
+    .table tr th{
         padding: 12px 6px
     }
     
-    .table-emp tr td button,
-    .table-emp tr td a,
-    .table-pro tr td button,
-    .table-pro tr td a {
+    .table tr td button,
+    .table tr td a{
         border: none;
         border-radius: 8px;
         padding: 4px 8px;
@@ -642,6 +639,49 @@
     
     .table-wareh tr th:nth-child(9) {
         width: 15%;
+    }
+    
+    
+    /*  Table Product Import History Management =============================*/
+    
+    .table-history tr th:nth-child(1) {
+        width: 5%;
+    }
+    
+    .table-history tr th:nth-child(2) {
+        width: 19%;
+    }
+    
+    .table-history tr th:nth-child(3) {
+        width: 10%;
+    }
+
+    .table-history tr th:nth-child(4) {
+        width: 10%;
+    }
+
+    .table-history tr th:nth-child(5) {
+        width: 7%;
+    }
+
+    .table-history tr th:nth-child(6) {
+        width: 7%;
+    }
+
+    .table-history tr th:nth-child(7) {
+        width: 10%;
+    }
+    
+    .table-history tr th:nth-child(8) {
+        width: 10%;
+    }
+    
+    .table-history tr th:nth-child(9) {
+        width: 11%;
+    }
+    
+    .table-history tr th:nth-child(10) {
+        width: 11%;
     }
     
     

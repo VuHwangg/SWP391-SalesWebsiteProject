@@ -4,7 +4,6 @@
 <%@page import="java.util.ArrayList" %>
 <%@page  import="util.Helper"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->

@@ -56,7 +56,7 @@
                         <a href="admin-warehouse-management.jsp">Quản lý kho hàng</a>
                     </li>
                     <li>
-                        <a href="#">Tra cứu lịch sử nhập hàng</a>
+                        <a href="admin-history-list.jsp">Tra cứu lịch sử nhập hàng</a>
                     </li>
                 </ul>
             </li>
