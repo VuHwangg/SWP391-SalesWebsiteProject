@@ -53,10 +53,10 @@
                         <a href="ProductManagement">Quản lý sản phẩm</a>
                     </li>
                     <li>
-                        <a href="#">Quản lý kho hàng</a>
+                        <a href="admin-warehouse-management.jsp">Quản lý kho hàng</a>
                     </li>
                     <li>
-                        <a href="#">Tra cứu lịch sử nhập hàng</a>
+                        <a href="admin-history-list.jsp">Tra cứu lịch sử nhập hàng</a>
                     </li>
                 </ul>
             </li>

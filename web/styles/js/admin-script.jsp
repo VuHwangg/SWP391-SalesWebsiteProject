@@ -6,7 +6,7 @@
     Chart.defaults.global.defaultFontColor = '#292b2c';
 
 
-// -- AREA CHART DATA
+// -- AREA CHART DATA 1
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -58,8 +58,7 @@
             }
         }
     });
-
-
+    
 // -- BAR CHART DATA
     var ctx = document.getElementById("myBarChart");
     var myLineChart = new Chart(ctx, {
@@ -188,6 +187,33 @@
             }
         });
     });
+    
+    // Quantity input -----------------------------
+        // Get all the quantity input tags on the page
+        const quantityInputs = document.querySelectorAll('.quantity-input');
 
+        // Add click event listeners to each of the quantity input tags
+        quantityInputs.forEach(function(quantityInput) {
+          const quantity = quantityInput.querySelector('.quantity');
+          const numberInputs = document.querySelectorAll('.numberInputHidden');
+
+          quantity.addEventListener('input', function() {
+            validateInput(quantity);
+          });
+
+          quantity.addEventListener('blur', function() {
+            validateInput(quantity);
+          });
+
+          function validateInput(input) {
+            let value = parseInt(input.value);
+            if (isNaN(value) || value < 1 || value > 9999) {
+              alert('Value must be an integer, greater than 0 and less than 100!');
+              input.value = 1;
+            } else {
+              input.value = value;
+            }
+          }
+        });
 
 </script>

@@ -57,7 +57,8 @@
                             <th class="col-3 border border-1 border-white">Giá tiền</th>
                         </tr>
 
-                        <%                            Helper helper = new Helper();
+                        <%                            
+                            Helper helper = new Helper();
                             String err = "";
                             for (int i = 0; i < arrOr.size(); i++) {
                                 String price = helper.convertBigNum(arrOr.get(i).getPrice());

@@ -1,5 +1,3 @@
-<jsp:useBean id="helper" class="util.Helper"/>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
-        <title>Quản lý sản phẩm</title>
+        <title>Quản lý kho hàng</title>
 
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
@@ -25,7 +23,7 @@
                     <!-- <li class="breadcrumb-item">
                       <a href="#">Thống kê</a>
                     </li> -->
-                    <li class="breadcrumb-item active">Quản lý sản phẩm</li>
+                    <li class="breadcrumb-item active">Quản lý kho hàng</li>
                 </ol>
 
                 <!-- Icon Cards-->
@@ -43,7 +41,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalAllProduct}</span>
+                                <span class="mr-5">1</span>
                             </a>
                         </div>
                     </div>
@@ -60,7 +58,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalPhone}</span>
+                                <span class="mr-5">2</span>
                             </a>
                         </div>
                     </div>
@@ -77,7 +75,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalComputer}</span>
+                                <span class="mr-5">3</span>
                             </a>
                         </div>
                     </div>
@@ -93,11 +91,12 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm</span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm trong kho</span>
+                        <a class="add-btn btn btn-danger text-white" href="admin-product-add.jsp" style="float: right"><i class="fa fa-plus-circle"></i> Thêm sản phẩm</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table-pro table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table-wareh table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-white">
                                     <tr>
                                         <th>ID</th>
@@ -108,36 +107,40 @@
                                         <th>ROM</th>
                                         <th>Giá gốc</th>
                                         <th>Giá bán</th>
-                                        <th>Quản lý</th>
+                                        <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
 
                                     <!-- Sản phẩm-->
-                                    <c:forEach items="${requestScope.products}" var="p">
-                                        <tr>
-                                            <td>${p.id}</td>
-                                            <td>${p.name}</td>
-                                            <td>${p.type}</td>
-                                            <td>${p.color}</td>
-                                            <td>${p.ram}<span>GB</span></td>
-                                            <td>${p.memory}<span>GB</span></td>
-                                            <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
-                                            <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
-                                            <td>
-                                                <div class="d-flex ">
-                                                    <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                    <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
-                                                    <!----------->
-                                                    <a class="btn btn-success w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
-                                                    <form action="EditProduct" method="POST">
-                                                        <input type="text" value="${p.id}" name="product_id" hidden>
-                                                        <button type="submit" class="btn btn-danger w-100">Xóa</button>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Asus Gaming Rog Strix G15</td>
+                                        <td>Laptop</td>
+                                        <td>Gray</td>
+                                        <td>16<span>GB</span></td>
+                                        <td>512<span>GB</span></td>
+                                        <td class="text-right">57,990,000&nbsp;&#8363;</td>
+                                        <td class="text-right">45,990,000&nbsp;&#8363;</td>
+                                        <td>
+                                            <div class="change-order-status">
+                                                <div class="edit-off">
+                                                    <span class="text-center">5</span>
+                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi số lượng sản phẩm">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="edit-on disable">
+                                                    <form>
+                                                        <div class="d-flex quantity-input">
+                                                            <input type="number" class="form-control quantity text-center" style="border: 3px solid #dc3536;" value="1" min="1" max="9999" />&nbsp;
+                                                            <input type="submit" class="btn btn-danger" value="Lưu">
+                                                        </div>
                                                     </form>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

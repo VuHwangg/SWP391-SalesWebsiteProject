@@ -1,8 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Order" %>
-<%@page import="java.sql.Date" %>
-<%@page import="java.util.ArrayList" %>
-<%@page  import="util.Helper"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,17 +20,12 @@
 
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="admin-order-list-all.jsp">Quản lý đơn hàng</a>
-                    </li> 
-                    <li class="breadcrumb-item active">Danh sách đơn hàng đang vận chuyển</li>
+                    <!-- <li class="breadcrumb-item">
+                      <a href="#">Thống kê</a>
+                    </li> -->
+                    <li class="breadcrumb-item active">Quản lý đơn hàng</li>
                 </ol>
-                <%
-                    ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
-                    String err = "";
 
-
-                %>
                 <!-- Icon Cards-->
                 <div class="row">
 
@@ -50,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Preparing")%></span>
+                                <span class="mr-5">0</span>
                             </div>
                         </a>
                     </div>
@@ -67,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Shipping")%></span>
+                                <span class="mr-5">0</span>
                             </div>
                         </a>
                     </div>
@@ -84,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Success")%></span>
+                                <span class="mr-5">0</span>
                             </div>
                         </a>
                     </div>
@@ -101,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Cancelled")%></span>
+                                <span class="mr-5">0</span>
                             </div>
                         </a>
                     </div>
@@ -117,11 +108,7 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách đơn hàng
-                            <span class="text-warning" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                                đang vận chuyển
-                            </span>
-                        </span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách đơn hàng</span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -136,51 +123,41 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
- <%
-                                        if (arr.isEmpty() == false) {
-                                            for (int i = 0; i < arr.size(); i++) {
-                                                Helper helper = new Helper();
-                                                String price = helper.convertBigNum(arr.get(i).getTotal_price());
-                                                if (arr.get(i).getStatus() == 2) {
 
-                                    %>
                                     <!-- Order-->
                                     <tr>
-                                        <td><%=arr.get(i).getOrder_id()%></td>
-                                        <td><%=arr.get(i).getDate()%></td>
+                                        <td>1</td>
+                                        <td>19/2/1999</td>
                                         <td>
                                             <div class="change-order-status">
                                                 <div class="edit-off">
                                                     <!--Trạng thái của đơn hàng-->
-                                                    <span class="text-center">Đang vận chuyển</span>
+                                                    <span class="text-center">Đang chuẩn bị</span>
                                                     <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi trạng thái đơn hàng">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
                                                 </div>
                                                 <div class="edit-on disable">
-                                                    <form class="d-flex" method="post" action="ChangestatusOrder">
-                                                        <select class="custom-select" name="status">
-                                                             <%session.setAttribute("Odid", arr.get(i).getOrder_id());%>
+                                                    <!--form gửi để cập nhật trạng thái đơn hàng-->
+                                                    <form class="d-flex">
+                                                        <select class="custom-select">
+                                                            <option selected value="1">Đang chuẩn bị</option>
                                                             <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Bị hủy</option>
+                                                            <option value="3">Đã hoàn thành</option>
+                                                            <option value="4">Đã bị hủy</option>
                                                         </select>&nbsp;
-                                                        <input type="submit" class="btn btn-success" value="Lưu">
+                                                        <input type="submit" class="change-status-btn btn btn-success" value="Lưu">
                                                     </form>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><%=price%>&nbsp;&#8363;</td>
+                                        <td>19.200.000&nbsp;&#8363;</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <a class="btn btn-secondary w-100" href="Orderdetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
+                                                <a class="btn btn-secondary w-100" href="admin-order-detail.jsp">Xem chi tiết</a>
                                             </div>
                                         </td>
                                     </tr>
-
-                                      <%}
-                                            }
-                                        }%>
                                 </tbody>
                             </table>
                         </div>
