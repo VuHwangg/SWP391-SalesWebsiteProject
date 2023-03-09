@@ -27,16 +27,16 @@
                     </li> -->
                     <li class="breadcrumb-item active">Tra cứu lịch sử nhập hàng</li>
                 </ol>
-                
-                 <!-- AREA CHART CARD -->
+
+                <!-- AREA CHART CARD -->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê lịch sử nhập hàng theo ngày</div>
                     <div class="card-body">
 
                         <!-- Nhập số liệu vào bảng ở bên file "admin-script.js" phần "AREA CHART DATA" -->
-                        <canvas id="myAreaChart" width="100%" height="20"></canvas>
-
+                        
+                        <canvas id="myAreaChart" width="100%" height="30" ></canvas>
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
@@ -72,18 +72,18 @@
                                 <tbody class="text-center">
 
                                     <!-- Sản phẩm-->
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Iphone 15</td>
-                                            <td>Điện thoại</td>
-                                            <td>Trắng</td>
-                                            <td>4<span>GB</span></td>
-                                            <td>128<span>GB</span></td>
-                                            <td class="text-right">29,990,000&nbsp;&#8363;</td>
-                                            <td class="text-right">27,900,000&nbsp;&#8363;</td>
-                                            <td>3/10/2023</td>
-                                            <td>Vũ đẹp zai</td>
-                                        </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Iphone 15</td>
+                                        <td>Điện thoại</td>
+                                        <td>Trắng</td>
+                                        <td>4<span>GB</span></td>
+                                        <td>128<span>GB</span></td>
+                                        <td class="text-right">29,990,000&nbsp;&#8363;</td>
+                                        <td class="text-right">27,900,000&nbsp;&#8363;</td>
+                                        <td>3/10/2023</td>
+                                        <td>Vũ đẹp zai</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -97,5 +97,6 @@
         </div>
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-script-additional.jsp" %>
     </body>
 </html>

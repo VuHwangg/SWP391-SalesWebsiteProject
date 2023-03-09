@@ -110,7 +110,8 @@
                     <div class="card-body">
 
                         <!-- Nhập số liệu vào bảng ở bên file "admin-script.js" phần "AREA CHART DATA" -->
-                        <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                        <div id="chart"></div>
+                        <canvas id="myAreaChart" width="100%" height="30" hidden=""></canvas>
 
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
@@ -180,5 +181,6 @@
         </div>
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-script-additional.jsp" %>
     </body>
 </html>
