@@ -21,57 +21,57 @@
             <!-- 1 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
                 <a class="nav-link" href="admin-dashmap.jsp">
-                    <i class="fa fa-fw fa-dashboard"></i>
+                    <i class="fa fa-fw fa-dashboard"></i>&nbsp;
                     <span class="nav-link-text">Thống kê</span>
                 </a>
             </li>
-
+            
             <!-- 2 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhân viên">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEmployee" data-parent="#MainAccordion">
-                    <i class="fa fa-users" aria-hidden="true"></i>
+                <a class="nav-link" href="controllerEmployee">
+                    <i class="fa fa-users"></i>&nbsp;
                     <span class="nav-link-text">Nhân viên</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseEmployee">
-                    <li>
-                        <a href="controllerEmployee">Quản lý nhân viên</a>
-                    </li>
-                    <li>
-                        <a href="register-admin.jsp">Tạo tài khoản</a>
-                    </li>
-                </ul>
             </li>
             
             <!-- 3 -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phầm">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProduct" data-parent="#MainAccordion">
-                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm">
+                <a class="nav-link" href="ProductManagement">
+                    <i class="fa fa-shopping-basket"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseProduct">
-                    <li>
-                        <a href="ProductManagement">Quản lý sản phẩm</a>
-                    </li>
-                    <li>
-                        <a href="admin-warehouse-management.jsp">Quản lý kho hàng</a>
-                    </li>
-                    <li>
-                        <a href="#">Tra cứu lịch sử nhập hàng</a>
-                    </li>
-                </ul>
             </li>
             
             <!-- 4 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
+                <a class="nav-link" href="admin-warehouse-management.jsp">
+                    <i class="fa fa-dropbox"></i>&nbsp;
+                    <span class="nav-link-text">Kho hàng</span>
+                </a>
+            </li>
+            
+            <!-- 5 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrder" data-parent="#MainAccordion">
-                    <i class="fa fa-truck" aria-hidden="true"></i>
+                <a class="nav-link" href="ViewOrder">
+                    <i class="fa fa-truck"></i>&nbsp;
                     <span class="nav-link-text">Đơn hàng</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseOrder">
-                    <li>
-                        <a href="ViewOrder">Quản lý đơn hàng</a>
-                    </li>
-                </ul>
+            </li>
+            
+            <!-- 6 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử nhập hàng">
+                <a class="nav-link" href="admin-history-list.jsp">
+                    <i class="fa fa-history"></i>&nbsp;
+                    <span class="nav-link-text">Lịch sử nhập hàng</span>
+                </a>
+            </li>
+            
+            <!-- 7 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tạo tài khoản cho nhân viên">
+                <a class="nav-link" href="register-admin.jsp">
+                    <i class="fa fa-sign-in"></i>&nbsp;
+                    <span class="nav-link-text">Tạo tài khoản nhân viên</span>
+                </a>
             </li>
         </ul>
         <ul class="navbar-nav sidenav-toggler">

@@ -6,7 +6,7 @@
     Chart.defaults.global.defaultFontColor = '#292b2c';
 
 
-// -- AREA CHART DATA
+// -- AREA CHART DATA 1
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -58,8 +58,7 @@
             }
         }
     });
-
-
+    
 // -- BAR CHART DATA
     var ctx = document.getElementById("myBarChart");
     var myLineChart = new Chart(ctx, {
