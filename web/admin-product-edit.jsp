@@ -103,7 +103,7 @@
                         </span>
                     </div>
                     <div class="card-body p-3">
-                        <form>
+                        <form action="EditProduct" method="POST">
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <!--Tên sản phẩm-->

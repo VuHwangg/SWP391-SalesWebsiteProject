@@ -16,7 +16,11 @@ public class DBContext {
 
             String user = "giangnxthe161756";          
 
+<<<<<<< Updated upstream
             String pass = "tifver55";
+=======
+            String pass = "sa";
+>>>>>>> Stashed changes
 
 
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
