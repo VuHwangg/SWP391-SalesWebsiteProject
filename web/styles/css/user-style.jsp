@@ -22,6 +22,29 @@
         background-color: #ffffff;
     }
 
+    textarea:focus,
+    select:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="datetime"]:focus,
+    input[type="datetime-local"]:focus,
+    input[type="date"]:focus,
+    input[type="month"]:focus,
+    input[type="time"]:focus,
+    input[type="week"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="color"]:focus,
+    input[type="file"]:focus,
+    .uneditable-input:focus {
+        border-color: rgba(220, 53, 69, 0.8) !important;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(220, 53, 69, 0.6) !important;
+        outline: 0 none !important;
+    }
+
     ::selection {
         color: #fff;
         background: var(--main-bg-color);
@@ -36,7 +59,7 @@
         --main-color-darkgray: #243238;
         --main-color-black: rgb(39, 39, 39);
     }
-    
+
     table tr,
     table td,
     table th {
@@ -51,7 +74,7 @@
     input[type="checkbox"] {
         accent-color: var(--main-bg-color);
     }
-    
+
     input[type="radio"] {
         accent-color: var(--main-bg-color);
     }
@@ -768,7 +791,7 @@
         padding: 15px 40px 1px 40px;
         height: 70vh;
     }
-    
+
     @media (max-width: 576px) {
         .profile {
             height: 100%;
@@ -1129,7 +1152,7 @@
         font-size: 18px;
         font-weight: 500;
     }
-    
+
     .quantity-input-cart button,
     .quantity-input-cart input {
         padding: 4px 4px;

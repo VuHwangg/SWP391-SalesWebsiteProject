@@ -42,10 +42,18 @@
                 </a>
             </li>
             
+            <!-- 3 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thêm sản phẩm">
+                <a class="nav-link" href="admin-product-add.jsp">
+                    <i class="fa fa-cube"></i>&nbsp;
+                    <span class="nav-link-text">Thêm mới sản phẩm</span>
+                </a>
+            </li>
+            
             <!-- 4 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
                 <a class="nav-link" href="admin-warehouse-management.jsp">
-                    <i class="fa fa-dropbox"></i>&nbsp;
+                    <i class="fa fa-cubes"></i>&nbsp;
                     <span class="nav-link-text">Kho hàng</span>
                 </a>
             </li>

@@ -95,7 +95,7 @@
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm</span>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-2">
                         <div class="table-responsive">
                             <table class="table-pro table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-white">
@@ -117,7 +117,7 @@
                                     <c:forEach items="${requestScope.products}" var="p">
                                         <tr>
                                             <td>${p.id}</td>
-                                            <td>${p.name}</td>
+                                            <td class="text-left">${p.name}</td>
                                             <td>${p.type}</td>
                                             <td>${p.color}</td>
                                             <td>${p.ram}<span>GB</span></td>

@@ -23,6 +23,29 @@
         --main-color-black: rgb(39, 39, 39);
     }
 
+    textarea:focus,
+    select:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="datetime"]:focus,
+    input[type="datetime-local"]:focus,
+    input[type="date"]:focus,
+    input[type="month"]:focus,
+    input[type="time"]:focus,
+    input[type="week"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="color"]:focus,
+    input[type="file"]:focus,
+    .uneditable-input:focus {
+        border-color: rgba(220, 53, 69, 0.8) !important;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(220, 53, 69, 0.6) !important;
+        outline: 0 none !important;
+    }
+
     input[type="checkbox"] {
         accent-color: var(--main-bg-color);
     }
@@ -30,11 +53,11 @@
     input[type="radio"] {
         accent-color: var(--main-bg-color);
     }
-    
+
     .enable-block {
         display: block;
     }
-    
+
     .disable {
         display: none;
     }
@@ -296,7 +319,7 @@
     body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-link {
         width: 55px !important;
     }
-    
+
     #sidenavToggler:hover {
         background-color: var(--red-hover) !important;
     }
@@ -436,7 +459,7 @@
     .card {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
-    
+
     a.card:hover {
         text-decoration: none;
     }
@@ -510,11 +533,11 @@
     .table tr td {
         vertical-align: middle;
     }
-    
+
     .table tr th{
         padding: 12px 6px
     }
-    
+
     .table tr td button,
     .table tr td a{
         border: none;
@@ -523,11 +546,11 @@
         cursor: pointer;
         text-decoration: none;
     }
-    
 
-    
+
+
     /*  Table Employee Management ===============================*/
-    
+
     .table-emp tr th:nth-child(1) {
         width: 10%;
     }
@@ -558,24 +581,24 @@
             margin-top: 10px;
         }
     }
-    
+
     .add-btn {
         padding: 4px 8px;
     }
-    
-    
+
+
     /*  Table Product Management =============================*/
-    
+
     .table-pro tr th:nth-child(1) {
         width: 5%;
     }
-    
+
     .table-pro tr th:nth-child(2) {
         width: 19%;
     }
-    
+
     .table-pro tr th:nth-child(3) {
-        width: 10%;
+        width: 12%;
     }
 
     .table-pro tr th:nth-child(4) {
@@ -593,28 +616,28 @@
     .table-pro tr th:nth-child(7) {
         width: 10%;
     }
-    
+
     .table-pro tr th:nth-child(8) {
         width: 10%;
     }
-    
+
     .table-pro tr th:nth-child(9) {
-        width: 20%;
+        width: 18%;
     }
-    
-    
+
+
     /*  Table Warehouse Management =============================*/
-    
+
     .table-wareh tr th:nth-child(1) {
         width: 5%;
     }
-    
+
     .table-wareh tr th:nth-child(2) {
         width: 22%;
     }
-    
+
     .table-wareh tr th:nth-child(3) {
-        width: 10%;
+        width: 12%;
     }
 
     .table-wareh tr th:nth-child(4) {
@@ -632,26 +655,26 @@
     .table-wareh tr th:nth-child(7) {
         width: 10%;
     }
-    
+
     .table-wareh tr th:nth-child(8) {
         width: 10%;
     }
-    
+
     .table-wareh tr th:nth-child(9) {
-        width: 15%;
+        width: 13%;
     }
-    
-    
+
+
     /*  Table Product Import History Management =============================*/
-    
+
     .table-history tr th:nth-child(1) {
         width: 5%;
     }
-    
+
     .table-history tr th:nth-child(2) {
         width: 19%;
     }
-    
+
     .table-history tr th:nth-child(3) {
         width: 10%;
     }
@@ -671,22 +694,22 @@
     .table-history tr th:nth-child(7) {
         width: 10%;
     }
-    
+
     .table-history tr th:nth-child(8) {
         width: 10%;
     }
-    
+
     .table-history tr th:nth-child(9) {
         width: 11%;
     }
-    
+
     .table-history tr th:nth-child(10) {
         width: 11%;
     }
-    
-    
+
+
     /*Custom Design Of Table Defalt*/
-    
+
     .page-item.active .page-link{
         background-color: var(--red);
         border-color: var(--red);
@@ -699,7 +722,7 @@
         border: none;
         background-color: white !important;
     }
-    
+
     .password-input-group.multi-input input {
         text-align: center;
     }
@@ -707,11 +730,23 @@
     .password-input-group a {
         color: var(--red);
     }
-    
+
     .password-input-group a:hover {
         color: var(--red-hover);
     }
-
+    
+    /*------------- INPUT GROUP CSS -------------------------*/
+    .input-group .input-group-text {
+        background-color: var(--main-bg-color);
+        color: white;
+        border: 1px solid var(--main-bg-color);
+    }
+    
+    .input-group input,
+    .input-group select{
+        border: 1px solid var(--main-bg-color);
+    }
+    
 
     footer.sticky-footer {
         position: absolute;

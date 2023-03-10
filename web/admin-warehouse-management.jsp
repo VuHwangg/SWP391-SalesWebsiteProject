@@ -94,7 +94,7 @@
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm trong kho</span>
                         <a class="add-btn btn btn-danger text-white" href="admin-product-add.jsp" style="float: right"><i class="fa fa-plus-circle"></i> Thêm sản phẩm</a>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-2">
                         <div class="table-responsive">
                             <table class="table-wareh table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-white">
@@ -115,7 +115,7 @@
                                     <!-- Sản phẩm-->
                                     <tr>
                                         <td>1</td>
-                                        <td>Asus Gaming Rog Strix G15</td>
+                                        <td class="text-left">Asus Gaming</td>
                                         <td>Laptop</td>
                                         <td>Gray</td>
                                         <td>16<span>GB</span></td>
@@ -134,7 +134,7 @@
                                                     <form>
                                                         <div class="d-flex quantity-input">
                                                             <input type="number" class="form-control quantity text-center" style="border: 3px solid #dc3536;" value="1" min="1" max="9999" />&nbsp;
-                                                            <input type="submit" class="btn btn-danger" value="Lưu">
+                                                            <input type="submit" class="btn btn-danger" style="padding: 4px 6px" value="Lưu">
                                                         </div>
                                                     </form>
                                                 </div>
