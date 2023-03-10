@@ -48,7 +48,7 @@
                         </span>
                     </div>
                     <div class="card-body p-3">
-                        <form>
+                        <form action="EditProduct" method="POST"></form>
                             <div class="input-group mb-3">
                                 <!--Tên sản phẩm-->
                                 <div class="input-group-prepend">
@@ -56,6 +56,7 @@
                                 </div>
                                 <input type="text" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" value="${requestScope.product.name}" required>
                             </div>
+                        
                             <div class="row">
                                 <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">

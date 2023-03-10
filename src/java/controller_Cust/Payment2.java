@@ -119,7 +119,10 @@ public class Payment2 extends HttpServlet {
 
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
+//                    response.getWriter().println(cart.getValue().getProduct().getId());
+//                     response.getWriter().println((cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
                      pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
+                     pdo.updateSold(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getSold()+cart.getValue().getQuantity()));
                     if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
                         
                         if (session.getAttribute("acc") != null) {
@@ -141,12 +144,17 @@ public class Payment2 extends HttpServlet {
                 session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
 
                 session.setAttribute("carts", null);
+               
+                
                 if (!cus.isStatus()) {
                     session.setAttribute("cus", null);
                 }
 
             }
-
+////        }catch(Exception ex){
+////            
+////        }
+//
             request.getRequestDispatcher("home").forward(request, response);
 
         } catch (MessagingException ex) {

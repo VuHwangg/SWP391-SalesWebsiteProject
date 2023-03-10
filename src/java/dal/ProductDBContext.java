@@ -912,8 +912,24 @@ public class ProductDBContext extends DBContext {
         try {
             String sql = "Update Product set qty = ? where product_id= ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, product_id);
-            ps.setInt(2, num);
+            ps.setInt(2, product_id);
+            ps.setInt(1, num);
+
+            int rowsAffected = ps.executeUpdate();
+            if(rowsAffected > 0) check = true;
+
+        } catch (SQLException e) {
+        }
+        return check;
+
+    }
+        public boolean updateSold(int product_id,int num) {
+        boolean check = false;
+        try {
+            String sql = "Update Product set sold = ? where product_id= ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(2, product_id);
+            ps.setInt(1, num);
 
             int rowsAffected = ps.executeUpdate();
             if(rowsAffected > 0) check = true;
