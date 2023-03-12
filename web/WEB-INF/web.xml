@@ -120,6 +120,15 @@
         <servlet-name>ChangestatusOrder</servlet-name>
         <servlet-class>controller_Empt.ChangestatusOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewProductController</servlet-name>
+        <servlet-class>controller_Empt.AddNewProductController</servlet-class>
+        <multipart-config>
+            <max-file-size>1073741824</max-file-size>
+            <max-request-size>1073741824</max-request-size>
+            <file-size-threshold>1073741824</file-size-threshold>
+        </multipart-config>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -274,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>ChangestatusOrder</servlet-name>
         <url-pattern>/ChangestatusOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewProductController</servlet-name>
+        <url-pattern>/AddNewProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
