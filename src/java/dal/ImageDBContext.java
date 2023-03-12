@@ -67,4 +67,25 @@ public class ImageDBContext extends DBContext {
         }
         return url;
     }
+
+    public void saveImageToDatabase(String image, int id, boolean thumbnail) {
+        try {
+            String sql = "INSERT INTO [dbo].[Image]\n"
+                    + "           ([product_id]\n"
+                    + "           ,[thumbnail]\n"
+                    + "           ,[url])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setBoolean(2, thumbnail);
+            ps.setString(3, image);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
