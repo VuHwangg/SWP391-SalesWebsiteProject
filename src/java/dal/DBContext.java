@@ -15,14 +15,9 @@ public class DBContext {
 
 
             String user = "sa";          
-<<<<<<< Updated upstream
-            String pass = "30082002Xyz@";
-=======
-
 
             String pass = "sa";
 
->>>>>>> Stashed changes
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
