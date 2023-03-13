@@ -1010,6 +1010,12 @@
     .product-detail .add-cart-btn:hover {
         background-color: #d9ce30;
     }
+    
+    .product-detail .sold-out-box {
+        border: 2px solid #6c757d; 
+        border-radius: 20px; 
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
 
 
     /*-------------------------- Similar product-----------------------------------*/

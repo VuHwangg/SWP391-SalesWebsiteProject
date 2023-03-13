@@ -135,7 +135,7 @@
                                         <option  value="other">Khác</option>
                                     </select>
                                     <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
-                                    <input type="text" class="form-control" id="add-more-demand" placeholder="Thêm hệ điều hành mới" style="display: none;">
+                                    <input type="text" class="form-control" id="add-more-demand" placeholder="Thêm nhu cầu sử dụng mới" style="display: none;">
                                 </div>
                             </div>
 
