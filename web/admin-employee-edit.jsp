@@ -108,7 +108,7 @@
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Chỉnh sửa nhân viên 
                         <!--Tên đăng nhập của nhân viên-->
                         <span class="text-danger" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
-                            <%=acc.getUsername()%>
+                            @<%=acc.getUsername()%>
                         </span>
                     </div>
                     <div class="card-body p-3">
@@ -131,7 +131,7 @@
                                     <input type="password" class="form-control password-toggle" id="password" name="password" placeholder="Mật khẩu" value="<%=acc.getPassword()%>" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                            <a href="" class="toggle-password" style="color: #dc3545;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
                                 </div>

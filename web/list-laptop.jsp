@@ -250,6 +250,20 @@
                                                         <div class="product-price">
                                                             <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
                                                         </div>
+                                                        
+                                                        <div class="product-status">
+                                                        <!--Còn hàng-->
+                                                        <div class="text-success">
+                                                            <i class="bi bi-check-all"></i>
+                                                            <span>Còn hàng</span>
+                                                        </div>
+                                                        
+                                                        <!--Hết hàng-->
+                                                        <div class="text-danger">
+                                                            <i class="bi bi-x-lg"></i>
+                                                            <span>Hết hàng</span>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                     <c:if test="${filter.discount>0}">
                                                         <div class="col-4">

@@ -93,7 +93,7 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm</span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm đang được bày bán</span>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
@@ -139,7 +139,7 @@
                                                     <a class="btn btn-success w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
                                                     <form action="EditProduct" method="POST">
                                                         <input type="text" value="${p.id}" name="product_id" hidden>
-                                                        <button type="submit" class="btn btn-danger w-100">Xóa</button>
+                                                        <button type="submit" class="btn btn-danger w-100">Dừng bán</button>
                                                     </form>
                                                 </div>
                                             </td>

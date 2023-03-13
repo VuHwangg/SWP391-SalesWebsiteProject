@@ -14,8 +14,6 @@
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
 
-
-
         <!-- NAVIGATION BAR-->
         <%@include file="components/admin-navbar.jsp" %>
 
@@ -26,7 +24,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="admin-product-list.jsp">Quản lý sản phẩm</a>
+                        <a href="ProductManagement">Quản lý sản phẩm</a>
                     </li> 
                     <li class="breadcrumb-item active">Chỉnh sửa</li>
                 </ol>
@@ -49,157 +47,220 @@
                     </div>
                     <div class="card-body p-3">
                         <form action="EditProduct" method="POST"></form>
-                            <div class="input-group mb-3">
-                                <!--Tên sản phẩm-->
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
-                                </div>
-                                <input type="text" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" value="${requestScope.product.name}" minlength="1" maxlength="40" required>
+                        <div class="input-group mb-3">
+                            <!--Tên sản phẩm-->
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
                             </div>
-                        
-                            <div class="row">
-                                <div class="col-md-6 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="OldPrice">Giá gốc</label>
-                                    </div>
-                                    <!--Giá gốc-->
-                                    <input type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNum(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">VNĐ</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="SalePrice">Giá bán ra</label>
-                                    </div>
-                                    <!--Giá sale-->
-                                    <input type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNum(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">VNĐ</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputColorProduct">Màu sắc</label>
-                                    </div>
-                                    <!--Màu sắc-->
-                                    <input type="text" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" value="${requestScope.product.color}" maxlength="40" required>
-                                </div>
-                                <div class="col-md-6 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputTypeProduct">Loại sản phẩm</label>
-                                    </div>
-                                    <!--Loại sản phẩm-->
-                                    <select class="custom-select" id="inputTypeProduct">
-                                        <c:if test="${product.type == 1}">
-                                            <option  value="phone">Điện thoại</option>
-                                            <option  selected value="laptop">Laptop</option>
-                                        </c:if>
-                                        <c:if test="${product.type == 0}">
-                                            <option selected value="phone">Điện thoại</option>
-                                            <option value="laptop">Laptop</option>
-                                        </c:if>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <h5 class="fw-bold">Thông số kỹ thuật</h5>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputRam">RAM</label>
-                                    </div>
-                                    <!--RAM-->
-                                    <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" value="${requestScope.product.ram}" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">GB</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputRom">ROM</label>
-                                    </div>
-                                    <!--ROM-->
-                                    <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" value="${requestScope.product.memory}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">GB</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect02">Hệ điều hành</label>
-                                    </div>
-                                    <!--Hệ điều hành-->
+                            <input type="text" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" value="${requestScope.product.name}" minlength="1" maxlength="40" required>
+                        </div>
 
-                                    <select class="custom-select" id="inputGroupSelect02">
-                                        <c:if test="${helper.osCompare(product.os) == 0}">
-                                            <option selected value="android">Android</option>
-                                            <option value="ios">IOS</option>
-                                            <option value="window">Windows</option>
-                                            <option value="macos">MacOS</option>
-                                        </c:if>
-                                        <c:if test="${helper.osCompare(product.os) == 1}">
-                                            <option value="android">Android</option>
-                                            <option selected value="ios">IOS</option>
-                                            <option value="window">Windows</option>
-                                            <option value="macos">MacOS</option>
-                                        </c:if>
-                                        <c:if test="${helper.osCompare(product.os) == 2}">
-                                            <option value="android">Android</option>
-                                            <option value="ios">IOS</option>
-                                            <option selected value="window">Windows</option>
-                                            <option value="macos">MacOS</option>
-                                        </c:if>
-                                        <c:if test="${helper.osCompare(product.os) == 3}">
-                                            <option value="android">Android</option>
-                                            <option value="ios">IOS</option>
-                                            <option value="window">Windows</option>
-                                            <option selected value="macos">MacOS</option>
-                                        </c:if>
-                                    </select>
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="OldPrice">Giá gốc</label>
+                                </div>
+                                <!--Giá gốc-->
+                                <input type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNum(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">VNĐ</span>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
-                                    </div>
-                                    <!--Kích thước màn hình-->
-                                    <input type="text" class="form-control" placeholder="VD: VD: 15.6" value="${requestScope.product.size}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Inchs</span>
-                                    </div>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="SalePrice">Giá bán ra</label>
                                 </div>
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
-                                    </div>
-                                    <!--CPU-->
-                                    <input type="text" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" value="${requestScope.product.cpu}" maxlength="30">
-                                </div>
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
-                                    </div>
-                                    <!--GPU-->
-                                    <input type="text" class="form-control" id="GpuProduct" placeholder="VD: Geforce RTX 3060 6GB" value="${requestScope.product.graphic_card}" maxlength="30">
+                                <!--Giá sale-->
+                                <input type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNum(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">VNĐ</span>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <h5 class="fw-bold">Mô tả sản phẩm</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputColorProduct">Màu sắc</label>
+                                </div>
+                                <!--Màu sắc-->
+                                <input type="text" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" value="${requestScope.product.color}" maxlength="40" required>
                             </div>
-                            <div class="mb-3">
-                                <textarea class="form-control border border-1 border-danger" rows="5" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required>${requestScope.product.description}</textarea>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputTypeProduct">Loại sản phẩm</label>
+                                </div>
+                                <!--Loại sản phẩm-->
+                                <select class="custom-select" id="inputTypeProduct">
+                                    <c:if test="${product.type == 1}">
+                                        <option  value="phone">Điện thoại</option>
+                                        <option  selected value="laptop">Laptop</option>
+                                    </c:if>
+                                    <c:if test="${product.type == 0}">
+                                        <option selected value="phone">Điện thoại</option>
+                                        <option value="laptop">Laptop</option>
+                                    </c:if>
+                                </select>
                             </div>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">
-                                <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
-                                    Quay Lại
-                                </a>
+                        </div>
+                        <!--
+                        == Bổ sung ở đây nhé ====================================
+                        =========================================================
+                        -->
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
+                                </div>
+                                <!--Hãng sản xuất của sản phẩm-->
+                                <select class="custom-select" id="inputBrandProduct">
+                                    <!--
+                                    == Nếu sản phẩm là Laptop ===============================-->
+                                    <option  value="asus">Asus</option>
+                                    <option  value="hp">HP</option>
+                                    <option  value="gigabyte">Gigabyte</option>
+                                    <option  value="dell">Dell</option>
+                                    <option  value="msi">MSI</option>
+                                    <option  value="huawei">Huawei</option>
+
+                                    <!--
+                                    == Nếu sản phẩm là Điện thoại ===============================-->
+                                    <option  value="samsung">Samsung</option>
+
+                                    <!--
+                                    == Cả điện thoại và laptop đều có ========================-->
+                                    <option  value="apple">Apple</option>
+                                    <option  value="other">Khác</option>
+                                </select>
+                                <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
+                                <input type="text" class="form-control" id="add-more-brand" placeholder="Thêm hãng sản xuất mới" style="display: none">
                             </div>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
+                                </div>
+                                <!--Nhu cầu sử dụng sản phẩm-->
+                                <select class="custom-select" id="inputDemandProduct">
+                                    <!--
+                                    == Nếu sản phẩm là Laptop ===============================-->
+                                    <option  value="office">Văn phòng</option>
+                                    <option  value="graphic">Đồ họa</option>
+
+                                    <!--
+                                    == Nếu sản phẩm là Điện thoại ===============================-->
+                                    <option  value="photography">Chụp ảnh</option>
+
+                                    <!--
+                                    == Cả điện thoại và laptop đều có ========================-->
+                                    <option  value="gaming">Chơi game</option>
+                                    <option  value="other">Khác</option>
+                                </select>
+                                <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
+                                <input type="text" class="form-control" id="add-more-demand" placeholder="Thêm nhu cầu sử dụng mới" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="fw-bold">Thông số kỹ thuật</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputRam">RAM</label>
+                                </div>
+                                <!--RAM-->
+                                <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" value="${requestScope.product.ram}" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">GB</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputRom">ROM</label>
+                                </div>
+                                <!--ROM-->
+                                <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" value="${requestScope.product.memory}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">GB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputOSProduct">Hệ điều hành</label>
+                                </div>
+                                <!--Hệ điều hành-->
+
+                                <select class="custom-select" id="inputOSProduct">
+                                    <c:if test="${helper.osCompare(product.os) == 0}">
+                                        <option selected value="android">Android</option>
+                                        <option value="ios">IOS</option>
+                                        <option value="window">Windows</option>
+                                        <option value="macos">MacOS</option>
+                                        <option value="other">Khác</option>
+                                    </c:if>
+                                    <c:if test="${helper.osCompare(product.os) == 1}">
+                                        <option value="android">Android</option>
+                                        <option selected value="ios">IOS</option>
+                                        <option value="window">Windows</option>
+                                        <option value="macos">MacOS</option>
+                                        <option value="other">Khác</option>
+                                    </c:if>
+                                    <c:if test="${helper.osCompare(product.os) == 2}">
+                                        <option value="android">Android</option>
+                                        <option value="ios">IOS</option>
+                                        <option selected value="window">Windows</option>
+                                        <option value="macos">MacOS</option>
+                                        <option value="other">Khác</option>
+                                    </c:if>
+                                    <c:if test="${helper.osCompare(product.os) == 3}">
+                                        <option value="android">Android</option>
+                                        <option value="ios">IOS</option>
+                                        <option value="window">Windows</option>
+                                        <option selected value="macos">MacOS</option>
+                                        <option value="other">Khác</option>
+                                    </c:if>
+                                </select>
+                                <input type="text" class="form-control" id="add-more-os" placeholder="Thêm hệ điều hành mới" style="display: none;">
+                            </div>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
+                                </div>
+                                <!--Kích thước màn hình-->
+                                <input type="text" class="form-control" placeholder="VD: VD: 15.6" value="${requestScope.product.size}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Inchs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
+                                </div>
+                                <!--CPU-->
+                                <input type="text" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" value="${requestScope.product.cpu}" maxlength="30">
+                            </div>
+                            <div class="col-sm-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
+                                </div>
+                                <!--GPU-->
+                                <input type="text" class="form-control" id="GpuProduct" placeholder="VD: Geforce RTX 3060 6GB" value="${requestScope.product.graphic_card}" maxlength="30">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="fw-bold">Mô tả sản phẩm</h5>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required>${requestScope.product.description}</textarea>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-end">
+                            <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">
+                            <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
+                                Quay Lại
+                            </a>
+                        </div>
                         </form>
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->

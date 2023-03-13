@@ -58,7 +58,7 @@
             }
         }
     });
-    
+
 // -- BAR CHART DATA
     var ctx = document.getElementById("myBarChart");
     var myLineChart = new Chart(ctx, {
@@ -170,7 +170,7 @@
         });
     })(jQuery); // End of use strict
 
-    
+
     // Edit Status of each order
     $(document).ready(function () {
         $(".change-status-btn").on('click', function (event) {
@@ -187,33 +187,69 @@
             }
         });
     });
+
+    // Add other Brand of product in add-product page
+    const brandSelect = document.getElementById('inputBrandProduct');
+    const addMoreBrandBox = document.getElementById('add-more-brand');
+
+    brandSelect.addEventListener("change", function () {
+        if (brandSelect.value === "other") {
+            addMoreBrandBox.style.display = "block";
+        } else {
+            addMoreBrandBox.style.display = "none";
+        }
+    });
     
+    // Add other Demand of product in add-product page
+    const demandSelect = document.getElementById('inputDemandProduct');
+    const addMoreDemandBox = document.getElementById('add-more-demand');
+
+    demandSelect.addEventListener("change", function () {
+        if (demandSelect.value === "other") {
+            addMoreDemandBox.style.display = "block";
+        } else {
+            addMoreDemandBox.style.display = "none";
+        }
+    });
+    
+    // Add other OS of product in add-product page
+    const osSelect = document.getElementById('inputOSProduct');
+    const addMoreOSBox = document.getElementById('add-more-os');
+
+    osSelect.addEventListener("change", function () {
+        if (osSelect.value === "other") {
+            addMoreOSBox.style.display = "block";
+        } else {
+            addMoreOSBox.style.display = "none";
+        }
+    });
+
     // Quantity input -----------------------------
-        // Get all the quantity input tags on the page
-        const quantityInputs = document.querySelectorAll('.quantity-input');
+    // Get all the quantity input tags on the page
+    const quantityInputs = document.querySelectorAll('.quantity-input');
 
-        // Add click event listeners to each of the quantity input tags
-        quantityInputs.forEach(function(quantityInput) {
-          const quantity = quantityInput.querySelector('.quantity');
-          const numberInputs = document.querySelectorAll('.numberInputHidden');
+    // Add click event listeners to each of the quantity input tags
+    quantityInputs.forEach(function (quantityInput) {
+        const quantity = quantityInput.querySelector('.quantity');
+        const numberInputs = document.querySelectorAll('.numberInputHidden');
 
-          quantity.addEventListener('input', function() {
+        quantity.addEventListener('input', function () {
             validateInput(quantity);
-          });
+        });
 
-          quantity.addEventListener('blur', function() {
+        quantity.addEventListener('blur', function () {
             validateInput(quantity);
-          });
+        });
 
-          function validateInput(input) {
+        function validateInput(input) {
             let value = parseInt(input.value);
             if (isNaN(value) || value < 1 || value > 9999) {
-              alert('Value must be an integer, greater than 0 and less than 100!');
-              input.value = 1;
+                alert('Value must be an integer, greater than 0 and less than 100!');
+                input.value = 1;
             } else {
-              input.value = value;
+                input.value = value;
             }
-          }
-        });
+        }
+    });
 
 </script>
