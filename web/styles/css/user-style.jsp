@@ -713,12 +713,12 @@
         background-image: url('img/seven-pointed-star-svgrepo-com.svg');
         background-repeat: no-repeat;
         background-size: 64px;
-        background-position: 0 -6px;
+        background-position: 0 0px;
     }
     .product .sale-percent {
         color: white;
         font-weight: 700;
-        margin-top: 14px;
+        margin-top: 23px;
         font-size: 15px;
     }
 

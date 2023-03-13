@@ -89,6 +89,20 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(onSale.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
+
+                                                    <div class="product-status">
+                                                        <!--Còn hàng-->
+                                                        <div class="text-success">
+                                                            <i class="bi bi-check-all"></i>
+                                                            <span>Còn hàng</span>
+                                                        </div>
+                                                        
+                                                        <!--Hết hàng-->
+                                                        <div class="text-danger">
+                                                            <i class="bi bi-x-lg"></i>
+                                                            <span>Hết hàng</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <c:if test="${onSale.discount>0}">
                                                     <div class="col-4">
@@ -97,6 +111,7 @@
                                                 </c:if>   
 
                                             </div>
+
                                         </a>
                                     </li>
                                 </c:forEach>
@@ -132,6 +147,20 @@
 
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(topSold.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
+                                                    
+                                                    <div class="product-status">
+                                                        <!--Còn hàng-->
+                                                        <div class="text-success">
+                                                            <i class="bi bi-check-all"></i>
+                                                            <span>Còn hàng</span>
+                                                        </div>
+                                                        
+                                                        <!--Hết hàng-->
+                                                        <div class="text-danger">
+                                                            <i class="bi bi-x-lg"></i>
+                                                            <span>Hết hàng</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <c:if test="${topSold.discount>0}">
@@ -176,6 +205,20 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(phone.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
+                                                    
+                                                    <div class="product-status">
+                                                        <!--Còn hàng-->
+                                                        <div class="text-success">
+                                                            <i class="bi bi-check-all"></i>
+                                                            <span>Còn hàng</span>
+                                                        </div>
+                                                        
+                                                        <!--Hết hàng-->
+                                                        <div class="text-danger">
+                                                            <i class="bi bi-x-lg"></i>
+                                                            <span>Hết hàng</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <c:if test="${phone.discount>0}">
                                                     <div class="col-4">
@@ -218,6 +261,20 @@
 
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(laptop.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
+                                                    
+                                                    <div class="product-status">
+                                                        <!--Còn hàng-->
+                                                        <div class="text-success">
+                                                            <i class="bi bi-check-all"></i>
+                                                            <span>Còn hàng</span>
+                                                        </div>
+                                                        
+                                                        <!--Hết hàng-->
+                                                        <div class="text-danger">
+                                                            <i class="bi bi-x-lg"></i>
+                                                            <span>Hết hàng</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <c:if test="${laptop.discount>0}">
