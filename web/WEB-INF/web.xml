@@ -5,13 +5,22 @@
         <servlet-class>controller_Cust.LoginUser</servlet-class>
     </servlet>
     
-     <servlet>
+    <servlet>
         <servlet-name>Dashmap</servlet-name>
         <servlet-class>controller_Empt.DashMapController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Dashmap</servlet-name>
         <url-pattern>/dashmap</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ImportHistory</servlet-name>
+        <servlet-class>controller_Empt.ImportHistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImportHistory</servlet-name>
+        <url-pattern>/importhistory</url-pattern>
     </servlet-mapping>
     
     <servlet>
