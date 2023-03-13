@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -907,7 +908,7 @@ public class ProductDBContext extends DBContext {
 //        }
 //        return sql;
 //    }
-        public boolean deleteNumberProduct(int product_id,int num) {
+    public boolean deleteNumberProduct(int product_id, int num) {
         boolean check = false;
         try {
             String sql = "Update Product set qty = ? where product_id= ?";
@@ -916,14 +917,17 @@ public class ProductDBContext extends DBContext {
             ps.setInt(1, num);
 
             int rowsAffected = ps.executeUpdate();
-            if(rowsAffected > 0) check = true;
+            if (rowsAffected > 0) {
+                check = true;
+            }
 
         } catch (SQLException e) {
         }
         return check;
 
     }
-        public boolean updateSold(int product_id,int num) {
+
+    public boolean updateSold(int product_id, int num) {
         boolean check = false;
         try {
             String sql = "Update Product set sold = ? where product_id= ?";
@@ -932,11 +936,81 @@ public class ProductDBContext extends DBContext {
             ps.setInt(1, num);
 
             int rowsAffected = ps.executeUpdate();
-            if(rowsAffected > 0) check = true;
+            if (rowsAffected > 0) {
+                check = true;
+            }
 
         } catch (SQLException e) {
         }
         return check;
 
-    } 
+    }
+
+    public int insertAndReturnId(Product product) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product]\n"
+                    + "           ([name]\n"
+                    + "           ,[type]\n"
+                    + "           ,[os]\n"
+                    + "           ,[feature_product]\n"
+                    + "           ,[color]\n"
+                    + "           ,[current_price]\n"
+                    + "           ,[original_price]\n"
+                    + "           ,[ram]\n"
+                    + "           ,[memory]\n"
+                    + "           ,[cpu]\n"
+                    + "           ,[graphics_card]\n"
+                    + "           ,[size]\n"
+                    + "           ,[description]\n"
+                    + "           ,[discount]\n"
+                    + "           ,[qty]\n"
+                    + "           ,[sold]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, product.getName());
+            ps.setInt(2, product.getType());
+            ps.setString(3, product.getOs());
+            ps.setBoolean(4, false);
+            ps.setString(5, product.getColor());
+            ps.setDouble(6, product.getCurrent_price());
+            ps.setDouble(7, product.getOriginal_price());
+            ps.setString(8, String.valueOf(product.getRam()));
+            ps.setString(9, String.valueOf(product.getMemory()));
+            ps.setString(10, product.getCpu());
+            ps.setString(11, product.getGraphic_card());
+            ps.setDouble(12, product.getSize());
+            ps.setString(13, product.getDescription());
+            ps.setDouble(14, product.getDiscount());
+            ps.setInt(15, 0);
+            ps.setInt(16, 0);
+            ps.setBoolean(17, product.isStatus());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
 }
