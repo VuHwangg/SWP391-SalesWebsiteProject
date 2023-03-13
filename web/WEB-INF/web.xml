@@ -4,6 +4,16 @@
         <servlet-name>LoginUser</servlet-name>
         <servlet-class>controller_Cust.LoginUser</servlet-class>
     </servlet>
+    
+     <servlet>
+        <servlet-name>Dashmap</servlet-name>
+        <servlet-class>controller_Empt.DashMapController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashmap</servlet-name>
+        <url-pattern>/dashmap</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller_Cust.AddToCartController</servlet-class>
