@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
@@ -93,7 +92,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <!--Thêm nhiều ảnh-->
-                                <input type="file" class="form-control" id="inputFile" accept="image/png, image/jpeg" multiple required>
+                                <input type="file" name="photo" multiple/>
                                 <div class="input-group-append" >
                                     <label class="input-group-text" style="cursor: pointer" for="inputFile">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
                                 </div>

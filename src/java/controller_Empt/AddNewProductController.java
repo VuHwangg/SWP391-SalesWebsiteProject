@@ -9,17 +9,25 @@ import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 import model.Product;
 import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -38,6 +46,16 @@ public class AddNewProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Collection<Part> parts = request.getParts();
+        List<String> base64Images = new ArrayList<>();
+        for (Part filePart : parts) {
+            if (filePart != null && filePart.getContentType() != null && filePart.getContentType().startsWith("image/")) {
+                InputStream fileContent = filePart.getInputStream();
+                byte[] bytes = IOUtils.toByteArray(fileContent);
+                String base64 = Base64.getEncoder().encodeToString(bytes);
+                base64Images.add(base64);
+            }
+        }
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String rawProductName = request.getParameter("productName");
@@ -52,7 +70,7 @@ public class AddNewProductController extends HttpServlet {
         String rawCpu = request.getParameter("productCpu");
         String rawGpu = request.getParameter("productGpu");
         String rawDescription = request.getParameter("productDescription");
-        
+
         int type = Integer.parseInt(rawType);
         double originalPrice = Double.parseDouble(rawOriginalPrice);
         double salePrice = Double.parseDouble(rawSalePrice);
@@ -76,24 +94,19 @@ public class AddNewProductController extends HttpServlet {
         product.setDescription(rawDescription);
         product.setDiscount(discountPercent);
         product.setStatus(true);
-        
+
         ProductDBContext pdb = new ProductDBContext();
         int productId = pdb.insertAndReturnId(product);
-        
-        Collection<Part> parts = request.getParts();
-        List<String> base64Images = new ArrayList<>();
-        for (Part filePart : parts) {
-            String fileName = filePart.getSubmittedFileName(); // Lấy tên tệp
-            InputStream fileContent = filePart.getInputStream(); // Lấy đối tượng InputStream để đọc dữ liệu của tệp
-            byte[] bytes = IOUtils.toByteArray(fileContent); // Chuyển đổi đối tượng InputStream thành một mảng byte
-            String base64 = Base64.getEncoder().encodeToString(bytes); // Chuyển đổi mảng byte thành chuỗi base64
-            base64Images.add(base64);
-        }
-        
+        ImageDBContext dao = new ImageDBContext();
+        int count = 0;
         for (String base64Image : base64Images) {
-            ImageDBContext dao = new ImageDBContext();
-            dao.saveImageToDatabase(base64Image, productId , false);
+            if (count == 0 ) {
+                dao.saveImageToDatabase(base64Image, productId, true);
+            }
+            dao.saveImageToDatabase(base64Image, productId, false);
+            count++;
         }
+
         request.getRequestDispatcher("admin-product-add.jsp").forward(request, response);
     }
 
