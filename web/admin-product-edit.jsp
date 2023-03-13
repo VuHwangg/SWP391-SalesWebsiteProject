@@ -63,7 +63,7 @@
                                         <label class="input-group-text" for="OldPrice">Giá gốc</label>
                                     </div>
                                     <!--Giá gốc-->
-                                    <input type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNum(product.original_price)}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNum(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
@@ -73,7 +73,7 @@
                                         <label class="input-group-text" for="SalePrice">Giá bán ra</label>
                                     </div>
                                     <!--Giá sale-->
-                                    <input type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNum(product.current_price)} " maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <input type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNum(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
@@ -113,7 +113,7 @@
                                         <label class="input-group-text" for="inputRam">RAM</label>
                                     </div>
                                     <!--RAM-->
-                                    <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" value="${requestScope.product.ram}" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" value="${requestScope.product.ram}" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
@@ -123,7 +123,7 @@
                                         <label class="input-group-text" for="inputRom">ROM</label>
                                     </div>
                                     <!--ROM-->
-                                    <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" value="${requestScope.product.memory}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" value="${requestScope.product.memory}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
@@ -168,7 +168,7 @@
                                         <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
                                     </div>
                                     <!--Kích thước màn hình-->
-                                    <input type="text" class="form-control" placeholder="VD: VD: 15.6" value="${requestScope.product.size}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <input type="text" class="form-control" placeholder="VD: VD: 15.6" value="${requestScope.product.size}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Inchs</span>
                                     </div>

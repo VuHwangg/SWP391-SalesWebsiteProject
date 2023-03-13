@@ -118,7 +118,14 @@
                                         <tr>
                                             <td>${p.id}</td>
                                             <td class="text-left">${p.name}</td>
-                                            <td>${p.type}</td>
+                                            <td>
+                                                <c:if test="${p.type == 1}">
+                                                    Laptop
+                                                </c:if>
+                                                <c:if test="${p.type == 0}">
+                                                    Điện thoại
+                                                </c:if>
+                                            </td>
                                             <td>${p.color}</td>
                                             <td>${p.ram}<span>GB</span></td>
                                             <td>${p.memory}<span>GB</span></td>

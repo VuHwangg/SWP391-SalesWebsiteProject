@@ -107,7 +107,7 @@
                                         <label class="input-group-text" for="inputRam">RAM</label>
                                     </div>
                                     <!--RAM-->
-                                    <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input type="text" class="form-control" id="inputRam" placeholder="VD: 16" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
@@ -117,7 +117,7 @@
                                         <label class="input-group-text" for="inputRom">ROM</label>
                                     </div>
                                     <!--ROM-->
-                                    <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input type="text" class="form-control" id="inputRom" placeholder="VD: 512" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
@@ -142,7 +142,7 @@
                                         <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
                                     </div>
                                     <!--Kích thước màn hình-->
-                                    <input type="text" class="form-control" placeholder="VD: 15.6" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <input type="text" class="form-control" placeholder="VD: 15.6" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Inchs</span>
                                     </div>
