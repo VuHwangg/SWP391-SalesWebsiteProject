@@ -42,35 +42,26 @@
                     </div>
                     <div class="card-body p-3">
                         <form action="AddNewProduct" method="POST" enctype="multipart/form-data">
-                            <div class="input-group mb-3">
-                                <!--Tên sản phẩm-->
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
-                                </div>
-                                <input type="text" name="productName" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" minlength="1" maxlength="40" required>
-                            </div>
                             <div class="row">
                                 <div class="col-md-6 input-group mb-3">
+                                    <!--Tên sản phẩm-->
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text"  for="OldPrice">Giá gốc</label>
+                                        <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
                                     </div>
-                                    <!--Giá gốc-->
-                                    <input type="text" class="form-control" name="originalPrice" id="OldPrice" placeholder="VD: 19000000" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">VNĐ</span>
-                                    </div>
+                                    <input type="text" name="productName" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" minlength="1" maxlength="40" required>
                                 </div>
                                 <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="SalePrice">Giá bán ra</label>
+                                        <label class="input-group-text"  for="importPrice">Giá nhập</label>
                                     </div>
-                                    <!--Giá sale-->
-                                    <input type="text" class="form-control" name="salePrice" id="SalePrice" placeholder="VD: 12990000" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <!--Giá gốc-->
+                                    <input type="text" class="form-control" name="originalPrice" id="importPrice" placeholder="VD: 19000000" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
@@ -85,14 +76,73 @@
                                     </div>
                                     <!--Loại sản phẩm-->
                                     <select class="custom-select" name="productType" id="inputTypeProduct">
-                                            <option  value="0">Điện thoại</option>
-                                            <option  selected value="1">Laptop</option>
+                                        <option  value="0">Điện thoại</option>
+                                        <option  selected value="1">Laptop</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <!--
+                            == Bổ sung ở đây nhé ====================================
+                            =========================================================
+                            -->
+                            <div class="row">
+                                <div class="col-md-6 input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
+                                    </div>
+                                    <!--Hãng sản xuất của sản phẩm-->
+                                    <select class="custom-select" id="inputBrandProduct">
+                                        <!--
+                                        == Nếu sản phẩm là Laptop ===============================-->
+                                        <option  value="asus">Asus</option>
+                                        <option  value="hp">HP</option>
+                                        <option  value="gigabyte">Gigabyte</option>
+                                        <option  value="dell">Dell</option>
+                                        <option  value="msi">MSI</option>
+                                        <option  value="huawei">Huawei</option>
+
+                                        <!--
+                                        == Nếu sản phẩm là Điện thoại ===============================-->
+                                        <option  value="samsung">Samsung</option>
+
+                                        <!--
+                                        == Cả điện thoại và laptop đều có ========================-->
+                                        <option  value="apple">Apple</option>
+                                        <option  value="other">Khác</option>
+                                    </select>
+                                    <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
+                                    <input type="text" class="form-control" id="add-more-brand" placeholder="Thêm hãng sản xuất mới" style="display: none">
+                                </div>
+                                <div class="col-md-6 input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
+                                    </div>
+                                    <!--Nhu cầu sử dụng sản phẩm-->
+                                    <select class="custom-select" id="inputDemandProduct">
+                                        <!--
+                                        == Nếu sản phẩm là Laptop ===============================-->
+                                        <option  value="office">Văn phòng</option>
+                                        <option  value="graphic">Đồ họa</option>
+
+                                        <!--
+                                        == Nếu sản phẩm là Điện thoại ===============================-->
+                                        <option  value="photography">Chụp ảnh</option>
+
+                                        <!--
+                                        == Cả điện thoại và laptop đều có ========================-->
+                                        <option  value="gaming">Chơi game</option>
+                                        <option  value="other">Khác</option>
+                                    </select>
+                                    <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
+                                    <input type="text" class="form-control" id="add-more-demand" placeholder="Thêm hệ điều hành mới" style="display: none;">
+                                </div>
+                            </div>
+
+
                             <div class="input-group mb-3">
                                 <!--Thêm nhiều ảnh-->
-                                <input type="file" name="photo" multiple/>
+                                <input type="file" class="form-control" id="inputFile" accept="image/png, image/jpeg" multiple required>
                                 <div class="input-group-append" >
                                     <label class="input-group-text" style="cursor: pointer" for="inputFile">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
                                 </div>
@@ -101,7 +151,7 @@
                                 <h5 class="fw-bold">Thông số kỹ thuật</h5>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 input-group mb-3">
+                                <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputRam">RAM</label>
                                     </div>
@@ -111,7 +161,7 @@
                                         <span class="input-group-text">GB</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 input-group mb-3">
+                                <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputRom">ROM</label>
                                     </div>
@@ -121,39 +171,42 @@
                                         <span class="input-group-text">GB</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect02">Hệ điều hành</label>
-                                    </div>
-                                    <!--Hệ điều hành-->
-
-                                    <select class="custom-select" name="productOs" id="inputGroupSelect02">
-                                            <option selected value="Android">Android</option>
-                                            <option value="IOS">IOS</option>
-                                            <option value="Window11">Windows</option>
-                                            <option value="MacOS">MacOS</option>
-                                    </select>
-                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 input-group mb-3">
+                                <div class="col-md-6 input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputOSProduct">Hệ điều hành</label>
+                                    </div>
+                                    <!--Hệ điều hành-->
+                                    <select class="custom-select" name="productOs" id="inputOSProduct">
+                                        <option selected value="Android">Android</option>
+                                        <option value="IOS">IOS</option>
+                                        <option value="Window11">Windows</option>
+                                        <option value="MacOS">MacOS</option>
+                                        <option value="other">Khác</option>
+                                    </select>
+                                    <input type="text" class="form-control" id="add-more-os" placeholder="Thêm hệ điều hành mới" style="display: none;">
+                                </div>
+                                <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
                                     </div>
                                     <!--Kích thước màn hình-->
-                                    <input type="text" class="form-control" name="productSize" placeholder="VD: 15.6" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
+                                    <input type="text" class="form-control" id="screenProduct" name="productSize" placeholder="VD: 15.6" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Inchs</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 input-group mb-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
                                     </div>
                                     <!--CPU-->
                                     <input type="text" name="productCpu" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" maxlength="30">
                                 </div>
-                                <div class="col-md-4 input-group mb-3">
+                                <div class="col-md-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
                                     </div>
@@ -165,7 +218,15 @@
                                 <h5 class="fw-bold">Mô tả sản phẩm</h5>
                             </div>
                             <div class="mb-3">
-                                <textarea name="productDescription" class="form-control border border-1 border-danger" rows="4" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required></textarea>
+                                <textarea name="productDescription" class="form-control" rows="4" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required></textarea>
+                            </div>
+                            <div class="input-group mb-3" style="max-width: 200px;">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputQuantity">Số lượng: </label>
+                                </div>
+                                <!--Quantity-->
+                                <input type="text" class="form-control border-cus-3 border-danger text-center" id="inputQuantity" value="1" placeholder="VD: 9999" maxlength="8" oninput="if(this.value.charAt(0) === '0') {this.value = this.value.slice(1)}; this.value = this.value.replace(/\D/g,'')" required>
+                                
                             </div>
                             <div class="d-flex justify-content-end align-items-end">
                                 <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">

@@ -53,6 +53,14 @@
     input[type="radio"] {
         accent-color: var(--main-bg-color);
     }
+    
+    .border-cus-3 {
+        border: 3px solid;
+    }
+    
+    .border-cus-2 {
+        border: 2px solid;
+    }
 
     .enable-block {
         display: block;
@@ -744,7 +752,6 @@
     
     .input-group input,
     .input-group select{
-        border: 1px solid var(--main-bg-color);
     }
     
 
