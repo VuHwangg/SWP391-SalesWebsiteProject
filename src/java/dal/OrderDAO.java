@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Account;
 import model.Order;
 import model.Order_Details;
@@ -203,12 +205,12 @@ public class OrderDAO extends DBContext {
         return arr;
     }
 
-    public boolean updateStatusOrder(int order_id,int status) {
+    public boolean updateStatusOrder(int order_id, int status) {
         boolean check = false;
         try {
             String sql = "Update  [Order] set [status] = ? where order_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-             ps.setInt(1, status);
+            ps.setInt(1, status);
             ps.setInt(2, order_id);
 
             check = ps.executeUpdate() > 0;
@@ -255,21 +257,23 @@ public class OrderDAO extends DBContext {
             ps.setInt(1, cart_id);
 
             int rowsAffected = ps.executeUpdate();
-            if(rowsAffected > 0) check = true;
+            if (rowsAffected > 0) {
+                check = true;
+            }
 
         } catch (SQLException e) {
         }
         return check;
 
     }
-        public ArrayList<Order> getallOrder() {
+
+    public ArrayList<Order> getallOrder() {
         ArrayList<Order> arr = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             String sql = "Select * from [Order] ";
             stm = connection.prepareStatement(sql);
-           
 
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -286,6 +290,53 @@ public class OrderDAO extends DBContext {
 
         }
         return arr;
+    }
+
+    public double getTotalPriceByDay(Date date) {
+        double totalPrice = 0;
+        try {
+            String sql = "SELECT SUM([total_price]) as [total]\n"
+                    + "  FROM [Order] WHERE [date] = ? GROUP BY [date]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setDate(1, date);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                totalPrice = rs.getDouble("total");
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return totalPrice;
+    }
+
+    public int getTotalNumByBrand(Date from, Date to, String brand, int type) {
+        int totalNum = 0;
+        try {
+            String sql = "SELECT SUM(orddet.[num]) as [total_num]\n"
+                    + "  FROM [Order_Details] orddet\n"
+                    + "  Inner Join [Order] ord On orddet.order_id = ord.order_id\n"
+                    + "  Inner Join [Product] pr On pr.product_id = orddet.product_id \n"
+                    + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
+                    + "  where br.brand_name = ? AND pr.type = ? AND ord.date BETWEEN ? AND ?\n"
+                    + "  GROUP BY br.brand_id";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, brand);
+            stm.setInt(2, type);
+            stm.setDate(3, from);
+            stm.setDate(4, to);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                totalNum = rs.getInt("total_num");
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return totalNum;
     }
 
 //    public static void main(String[] args) {
