@@ -133,7 +133,7 @@
                             <div class="row ">
                                 <div class="col-12" style="padding: 0;">
                                     <div class="sold-out-box p-3">
-                                        <h4>Sản phẩm đang tạm hết hàng</h4>
+                                        <h4 class="text-center">Sản phẩm đang tạm hết hàng</h4>
                                         <p class="text-start" style="margin-bottom: 8px">Liên hệ với chúng tôi để biết thêm thông tin chi tiết</p>
                                         <div class="d-flex justify-content-between flex-column">
                                             <a class="btn btn-danger mb-2 fw-bold" href="mailto:awnsshop@gmail.com">awnsshop@gmail.com</a>

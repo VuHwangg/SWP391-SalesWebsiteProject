@@ -35,18 +35,10 @@
             </li>
             
             <!-- 3 -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
                 <a class="nav-link" href="ProductManagement">
                     <i class="fa fa-shopping-basket"></i>&nbsp;
-                    <span class="nav-link-text">Sản phẩm</span>
-                </a>
-            </li>
-            
-            <!-- 3 -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thêm sản phẩm">
-                <a class="nav-link" href="admin-product-add.jsp">
-                    <i class="fa fa-cube"></i>&nbsp;
-                    <span class="nav-link-text">Thêm mới sản phẩm</span>
+                    <span class="nav-link-text">Sản phẩm đang bán</span>
                 </a>
             </li>
             

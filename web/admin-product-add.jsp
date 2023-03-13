@@ -43,14 +43,14 @@
                     <div class="card-body p-3">
                         <form action="AddNewProduct" method="POST" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <!--Tên sản phẩm-->
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
                                     </div>
                                     <input type="text" name="productName" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" minlength="1" maxlength="40" required>
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text"  for="importPrice">Giá nhập</label>
                                     </div>
@@ -63,14 +63,14 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputColorProduct">Màu sắc</label>
                                     </div>
                                     <!--Màu sắc-->
                                     <input type="text" name="productColor" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" maxlength="40" required>
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputTypeProduct">Loại sản phẩm</label>
                                     </div>
@@ -87,7 +87,7 @@
                             =========================================================
                             -->
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
                                     </div>
@@ -114,7 +114,7 @@
                                     <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
                                     <input type="text" class="form-control" id="add-more-brand" placeholder="Thêm hãng sản xuất mới" style="display: none">
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
                                     </div>
@@ -151,7 +151,7 @@
                                 <h5 class="fw-bold">Thông số kỹ thuật</h5>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputRam">RAM</label>
                                     </div>
@@ -161,7 +161,7 @@
                                         <span class="input-group-text">GB</span>
                                     </div>
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputRom">ROM</label>
                                     </div>
@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputOSProduct">Hệ điều hành</label>
                                     </div>
@@ -187,7 +187,7 @@
                                     </select>
                                     <input type="text" class="form-control" id="add-more-os" placeholder="Thêm hệ điều hành mới" style="display: none;">
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
                                     </div>
@@ -199,14 +199,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
                                     </div>
                                     <!--CPU-->
                                     <input type="text" name="productCpu" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" maxlength="30">
                                 </div>
-                                <div class="col-md-6 input-group mb-3">
+                                <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
                                     </div>
