@@ -16,7 +16,7 @@ public class Import_History {
     private String note;
     private double cost;
     private Product product;
-    private Account account;
+    private Account account = new Account();
     private Date date;
 
     public int getId() {
@@ -73,6 +73,11 @@ public class Import_History {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Import_History{" + "id=" + id + ", num=" + num + ", note=" + note + ", cost=" + cost + ", product=" + product + ", account=" + account + ", date=" + date + '}';
     }
     
     

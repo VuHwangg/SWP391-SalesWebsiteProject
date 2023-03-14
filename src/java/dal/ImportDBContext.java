@@ -39,10 +39,13 @@ public class ImportDBContext extends DBContext {
         return totalCost;
     }
 
-    public ArrayList<Import_History> listHistory() {
+    public 
+        ArrayList<Import_History>
+          listHistory() {
         ArrayList<Import_History> listHistory = new ArrayList<>();
         ProductDBContext proDB = new ProductDBContext();
         AccountDAO accDB = new AccountDAO();
+
         try {
             String sql = "SELECT TOP (50) [import_id]\n"
                     + "      ,[num]\n"
@@ -52,27 +55,47 @@ public class ImportDBContext extends DBContext {
                     + "      ,[cost]\n"
                     + "      ,[product_id]\n"
                     + "  FROM [Import_History]";
-            
+
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Import_History history = new Import_History();
                 history.setId(rs.getInt("import_id"));
+                //System.out.println(rs.getInt("import_id"));
                 history.setNum(rs.getInt("num"));
+              //  System.out.println(rs.getInt("num"));
                 history.setDate(rs.getDate("date"));
+               // System.out.println(rs.getDate("date"));
                 history.setNote(rs.getString("note"));
+                //System.out.println(rs.getString("note"));
                 history.setAccount(accDB.getAcc(rs.getString("username")));
+                //System.out.println(accDB.getAcc(rs.getString("username")).toString());
+                //System.out.println(rs.getString("username"));
                 history.setCost(rs.getDouble("cost"));
+                //System.out.println(rs.getDouble("cost"));
                 history.setProduct(proDB.getProductByID(rs.getInt("product_id")));
+               // System.out.println(rs.getInt("product_id"));
                 listHistory.add(history);
             }
             stm.close();
             rs.close();
             return listHistory;
+//           System.out.println(listHistory.size());
+//            for (int i = 0; i < listHistory.size(); i++) {
+//                System.out.println( listHistory.get(i).toString());
+//                
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return listHistory;
     }
 
+    public static void main(String[] args) {
+        
+                
+       
+            
+        
+    }
 }
