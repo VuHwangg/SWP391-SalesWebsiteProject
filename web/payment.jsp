@@ -47,7 +47,7 @@
                                 address = cus1.getAddress();
                                 phone = cus1.getPhone();
                             }
-                            int total_price = 0;
+                            float total_price = 0;
                             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
                             if (carts != null) {
                                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {

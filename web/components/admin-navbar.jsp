@@ -20,7 +20,7 @@
 
             <!-- 1 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
-                <a class="nav-link" href="admin-dashmap.jsp">
+                <a class="nav-link" href="dashmap">
                     <i class="fa fa-fw fa-dashboard"></i>&nbsp;
                     <span class="nav-link-text">Thống kê</span>
                 </a>
@@ -60,7 +60,7 @@
             
             <!-- 6 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử nhập hàng">
-                <a class="nav-link" href="admin-history-list.jsp">
+                <a class="nav-link" href="importhistory">
                     <i class="fa fa-history"></i>&nbsp;
                     <span class="nav-link-text">Lịch sử nhập hàng</span>
                 </a>
