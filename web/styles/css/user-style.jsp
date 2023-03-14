@@ -1010,13 +1010,53 @@
     .product-detail .add-cart-btn:hover {
         background-color: #d9ce30;
     }
-    
+
     .product-detail .sold-out-box {
-        border: 2px solid #6c757d; 
-        border-radius: 20px; 
+        border: 2px solid #6c757d;
+        border-radius: 20px;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
 
+    /*-------------------------- Feedback modal --------------------------*/
+
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+
+
+    .rating > input{
+        display:none;
+    }
+
+    .rating > label {
+        position: relative;
+        font-size: 40px;
+        line-height: 0.8;
+        color: #FFD700;
+        margin: 0 16px;
+        cursor: pointer;
+    }
+
+    .rating > label::before{
+        content: "\2605";
+        position: absolute;
+        opacity: 0;
+    }
+
+    .rating > label:hover:before,
+    .rating > label:hover ~ label:before {
+        opacity: 1 !important;
+    }
+
+    .rating > input:checked ~ label:before{
+        opacity:1;
+    }
+
+    .rating:hover > input:checked ~ label:before{
+        opacity: 0.4;
+    }
 
     /*-------------------------- Similar product-----------------------------------*/
     .similar-product {

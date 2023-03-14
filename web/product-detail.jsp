@@ -93,7 +93,7 @@
                                     </a>
                                 </c:forEach>
                             </div>
-                                
+
                             <!--Khi sản phẩm còn hàng-->    
                             <div class="row">
                                 <div class="col-12" style="padding: 0">
@@ -224,38 +224,81 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="vote cover-block row mt-3 w-100 mx-auto">
-                            <div class="vote-left col-4 text-center">
-                                <h6>Đánh giá trung bình</h6>
-                                <h3>${helper.getAvgRate(requestScope.product)}/5</h3>
-                                <div class="stars">
-                                    <c:forEach var = "i" begin = "1" end = "5">
-                                        <c:choose>
-                                            <c:when test="${i <= helper.getAvgRate(requestScope.product)}">
-                                                <i class="bi bi-star-fill active"></i>
-                                            </c:when>    
-                                            <c:otherwise>
-                                                <i class="bi bi-star-fill"></i>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
+                        <div class="vote cover-block mt-3 w-100 mx-auto">
+                            <div class="row">
+                                <div class="vote-left col-4 text-center">
+                                    <h6>Đánh giá trung bình</h6>
+                                    <h3>${helper.getAvgRate(requestScope.product)}/5</h3>
+                                    <div class="stars">
+                                        <c:forEach var = "i" begin = "1" end = "5">
+                                            <c:choose>
+                                                <c:when test="${i <= helper.getAvgRate(requestScope.product)}">
+                                                    <i class="bi bi-star-fill active"></i>
+                                                </c:when>    
+                                                <c:otherwise>
+                                                    <i class="bi bi-star-fill"></i>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
 
-                                </div>
-                                <h6>${helper.totalVote(requestScope.product)} đánh giá</h6>
-                            </div>
-                            <div class="col-8">
-                                <c:forEach var = "i" begin = "1" end = "5">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span>${i}<i class="bi bi-star-fill active"></i></span>
-                                        <!--old-->
-                                        <!--                                        <div class="progress">
-                                                                                 <div class="progress-bar bg-danger" style="width: 80%;"></div>
-                                                                                </div>-->
-                                        <!--new-->
-                                        <progress max="${helper.totalVote(requestScope.product)}" value="${helper.getNumofVote(requestScope.product, i)}" class="progress is-small m-0"></progress>
-                                        <span>${helper.getNumofVote(requestScope.product, i)}</span>
                                     </div>
-                                </c:forEach>
+                                    <h6>${helper.totalVote(requestScope.product)} đánh giá</h6>
+                                </div>
+                                <div class="col-8">
+                                    <c:forEach var = "i" begin = "1" end = "5">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>${i}<i class="bi bi-star-fill active"></i></span>
+                                            <!--old-->
+                                            <!--                                        <div class="progress">
+                                                                                     <div class="progress-bar bg-danger" style="width: 80%;"></div>
+                                                                                    </div>-->
+                                            <!--new-->
+                                            <progress max="${helper.totalVote(requestScope.product)}" value="${helper.getNumofVote(requestScope.product, i)}" class="progress is-small m-0"></progress>
+                                            <span>${helper.getNumofVote(requestScope.product, i)}</span>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center flex-column">
+                                <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
+                                <h5 class="text-center">Bạn thấy sao về sản phẩm này ?</h5>
+                                <!-- Khi người dùng đã đăng nhập -->
+                                <button type="button" class="btn btn-danger fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                                    Đánh giá ngay
+                                </button>
+                                <!-- Khi người dùng chưa đăng nhập -->
+                                <a href="login-user.jsp" class="btn btn-danger fs-5 w-100" style="max-width: 600px">
+                                    Đăng nhập ngay để có thể đánh giá sản phẩm
+                                </a>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form>
+                                            <div class="modal-header justify-content-center">
+                                                <h1 class="modal-title fs-5 text-center">Đánh giá và nhận xét sản phẩm <br> ${requestScope.product.name}</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <textarea class="form-control" rows="5" placeholder="Bạn nghĩ sao về sản phẩm này" minlength="1" maxlength="1000"></textarea>
+                                                <div class="mb-3 mt-3">
+                                                    <h5 class="fs-5">Bình chọn số sao cho sản phẩm</h5>
+                                                </div>
+                                                <div class="rating">
+                                                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" class="btn btn-danger w-100" value="Gửi đánh giá">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

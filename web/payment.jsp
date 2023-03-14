@@ -107,30 +107,11 @@
                                     <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end ">
-                                    <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}</span>
+                                    <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}&#8363;</span>
                                 </div>
                             </div>
                             <div class="border-top border-dark border-1 my-2"></div>
                         </c:forEach>
-
-
-                        <!--Like a table just edit it-->
-                        <!--                        <div class="row">
-                                                    <div class="col-md-6">
-                                                        <span class="fw-bolder fs-5" style="color: #555555;">IPhone 14 Pro Max 128GB</span>
-                                                        <br>
-                                                        <span class="fw-light fs-6">Mầu sắc: Tím</span>
-                                                        <br>
-                                                        <span class="fw-light fs-6">Số lượng: 2</span>
-                                                    </div>
-                                                    <div class="col-md-6 d-flex justify-content-end ">
-                                                        <span class="fw-light fs-6">55.980.000 VND</span>
-                                                    </div>
-                                                </div>
-                                                <div class="border-top border-dark border-1 my-2"></div>-->
-
-
-
 
                         <!---Shipment cost-->
                         <div class="row">
@@ -138,7 +119,7 @@
                                 <span class="fw-bolder fs-5">Phí vận chuyển</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">00.000 VND</span>
+                                <span class="fw-light fs-6">Freeship</span>
                             </div>
                         </div>
 
@@ -149,7 +130,7 @@
                                 <span class="fw-bolder fs-4">Tổng cộng</span>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> VND</span>
+                                <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> VNĐ</span>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
