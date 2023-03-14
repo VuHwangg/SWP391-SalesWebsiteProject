@@ -4,14 +4,20 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author admin
  */
 public class Import_History {
     private int id;
-    private int num;
+    private int num;    
     private String note;
+    private double cost;
+    private Product product;
+    private Account account = new Account();
+    private Date date;
 
     public int getId() {
         return id;
@@ -36,6 +42,44 @@ public class Import_History {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Import_History{" + "id=" + id + ", num=" + num + ", note=" + note + ", cost=" + cost + ", product=" + product + ", account=" + account + ", date=" + date + '}';
+    }
+    
     
     
 }

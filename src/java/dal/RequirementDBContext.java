@@ -24,7 +24,7 @@ public class RequirementDBContext extends DBContext {
             String sql = "SELECT p.[requirement_id]\n"
                     + "      ,p.[requirement_name]\n"
                     + "      ,p.[description]\n"
-                    + "  FROM [Requirement] p INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_name\n"
+                    + "  FROM [Requirement] p INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id\n"
                     + "  WHERE pr.product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);

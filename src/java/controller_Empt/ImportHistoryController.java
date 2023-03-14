@@ -4,8 +4,8 @@
  */
 package controller_Empt;
 
-import dal.BrandDBContext;
-import dal.OrderDAO;
+import dal.ImportDBContext;
+import dal.ProductDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,29 +14,25 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import model.Brand;
+import model.Import_History;
+import model.Product;
 import util.DateTimeHelper;
 
 /**
  *
  * @author admin
  */
-public class DashMapController extends HttpServlet {
+public class ImportHistoryController extends HttpServlet{
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String raw_from = request.getParameter("from");
         String raw_to = request.getParameter("to");
         java.sql.Date from = null;
         java.sql.Date to = null;
-        BrandDBContext brdb = new BrandDBContext();
-        ArrayList<Brand> phoneBrands = brdb.listByType(0);
-        List<String> phoneBrandNames = new ArrayList<>();
-        List<Integer> numOfPhones = new ArrayList<>();
-        List<Double> totalPrice = new ArrayList<>();
+        List<Double> totalCost = new ArrayList<>();
         DateTimeHelper dateTime = new DateTimeHelper();
-        OrderDAO orderDB = new OrderDAO();
         if (raw_from == null || raw_from.length() == 0) {
             java.util.Date today = new java.util.Date();
             int todayOfWeek = DateTimeHelper.getDayofWeek(today);
@@ -49,21 +45,18 @@ public class DashMapController extends HttpServlet {
             to = java.sql.Date.valueOf(raw_to);           
         }
         List<Date> dates = dateTime.getDateList(from, to);
-        for(Brand br : phoneBrands){
-            phoneBrandNames.add(br.getName());
-            numOfPhones.add(orderDB.getTotalNumByBrand(from, to, br.getName(), 0));
+        ImportDBContext importHistoryDB = new ImportDBContext();
+        for (Date a : dates) {
+            totalCost.add(importHistoryDB.getTotalCostByDay(a));
         }
         List<String> dayMonthList = dateTime.getDayMonthList(dates);
-        for (Date a : dates) {
-            totalPrice.add(orderDB.getTotalPriceByDay(a));
-        }
+        ArrayList<Import_History> historyList = importHistoryDB.listHistory();
+        request.setAttribute("historyList", historyList);
         request.setAttribute("from", from);
         request.setAttribute("to", to);
-        request.setAttribute("phoneBrandNames", phoneBrandNames);
-        request.setAttribute("numOfPhones", numOfPhones);
         request.setAttribute("dayMonthList", dayMonthList);
-        request.setAttribute("totalPrice", totalPrice);
-        request.getRequestDispatcher("admin-dashmap.jsp").forward(request, response);
+        request.setAttribute("totalCost", totalCost);
+        request.getRequestDispatcher("admin-history-list.jsp").forward(request, response);
     }
 
     @Override
@@ -76,3 +69,4 @@ public class DashMapController extends HttpServlet {
         processRequest(req, resp);
     }
 }
+

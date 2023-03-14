@@ -10,12 +10,9 @@ public class DBContext {
     protected Connection connection;
     public DBContext()
     {
-        try {
-            // Edit URL , username, password to authenticate with your MS SQL Server
-
-
+        try { 
             String user = "sa";          
-            String pass = "30082002Xyz@";
+            String pass = "12345678";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);

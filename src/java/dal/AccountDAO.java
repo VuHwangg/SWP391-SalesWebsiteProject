@@ -348,5 +348,11 @@ public class AccountDAO extends DBContext {
         }
         return cust;
     }
+     
+    
+     public static void main(String[] args) {
+         Account acc = new AccountDAO().getAcc("empt1");
+         System.out.println( acc.toString());
+    }
 
 }
