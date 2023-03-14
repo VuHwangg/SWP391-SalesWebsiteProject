@@ -1,4 +1,5 @@
 
+<%@page import="util.Helper"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,82 +36,82 @@
                         From: <input type="date" name="from" value="${requestScope.from}"/>
                         -
                         To: <input type="date" name="to" value="${requestScope.to}"/>
-                       
+
                         <input type="submit" value="View"/> 
                     </form>
                 </ol>
 
-<!--                 Icon Cards
-                <div class="row">
-
-                     CARD 1 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-comments"></i>
-                                </div>
-                                <div>
-                                    <span>Số liệu 1</span>
-                                </div>
-                            </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">2,000</span>
-                            </a>
-                        </div>
-                    </div>
-
-                     CARD 2 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-list"></i>
-                                </div>
-                                <div>
-                                    <span>Số liệu 2</span>
-                                </div>
-                            </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">2,000,000</span>
-                            </a>
-                        </div>
-                    </div>
-
-                     CARD 3 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-warning o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-shopping-cart"></i>
-                                </div>
-                                <div>
-                                    <span>Số liệu 3</span>
-                                </div>
-                            </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">200</span>
-                            </a>
-                        </div>
-                    </div>
-
-                     CARD 4 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card card-r1 text-white bg-success o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-support"></i>
-                                </div>
-                                <div>
-                                    <span>Số liệu 4</span>
-                                </div>
-                            </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">50</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>-->
+                <!--                 Icon Cards
+                                <div class="row">
+                
+                                     CARD 1 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-comments"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số liệu 1</span>
+                                                </div>
+                                            </div>
+                                            <a class="card-footer text-white z-1">
+                                                <span class="mr-5">2,000</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                
+                                     CARD 2 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-list"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số liệu 2</span>
+                                                </div>
+                                            </div>
+                                            <a class="card-footer text-white z-1">
+                                                <span class="mr-5">2,000,000</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                
+                                     CARD 3 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card card-r1 text-white bg-warning o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-shopping-cart"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số liệu 3</span>
+                                                </div>
+                                            </div>
+                                            <a class="card-footer text-white z-1">
+                                                <span class="mr-5">200</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                
+                                     CARD 4 
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card card-r1 text-white bg-success o-hidden h-100">
+                                            <div class="card-body mr-5">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-support"></i>
+                                                </div>
+                                                <div>
+                                                    <span>Số liệu 4</span>
+                                                </div>
+                                            </div>
+                                            <a class="card-footer text-white z-1">
+                                                <span class="mr-5">50</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>-->
 
 
                 <!-- AREA CHART CARD -->
@@ -139,26 +140,26 @@
                                         <canvas id="myBarChart" width="100" height="70"></canvas>
 
                                     </div>
-<!--                                    <div class="col-sm-4 text-center my-auto">
-                                         Số liệu  
-                                        <div class="h4 mb-0 text-primary">
-                                             1 
-                                            34,693 <span class="text-dark">VNĐ</span>
-                                        </div>
-                                        <div class="small text-muted">Blue Data</div>
-                                        <hr>
-                                        <div class="h4 mb-0 text-warning">
-                                             2 
-                                            18,474 <span class="text-dark">VNĐ</span>
-                                        </div>
-                                        <div class="small text-muted">Yellow Data</div>
-                                        <hr>
-                                        <div class="h4 mb-0 text-success">
-                                             3 
-                                            16,219 <span class="text-dark">VNĐ</span>
-                                        </div>
-                                        <div class="small text-muted">Green Data</div>
-                                    </div>-->
+                                    <!--                                    <div class="col-sm-4 text-center my-auto">
+                                                                             Số liệu  
+                                                                            <div class="h4 mb-0 text-primary">
+                                                                                 1 
+                                                                                34,693 <span class="text-dark">VNĐ</span>
+                                                                            </div>
+                                                                            <div class="small text-muted">Blue Data</div>
+                                                                            <hr>
+                                                                            <div class="h4 mb-0 text-warning">
+                                                                                 2 
+                                                                                18,474 <span class="text-dark">VNĐ</span>
+                                                                            </div>
+                                                                            <div class="small text-muted">Yellow Data</div>
+                                                                            <hr>
+                                                                            <div class="h4 mb-0 text-success">
+                                                                                 3 
+                                                                                16,219 <span class="text-dark">VNĐ</span>
+                                                                            </div>
+                                                                            <div class="small text-muted">Green Data</div>
+                                                                        </div>-->
                                 </div>
                             </div>
                             <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
@@ -192,12 +193,16 @@
             List<Double> totalPrice = (List<Double>) request.getAttribute("totalPrice");
             List<String> phoneBrandNames = (List<String>) request.getAttribute("phoneBrandNames");
             List<Integer> numOfPhones = (List<Integer>) request.getAttribute("numOfPhones");
+            double x = Helper.findTopOfY(totalPrice);
+            double y = Helper.findTopOfYForInt(numOfPhones);
         %>
         <script>
-            var dayMonth = <%= new Gson().toJson(dayMonthList)%>; 
+            var dayMonth = <%= new Gson().toJson(dayMonthList)%>;
             var price = <%= new Gson().toJson(totalPrice)%>;
-            var phoneBrandNames = <%= new Gson().toJson(phoneBrandNames)%>; 
+            var phoneBrandNames = <%= new Gson().toJson(phoneBrandNames)%>;
             var numOfPhones = <%= new Gson().toJson(numOfPhones)%>;
+            var x = <%= new Gson().toJson(x)%>;
+            var y = <%= new Gson().toJson(y)%>;
         </script>
         <script>
 
@@ -246,7 +251,7 @@
                         yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max: 50000000000,
+                                    max: x,
                                     maxTicksLimit: 5
                                 },
                                 gridLines: {
@@ -291,7 +296,7 @@
                         yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max: 150,
+                                    max: y,
                                     maxTicksLimit: 5
                                 },
                                 gridLines: {

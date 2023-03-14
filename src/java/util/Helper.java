@@ -5,6 +5,7 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import model.Product;
 import model.Vote;
 
@@ -151,6 +152,62 @@ public class Helper {
             return 3;
         }
 
+    }
+
+    public static double findMax(List<Double> list) {
+        double max = Double.MIN_VALUE;
+        for (double num : list) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+    
+    public static double findTopOfY(List<Double> list){
+        double max = findMax(list);
+        double x = 0;
+        int count =0;
+        while(true){
+            if(max<100) x = max;
+            max/=10;            
+            if(max<10){
+                break;
+            }
+            count++;
+        }
+        x++;
+        int y = (int)x;
+        x = y*Math.pow(10, count);
+        return x;
+    }
+    
+    public static int findMaxForInt(List<Integer> list) {
+        int max = (int) Double.MIN_VALUE;
+        for (int num : list) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+    
+    public static int findTopOfYForInt(List<Integer> list){
+        int max = findMaxForInt(list);
+        if(max < 100) return 100;
+        int x = 0;
+        int count =0;
+        while(true){
+            if(max<100) x = max;
+            max/=10;            
+            if(max<10){
+                break;
+            }
+            count++;
+        }
+        x++;
+        x = (int) (x*Math.pow(10, count));
+        return x;
     }
 
 }

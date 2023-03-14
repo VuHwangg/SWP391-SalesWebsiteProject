@@ -1,3 +1,4 @@
+<%@page import="util.Helper"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="helper" class="util.Helper"/>
@@ -93,7 +94,7 @@
                                             <td class="text-right">${helper.convertBigNum(history.cost)}&nbsp;&#8363;</td>
                                             <td>${history.num}</td>
                                             <td>${history.date}</td>
-                                            <td>${history.account.username}</td>
+                                            <td>${history.account}</td>
                                         </tr>
                                     </c:forEach>                                   
                                 </tbody>
@@ -111,10 +112,13 @@
         <%
             List<String> dayMonthList = (List<String>) request.getAttribute("dayMonthList");
             List<Double> totalCost = (List<Double>) request.getAttribute("totalCost");
+            double x = Helper.findTopOfY(totalCost);
         %>
         <script>
             var dayMonthList = <%= new Gson().toJson(dayMonthList)%>;
             var totalCost = <%= new Gson().toJson(totalCost)%>;
+            var x = <%= new Gson().toJson(x)%>;
+
         </script>
         <script>
 
@@ -163,7 +167,7 @@
                         yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max: 5000000000,
+                                    max: x,
                                     maxTicksLimit: 5
                                 },
                                 gridLines: {
