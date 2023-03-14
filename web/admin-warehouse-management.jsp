@@ -92,7 +92,7 @@
 
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm trong kho</span>
-                        <a class="add-btn btn btn-danger text-white" href="admin-product-add.jsp" style="float: right"><i class="fa fa-plus-circle"></i> Thêm sản phẩm</a>
+                        <a class="add-btn btn btn-danger text-white" href="AddNewProduct" style="float: right"><i class="fa fa-plus-circle"></i> Thêm sản phẩm</a>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
