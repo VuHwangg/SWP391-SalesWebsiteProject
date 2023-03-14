@@ -50,7 +50,7 @@ public class ImportHistoryController extends HttpServlet{
             totalCost.add(importHistoryDB.getTotalCostByDay(a));
         }
         List<String> dayMonthList = dateTime.getDayMonthList(dates);
-        ArrayList<Import_History> historyList = importHistoryDB.listHistory();
+        ArrayList<Import_History> historyList = importHistoryDB.listHistoryByDay(from, to);
         request.setAttribute("historyList", historyList);
         request.setAttribute("from", from);
         request.setAttribute("to", to);

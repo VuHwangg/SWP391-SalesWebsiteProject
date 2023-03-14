@@ -41,22 +41,24 @@ public class ImportDBContext extends DBContext {
 
     public 
         ArrayList<Import_History>
-          listHistory() {
+          listHistoryByDay(Date from, Date to) {
         ArrayList<Import_History> listHistory = new ArrayList<>();
         ProductDBContext proDB = new ProductDBContext();
         AccountDAO accDB = new AccountDAO();
 
         try {
-            String sql = "SELECT TOP (50) [import_id]\n"
+            String sql = "SELECT [import_id]\n"
                     + "      ,[num]\n"
                     + "      ,[date]\n"
                     + "      ,[note]\n"
                     + "      ,[username]\n"
                     + "      ,[cost]\n"
                     + "      ,[product_id]\n"
-                    + "  FROM [Import_History]";
+                    + "  FROM [Import_History] WHERE [date] BETWEEN ? AND ? ORDER BY [date] DESC";
 
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setDate(1, from);
+            stm.setDate(2, to);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Import_History history = new Import_History();
