@@ -7,7 +7,9 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Requirement;
@@ -72,5 +74,49 @@ public class RequirementDBContext extends DBContext {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public List<Requirement> getAllRequirement() {
+        List<Requirement> requirements = new ArrayList<>();
+        try {
+            String sql = "SELECT [requirement_id]\n"
+                    + "      ,[requirement_name]\n"
+                    + "      ,[description]\n"
+                    + "  FROM [dbo].[Requirement]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Requirement requirement = new Requirement();
+                requirement.setId(rs.getInt("requirement_id"));
+                requirement.setName(rs.getString("requirement_name"));
+                requirement.setDescription(rs.getString("description"));
+                requirements.add(requirement);
+            }
+            stm.close();
+            rs.close();
+            return requirements;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public int AddNewRequirementAndReturnId(String name) {
+        try {
+            String sql = "INSERT INTO [dbo].[Requirement]\n"
+                    + "           ([requirement_name])\n"
+                    + "     VALUES\n"
+                    + "           (?)";
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, name);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RequirementDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }

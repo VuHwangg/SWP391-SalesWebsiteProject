@@ -74,15 +74,18 @@ public class ImageDBContext extends DBContext {
                 String sql = "INSERT INTO [dbo].[Image]\n"
                         + "           ([product_id]\n"
                         + "           ,[thumbnail]\n"
-                        + "           ,[url])\n"
+                        + "           ,[url]\n"
+                        + "           ,[base64])\n"
                         + "     VALUES\n"
                         + "           (?\n"
+                        + "           ,?\n"
                         + "           ,?\n"
                         + "           ,?)";
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, id);
                 ps.setBoolean(2, thumbnail);
                 ps.setString(3, image);
+                ps.setBoolean(4, true);
                 ps.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);

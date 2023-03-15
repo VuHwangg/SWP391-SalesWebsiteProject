@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Product;
@@ -1011,6 +1012,58 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
+    }
+
+    public List<String> getAllOs() {
+        List<String> list = new ArrayList<>();
+        try {
+            String sql = "SELECT distinct [os]\n"
+                    + "  FROM [dbo].[Product]";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString("os"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void setProductBrand(int productId, int brandId) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product_Brand]\n"
+                    + "           ([brand_id]\n"
+                    + "           ,[product_id])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, brandId);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void setProductRequirment(int productId, int reqId) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product_Requirement]\n"
+                    + "           ([requirement_id]\n"
+                    + "           ,[product_id])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, reqId);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -193,7 +193,7 @@
     const addMoreBrandBox = document.getElementById('add-more-brand');
 
     brandSelect.addEventListener("change", function () {
-        if (brandSelect.value === "other") {
+        if (brandSelect.value === "-1") {
             addMoreBrandBox.style.display = "block";
         } else {
             addMoreBrandBox.style.display = "none";
@@ -205,7 +205,7 @@
     const addMoreDemandBox = document.getElementById('add-more-demand');
 
     demandSelect.addEventListener("change", function () {
-        if (demandSelect.value === "other") {
+        if (demandSelect.value === "-1") {
             addMoreDemandBox.style.display = "block";
         } else {
             addMoreDemandBox.style.display = "none";
@@ -217,7 +217,7 @@
     const addMoreOSBox = document.getElementById('add-more-os');
 
     osSelect.addEventListener("change", function () {
-        if (osSelect.value === "other") {
+        if (osSelect.value === "-1") {
             addMoreOSBox.style.display = "block";
         } else {
             addMoreOSBox.style.display = "none";
