@@ -738,7 +738,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-    public ArrayList<Product> getAllProduct() {
+    public ArrayList<Product> getAllProduct(int status) {
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             String sql = "SELECT [product_id]\n"
@@ -749,9 +749,10 @@ public class ProductDBContext extends DBContext {
                     + "      ,[original_price]\n"
                     + "      ,[ram]\n"
                     + "      ,[memory]\n"
-                    + "  FROM [dbo].[Product] Where [status] = 'true'";
+                    + "  FROM [dbo].[Product] Where [status] = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, status);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();

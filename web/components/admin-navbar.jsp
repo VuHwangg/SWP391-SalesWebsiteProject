@@ -43,7 +43,7 @@
             </li>
             
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
-                <a class="nav-link" href="admin-product-list-not-sale.jsp">
+                <a class="nav-link" href="ProductManagmentDisable">
                     <i class="bi bi-bag-x-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm chưa bán</span>
                 </a>
