@@ -45,6 +45,10 @@
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(220, 53, 69, 0.6) !important;
         outline: 0 none !important;
     }
+    
+    a:hover {
+        text-decoration: none;
+    }
 
     input[type="checkbox"] {
         accent-color: var(--main-bg-color);
@@ -473,9 +477,9 @@
     }
 
     .card-r1 .card-body {
-        padding: 4px 8px;
+        padding: 4px 12px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
     }
 
     .card-r1 .card-body span {
@@ -485,23 +489,38 @@
 
     .card-r1 .card-footer {
         display: flex;
-        justify-content: center;
-        padding: 6px 20px;
-    }
-
-    .card-r1 .card-footer span {
-        font-size: 20px;
+        justify-content: left;
+        padding: 6px 12px;
     }
 
     .card-r1 .card-body-icon {
         position: absolute;
         z-index: 0;
         top: -25px;
-        right: -25px;
+        right: -10px;
         font-size: 5rem;
         -webkit-transform: rotate(15deg);
         -ms-transform: rotate(15deg);
         transform: rotate(15deg);
+    }
+    
+    .card-r2 .icon-card-custom {
+        overflow: hidden;
+        width: 62px;
+        height: 62px;
+        border-radius: 50% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card-r2 .icon-card-custom i {
+        font-size: 34px;
+    }
+    
+    .card-r2 .card-footer {
+        font-size: 18px;
+        font-weight: 600;
     }
 
     @media (min-width: 576px) {
@@ -753,6 +772,12 @@
     .input-group input,
     .input-group select{
     }
+    
+    /*Double Column Chart*/
+    #double-column-chart .highcharts-credits,
+    #double-column-chart .highcharts-exporting-group{
+        display: none !important;
+        }
     
 
     footer.sticky-footer {

@@ -29,52 +29,139 @@
                       <a href="#">Thống kê</a>
                     </li> -->
                     <li class="breadcrumb-item active">Thống kê</li>
-                    <form action="dashmap" method="GET">
-                        </br>
-                        From: <input type="date" name="from" value="${requestScope.from}"/>
-                        -
-                        To: <input type="date" name="to" value="${requestScope.to}"/>
 
-                        <input type="submit" value="View"/> 
-                    </form>
                 </ol>
+
+                <div class="row">
+
+                    <!-- CARD 1 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số doanh thu</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                1,892,000,000&nbsp;VNĐ
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-cash-coin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                    Xem chi tiết 
+                            </a>-->
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số mặt hàng</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                60&nbsp;mặt hàng
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-box-seam-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số sản phẩm</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                19,034&nbsp;sản phẩm
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-basket-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
+                        </div>
+                    </div>
+                </div>
 
                 <!-- AREA CHART CARD -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê lịch sử nhập hàng theo ngày</div>
+                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê doanh thu
+                    </div>
+                    <div class="d-flex justify-content-end mt-3" style="padding: 0 12px">
+                        <form action="dashmap" method="GET">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <input type="date" name="from" value="${requestScope.from}"/>
+                                    <i class="bi bi-arrow-right"></i>
+                                    <input type="date" name="to" value="${requestScope.to}"/>
+                                </div>
+                                <input class="btn btn-danger ml-2" type="submit" value="Lọc" style="padding: 2px 10px; font-weight: 700"/> 
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body">                       
-                        <canvas id="myAreaChart" width="100%" height="30" ></canvas>
+                        <canvas id="myAreaChart" width="100%" height="25" ></canvas>
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
 
 
-                <div class="row">
-                    <div class="col-lg-8">
-
+                <div class="row mb-3">
+                    <div class="col-md-8 ">
                         <!-- BAR CHART CARD-->
-                        <div class="card mb-3">
+                        <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-bar-chart"></i> Bar Chart Example</div>
+                                <i class="fa fa-bar-chart"></i>&nbsp;Biểu đồ thống kê số lượng mặt hàng</div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-8 my-auto">
-
-                                        <canvas id="myBarChart" width="100" height="70"></canvas>
-
-                                    </div>
-                                </div>
+                                <canvas id="myBarChart" width="100" height="70" hidden></canvas>
+                                <div id="double-column-chart" class="w-100 h-100"></div>
                             </div>
                             <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-md-4 ">
                         <!-- PIE CHART CARD-->
-                        <div class="card mb-3">
+                        <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-pie-chart"></i> Pie Chart Example</div>
+                                <i class="fa fa-pie-chart"></i>&nbsp;Biểu đồ thống kê số lượng nhân viên</div>
                             <div class="card-body">
                                 <canvas id="myPieChart" width="100%" height="100"></canvas>
                             </div>
@@ -275,6 +362,68 @@
                     event.preventDefault();
                 });
             })(jQuery); // End of use strict
+
+// DOUBLE COLUMN CHART DATA
+            Highcharts.setOptions({
+                lang: {
+                    thousandsSep: ' '
+                },
+                colors: ['#28a745', '#ffc107']
+            })
+            Highcharts.chart('double-column-chart', {
+                chart: {
+                    type: 'column',
+                    zoomType: 'y',
+                    //backgroundColor:"#FBFAE4"
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Apple',
+                        'Asus',
+                        'Gigabyte',
+                        'MSI',
+                        'Dell'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Số lượng sản phẩm'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px"><b>{point.key}</b></span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                        name: 'Điện thoại',
+                        data: [41661561, 34419934, 33158027, 31209230, 23632635]
+
+                    }, {
+                        name: 'Laptop',
+                        data: [40514123, 32340016, 32224529, 29456321, 22807464]
+
+                    }]
+            });
+
+
         </script>
     </body>
 </html>

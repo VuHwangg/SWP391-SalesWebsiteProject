@@ -28,55 +28,87 @@
 
                 <!-- Icon Cards-->
                 <div class="row">
-
                     <!-- CARD 1 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-shopping-bag"></i>
-                                </div>
-                                <div>
-                                    <span>Tổng số sản phẩm</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số sản phẩm</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                6&nbsp;sản phẩm
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                           <i class="bi bi-basket-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">1</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                    Xem chi tiết 
+                            </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 2 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <div>
-                                    <span>Số điện thoại</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số điện thoại</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                2&nbsp;sản phẩm
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-phone-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">2</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 3 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-success o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-laptop"></i>
-                                </div>
-                                <div>
-                                    <span>Số máy tính</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số laptop</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                4&nbsp;sản phẩm
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-laptop-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">3</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
                 </div>
