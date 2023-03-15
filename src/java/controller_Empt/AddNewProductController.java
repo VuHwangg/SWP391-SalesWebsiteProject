@@ -40,7 +40,7 @@ public class AddNewProductController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        request.getRequestDispatcher("admin-product-add.jsp").forward(request, response);
+        request.getRequestDispatcher("admin-product-add-laptop.jsp").forward(request, response);
     }
 
     @Override
