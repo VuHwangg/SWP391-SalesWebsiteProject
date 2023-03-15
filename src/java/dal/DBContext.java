@@ -10,14 +10,13 @@ public class DBContext {
     protected Connection connection;
     public DBContext()
     {
-        try { 
-            String user = "sa";          
-
-            String pass = "1234578";
-
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
+        try {
+            // Edit URL , username, password to authenticate with your MS SQL Server
+            String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP";
+            String username = "sa";
+            String password = "12345678";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
         }
