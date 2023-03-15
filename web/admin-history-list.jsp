@@ -29,32 +29,32 @@
                       <a href="#">Thống kê</a>
                     </li> -->
                     <li class="breadcrumb-item active">Tra cứu lịch sử nhập hàng</li>
-                    <form action="importhistory" method="GET">
-                        </br>
-                        From: <input type="date" name="from" value="${requestScope.from}"/>
-                        -
-                        To: <input type="date" name="to" value="${requestScope.to}"/>
-
-                        <input type="submit" value="View"/> 
-                    </form>
                 </ol>
 
                 <!-- AREA CHART CARD -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê lịch sử nhập hàng theo ngày</div>
-                    <div class="card-body">
-
-                        <!-- Nhập số liệu vào bảng ở bên file "admin-script.js" phần "AREA CHART DATA" -->
-
-                        <canvas id="myAreaChart" width="100%" height="30" ></canvas>
+                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê lịch sử nhập hàng theo ngày
                     </div>
-                    <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+                    <div class="d-flex justify-content-end mt-3" style="padding: 0 12px">
+                        <form action="importhistory" method="GET">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <input type="date" name="from" value="${requestScope.from}"/>
+                                    <i class="bi bi-arrow-right"></i>
+                                    <input type="date" name="to" value="${requestScope.to}"/>
+                                </div>
+                                <input class="btn btn-danger ml-2" type="submit" value="Lọc" style="padding: 2px 10px; font-weight: 700"/> 
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myAreaChart" width="100%" height="20" ></canvas>
+                    </div>
                 </div>
 
                 <!-- DATA TABLE CARD-->
                 <div class="card mb-3">
-
                     <!--DO NOT TOUCH ON THIS SHIT BELOW-->
                     <canvas id="myBarChart" width="100" height="70" hidden></canvas>
                     <canvas id="myPieChart" width="100%" height="100" hidden></canvas>
@@ -74,7 +74,7 @@
                                         <th>Màu sắc</th>
                                         <th>RAM</th>
                                         <th>ROM</th>
-                                        <th>Giá gốc</th>
+                                        <th>Giá nhập</th>
                                         <th>Số lượng</th>
                                         <th>Ngày nhập</th>
                                         <th>Người nhập</th>
@@ -123,12 +123,12 @@
         <script>
 
             // Chart.js scripts
-// -- Set new default font family and font color to mimic Bootstrap's default styling
+            // -- Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
 
 
-// -- AREA CHART DATA 1
+            // -- AREA CHART DATA 1
             var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
                 type: 'line',
@@ -179,6 +179,134 @@
                         display: false
                     }
                 }
+            });
+            // -- BAR CHART DATA
+            var ctx = document.getElementById("myBarChart");
+            var myLineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June"],
+                    datasets: [{
+                            label: "Revenue",
+                            backgroundColor: "rgba(2,117,216,1)",
+                            borderColor: "rgba(2,117,216,1)",
+
+                            // Input data below
+                            data: [4215, 5312, 6251, 7841, 9821, 14984],
+                        }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                                time: {
+                                    unit: 'month'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxTicksLimit: 6
+                                }
+                            }],
+                        yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 15000,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    display: true
+                                }
+                            }],
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+
+
+            // -- PIE CHART DATA
+            var ctx = document.getElementById("myPieChart");
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Blue", "Red", "Yellow", "Green"],
+                    datasets: [{
+
+                            // Input data below
+                            data: [12.21, 15.58, 11.25, 8.32],
+                            backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                        }],
+                },
+            });
+
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+            });
+
+            (function ($) {
+                "use strict"; // Start of use strict
+                // Configure tooltips for collapsed side navigation
+                $('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+                    template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+                })
+                // Toggle the side navigation
+                $("#sidenavToggler").click(function (e) {
+                    e.preventDefault();
+                    $("body").toggleClass("sidenav-toggled");
+                    $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+                    $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+                });
+                // Force the toggled class to be removed when a collapsible nav link is clicked
+                $(".navbar-sidenav .nav-link-collapse").click(function (e) {
+                    e.preventDefault();
+                    $("body").removeClass("sidenav-toggled");
+                });
+                // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+                $('body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse').on('mousewheel DOMMouseScroll', function (e) {
+                    var e0 = e.originalEvent,
+                            delta = e0.wheelDelta || -e0.detail;
+                    this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+                    e.preventDefault();
+                });
+                // Scroll to top button appear
+                $(document).scroll(function () {
+                    var scrollDistance = $(this).scrollTop();
+                    if (scrollDistance > 100) {
+                        $('.scroll-to-top').fadeIn();
+                    } else {
+                        $('.scroll-to-top').fadeOut();
+                    }
+                });
+                // Configure tooltips globally
+                $('[data-toggle="tooltip"]').tooltip()
+                // Smooth scrolling using jQuery easing
+                $(document).on('click', 'a.scroll-to-top', function (event) {
+                    var $anchor = $(this);
+                    $('html, body').stop().animate({
+                        scrollTop: ($($anchor.attr('href')).offset().top)
+                    }, 1000, 'easeInOutExpo');
+                    event.preventDefault();
+                });
+            })(jQuery); // End of use strict
+
+
+            // Edit Status of each order
+            $(document).ready(function () {
+                $(".change-status-btn").on('click', function (event) {
+                    event.preventDefault();
+                    var disableEdit = $(this).closest('.change-order-status').find('.edit-off');
+                    var enableEdit = $(this).closest('.change-order-status').find('.edit-on');
+
+                    if (enableEdit.hasClass('disable')) {
+                        disableEdit.addClass("disable");
+                        enableEdit.removeClass("disable");
+                    } else if (disableEdit.hasClass('disable')) {
+                        enableEdit.addClass("disable");
+                        disableEdit.removeClass("disable");
+                    }
+                });
             });
         </script>
     </body>

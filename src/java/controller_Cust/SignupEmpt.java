@@ -20,6 +20,8 @@ public class SignupEmpt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //  super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String user = req.getParameter("email");
         String name = req.getParameter("name");
         String pass = req.getParameter("pass");

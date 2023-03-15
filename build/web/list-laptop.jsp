@@ -2,6 +2,7 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="helper" class="util.Helper"/>
+<%@page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -227,6 +228,7 @@
                                     </div>
 
                                     <!-- list all product -->
+
                                     <div class="row">
                                         <c:forEach items="${requestScope.filterList}" var="filter">
                                             <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
@@ -250,20 +252,24 @@
                                                         <div class="product-price">
                                                             <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
                                                         </div>
-                                                        
+
                                                         <div class="product-status">
-                                                        <!--Còn hàng-->
-                                                        <div class="text-success">
-                                                            <i class="bi bi-check-all"></i>
-                                                            <span>Còn hàng</span>
+                                                            <c:if test="${filter.qty >= 1}">
+
+                                                                <!--Còn hàng-->
+                                                                <div class="text-success">
+                                                                    <i class="bi bi-check-all"></i>
+                                                                    <span>Còn hàng</span>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${filter.qty < 1}">
+                                                                <!--Hết hàng-->
+                                                                <div class="text-danger">
+                                                                    <i class="bi bi-x-lg"></i>
+                                                                    <span>Hết hàng</span>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
-                                                        
-                                                        <!--Hết hàng-->
-                                                        <div class="text-danger">
-                                                            <i class="bi bi-x-lg"></i>
-                                                            <span>Hết hàng</span>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                     <c:if test="${filter.discount>0}">
                                                         <div class="col-4">
@@ -284,7 +290,7 @@
                                                     <i class="bi bi-chevron-double-left"></i>
                                                 </button>
                                             </c:if>
-                                            
+
                                             <c:forEach var = "i" begin = "1" end = "${requestScope.totalPage}">
                                                 <button class="btn btn-outline-danger
                                                         <c:if test="${requestScope.page==i}">
@@ -301,7 +307,7 @@
                                                     <i class="bi bi-chevron-double-right"></i>
                                                 </button>
                                             </c:if>
-                                            
+
                                         </div>
                                     </div>
                                 </div>

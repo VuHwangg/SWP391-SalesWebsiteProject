@@ -85,7 +85,7 @@
                                     </label>
                                 </div>
                             </div>
-                       
+
                     </div>
 
 
@@ -97,21 +97,28 @@
                         </div>
                         <div class="border-top border-dark border-3 my-3"></div>
 
-                        <c:forEach items="${carts}" var="cart">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span class="fw-bolder fs-5" style="color: #555555;">${cart.getValue().getProduct().getName()}</span>
-                                    <br>
-                                    <span class="fw-light fs-6">Màu sắc: ${cart.getValue().getProduct().getColor()}</span>
-                                    <br>
-                                    <span class="fw-light fs-6">Số lượng: ${cart.getValue().getQuantity()}</span>
-                                </div>
-                                <div class="col-md-6 d-flex justify-content-end ">
-                                    <span class="fw-light fs-6">${Helper.convertBigNum(cart.getValue().getQuantity()*cart.getValue().getProduct().getCurrent_price())}&#8363;</span>
-                                </div>
+                        <%
+                            float price = 0;
+                            if (carts != null) {
+                                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                                    price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                        %>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="fw-bolder fs-5" style="color: #555555;"><%=cart.getValue().getProduct().getName()%></span>
+                                <br>
+                                <span class="fw-light fs-6">Màu sắc: <%=cart.getValue().getProduct().getColor()%></span>
+                                <br>
+                                <span class="fw-light fs-6">Số lượng: <%=cart.getValue().getQuantity()%></span>
                             </div>
-                            <div class="border-top border-dark border-1 my-2"></div>
-                        </c:forEach>
+                            <div class="col-md-6 d-flex justify-content-end ">
+                                <span class="fw-light fs-6"><%=helper.convertBigNum(price)%>&#8363;</span>
+                            </div>
+                        </div>
+                        <div class="border-top border-dark border-1 my-2"></div>
+                        <%}
+                            }%>
 
                         <!---Shipment cost-->
                         <div class="row">
@@ -137,23 +144,23 @@
                                 <button type="submit" class="btn btn-danger w-100 fs-4" data-toggle="modal" data-target="#exampleModal">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
-                    </form>
+                        </form>
                     </div>
 
                 </div>
             </div>
             <!--footer-->
             <!-- Modal -->
-   
-            </div>
-            <%@include file="components/footer.jsp" %>
-        </main>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"
-        ></script>
-        <%@include file="styles/js/script.jsp" %>
-    </body>
+        </div>
+        <%@include file="components/footer.jsp" %>
+    </main>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"
+    ></script>
+    <%@include file="styles/js/script.jsp" %>
+</body>
 </html>
