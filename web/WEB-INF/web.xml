@@ -12,6 +12,10 @@
         <servlet-name>test</servlet-name>
         <servlet-class>controller_Empt.test</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeProductStatusController</servlet-name>
+        <servlet-class>controller_Empt.ChangeProductStatusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Dashmap</servlet-name>
         <url-pattern>/dashmap</url-pattern>
@@ -311,6 +315,10 @@
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeProductStatusController</servlet-name>
+        <url-pattern>/ChangeProductStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

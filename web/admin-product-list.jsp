@@ -169,8 +169,9 @@
                                                     <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
                                                     <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
-                                                    <form action="EditProduct" method="POST">
+                                                    <form action="ChangeProductStatus" method="POST">
                                                         <input type="text" value="${p.id}" name="product_id" hidden>
+                                                        <input type="text" value="-1" name="status" hidden>
                                                         <button type="submit" class="btn btn-danger w-100">Dừng bán</button>
                                                     </form>
                                                 </div>

@@ -771,11 +771,12 @@ public class ProductDBContext extends DBContext {
         return listProduct;
     }
 
-    public int totalProduct() {
+    public int totalProduct(int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = 'true'";
+            String sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, status);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
