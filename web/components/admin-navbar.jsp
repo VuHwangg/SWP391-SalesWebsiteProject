@@ -21,7 +21,7 @@
             <!-- 1 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
                 <a class="nav-link" href="dashmap">
-                    <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+                    <i class="fa fa-fw fa-dashboard" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Thống kê</span>
                 </a>
             </li>
@@ -29,7 +29,7 @@
             <!-- 2 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhân viên">
                 <a class="nav-link" href="controllerEmployee">
-                    <i class="fa fa-users"></i>&nbsp;
+                    <i class="fa fa-users" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Nhân viên</span>
                 </a>
             </li>
@@ -37,15 +37,22 @@
             <!-- 3 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
                 <a class="nav-link" href="ProductManagement">
-                    <i class="fa fa-shopping-basket"></i>&nbsp;
+                    <i class="bi bi-bag-check-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm đang bán</span>
+                </a>
+            </li>
+            
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
+                <a class="nav-link" href="admin-product-list-not-sale.jsp">
+                    <i class="bi bi-bag-x-fill" style="font-size: 20px"></i>&nbsp;
+                    <span class="nav-link-text">Sản phẩm chưa bán</span>
                 </a>
             </li>
             
             <!-- 4 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
                 <a class="nav-link" href="admin-warehouse-management.jsp">
-                    <i class="fa fa-cubes"></i>&nbsp;
+                    <i class="fa fa-cubes" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Kho hàng</span>
                 </a>
             </li>
@@ -53,7 +60,7 @@
             <!-- 5 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
                 <a class="nav-link" href="ViewOrder">
-                    <i class="fa fa-truck"></i>&nbsp;
+                    <i class="fa fa-truck" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Đơn hàng</span>
                 </a>
             </li>
@@ -61,7 +68,7 @@
             <!-- 6 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử nhập hàng">
                 <a class="nav-link" href="importhistory">
-                    <i class="fa fa-history"></i>&nbsp;
+                    <i class="fa fa-history" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Lịch sử nhập hàng</span>
                 </a>
             </li>
@@ -69,7 +76,7 @@
             <!-- 7 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tạo tài khoản cho nhân viên">
                 <a class="nav-link" href="register-admin.jsp">
-                    <i class="fa fa-sign-in"></i>&nbsp;
+                    <i class="fa fa-sign-in" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Tạo tài khoản nhân viên</span>
                 </a>
             </li>

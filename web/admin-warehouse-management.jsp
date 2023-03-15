@@ -102,33 +102,31 @@
                                         <th>ID</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Phân loại</th>
+                                        <th>Hãng sản xuất</th>
                                         <th>Màu sắc</th>
                                         <th>RAM</th>
                                         <th>ROM</th>
-                                        <th>Giá gốc</th>
-                                        <th>Giá bán</th>
                                         <th>Số lượng</th>
+                                        <th>Quản lý</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-
                                     <!-- Sản phẩm-->
                                     <tr>
                                         <td>1</td>
                                         <td class="text-left">Asus Gaming</td>
-                                        <td>Laptop</td>
+                                        <td>Điện thoại</td>
+                                        <td>Apple</td>
                                         <td>Gray</td>
                                         <td>16<span>GB</span></td>
                                         <td>512<span>GB</span></td>
-                                        <td class="text-right">57,990,000&nbsp;&#8363;</td>
-                                        <td class="text-right">45,990,000&nbsp;&#8363;</td>
                                         <td>
                                             <div class="change-order-status">
                                                 <div class="edit-off">
-                                                    <span class="text-center">5</span>
-                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi số lượng sản phẩm">
+                                                    <span class="text-center">55000</span>
+<!--                                                    <a class="change-status-btn text-danger" href="" style="float: right" data-toggle="tooltip" data-placement="top" title="Thay đổi số lượng sản phẩm">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
+                                                    </a>-->
                                                 </div>
                                                 <div class="edit-on disable">
                                                     <form>
@@ -140,10 +138,59 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="d-flex ">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
+                                                    Thêm số lượng
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <form>
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Thêm số lượng sản phẩm mới</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="input-group w-100 mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <label class="input-group-text" for="inputQuantity">Số lượng</label>
+                                                                        </div>
+                                                                        <input type="text" class="form-control text-center" id="inputQuantity" placeholder="VD: 16" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">sản phẩm</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-group w-100 mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <label class="input-group-text" for="inputPrice">Giá nhập</label>
+                                                                        </div>
+                                                                        <input type="text" class="form-control text-center" id="inputPrice" placeholder="VD: 19000000" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">VNĐ</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="text-danger m-0">* THAO TÁC LƯU SẼ KHÔNG THỂ HOÀN TÁC *<br>bạn vui lòng kiểm tra kỹ thông tin trước khi ấn nút lưu</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" class="btn btn-danger w-100" value="Lưu">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>

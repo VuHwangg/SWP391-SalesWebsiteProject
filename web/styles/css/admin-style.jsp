@@ -641,7 +641,7 @@
     }
 
     .table-wareh tr th:nth-child(2) {
-        width: 22%;
+        width: 18%;
     }
 
     .table-wareh tr th:nth-child(3) {
@@ -649,15 +649,15 @@
     }
 
     .table-wareh tr th:nth-child(4) {
-        width: 10%;
+        width: 15%;
     }
 
     .table-wareh tr th:nth-child(5) {
-        width: 9%;
+        width: 10%;
     }
 
     .table-wareh tr th:nth-child(6) {
-        width: 9%;
+        width: 10%;
     }
 
     .table-wareh tr th:nth-child(7) {
@@ -665,11 +665,11 @@
     }
 
     .table-wareh tr th:nth-child(8) {
-        width: 10%;
+        width: 12%;
     }
-
+    
     .table-wareh tr th:nth-child(9) {
-        width: 13%;
+        width: 8%;
     }
 
 

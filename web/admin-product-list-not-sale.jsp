@@ -1,5 +1,3 @@
-<jsp:useBean id="helper" class="util.Helper"/>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
-        <title>Sản phẩm đang bán</title>
+        <title>Sản phẩm chưa bán</title>
 
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
@@ -25,7 +23,7 @@
                     <!-- <li class="breadcrumb-item">
                       <a href="#">Thống kê</a>
                     </li> -->
-                    <li class="breadcrumb-item active">Sản phẩm đang bán</li>
+                    <li class="breadcrumb-item active">Sản phẩm chưa bán</li>
                 </ol>
 
                 <!-- Icon Cards-->
@@ -43,7 +41,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalAllProduct}</span>
+                                <span class="mr-5">6</span>
                             </a>
                         </div>
                     </div>
@@ -60,7 +58,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalPhone}</span>
+                                <span class="mr-5">4</span>
                             </a>
                         </div>
                     </div>
@@ -77,7 +75,7 @@
                                 </div>
                             </div>
                             <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalComputer}</span>
+                                <span class="mr-5">2</span>
                             </a>
                         </div>
                     </div>
@@ -94,7 +92,7 @@
 
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm </span>
-                        <span class="text-success" style="font-weight: 700; font-size: 18px; text-decoration: underline">đang bán</span>
+                        <span class="text-danger" style="font-weight: 700; font-size: 18px; text-decoration: underline">chưa bán</span>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
@@ -115,37 +113,27 @@
                                 <tbody class="text-center">
 
                                     <!-- Sản phẩm-->
-                                    <c:forEach items="${requestScope.products}" var="p">
                                         <tr>
-                                            <td>${p.id}</td>
-                                            <td class="text-left">${p.name}</td>
-                                            <td>
-                                                <c:if test="${p.type == 1}">
-                                                    Laptop
-                                                </c:if>
-                                                <c:if test="${p.type == 0}">
-                                                    Điện thoại
-                                                </c:if>
-                                            </td>
-                                            <td>${p.color}</td>
-                                            <td>${p.ram}<span>GB</span></td>
-                                            <td>${p.memory}<span>GB</span></td>
-                                            <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
-                                            <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
+                                            <td>1</td>
+                                            <td class="text-left">Iphone12</td>
+                                            <td>Điện thoại</td>
+                                            <td>Xanh</td>
+                                            <td>6<span>GB</span></td>
+                                            <td>128<span>GB</span></td>
+                                            <td class="text-right">0&nbsp;&#8363;</td>
+                                            <td class="text-right">0&nbsp;&#8363;</td>
                                             <td>
                                                 <div class="d-flex ">
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                    <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
+                                                    <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
                                                     <!----------->
-                                                    <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
-                                                    <form action="EditProduct" method="POST">
-                                                        <input type="text" value="${p.id}" name="product_id" hidden>
-                                                        <button type="submit" class="btn btn-danger w-100">Dừng bán</button>
+                                                    <a class="btn btn-warning w-100" href="#">Sửa</a>&nbsp;
+                                                    <form>
+                                                        <button type="submit" class="btn btn-success w-100">Đăng bán</button>
                                                     </form>
                                                 </div>
                                             </td>
                                         </tr>
-                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
