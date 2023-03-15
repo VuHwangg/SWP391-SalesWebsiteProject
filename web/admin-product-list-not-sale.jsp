@@ -1,3 +1,5 @@
+<jsp:useBean id="helper" class="util.Helper"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,13 +41,13 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                4&nbsp;mặt hàng
+                                                ${requestScope.totalAllProduct}&nbsp;mặt hàng
                                             </span>
                                         </span>
                                     </div>
                                     <div>
                                         <div class="icon-card-custom bg-danger text-white">
-                                           <i class="bi bi-basket-fill"></i>
+                                            <i class="bi bi-basket-fill"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +69,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                3&nbsp;mặt hàng
+                                                ${requestScope.totalPhone}&nbsp;mặt hàng
                                             </span>
                                         </span>
                                     </div>
@@ -95,7 +97,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                2&nbsp;mặt hàng
+                                                ${requestScope.totalComputer}&nbsp;mặt hàng
                                             </span>
                                         </span>
                                     </div>
@@ -145,27 +147,38 @@
                                 <tbody class="text-center">
 
                                     <!-- Sản phẩm-->
+                                    <c:forEach items="${requestScope.products}" var="p">
                                         <tr>
-                                            <td>1</td>
-                                            <td class="text-left">Iphone12</td>
-                                            <td>Điện thoại</td>
+                                            <td>${p.id}</td>
+                                            <td class="text-left">${p.name}</td>
+                                            <td>
+                                                <c:if test="${p.type == 1}">
+                                                    Laptop
+                                                </c:if>
+                                                <c:if test="${p.type == 0}">
+                                                    Điện thoại
+                                                </c:if>
+                                            </td>
                                             <td>Xanh</td>
                                             <td>6<span>GB</span></td>
                                             <td>128<span>GB</span></td>
-                                            <td class="text-right">0&nbsp;&#8363;</td>
-                                            <td class="text-right">0&nbsp;&#8363;</td>
+                                            <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
+                                            <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
                                             <td>
                                                 <div class="d-flex ">
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                    <a class="btn btn-secondary w-100" href="#">Xem</a>&nbsp;
+                                                    <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
-                                                    <a class="btn btn-warning w-100" href="#">Sửa</a>&nbsp;
-                                                    <form>
+                                                    <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
+                                                    <form action="ChangeProductStatus" method="POST">
+                                                        <input type="text" value="${p.id}" name="product_id" hidden>
+                                                        <input type="text" value="1" name="status" hidden>
                                                         <button type="submit" class="btn btn-success w-100">Đăng bán</button>
                                                     </form>
                                                 </div>
                                             </td>
                                         </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
