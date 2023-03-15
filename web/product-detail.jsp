@@ -93,56 +93,57 @@
                                     </a>
                                 </c:forEach>
                             </div>
-
-                            <!--Khi sản phẩm còn hàng-->    
-                            <div class="row">
-                                <div class="col-12" style="padding: 0">
-                                    <form action="AddToCart" method="GET">
-                                        <!--Here-->
-                                        <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
-                                        <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
-                                        <button type="submit" class="buy-btn btn btn-danger w-100" >
-                                            Mua ngay
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="col-4" style="padding: 0">
-                                    <div class="quantity-input quantity-input-pd">
-                                        <button class="minus-btn" type="button">-</button>
-                                        <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="${requestScope.maxQuantity}" readonly/>
-                                        <button class="plus-btn" type="button">+</button>
+                            <c:if test="${requestScope.qty >= 1}">
+                                <!--Khi sản phẩm còn hàng-->    
+                                <div class="row">
+                                    <div class="col-12" style="padding: 0">
+                                        <form action="AddToCart" method="GET">
+                                            <!--Here-->
+                                            <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
+                                            <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+                                            <button type="submit" class="buy-btn btn btn-danger w-100" >
+                                                Mua ngay
+                                            </button>
+                                        </form>
                                     </div>
-                                </div>    
-                                <div class="col-8" style="padding: 0 0 0 8px">
-                                    <form action="AddToCart" method="POST">
-                                        <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
-                                        <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
-                                        <button type="submit" class="add-cart-btn btn w-100">
-                                            <table>
-                                                <tr>
-                                                    <td style="width: 30%"><i class="bi bi-cart-plus-fill"></i></td>
-                                                    <td style="width: 70%">Thêm vào giỏ hàng</td>
-                                                </tr>
-                                            </table>
-                                        </button>
-                                    </form>
+                                    <div class="col-4" style="padding: 0">
+                                        <div class="quantity-input quantity-input-pd">
+                                            <button class="minus-btn" type="button">-</button>
+                                            <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="${requestScope.maxQuantity}" readonly/>
+                                            <button class="plus-btn" type="button">+</button>
+                                        </div>
+                                    </div>    
+                                    <div class="col-8" style="padding: 0 0 0 8px">
+                                        <form action="AddToCart" method="POST">
+                                            <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
+                                            <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
+                                            <button type="submit" class="add-cart-btn btn w-100">
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 30%"><i class="bi bi-cart-plus-fill"></i></td>
+                                                        <td style="width: 70%">Thêm vào giỏ hàng</td>
+                                                    </tr>
+                                                </table>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!--Khi sản phẩm hết hàng-->            
-                            <div class="row ">
-                                <div class="col-12" style="padding: 0;">
-                                    <div class="sold-out-box p-3">
-                                        <h4 class="text-center">Sản phẩm đang tạm hết hàng</h4>
-                                        <p class="text-start" style="margin-bottom: 8px">Liên hệ với chúng tôi để biết thêm thông tin chi tiết</p>
-                                        <div class="d-flex justify-content-between flex-column">
-                                            <a class="btn btn-danger mb-2 fw-bold" href="mailto:awnsshop@gmail.com">awnsshop@gmail.com</a>
-                                            <a class="btn btn-secondary fw-bold" href="tel:0833232520">+84 833 232 520</a>
+                            </c:if>
+                            <c:if test="${requestScope.qty < 1}">
+                                <!--Khi sản phẩm hết hàng-->            
+                                <div class="row ">
+                                    <div class="col-12" style="padding: 0;">
+                                        <div class="sold-out-box p-3">
+                                            <h4 class="text-center">Sản phẩm đang tạm hết hàng</h4>
+                                            <p class="text-start" style="margin-bottom: 8px">Liên hệ với chúng tôi để biết thêm thông tin chi tiết</p>
+                                            <div class="d-flex justify-content-between flex-column">
+                                                <a class="btn btn-danger mb-2 fw-bold" href="mailto:awnsshop@gmail.com">awnsshop@gmail.com</a>
+                                                <a class="btn btn-secondary fw-bold" href="tel:0833232520">+84 833 232 520</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </c:if>
                         </div>
                     </div>
                     <div style="padding: 0 12px">

@@ -5,6 +5,7 @@
 <%@page import="jakarta.servlet.http.HttpSession" %>
 <%@page import="java.util.Map" %>
 <%@page import="model.Cart" %>
+<%@page import="model.Product" %>
 
 
 <header>

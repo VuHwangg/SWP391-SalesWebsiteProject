@@ -97,11 +97,7 @@
                                                             <span>Còn hàng</span>
                                                         </div>
                                                         
-                                                        <!--Hết hàng-->
-                                                        <div class="text-danger">
-                                                            <i class="bi bi-x-lg"></i>
-                                                            <span>Hết hàng</span>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                                 <c:if test="${onSale.discount>0}">
@@ -156,11 +152,7 @@
                                                             <span>Còn hàng</span>
                                                         </div>
                                                         
-                                                        <!--Hết hàng-->
-                                                        <div class="text-danger">
-                                                            <i class="bi bi-x-lg"></i>
-                                                            <span>Hết hàng</span>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                                 <c:if test="${topSold.discount>0}">
@@ -213,11 +205,7 @@
                                                             <span>Còn hàng</span>
                                                         </div>
                                                         
-                                                        <!--Hết hàng-->
-                                                        <div class="text-danger">
-                                                            <i class="bi bi-x-lg"></i>
-                                                            <span>Hết hàng</span>
-                                                        </div>
+                                                      
                                                     </div>
                                                 </div>
                                                 <c:if test="${phone.discount>0}">
@@ -270,11 +258,7 @@
                                                             <span>Còn hàng</span>
                                                         </div>
                                                         
-                                                        <!--Hết hàng-->
-                                                        <div class="text-danger">
-                                                            <i class="bi bi-x-lg"></i>
-                                                            <span>Hết hàng</span>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <c:if test="${laptop.discount>0}">
