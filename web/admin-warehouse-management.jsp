@@ -173,8 +173,8 @@
                                         <td>
                                             <div class="d-flex ">
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
-                                                    Thêm số lượng
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addProductModal">
+                                                    Nhập hàng
                                                 </button>
 
                                                 <!-- Modal -->
@@ -183,7 +183,7 @@
                                                         <div class="modal-content">
                                                             <form>
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Thêm số lượng sản phẩm mới</h5>
+                                                                    <h5 class="modal-title">Nhập thêm số lượng cho mặt hàng này</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -202,7 +202,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <label class="input-group-text" for="inputPrice">Giá nhập</label>
                                                                         </div>
-                                                                        <input type="text" class="form-control text-center" id="inputPrice" placeholder="VD: 19000000" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                                                        <input type="text" class="form-control text-center" id="inputPrice" placeholder="Đơn giá từng sản phẩm" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">VNĐ</span>
                                                                         </div>

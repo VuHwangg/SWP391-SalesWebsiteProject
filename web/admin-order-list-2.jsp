@@ -40,7 +40,7 @@
 
                     <!-- CARD 1 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
+                        <a href="admin-order-list-1.jsp" class="card card-r1 text-white bg-dark o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-shopping-cart"></i>
@@ -57,7 +57,7 @@
 
                     <!-- CARD 2 -->
                     <div class="col-xl-3 col-sm-6 mb-3">
-                        <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-warning o-hidden h-100">
+                        <a href="admin-order-list-2.jsp" class="card card-r1 text-white bg-primary o-hidden h-100">
                             <div class="card-body mr-5">
                                 <div class="card-body-icon">
                                     <i class="fa fa-truck"></i>
@@ -118,7 +118,7 @@
 
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách đơn hàng
-                            <span class="text-warning" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
+                            <span class="text-primary" style="text-decoration: underline; font-size: 18px; font-weight: 700;">
                                 đang vận chuyển
                             </span>
                         </span>
@@ -126,7 +126,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead class="text-center bg-warning text-white">
+                                <thead class="text-center bg-primary text-white">
                                     <tr>
                                         <th>Mã đơn hàng</th>
                                         <th>Ngày đặt hàng</th>

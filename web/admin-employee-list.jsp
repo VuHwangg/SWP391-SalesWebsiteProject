@@ -178,7 +178,7 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-success w-100" href="editEmpt?id=<%=arr.get(i).getUsername()%>">Chỉnh sửa</a>&nbsp;
-                                                <a class="btn btn-danger w-100" href="cancelEmpt?id=<%=arr.get(i).getUsername()%>">Nghỉ việc</a>
+                                                <a class="btn btn-dark w-100" href="cancelEmpt?id=<%=arr.get(i).getUsername()%>">Nghỉ việc</a>
                                             </div>
                                         </td>
                                     </tr>

@@ -458,6 +458,8 @@
             background: #343a40;
         }
     }
+    
+    /*NAVIGATION BAR*/
 
     .navbar-dark .navbar-nav .nav-link,
     .navbar-dark .navbar-nav .nav-link:focus {
@@ -466,6 +468,23 @@
 
     .navbar {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
+    
+    .navbar .dropdown-menu {
+        right: 0;
+        left: auto;
+        top: 120%;
+        max-width: 200px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
+    
+    .navbar .dropdown-menu .dropdown-item:hover {
+        background-color: white;
+    }
+    
+    .navbar .dropdown-menu a.dropdown-item:hover {
+        background-color: var(--red) !important;
+        color: white !important;
     }
 
     .card {

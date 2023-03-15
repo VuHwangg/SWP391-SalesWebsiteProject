@@ -25,7 +25,7 @@
                     <span class="nav-link-text">Thống kê</span>
                 </a>
             </li>
-            
+
             <!-- 2 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Nhân viên">
                 <a class="nav-link" href="controllerEmployee">
@@ -33,7 +33,7 @@
                     <span class="nav-link-text">Nhân viên</span>
                 </a>
             </li>
-            
+
             <!-- 3 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
                 <a class="nav-link" href="ProductManagement">
@@ -41,39 +41,48 @@
                     <span class="nav-link-text">Sản phẩm đang bán</span>
                 </a>
             </li>
-            
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
+
+            <!-- 4 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm chưa bán">
                 <a class="nav-link" href="admin-product-list-not-sale.jsp">
                     <i class="bi bi-bag-x-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm chưa bán</span>
                 </a>
             </li>
-            
-            <!-- 4 -->
+
+            <!-- 5 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
                 <a class="nav-link" href="admin-warehouse-management.jsp">
                     <i class="fa fa-cubes" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Kho hàng</span>
                 </a>
             </li>
-            
-            <!-- 5 -->
+
+            <!-- 6 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
                 <a class="nav-link" href="ViewOrder">
                     <i class="fa fa-truck" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Đơn hàng</span>
                 </a>
             </li>
-            
-            <!-- 6 -->
+
+            <!-- 7 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử nhập hàng">
                 <a class="nav-link" href="importhistory">
                     <i class="fa fa-history" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Lịch sử nhập hàng</span>
                 </a>
             </li>
-            
-            <!-- 7 -->
+
+            <!-- 8 -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đánh giá sản phẩm">
+                <a class="nav-link" href="admin-feedback-list.jsp">
+                    <i class="bi bi-chat-square-dots-fill" style="font-size: 20px"></i>&nbsp;
+                    <span class="nav-link-text">Đánh giá sản phẩm</span>
+                </a>
+            </li>
+
+            <!-- 9 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tạo tài khoản cho nhân viên">
                 <a class="nav-link" href="register-admin.jsp">
                     <i class="fa fa-sign-in" style="font-size: 20px"></i>&nbsp;
@@ -92,14 +101,37 @@
 
         <!--  UPPER NAVIGATION BAR ============================================================================= -->
         <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown" style="font-size: 18px; font-weight: 700">
+                    Hoàng Chu Anh Vũ
+                    <span class="indicator text-primary d-none d-lg-block">
+                        <i class="fa fa-fw"></i>
+                    </span>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item text-center">
+                        <span>
+                            Tài khoản: 
+                            <strong class="text-danger">Admin</strong>
+                            <!--<strong class="text-danger">Bán Hàng</strong>-->
+                            <!--<strong class="text-danger">Quản Kho</strong>-->
+                            
+                        </span>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item nav-link text-dark text-center" href="logoutEmpt">
+                        <i class="fa fa-fw fa-sign-out"></i>&nbsp;Đăng xuất
+                    </a>
+                </div>
+            </li>
+
             <!-- LOGOUT BUTTON ============================================================================= -->
             <li class="nav-item">
                 <!--                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                                   <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
                                 </a>-->
-                <a class="nav-link" href="logoutEmpt">
-                    <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
-                </a>
+
             </li>
         </ul>
     </div>

@@ -44,56 +44,90 @@
                 <div class="row">
 
                     <!-- CARD 1 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <div>
-                                    <span>Tổng số nhân viên</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4 >Tổng số nhân viên</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                <%=total%>&nbsp;người
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5"><%=total%></span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                    Xem chi tiết 
+                            </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 2 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-archive"></i>
-                                </div>
-                                <div>
-                                    <span>Số quản kho</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Nhân viên quản kho</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                <%=mana%>&nbsp;người
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-box-seam-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5"><%=mana%></span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 3 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-success o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-fw fa-shopping-cart"></i>
-                                </div>
-                                <div>
-                                    <span>Số bán hàng</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Nhân viên bán hàng</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                <%=empt%>&nbsp;người
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-cash-coin"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5"><%=empt%></span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
-                </div>
+                </div>            
+
                 <% Account acc = (Account) session.getAttribute("acc");%>
                 <!-- EDIT CARD-->
                 <div class="card mb-3">
@@ -113,7 +147,7 @@
                     </div>
                     <div class="card-body p-3">
                         <form action="editEmpt" method="post" id="<%=acc.getUsername()%>">
-                            
+
                             <!--Họ và tên-->
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -121,7 +155,7 @@
                                 </div>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="<%=acc.getDisplayname()%>" required>
                             </div>
-                            
+
                             <!--Mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
@@ -136,7 +170,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" hidden="">
                                 <!--Thêm ảnh 1 ảnh-->
                                 <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
                                 <div class="input-group-append" >
@@ -154,13 +188,13 @@
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2">
                                         <label class="form-check-label" for="flexRadioDefault1" >
-                                            Người quản kho
+                                            Quản lý kho hàng
                                         </label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="3">
                                         <label class="form-check-label" for="flexRadioDefault2">
-                                            Người bán hàng
+                                            Nhân viên bán hàng
                                         </label>
                                     </div>
                                 </div>
@@ -169,13 +203,13 @@
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2">
                                         <label class="form-check-label" for="flexRadioDefault1">
-                                            Người quản kho
+                                            Quản lý kho hàng
                                         </label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="3">
                                         <label class="form-check-label" for="flexRadioDefault2">
-                                            Người bán hàng
+                                            Nhân viên bán hàng
                                         </label>
                                     </div>
                                 </div>
