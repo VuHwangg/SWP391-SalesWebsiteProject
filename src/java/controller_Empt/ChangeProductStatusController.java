@@ -11,38 +11,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class EditProductController extends HttpServlet {
+public class ChangeProductStatusController extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rawProductId = request.getParameter("product_id");
-        int productID = Integer.parseInt(rawProductId);
-        ProductDBContext p = new ProductDBContext();
-        Product product = p.getProductByID(productID);
-        int totalAllProduct = p.totalProduct(1);
-        int totalComputer = p.totalProduct(1, 1);
-        int totalPhone = p.totalProduct(0, 1);
-        request.setAttribute("totalAllProduct", totalAllProduct);
-        request.setAttribute("totalComputer", totalComputer);
-        request.setAttribute("totalPhone", totalPhone);
-        request.setAttribute("product", product);
-        request.getRequestDispatcher("admin-product-edit.jsp").forward(request, response);
+        
     }
 
     /**
@@ -56,7 +35,16 @@ public class EditProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String rawProductId = request.getParameter("product_id");
+        int productID = Integer.parseInt(rawProductId);
+        String rawStatus = request.getParameter("status");
+        boolean status = false;
+        if (rawStatus.equals("1")) {
+            status = true;
+        }
+        ProductDBContext p = new ProductDBContext();
+        p.changeProductStatus(productID, status);
+        response.sendRedirect("ProductManagement");
     }
 
     /**

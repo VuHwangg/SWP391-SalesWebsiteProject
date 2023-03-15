@@ -34,7 +34,7 @@ public class ProductManagementController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             ProductDBContext p = new ProductDBContext();
-            int totalAllProduct = p.totalProduct();
+            int totalAllProduct = p.totalProduct(1);
             int totalComputer = p.totalProduct(1, 1);
             int totalPhone = p.totalProduct(0, 1);
             ArrayList<Product> products = p.getAllProduct();
