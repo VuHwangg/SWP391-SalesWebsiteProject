@@ -41,6 +41,7 @@ public class ProductDetailController extends HttpServlet {
         request.setAttribute("colorList", colorList);
         request.setAttribute("optionList", optionList);
         request.setAttribute("sameList", sameList);
+        request.setAttribute("qty",product.getQty());
         request.getRequestDispatcher("product-detail.jsp").forward(request, response);
 //        response.getWriter().print(bufferList.get(0).getRam());
     }

@@ -169,7 +169,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[qty]\n"
                     + "		  ,[sold]\n"
                     + "		  ,[status]\n"
-                    + "	  FROM [Product] where  [status] = 1";
+                    + "	  FROM [Product] where  [status] = 1 and [qty] > 0";
             if (type != -1) {
                 sql = sql + "AND [type] = ?";
             }
