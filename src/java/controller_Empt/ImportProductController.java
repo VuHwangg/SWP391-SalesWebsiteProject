@@ -4,21 +4,18 @@
  */
 package controller_Empt;
 
-import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.Product;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Admin
  */
-public class WarehouseManagmentController extends HttpServlet {
+public class ImportProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,22 +26,7 @@ public class WarehouseManagmentController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            ProductDBContext p = new ProductDBContext();
-            int totalAllProduct = p.totalProduct(2);
-            int totalComputer = p.totalProduct(1, 2);
-            int totalPhone = p.totalProduct(0, 2);
-            ArrayList<Product> products = p.getAllProductAndBrand();
-            request.setAttribute("products", products);
-            request.setAttribute("totalAllProduct", totalAllProduct);
-            request.setAttribute("totalComputer", totalComputer);
-            request.setAttribute("totalPhone", totalPhone);
-            request.getRequestDispatcher("admin-warehouse-management.jsp").forward(request, response);
-        }
-    }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,7 +40,6 @@ public class WarehouseManagmentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -72,7 +53,6 @@ public class WarehouseManagmentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**

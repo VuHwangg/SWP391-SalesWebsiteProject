@@ -51,7 +51,7 @@
             
             <!-- 4 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
-                <a class="nav-link" href="admin-warehouse-management.jsp">
+                <a class="nav-link" href="WarehouseManagment">
                     <i class="fa fa-cubes" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Kho hàng</span>
                 </a>

@@ -776,9 +776,16 @@ public class ProductDBContext extends DBContext {
     public int totalProduct(int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = ?";
+            String sql = "";
+            if (status == 1 || status == 0) {
+                sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = ?";
+            } else {
+                sql = "SELECT COUNT(product_id)[total] FROM Product";
+            }
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, status);
+            if (status == 1 || status == 0) {
+                ps.setInt(1, status);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
@@ -792,10 +799,17 @@ public class ProductDBContext extends DBContext {
     public int totalProduct(int type, int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
+            String sql = "";
+            if (status == 1 || status == 0) {
+                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
+            } else {
+                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ?";
+            }
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, type);
-            ps.setInt(2, status);
+            if (status == 1 || status == 0) {
+                ps.setInt(2, status);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
@@ -819,7 +833,6 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
 //test query cái này bỏ qua
 //    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
@@ -1094,7 +1107,7 @@ public class ProductDBContext extends DBContext {
                 Brand brand = new Brand();
                 brand.setId(rs.getInt("brand_id"));
                 brand.setName(rs.getString("brand_name"));
-                p.getBrands().add(brand);
+                p.setBrand(brand);
                 listProduct.add(p);
             }
         } catch (SQLException ex) {
@@ -1103,5 +1116,9 @@ public class ProductDBContext extends DBContext {
         return listProduct;
     }
 
-    
+    public static void main(String[] args) {
+        ProductDBContext pdb = new ProductDBContext();
+        int count = pdb.totalProduct(1, 2);
+        System.out.println(count);
+    }
 }
