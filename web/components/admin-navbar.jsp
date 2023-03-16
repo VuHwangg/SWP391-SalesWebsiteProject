@@ -41,10 +41,9 @@
                     <span class="nav-link-text">Sản phẩm đang bán</span>
                 </a>
             </li>
-
-            <!-- 4 -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm chưa bán">
-                <a class="nav-link" href="admin-product-list-not-sale.jsp">
+            
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
+                <a class="nav-link" href="ProductManagmentDisable">
                     <i class="bi bi-bag-x-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm chưa bán</span>
                 </a>
@@ -52,7 +51,7 @@
 
             <!-- 5 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
-                <a class="nav-link" href="admin-warehouse-management.jsp">
+                <a class="nav-link" href="WarehouseManagment">
                     <i class="fa fa-cubes" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Kho hàng</span>
                 </a>

@@ -27,6 +27,7 @@ public class Product {
     private String description;
     private double discount;
     private ArrayList<Brand> brands = new ArrayList<>();
+    private Brand brand;
     private ArrayList<Vote> votes = new ArrayList<>();
     private ArrayList<Import_History> import_history = new ArrayList<>();
     private int qty;
@@ -34,6 +35,15 @@ public class Product {
     private ArrayList<Image> image = new ArrayList<>();
     private boolean status;
 
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    
     public double getOriginal_price() {
         return original_price;
     }

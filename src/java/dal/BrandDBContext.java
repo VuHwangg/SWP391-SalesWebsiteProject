@@ -7,7 +7,9 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Brand;
@@ -16,7 +18,8 @@ import model.Brand;
  *
  * @author admin
  */
-public class BrandDBContext extends DBContext{
+public class BrandDBContext extends DBContext {
+
     public ArrayList<Brand> listByID(int product_id) {
         ArrayList<Brand> brands = new ArrayList<>();
         try {
@@ -44,8 +47,8 @@ public class BrandDBContext extends DBContext{
         }
         return null;
     }
-    
-     public ArrayList<Brand> listByType(int type) {
+
+    public ArrayList<Brand> listByType(int type) {
         ArrayList<Brand> brands = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT b.[brand_id]\n"
@@ -72,5 +75,49 @@ public class BrandDBContext extends DBContext{
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public List<Brand> getAllBrand() {
+        List<Brand> brands = new ArrayList<>();
+        try {
+            String sql = "SELECT [brand_id]\n"
+                    + "      ,[brand_name]\n"
+                    + "      ,[description]\n"
+                    + "  FROM [dbo].[Brand]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand();
+                brand.setId(rs.getInt("brand_id"));
+                brand.setName(rs.getString("brand_name"));
+                brand.setDescription(rs.getString("description"));
+                brands.add(brand);
+            }
+            stm.close();
+            rs.close();
+            return brands;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public int AddNewBrandAndReturnId(String brandName) {
+        try {
+            String sql = "INSERT INTO [dbo].[Brand]\n"
+                    + "           ([brand_name])\n"
+                    + "     VALUES\n"
+                    + "           (?)";
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, brandName);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {                
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BrandDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }

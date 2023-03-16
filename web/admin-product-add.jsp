@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,57 +81,35 @@
                                         <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
                                     </div>
                                     <!--Hãng sản xuất của sản phẩm-->
-                                    <select class="custom-select" id="inputBrandProduct">
-                                        <!--
-                                        == Nếu sản phẩm là Laptop ===============================-->
-                                        <option  value="asus">Asus</option>
-                                        <option  value="hp">HP</option>
-                                        <option  value="gigabyte">Gigabyte</option>
-                                        <option  value="dell">Dell</option>
-                                        <option  value="msi">MSI</option>
-                                        <option  value="huawei">Huawei</option>
-
-                                        <!--
-                                        == Nếu sản phẩm là Điện thoại ===============================-->
-                                        <option  value="samsung">Samsung</option>
-
-                                        <!--
-                                        == Cả điện thoại và laptop đều có ========================-->
-                                        <option  value="apple">Apple</option>
-                                        <option  value="other">Khác</option>
+                                    <select name="brand" class="custom-select" id="inputBrandProduct">
+                                        <c:forEach items="${requestScope.brands}" var="b">
+                                            <option  value="${b.id}">${b.name}</option>
+                                        </c:forEach>
+                                        <option  value="-1">Khác</option>
                                     </select>
                                     <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
-                                    <input type="text" class="form-control" id="add-more-brand" placeholder="Thêm hãng sản xuất mới" style="display: none">
+                                    <input type="text" name="otherBrand" class="form-control" id="add-more-brand" placeholder="Thêm hãng sản xuất mới" style="display: none">
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
                                     </div>
                                     <!--Nhu cầu sử dụng sản phẩm-->
-                                    <select class="custom-select" id="inputDemandProduct">
-                                        <!--
-                                        == Nếu sản phẩm là Laptop ===============================-->
-                                        <option  value="office">Văn phòng</option>
-                                        <option  value="graphic">Đồ họa</option>
-
-                                        <!--
-                                        == Nếu sản phẩm là Điện thoại ===============================-->
-                                        <option  value="photography">Chụp ảnh</option>
-
-                                        <!--
-                                        == Cả điện thoại và laptop đều có ========================-->
-                                        <option  value="gaming">Chơi game</option>
-                                        <option  value="other">Khác</option>
+                                    <select name="requirement" class="custom-select" id="inputDemandProduct">
+                                        <c:forEach items="${requestScope.requirements}" var="r">
+                                            <option  value="${r.id}">${r.name}</option>
+                                        </c:forEach>
+                                        <option  value="-1">Khác</option>
                                     </select>
                                     <!--Khi chọn mục khác, ô input bên dưới sẽ hiện ra-->
-                                    <input type="text" class="form-control" id="add-more-demand" placeholder="Thêm nhu cầu sử dụng mới" style="display: none;">
+                                    <input type="text" name="otherRequirement" class="form-control" id="add-more-demand" placeholder="Thêm nhu cầu sử dụng mới" style="display: none;">
                                 </div>
                             </div>
 
 
                             <div class="input-group mb-3">
                                 <!--Thêm nhiều ảnh-->
-                                <input type="file" class="form-control" id="inputFile" accept="image/png, image/jpeg" multiple required>
+                                <input type="file" name="photo" class="form-control" id="inputFile" multiple required>
                                 <div class="input-group-append" >
                                     <label class="input-group-text" style="cursor: pointer" for="inputFile">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
                                 </div>
@@ -167,13 +146,12 @@
                                     </div>
                                     <!--Hệ điều hành-->
                                     <select class="custom-select" name="productOs" id="inputOSProduct">
-                                        <option selected value="Android">Android</option>
-                                        <option value="IOS">IOS</option>
-                                        <option value="Window11">Windows</option>
-                                        <option value="MacOS">MacOS</option>
-                                        <option value="other">Khác</option>
+                                        <c:forEach items="${requestScope.os}" var="os">
+                                            <option value="${os}">${os}</option>
+                                        </c:forEach>
+                                        <option value="-1">Khác</option>
                                     </select>
-                                    <input type="text" class="form-control" id="add-more-os" placeholder="Thêm hệ điều hành mới" style="display: none;">
+                                    <input name="otherOs" type="text" class="form-control" id="add-more-os" placeholder="Thêm hệ điều hành mới" style="display: none;">
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
@@ -208,6 +186,12 @@
                             <div class="mb-3">
                                 <textarea name="productDescription" class="form-control" rows="4" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required></textarea>
                             </div>
+<<<<<<< Updated upstream:web/admin-product-add.jsp
+=======
+                            <div class="input-group mb-3" style="max-width: 200px;">
+                                
+                            </div>
+>>>>>>> Stashed changes:web/admin-product-add-laptop.jsp
                             <div class="d-flex justify-content-end align-items-end">
                                 <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">
                                 <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">

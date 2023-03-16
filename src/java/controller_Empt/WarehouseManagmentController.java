@@ -7,18 +7,18 @@ package controller_Empt;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class ProductManagementController extends HttpServlet {
+public class WarehouseManagmentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +34,15 @@ public class ProductManagementController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             ProductDBContext p = new ProductDBContext();
-            int totalAllProduct = p.totalProduct(1);
-            int totalComputer = p.totalProduct(1, 1);
-            int totalPhone = p.totalProduct(0, 1);
-            ArrayList<Product> products = p.getAllProduct(1);
+            int totalAllProduct = p.totalProduct(2);
+            int totalComputer = p.totalProduct(1, 2);
+            int totalPhone = p.totalProduct(0, 2);
+            ArrayList<Product> products = p.getAllProductAndBrand();
             request.setAttribute("products", products);
             request.setAttribute("totalAllProduct", totalAllProduct);
             request.setAttribute("totalComputer", totalComputer);
             request.setAttribute("totalPhone", totalPhone);
-            
-            request.getRequestDispatcher("admin-product-list.jsp").forward(request, response);
+            request.getRequestDispatcher("admin-warehouse-management.jsp").forward(request, response);
         }
     }
 
