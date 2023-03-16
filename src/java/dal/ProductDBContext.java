@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Brand;
 import model.Product;
 
 /**
@@ -819,11 +820,6 @@ public class ProductDBContext extends DBContext {
         }
     }
 
-    public static void main(String[] args) {
-        ProductDBContext p = new ProductDBContext();
-        p.changeProductStatus(1, true);
-        p.changeProductStatus(2, true);
-    }
 
 //test query cái này bỏ qua
 //    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
@@ -1068,4 +1064,44 @@ public class ProductDBContext extends DBContext {
         }
     }
 
+    public ArrayList<Product> getAllProductAndBrand() {
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            String sql = "SELECT p.[product_id]\n"
+                    + "      ,p.[name]\n"
+                    + "      ,p.[type]\n"
+                    + "      ,p.[color]\n"
+                    + "      ,p.[ram]\n"
+                    + "      ,p.[memory]\n"
+                    + "      ,p.[qty]\n"
+                    + "	  ,b.brand_id\n"
+                    + "	  ,b.brand_name\n"
+                    + "  FROM [dbo].[Product] p\n"
+                    + "  JOIN Product_Brand pb ON p.[product_id] = pb.[product_id]\n"
+                    + "  JOIN Brand b ON pb.brand_id = b.brand_id";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("name"));
+                p.setType(rs.getInt("type"));
+                p.setColor(rs.getString("color"));
+                p.setRam(rs.getInt("ram"));
+                p.setMemory(rs.getInt("memory"));
+                p.setQty(rs.getInt("qty"));
+                Brand brand = new Brand();
+                brand.setId(rs.getInt("brand_id"));
+                brand.setName(rs.getString("brand_name"));
+                p.getBrands().add(brand);
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listProduct;
+    }
+
+    
 }

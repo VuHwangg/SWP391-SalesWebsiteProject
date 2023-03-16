@@ -21,7 +21,7 @@ public class ChangeProductStatusController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -44,7 +44,11 @@ public class ChangeProductStatusController extends HttpServlet {
         }
         ProductDBContext p = new ProductDBContext();
         p.changeProductStatus(productID, status);
-        response.sendRedirect("ProductManagement");
+        if (status) {
+            response.sendRedirect("ProductManagmentDisable");
+        } else {
+            response.sendRedirect("ProductManagement");
+        }
     }
 
     /**
