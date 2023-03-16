@@ -9,8 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Brand;
 import model.Product;
 
 /**
@@ -737,7 +739,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
-    public ArrayList<Product> getAllProduct() {
+    public ArrayList<Product> getAllProduct(int status) {
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             String sql = "SELECT [product_id]\n"
@@ -748,9 +750,10 @@ public class ProductDBContext extends DBContext {
                     + "      ,[original_price]\n"
                     + "      ,[ram]\n"
                     + "      ,[memory]\n"
-                    + "  FROM [dbo].[Product] Where [status] = 'true'";
+                    + "  FROM [dbo].[Product] Where [status] = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, status);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -770,11 +773,19 @@ public class ProductDBContext extends DBContext {
         return listProduct;
     }
 
-    public int totalProduct() {
+    public int totalProduct(int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = 'true'";
+            String sql = "";
+            if (status == 1 || status == 0) {
+                sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = ?";
+            } else {
+                sql = "SELECT COUNT(product_id)[total] FROM Product";
+            }
             PreparedStatement ps = connection.prepareStatement(sql);
+            if (status == 1 || status == 0) {
+                ps.setInt(1, status);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
@@ -788,10 +799,17 @@ public class ProductDBContext extends DBContext {
     public int totalProduct(int type, int status) {
         int total = -1;
         try {
-            String sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
+            String sql = "";
+            if (status == 1 || status == 0) {
+                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
+            } else {
+                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ?";
+            }
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, type);
-            ps.setInt(2, status);
+            if (status == 1 || status == 0) {
+                ps.setInt(2, status);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 total = rs.getInt("total");
@@ -814,12 +832,6 @@ public class ProductDBContext extends DBContext {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public static void main(String[] args) {
-        ProductDBContext p = new ProductDBContext();
-        p.changeProductStatus(1, true);
-        p.changeProductStatus(2, true);
     }
 
 //test query cái này bỏ qua
@@ -1013,4 +1025,132 @@ public class ProductDBContext extends DBContext {
         return -1;
     }
 
+    public List<String> getAllOs() {
+        List<String> list = new ArrayList<>();
+        try {
+            String sql = "SELECT distinct [os]\n"
+                    + "  FROM [dbo].[Product]";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString("os"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void setProductBrand(int productId, int brandId) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product_Brand]\n"
+                    + "           ([brand_id]\n"
+                    + "           ,[product_id])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, brandId);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void setProductRequirment(int productId, int reqId) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product_Requirement]\n"
+                    + "           ([requirement_id]\n"
+                    + "           ,[product_id])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, reqId);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public ArrayList<Product> getAllProductAndBrand() {
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            String sql = "SELECT p.[product_id]\n"
+                    + "      ,p.[name]\n"
+                    + "      ,p.[type]\n"
+                    + "      ,p.[color]\n"
+                    + "      ,p.[ram]\n"
+                    + "      ,p.[memory]\n"
+                    + "      ,p.[qty]\n"
+                    + "	  ,b.brand_id\n"
+                    + "	  ,b.brand_name\n"
+                    + "  FROM [dbo].[Product] p\n"
+                    + "  JOIN Product_Brand pb ON p.[product_id] = pb.[product_id]\n"
+                    + "  JOIN Brand b ON pb.brand_id = b.brand_id";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("name"));
+                p.setType(rs.getInt("type"));
+                p.setColor(rs.getString("color"));
+                p.setRam(rs.getInt("ram"));
+                p.setMemory(rs.getInt("memory"));
+                p.setQty(rs.getInt("qty"));
+                Brand brand = new Brand();
+                brand.setId(rs.getInt("brand_id"));
+                brand.setName(rs.getString("brand_name"));
+                p.setBrand(brand);
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listProduct;
+    }
+
+    public int getProductQuantityById(int productId) {
+        int quantity = 0;
+        try {
+            String sql = "SELECT [qty]\n"
+                    + "  FROM [dbo].[Product]\n"
+                    + "  WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                quantity = rs.getInt("qty");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return quantity;
+    }
+
+    public void updateQuatityById(int productId, int quantity) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [qty] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, quantity);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void main(String[] args) {
+        ProductDBContext pdb = new ProductDBContext();
+        int count = pdb.totalProduct(1, 2);
+        System.out.println(count);
+    }
 }

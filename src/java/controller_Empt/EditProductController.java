@@ -35,15 +35,13 @@ public class EditProductController extends HttpServlet {
         int productID = Integer.parseInt(rawProductId);
         ProductDBContext p = new ProductDBContext();
         Product product = p.getProductByID(productID);
-        int totalAllProduct = p.totalProduct();
+        int totalAllProduct = p.totalProduct(1);
         int totalComputer = p.totalProduct(1, 1);
         int totalPhone = p.totalProduct(0, 1);
         request.setAttribute("totalAllProduct", totalAllProduct);
         request.setAttribute("totalComputer", totalComputer);
         request.setAttribute("totalPhone", totalPhone);
-        if (p != null) {
-            request.setAttribute("product", product);
-        }
+        request.setAttribute("product", product);
         request.getRequestDispatcher("admin-product-edit.jsp").forward(request, response);
     }
 
@@ -58,11 +56,7 @@ public class EditProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rawProductId = request.getParameter("product_id");
-        int productID = Integer.parseInt(rawProductId);
-        ProductDBContext p = new ProductDBContext();
-        p.changeProductStatus(productID, false);
-        response.sendRedirect("ProductManagement");
+        
     }
 
     /**

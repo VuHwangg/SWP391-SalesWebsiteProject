@@ -9,12 +9,15 @@
                 passwordField.attr('type', 'password');
                 passwordToggleIcon.addClass("fa-eye-slash");
                 passwordToggleIcon.removeClass("fa-eye");
+                passwordField.attr('maxlength', '8'); 
             } else if (passwordField.attr("type") == "password") {
                 passwordField.attr('type', 'text');
                 passwordToggleIcon.removeClass("fa-eye-slash");
                 passwordToggleIcon.addClass("fa-eye");
+                passwordField.removeAttr('maxlength');
             }
         });
     });
+
 
 </script>

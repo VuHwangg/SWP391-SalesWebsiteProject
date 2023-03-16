@@ -1,183 +1,146 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="components/head.jsp" %>
-        <%@include file="styles/css/login-style.jsp" %>
-        <title>Đăng ký cho nhân viên</title>
+        <%@include file="components/admin-head.jsp" %>
+        <%@include file="styles/css/admin-style.jsp" %>
+        <title>Tạo tài khoản cho nhân viên</title>
+
     </head>
-    <body>
-        <!-- Section: Design Block -->
-        <section
-            class="text-center h-100 w-100 d-inline-block"
-            style="min-height: 100vh"
-            >
-            <!-- Background image -->
-            <div
-                class="p-4 bg-image"
-                >
-                <div class="d-flex justify-content-start align-items-start">
-                    <a
-                        class="btn btn-outline-light"
-                        href="home"
-                        style="font-weight: 500"
-                        >
-                        <i class="bi bi-house me-1"></i>Trang chủ
-                    </a>
-                </div>
-                <h1 style="color: white">Awns's Store</h1>
-                <h4 style="color: white">
-                    Store chuyên cung cấp đồ công nghệ hàng đầu Việt Nam
-                </h4>
-            </div>
-            <!-- Background image -->
-
-            <div class="container-fluid d-inline-block">
-                <div class="row">
-
-                    <!--Col-6-->
-                    <div class="col-md-8" style="padding: 0; margin: auto">
-                        <div
-                            class="card rounded-5 shadow-5-strong"
-                            style="
-                            background: hsla(0, 0%, 100%, 0.7);
-                            backdrop-filter: blur(30px);
-                            "
-                            >
-                            <div class="card-body py-5 px-md-5">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-lg-8">
-                                        <h1 class="fw-bold mb-2">
-                                            ĐĂNG KÝ 
-                                        </h1>
-                                        <!--Đăng nhập cho user-->
+    <body class="fixed-nav sticky-footer bg-danger" id="page-top">
 
 
-                                        <!--Login with account password-->
-                                        <div class="border-top border-dark border-3 my-3"></div>
-                                        <p class="mb-3" style="color: #fb1514; font-size: 20px">
-                                            * Phần đăng ký dành cho nhân viên *
-                                        </p>
 
-                                        <form action="SignupEmpt" method="post">
-                                            <%
-                                                String mess = (String) request.getAttribute("err");
-                                                if (mess == null)
-                                                    mess = "Bạn vui lòng hoàn thiện thông tin bên dưới";
-                                            %>
-                                            <p><%=mess%></p>
-                                            <div class="mb-3">
-                                                <input
-                                                    name="email"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Tên đăng nhập"
-                                                    />
-                                            </div>
-                                            <div class="mb-3">
-                                                <input
-                                                    name="name"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Họ và tên"
-                                                    />
-                                            </div>
-                                            <div class="mb-3">
-                                                <input
-                                                    name="pass"
-                                                    type="password"
-                                                    class="form-control"
-                                                    id="exampleInputPassword1"
-                                                    placeholder="Mật khẩu"
-                                                    />
-                                            </div>
-                                            <div class="mb-3">
-                                                <input
-                                                    name="repass"
-                                                    type="password"
-                                                    class="form-control"
-                                                    id="exampleInputPassword2"
-                                                    placeholder="Nhập lại mật khẩu"
-                                                    />
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" value="" >
-                                                <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
-                                            </div>
-                                            <div class="mb-3 row" style="text-align: left">
+        <!-- NAVIGATION BAR-->
+        <%@include file="components/admin-navbar.jsp" %>
 
-                                                <h6>Vai trò của nhân viên:</h6>
-                                                <div class="col-md-6">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item">
-                                                            <input class="form-check-input me-1" type="radio" id="manager" name="role" value="2" checked>
-                                                            <label class="form-check-label" for="manager">Quản lý kho</label>
-                                                            <a onClick="Show1()" data-bs-toggle="collapse" href="#manager-info" aria-expanded="false" aria-controls="manager-info" style="float: right">
-                                                                <i class="bi bi-info-circle"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <input class="form-check-input me-1" type="radio" id="employee" name="role" value="3">
-                                                            <label class="form-check-label" for="employee">Nhân viên bán hàng</label>
-                                                            <a onClick="Show2()" data-bs-toggle="collapse" href="#employee-info" aria-expanded="false" aria-controls="employee-info" style="float: right">
-                                                                <i class="bi bi-info-circle"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="collapse collapse-info" id="manager-info">
-                                                        <div class="card card-body">
-                                                            Quản lý xuất nhập kho, và sô lượng sản phẩm hiện có 
-                                                        </div>
+        <!-- CONTENT PART -->
+        <div class="content-wrapper">
+            <div class="container-fluid">
 
-                                                    </div>
-                                                    <div class="collapse collapse-info" id="employee-info">
-                                                        <div class="card card-body">
-                                                            Quản lý đơn hàng được bán
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="controllerEmployee">Quản lý nhân viên</a>
+                    </li> 
+                    <li class="breadcrumb-item active">Tạo tài khoản cho nhân viên</li>
+                </ol>
 
-                                            <button
-                                                type="submit"
-                                                class="btn w-100 btn-submit"
-                                                style=""
-                                                >
-                                                Đăng ký
-                                            </button>
-                                        </form>
+                <!-- Icon Cards-->
+                <div class="card mb-3">
+
+                    <!--DO NOT TOUCH ON THIS SHIT BELOW-->
+                    <canvas id="myAreaChart" width="100%" height="30" hidden></canvas>
+                    <canvas id="myBarChart" width="100" height="70" hidden></canvas>
+                    <canvas id="myPieChart" width="100%" height="100" hidden></canvas>
+                    <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
+
+                    <div class="card-header">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Tạo tài khoản cho nhân viên 
+                    </div>
+                    <div class="card-body p-3">
+                        <form action="SignupEmpt" method="post">
+
+                            <%
+                                String mess = (String) request.getAttribute("err");
+                                if (mess == null)
+                                    mess = "Bạn vui lòng hoàn thiện thông tin bên dưới";
+                            %>
+                            <p><%=mess%></p>
+                            
+                            <!--Tên đăng nhập-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="username">Tên đăng nhập</label>
+                                </div>
+                                <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập" required>
+                            </div>
+
+                            <!--Họ và tên-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="name">Họ và tên</label>
+                                </div>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên" required>
+                            </div>
+                            
+                            <div class="input-group mb-3" hidden>
+                                <!--Thêm ảnh 1 ảnh-->
+                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
+                                <div class="input-group-append" >
+                                    <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
+                                </div>
+                            </div>
+                            
+                            <!--Mật khẩu-->
+                            <div class="mb-3">
+                                <div class="password-input-group input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="password">Mật khẩu</label>
+                                    </div>
+                                    <input type="password" class="form-control password-toggle" id="password" name="pass" placeholder="Có tối thiểu 8 ký tự, và tối đa 20 ký tự" minlength="8" maxlength="20" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            
+                            <!--Nhập lại mật khẩu-->
+                            <div class="mb-3">
+                                <div class="password-input-group input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="re-password">Nhập lại mật khẩu</label>
+                                    </div>
+                                    <input type="password" class="form-control password-toggle" id="re-password" name="repass" placeholder="Có tối thiểu 8 ký tự, và tối đa 20 ký tự" minlength="8" maxlength="20" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h5 class="fw-bold">Vai Trò</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" checked type="radio" name="role" id="flexRadioDefault1" value="2">
+                                        <label class="form-check-label" for="flexRadioDefault1" >
+                                            Quản lý kho hàng
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="role" id="flexRadioDefault2" value="3">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Nhân viên bán hàng
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 d-flex justify-content-end align-items-end">
+                                    <input type="submit" class="save-btn btn btn-danger m-1" value="Đăng ký">
+                                    <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">
+                                        Quay Lại
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
+                    <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
             </div>
-        </section>
-
-        <!--JS bootstrap 5 include -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"
-        ></script>
-        <%@include file="styles/js/script.jsp" %>
+            <!-- /.container-fluid-->
+            <!-- /.content-wrapper-->
+            <%@include file="components/admin-footer.jsp" %>
+        </div>
+        <%@include file="components/admin-footer-link.jsp" %>
+        <%@include file="styles/js/password-script.jsp" %>
+        <%@include file="styles/js/admin-script.jsp" %>
     </body>
 </html>

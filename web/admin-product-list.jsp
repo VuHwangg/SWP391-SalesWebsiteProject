@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
-        <title>Quản lý sản phẩm</title>
+        <title>Sản phẩm đang bán</title>
 
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
@@ -25,60 +25,91 @@
                     <!-- <li class="breadcrumb-item">
                       <a href="#">Thống kê</a>
                     </li> -->
-                    <li class="breadcrumb-item active">Quản lý sản phẩm</li>
+                    <li class="breadcrumb-item active">Sản phẩm đang bán</li>
                 </ol>
-
-                <!-- Icon Cards-->
+                            
                 <div class="row">
-
                     <!-- CARD 1 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-shopping-bag"></i>
-                                </div>
-                                <div>
-                                    <span>Tổng số sản phẩm</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Mặt hàng đang bán</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                ${requestScope.totalAllProduct}&nbsp;mặt hàng
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                           <i class="bi bi-basket-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalAllProduct}</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                    Xem chi tiết 
+                            </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 2 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <div>
-                                    <span>Số điện thoại</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Điện thoại</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                ${requestScope.totalPhone}&nbsp;mặt hàng
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-phone-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalPhone}</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
 
                     <!-- CARD 3 -->
-                    <div class="col-sm-4 mb-3">
-                        <div class="card card-r1 text-white bg-success o-hidden h-100">
-                            <div class="card-body mr-5">
-                                <div class="card-body-icon">
-                                    <i class="fa fa-laptop"></i>
-                                </div>
-                                <div>
-                                    <span>Số máy tính</span>
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Laptop</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                ${requestScope.totalComputer}&nbsp;mặt hàng
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-laptop-fill"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="card-footer text-white z-1">
-                                <span class="mr-5">${requestScope.totalComputer}</span>
-                            </a>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
                         </div>
                     </div>
                 </div>
@@ -93,7 +124,8 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm đang được bày bán</span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm </span>
+                        <span class="text-success" style="font-weight: 700; font-size: 18px; text-decoration: underline">đang bán</span>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
@@ -136,9 +168,10 @@
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
                                                     <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
-                                                    <a class="btn btn-success w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
-                                                    <form action="EditProduct" method="POST">
+                                                    <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
+                                                    <form action="ChangeProductStatus" method="POST">
                                                         <input type="text" value="${p.id}" name="product_id" hidden>
+                                                        <input type="text" value="-1" name="status" hidden>
                                                         <button type="submit" class="btn btn-danger w-100">Dừng bán</button>
                                                     </form>
                                                 </div>
