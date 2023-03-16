@@ -183,6 +183,7 @@
                                             <td>
                                                 <div class="d-flex ">
                                                     <!-- Button trigger modal -->
+
                                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
                                                         Thêm số lượng
                                                     </button>
@@ -220,7 +221,7 @@
                                                                         <p class="text-danger m-0">* THAO TÁC LƯU SẼ KHÔNG THỂ HOÀN TÁC *<br>bạn vui lòng kiểm tra kỹ thông tin trước khi ấn nút lưu</p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <input name="productId" type="text" value="${p.id}" hidden>
+                                                                        <input name="productId" type="text" value="${p.id}">
                                                                         <input type="submit" class="btn btn-danger w-100" value="Lưu">
                                                                     </div>
                                                                 </form>

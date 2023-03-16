@@ -1116,6 +1116,38 @@ public class ProductDBContext extends DBContext {
         return listProduct;
     }
 
+    public int getProductQuantityById(int productId) {
+        int quantity = 0;
+        try {
+            String sql = "SELECT [qty]\n"
+                    + "  FROM [dbo].[Product]\n"
+                    + "  WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                quantity = rs.getInt("qty");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return quantity;
+    }
+
+    public void updateQuatityById(int productId, int quantity) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [qty] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, quantity);
+            ps.setInt(2, productId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void main(String[] args) {
         ProductDBContext pdb = new ProductDBContext();
         int count = pdb.totalProduct(1, 2);
