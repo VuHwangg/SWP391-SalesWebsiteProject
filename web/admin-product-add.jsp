@@ -186,12 +186,6 @@
                             <div class="mb-3">
                                 <textarea name="productDescription" class="form-control" rows="4" placeholder="Độ dài từ 1 đến 1000 ký tự" minlength="1" maxlength="1000" required></textarea>
                             </div>
-<<<<<<< Updated upstream:web/admin-product-add.jsp
-=======
-                            <div class="input-group mb-3" style="max-width: 200px;">
-                                
-                            </div>
->>>>>>> Stashed changes:web/admin-product-add-laptop.jsp
                             <div class="d-flex justify-content-end align-items-end">
                                 <input type="submit" class="save-btn btn btn-danger m-1" value="Lưu Lại Thay Đổi">
                                 <a class="save-btn btn btn-secondary text-white m-1" onclick="history.back(-1)">

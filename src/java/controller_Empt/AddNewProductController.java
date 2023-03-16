@@ -53,7 +53,7 @@ public class AddNewProductController extends HttpServlet {
         
         List<String> os = new ProductDBContext().getAllOs();
         request.setAttribute("os", os);
-        request.getRequestDispatcher("admin-product-add-laptop.jsp").forward(request, response);
+        request.getRequestDispatcher("admin-product-add.jsp").forward(request, response);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class AddNewProductController extends HttpServlet {
             count++;
         }
 
-        request.getRequestDispatcher("admin-product-add-laptop.jsp").forward(request, response);
+        request.getRequestDispatcher("admin-product-add.jsp").forward(request, response);
     }
 
     @Override

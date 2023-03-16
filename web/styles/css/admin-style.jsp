@@ -21,6 +21,7 @@
         --main-color-gray: #404044;
         --main-color-darkgray: #243238;
         --main-color-black: rgb(39, 39, 39);
+        --main-color-dark: #343a40;
     }
 
     textarea:focus,
@@ -41,11 +42,11 @@
     input[type="color"]:focus,
     input[type="file"]:focus,
     .uneditable-input:focus {
-        border-color: rgba(220, 53, 69, 0.8) !important;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(220, 53, 69, 0.6) !important;
+        border-color: rgba(39, 39, 39, 0.8) !important;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(39, 39, 39, 0.6) !important;
         outline: 0 none !important;
     }
-    
+
     a:hover {
         text-decoration: none;
     }
@@ -57,11 +58,11 @@
     input[type="radio"] {
         accent-color: var(--main-bg-color);
     }
-    
+
     .border-cus-3 {
         border: 3px solid;
     }
-    
+
     .border-cus-2 {
         border: 2px solid;
     }
@@ -458,7 +459,7 @@
             background: #343a40;
         }
     }
-    
+
     /*NAVIGATION BAR*/
 
     .navbar-dark .navbar-nav .nav-link,
@@ -469,7 +470,7 @@
     .navbar {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
-    
+
     .navbar .dropdown-menu {
         right: 0;
         left: auto;
@@ -477,11 +478,11 @@
         max-width: 200px;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
-    
+
     .navbar .dropdown-menu .dropdown-item:hover {
         background-color: white;
     }
-    
+
     .navbar .dropdown-menu a.dropdown-item:hover {
         background-color: var(--red) !important;
         color: white !important;
@@ -522,7 +523,7 @@
         -ms-transform: rotate(15deg);
         transform: rotate(15deg);
     }
-    
+
     .card-r2 .icon-card-custom {
         overflow: hidden;
         width: 62px;
@@ -532,11 +533,11 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .card-r2 .icon-card-custom i {
         font-size: 34px;
     }
-    
+
     .card-r2 .card-footer {
         font-size: 18px;
         font-weight: 600;
@@ -705,7 +706,7 @@
     .table-wareh tr th:nth-child(8) {
         width: 12%;
     }
-    
+
     .table-wareh tr th:nth-child(9) {
         width: 8%;
     }
@@ -780,24 +781,25 @@
     .password-input-group a:hover {
         color: var(--red-hover);
     }
-    
+
     /*------------- INPUT GROUP CSS -------------------------*/
-    .input-group .input-group-text {
-        background-color: var(--main-bg-color);
-        color: white;
-        border: 1px solid var(--main-bg-color);
-    }
-    
-    .input-group input,
-    .input-group select{
-    }
-    
+
     /*Double Column Chart*/
     #double-column-chart .highcharts-credits,
     #double-column-chart .highcharts-exporting-group{
         display: none !important;
-        }
+    }
     
+    
+    /*---------------- INPUT LABLE BOX ---------------------*/
+    .input-label-box-1 {
+        min-width: 170px;
+        font-weight: 700;
+/*        margin: 0;
+        padding-right: 12px; 
+        text-align: right;*/
+    }
+
 
     footer.sticky-footer {
         position: absolute;

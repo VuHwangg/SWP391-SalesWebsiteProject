@@ -50,61 +50,79 @@
                                     mess = "Bạn vui lòng hoàn thiện thông tin bên dưới";
                             %>
                             <p><%=mess%></p>
-                            
+
                             <!--Tên đăng nhập-->
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="username">Tên đăng nhập</label>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text input-label-box-1" for="username">Tên đăng nhập</label>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập (có độ dài từ 6 đến 50 ký tự, không được bao gồm dấu cách)" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 50)" minlength="6" maxlength="50" required>
                                 </div>
-                                <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập" required>
+                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
+                            
+                            <!--Tên đăng nhập v2-->
+<!--                            <div class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="input-label-box-1" for="username">Tên đăng nhập: </label>
+                                    <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập (có độ dài từ 6 đến 50 ký tự, không được bao gồm dấu cách)" required>
+                                </div>
+                                <small style="margin-left: 180px;">Error Message</small>
+                            </div>-->
 
                             <!--Họ và tên-->
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="name">Họ và tên</label>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text input-label-box-1" for="name">Họ và tên</label>
+                                    </div>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên (có độ dài từ 6 đến 100 ký tự)" required>
                                 </div>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên" required>
+                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-                            
+
+
                             <div class="input-group mb-3" hidden>
                                 <!--Thêm ảnh 1 ảnh-->
                                 <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
                                 <div class="input-group-append" >
-                                    <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
+                                    <label class="input-group-text input-label-box-1" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
                                 </div>
                             </div>
-                            
+
                             <!--Mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="password">Mật khẩu</label>
+                                        <label class="input-group-text input-label-box-1" for="password">Mật khẩu</label>
                                     </div>
-                                    <input type="password" class="form-control password-toggle" id="password" name="pass" placeholder="Có tối thiểu 8 ký tự, và tối đa 20 ký tự" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control password-toggle" id="password" name="pass" placeholder="Mật khẩu bao gồm cả số, chữ, và ký tự đặc biệt (có độ dài từ 8 đến 20 ký tự)" minlength="8" maxlength="20" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text bg-dark">
                                             <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
                                 </div>
+                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-                            
+
                             <!--Nhập lại mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="re-password">Nhập lại mật khẩu</label>
+                                        <label class="input-group-text input-label-box-1" for="re-password">Nhập lại mật khẩu</label>
                                     </div>
-                                    <input type="password" class="form-control password-toggle" id="re-password" name="repass" placeholder="Có tối thiểu 8 ký tự, và tối đa 20 ký tự" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control password-toggle" id="re-password" name="repass" placeholder="Mật khẩu bao gồm cả số, chữ, và ký tự đặc biệt (có độ dài từ 8 đến 20 ký tự)" minlength="8" maxlength="20" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text bg-dark">
                                             <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
                                 </div>
+                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-                            
+
                             <div>
                                 <h5 class="fw-bold">Vai Trò</h5>
                             </div>
