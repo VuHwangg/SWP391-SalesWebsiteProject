@@ -4,21 +4,24 @@
  */
 package controller_Empt;
 
+import dal.ImportDBContext;
 import dal.ProductDBContext;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import model.Account;
+import model.Import_History;
 import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class ProductManagementController extends HttpServlet {
+public class ImportProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,24 +32,6 @@ public class ProductManagementController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            ProductDBContext p = new ProductDBContext();
-            int totalAllProduct = p.totalProduct(1);
-            int totalComputer = p.totalProduct(1, 1);
-            int totalPhone = p.totalProduct(0, 1);
-            ArrayList<Product> products = p.getAllProduct(1);
-            request.setAttribute("products", products);
-            request.setAttribute("totalAllProduct", totalAllProduct);
-            request.setAttribute("totalComputer", totalComputer);
-            request.setAttribute("totalPhone", totalPhone);
-            
-            request.getRequestDispatcher("admin-product-list.jsp").forward(request, response);
-        }
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -59,7 +44,6 @@ public class ProductManagementController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -73,7 +57,36 @@ public class ProductManagementController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String rawProductId = request.getParameter("productId");
+        String rawQuantity = request.getParameter("productQuantity");
+        String rawPrice = request.getParameter("productPrice");
+        int productId = Integer.parseInt(rawProductId);
+        double price = Double.parseDouble(rawPrice);
+        int quantity = Integer.parseInt(rawQuantity);
+
+        Import_History ih = new Import_History();
+        ih.setId(productId);
+        ih.setNum(quantity);
+        ih.setCost(price);
+
+        Product p = new Product();
+        p.setId(productId);
+        ih.setProduct(p);
+
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("acc1");
+        if (acc != null) {
+            ih.setAccount(acc);
+
+            ImportDBContext idb = new ImportDBContext();
+            int flag = idb.importProduct(ih);
+            if (flag != -1) {
+                ProductDBContext pdb = new ProductDBContext();
+                int oldQuantity = pdb.getProductQuantityById(productId);
+                pdb.updateQuatityById(productId, oldQuantity + quantity);
+            }
+        }
+        response.sendRedirect("WarehouseManagment");
     }
 
     /**

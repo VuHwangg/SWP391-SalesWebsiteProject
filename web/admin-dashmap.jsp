@@ -16,8 +16,6 @@
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
 
-
-
         <!-- NAVIGATION BAR-->
         <%@include file="components/admin-navbar.jsp" %>
 
@@ -31,153 +29,142 @@
                       <a href="#">Thống kê</a>
                     </li> -->
                     <li class="breadcrumb-item active">Thống kê</li>
-                    <form action="dashmap" method="GET">
-                        </br>
-                        From: <input type="date" name="from" value="${requestScope.from}"/>
-                        -
-                        To: <input type="date" name="to" value="${requestScope.to}"/>
 
-                        <input type="submit" value="View"/> 
-                    </form>
                 </ol>
 
-                <!--                 Icon Cards
-                                <div class="row">
-                
-                                     CARD 1 
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card card-r1 text-white bg-primary o-hidden h-100">
-                                            <div class="card-body mr-5">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-comments"></i>
-                                                </div>
-                                                <div>
-                                                    <span>Số liệu 1</span>
-                                                </div>
-                                            </div>
-                                            <a class="card-footer text-white z-1">
-                                                <span class="mr-5">2,000</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                
-                                     CARD 2 
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card card-r1 text-white bg-danger o-hidden h-100">
-                                            <div class="card-body mr-5">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-list"></i>
-                                                </div>
-                                                <div>
-                                                    <span>Số liệu 2</span>
-                                                </div>
-                                            </div>
-                                            <a class="card-footer text-white z-1">
-                                                <span class="mr-5">2,000,000</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                
-                                     CARD 3 
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card card-r1 text-white bg-warning o-hidden h-100">
-                                            <div class="card-body mr-5">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-shopping-cart"></i>
-                                                </div>
-                                                <div>
-                                                    <span>Số liệu 3</span>
-                                                </div>
-                                            </div>
-                                            <a class="card-footer text-white z-1">
-                                                <span class="mr-5">200</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                
-                                     CARD 4 
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card card-r1 text-white bg-success o-hidden h-100">
-                                            <div class="card-body mr-5">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-support"></i>
-                                                </div>
-                                                <div>
-                                                    <span>Số liệu 4</span>
-                                                </div>
-                                            </div>
-                                            <a class="card-footer text-white z-1">
-                                                <span class="mr-5">50</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>-->
+                <div class="row">
 
+                    <!-- CARD 1 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số doanh thu</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                1,892,000,000&nbsp;VNĐ
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-cash-coin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                    Xem chi tiết 
+                            </a>-->
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số mặt hàng</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                60&nbsp;mặt hàng
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-box-seam-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card card-r2 o-hidden h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="mr-3">
+                                        <div>
+                                            <h4>Tổng số sản phẩm</h4>
+                                        </div>
+                                        <span style="font-size: 17px">Số lượng: 
+                                            <span class="text-danger" style="font-weight: 700; font-size: 18px">
+                                                19,034&nbsp;sản phẩm
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="icon-card-custom bg-danger text-white">
+                                            <i class="bi bi-basket-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<a href="#" class="card-footer bg-danger text-white z-1">
+                                   Xem chi tiết 
+                           </a>-->
+                        </div>
+                    </div>
+                </div>
 
                 <!-- AREA CHART CARD -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê lịch sử nhập hàng theo ngày</div>
+                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê doanh thu
+                    </div>
+                    <div class="d-flex justify-content-end mt-3" style="padding: 0 12px">
+                        <form action="dashmap" method="GET">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <input type="date" name="from" value="${requestScope.from}"/>
+                                    <i class="bi bi-arrow-right"></i>
+                                    <input type="date" name="to" value="${requestScope.to}"/>
+                                </div>
+                                <input class="btn btn-danger ml-2" type="submit" value="Lọc" style="padding: 2px 10px; font-weight: 700"/> 
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body">                       
-                        <canvas id="myAreaChart" width="100%" height="30" ></canvas>
+                        <canvas id="myAreaChart" width="100%" height="25" ></canvas>
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
 
 
-                <div class="row">
-                    <div class="col-lg-8">
-
+                <div class="row mb-3">
+                    <div class="col-md-8 ">
                         <!-- BAR CHART CARD-->
-                        <div class="card mb-3">
+                        <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-bar-chart"></i> Bar Chart Example</div>
+                                <i class="fa fa-bar-chart"></i>&nbsp;Biểu đồ thống kê số lượng mặt hàng</div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-8 my-auto">
-
-                                        <!-- Nhập số liệu vào bảng ở bên file "admin-script.js" phần "BAR CHART DATA" -->
-                                        <canvas id="myBarChart" width="100" height="70"></canvas>
-
-                                    </div>
-                                    <!--                                    <div class="col-sm-4 text-center my-auto">
-                                                                             Số liệu  
-                                                                            <div class="h4 mb-0 text-primary">
-                                                                                 1 
-                                                                                34,693 <span class="text-dark">VNĐ</span>
-                                                                            </div>
-                                                                            <div class="small text-muted">Blue Data</div>
-                                                                            <hr>
-                                                                            <div class="h4 mb-0 text-warning">
-                                                                                 2 
-                                                                                18,474 <span class="text-dark">VNĐ</span>
-                                                                            </div>
-                                                                            <div class="small text-muted">Yellow Data</div>
-                                                                            <hr>
-                                                                            <div class="h4 mb-0 text-success">
-                                                                                 3 
-                                                                                16,219 <span class="text-dark">VNĐ</span>
-                                                                            </div>
-                                                                            <div class="small text-muted">Green Data</div>
-                                                                        </div>-->
-                                </div>
+                                <canvas id="myBarChart" width="100" height="70" hidden></canvas>
+                                <div id="double-column-chart" class="w-100 h-100"></div>
                             </div>
                             <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-md-4 ">
                         <!-- PIE CHART CARD-->
-                        <div class="card mb-3">
+                        <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-pie-chart"></i> Pie Chart Example</div>
+                                <i class="fa fa-pie-chart"></i>&nbsp;Biểu đồ thống kê số lượng nhân viên</div>
                             <div class="card-body">
-
-                                <!-- Nhập số liệu vào bảng ở bên file "admin-script.js" phần "PIE CHART DATA" -->
                                 <canvas id="myPieChart" width="100%" height="100"></canvas>
-
                             </div>
-                            <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                         </div>
                     </div>
                 </div>
@@ -376,51 +363,66 @@
                 });
             })(jQuery); // End of use strict
 
-
-            // Edit Status of each order
-            $(document).ready(function () {
-                $(".change-status-btn").on('click', function (event) {
-                    event.preventDefault();
-                    var disableEdit = $(this).closest('.change-order-status').find('.edit-off');
-                    var enableEdit = $(this).closest('.change-order-status').find('.edit-on');
-
-                    if (enableEdit.hasClass('disable')) {
-                        disableEdit.addClass("disable");
-                        enableEdit.removeClass("disable");
-                    } else if (disableEdit.hasClass('disable')) {
-                        enableEdit.addClass("disable");
-                        disableEdit.removeClass("disable");
+// DOUBLE COLUMN CHART DATA
+            Highcharts.setOptions({
+                lang: {
+                    thousandsSep: ' '
+                },
+                colors: ['#28a745', '#ffc107']
+            })
+            Highcharts.chart('double-column-chart', {
+                chart: {
+                    type: 'column',
+                    zoomType: 'y',
+                    //backgroundColor:"#FBFAE4"
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Apple',
+                        'Asus',
+                        'Gigabyte',
+                        'MSI',
+                        'Dell'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Số lượng sản phẩm'
                     }
-                });
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px"><b>{point.key}</b></span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                        name: 'Điện thoại',
+                        data: [41661561, 34419934, 33158027, 31209230, 23632635]
+
+                    }, {
+                        name: 'Laptop',
+                        data: [40514123, 32340016, 32224529, 29456321, 22807464]
+
+                    }]
             });
 
-            // Quantity input -----------------------------
-            // Get all the quantity input tags on the page
-            const quantityInputs = document.querySelectorAll('.quantity-input');
-
-            // Add click event listeners to each of the quantity input tags
-            quantityInputs.forEach(function (quantityInput) {
-                const quantity = quantityInput.querySelector('.quantity');
-                const numberInputs = document.querySelectorAll('.numberInputHidden');
-
-                quantity.addEventListener('input', function () {
-                    validateInput(quantity);
-                });
-
-                quantity.addEventListener('blur', function () {
-                    validateInput(quantity);
-                });
-
-                function validateInput(input) {
-                    let value = parseInt(input.value);
-                    if (isNaN(value) || value < 1 || value > 9999) {
-                        alert('Value must be an integer, greater than 0 and less than 100!');
-                        input.value = 1;
-                    } else {
-                        input.value = value;
-                    }
-                }
-            });
 
         </script>
     </body>

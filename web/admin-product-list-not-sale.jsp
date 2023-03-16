@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
-        <title>Sản phẩm đang bán</title>
+        <title>Sản phẩm chưa bán</title>
 
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
@@ -25,9 +25,10 @@
                     <!-- <li class="breadcrumb-item">
                       <a href="#">Thống kê</a>
                     </li> -->
-                    <li class="breadcrumb-item active">Sản phẩm đang bán</li>
+                    <li class="breadcrumb-item active">Sản phẩm chưa bán</li>
                 </ol>
-                            
+
+                <!-- Icon Cards-->
                 <div class="row">
                     <!-- CARD 1 -->
                     <div class="col-md-4 mb-3">
@@ -36,7 +37,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="mr-3">
                                         <div>
-                                            <h4>Mặt hàng đang bán</h4>
+                                            <h4>Mặt hàng chưa bán</h4>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
@@ -46,7 +47,7 @@
                                     </div>
                                     <div>
                                         <div class="icon-card-custom bg-danger text-white">
-                                           <i class="bi bi-basket-fill"></i>
+                                            <i class="bi bi-basket-fill"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +126,7 @@
 
                     <div class="card-header">
                         <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm </span>
-                        <span class="text-success" style="font-weight: 700; font-size: 18px; text-decoration: underline">đang bán</span>
+                        <span class="text-danger" style="font-weight: 700; font-size: 18px; text-decoration: underline">chưa bán</span>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
@@ -158,9 +159,9 @@
                                                     Điện thoại
                                                 </c:if>
                                             </td>
-                                            <td>${p.color}</td>
-                                            <td>${p.ram}<span>GB</span></td>
-                                            <td>${p.memory}<span>GB</span></td>
+                                            <td>Xanh</td>
+                                            <td>6<span>GB</span></td>
+                                            <td>128<span>GB</span></td>
                                             <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
                                             <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
                                             <td>
@@ -171,8 +172,8 @@
                                                     <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
                                                     <form action="ChangeProductStatus" method="POST">
                                                         <input type="text" value="${p.id}" name="product_id" hidden>
-                                                        <input type="text" value="-1" name="status" hidden>
-                                                        <button type="submit" class="btn btn-danger w-100">Dừng bán</button>
+                                                        <input type="text" value="1" name="status" hidden>
+                                                        <button type="submit" class="btn btn-success w-100">Đăng bán</button>
                                                     </form>
                                                 </div>
                                             </td>

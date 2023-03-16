@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,9 +40,8 @@ public class ImportDBContext extends DBContext {
         return totalCost;
     }
 
-    public 
-        ArrayList<Import_History>
-          listHistoryByDay(Date from, Date to) {
+    public ArrayList<Import_History>
+            listHistoryByDay(Date from, Date to) {
         ArrayList<Import_History> listHistory = new ArrayList<>();
         ProductDBContext proDB = new ProductDBContext();
         AccountDAO accDB = new AccountDAO();
@@ -65,9 +65,9 @@ public class ImportDBContext extends DBContext {
                 history.setId(rs.getInt("import_id"));
                 //System.out.println(rs.getInt("import_id"));
                 history.setNum(rs.getInt("num"));
-              //  System.out.println(rs.getInt("num"));
+                //  System.out.println(rs.getInt("num"));
                 history.setDate(rs.getDate("date"));
-               // System.out.println(rs.getDate("date"));
+                // System.out.println(rs.getDate("date"));
                 history.setNote(rs.getString("note"));
                 //System.out.println(rs.getString("note"));
                 history.setAccount(accDB.getAcc(rs.getString("username")));
@@ -76,7 +76,7 @@ public class ImportDBContext extends DBContext {
                 history.setCost(rs.getDouble("cost"));
                 //System.out.println(rs.getDouble("cost"));
                 history.setProduct(proDB.getProductByID(rs.getInt("product_id")));
-               // System.out.println(rs.getInt("product_id"));
+                // System.out.println(rs.getInt("product_id"));
                 listHistory.add(history);
             }
             stm.close();
@@ -93,11 +93,32 @@ public class ImportDBContext extends DBContext {
         return listHistory;
     }
 
-    public static void main(String[] args) {
-        
-                
-       
-            
-        
+    public int importProduct(Import_History ih) {
+        int x = -1;
+        try {
+            String sql = "INSERT INTO [dbo].[Import_History]\n"
+                    + "           ([num]\n"
+                    + "           ,[date]\n"
+                    + "           ,[username]\n"
+                    + "           ,[cost]\n"
+                    + "           ,[product_id])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, ih.getNum());
+            LocalDate ld = LocalDate.now();
+            ps.setDate(2, Date.valueOf(ld));
+            ps.setString(3, ih.getAccount().getUsername());
+            ps.setDouble(4, ih.getCost());
+            ps.setInt(5, ih.getId());
+            x = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;
     }
 }

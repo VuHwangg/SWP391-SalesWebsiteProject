@@ -25,7 +25,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="admin-order-list-all.jsp">Quản lý đơn hàng</a>
+                        Quản lý đơn hàng
                     </li> 
                     <li class="breadcrumb-item active">Danh sách đơn hàng đã hoàn thành</li>
                 </ol>
@@ -46,11 +46,11 @@
                                     <i class="fa fa-shopping-cart"></i>
                                 </div>
                                 <div>
-                                    <span>Số đơn đang chuẩn bị</span>
+                                    <span>Đơn đang chuẩn bị</span>
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Preparing")%></span>
+                                <span class="mr-5">Số lượng: <span style="font-size: 18px; font-weight: 700"><%=session.getAttribute("Preparing")%>&nbsp;đơn</span></span>
                             </div>
                         </a>
                     </div>
@@ -63,11 +63,11 @@
                                     <i class="fa fa-truck"></i>
                                 </div>
                                 <div>
-                                    <span>Số đơn đang vận chuyển</span>
+                                    <span>Đơn đang vận chuyển</span>
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Shipping")%></span>
+                                <span class="mr-5">Số lượng: <span style="font-size: 18px; font-weight: 700"><%=session.getAttribute("Shipping")%>&nbsp;đơn</span></span>
                             </div>
                         </a>
                     </div>
@@ -80,11 +80,11 @@
                                     <i class="fa fa-check"></i>
                                 </div>
                                 <div>
-                                    <span>Số đơn đã hoàn thành</span>
+                                    <span>Đơn đã hoàn thành</span>
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Success")%></span>
+                                <span class="mr-5">Số lượng: <span style="font-size: 18px; font-weight: 700"><%=session.getAttribute("Success")%>&nbsp;đơn</span></span>
                             </div>
                         </a>
                     </div>
@@ -97,11 +97,11 @@
                                     <i class="fa fa-times"></i>
                                 </div>
                                 <div>
-                                    <span>Số đơn đã bị hủy</span>
+                                    <span>Đơn đã bị hủy</span>
                                 </div>
                             </div>
                             <div class="card-footer text-white z-1">
-                                <span class="mr-5"><%=session.getAttribute("Cancelled")%></span>
+                                <span class="mr-5">Số lượng: <span style="font-size: 18px; font-weight: 700"><%=session.getAttribute("Cancelled")%>&nbsp;đơn</span></span>
                             </div>
                         </a>
                     </div>
@@ -126,7 +126,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead class="text-center bg-danger text-white">
+                                <thead class="text-center bg-success text-white">
                                     <tr>
                                         <th>Mã đơn hàng</th>
                                         <th>Ngày đặt hàng</th>
