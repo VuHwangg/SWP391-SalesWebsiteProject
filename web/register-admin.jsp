@@ -67,7 +67,7 @@
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên" required>
                             </div>
                             
-                            <div class="input-group mb-3" hidden="">
+                            <div class="input-group mb-3" hidden>
                                 <!--Thêm ảnh 1 ảnh-->
                                 <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
                                 <div class="input-group-append" >

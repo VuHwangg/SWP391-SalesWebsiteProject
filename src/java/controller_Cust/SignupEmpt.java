@@ -54,7 +54,7 @@ public class SignupEmpt extends HttpServlet {
             
             if(acc.addAcount(user, pass, name,img,true)){
                 if(acc.addRole(role, user)){
-                     req.getRequestDispatcher("admin-dashmap.jsp").forward(req, resp);
+                     req.getRequestDispatcher("controllerEmployee").forward(req, resp);
                 }
             }
         }

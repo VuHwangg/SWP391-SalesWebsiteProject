@@ -178,16 +178,35 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-success w-100" href="editEmpt?id=<%=arr.get(i).getUsername()%>">Chỉnh sửa</a>&nbsp;
-                                                <a class="btn btn-dark w-100" href="cancelEmpt?id=<%=arr.get(i).getUsername()%>">Nghỉ việc</a>
+                                                <a class="btn btn-dark w-100" data-toggle="modal" data-target="#FireConfirmModal" href="">Nghỉ việc</a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <%}%>
+                                    <!-- Fire Confirm Modal-->
+                                <div class="modal fade" id="FireConfirmModal" tabindex="-1" role="dialog" aria-labelledby="FireConfirmModal" aria-hidden="true" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-dark text-white">
+                                                <h5 class="modal-title" id="FireConfirmModal">Bạn có chắc chắn muốn đuổi việc người này?</h5>
+                                                <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">Hành động này sẽ không được hoàn tác, vui lòng cân nhắc thật kỹ trước khi tiếp tục</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Quay lại</button>
+                                                <a class="btn btn-danger" href="cancelEmpt?id=<%=arr.get(i).getUsername()%>">Vẫn tiếp tục</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
 
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
             </div>
