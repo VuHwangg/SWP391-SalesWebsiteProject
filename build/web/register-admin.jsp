@@ -12,8 +12,6 @@
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
 
-
-
         <!-- NAVIGATION BAR-->
         <%@include file="components/admin-navbar.jsp" %>
 

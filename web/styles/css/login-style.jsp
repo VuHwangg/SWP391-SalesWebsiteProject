@@ -192,7 +192,8 @@
     .login-form .form-input label,
     .login-form .captcha label {
         display:block;
-        font-size:15px;
+        font-size:16px;
+        font-weight: 700;
         color:#111;
         margin-bottom:5px;
     }
