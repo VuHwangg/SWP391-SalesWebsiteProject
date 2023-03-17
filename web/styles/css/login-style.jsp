@@ -146,7 +146,6 @@
     }
     .login-form .form-title {
         text-align:center;
-        font-size:38px;
         font-weight:600;
         margin:12px 0px 30px;
         color:#111;
@@ -174,16 +173,17 @@
             var(--stroke-color);
     }
 
-    .login-form .form-title h1 {
+    .login-form .form-title h1,
+    .login-form .form-title h2 {
         font-family:"Montserrat",sans-serif;
-        line-height: 0.2;
         margin: 0;
-        margin-top: 32px;
+        margin-top: 20px;
     }
 
     .login-form .form-title span {
         font-size:18px;
         font-weight:500;
+        line-height: 0.3;
     }
 
     .login-form .form-input {

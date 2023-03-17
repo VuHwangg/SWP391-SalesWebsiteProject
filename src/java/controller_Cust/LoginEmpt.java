@@ -35,7 +35,7 @@ public class LoginEmpt extends HttpServlet {
             Account accout = acc.checkLoginCus(email, password,true);
             
             if (accout == null) {
-                req.setAttribute("err", "Username is not exist");
+                req.setAttribute("err", "Tài khoản không tồn tại");
                 req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
             }else{
                 accout = acc.getAcc(email);

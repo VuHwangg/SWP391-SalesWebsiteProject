@@ -1,116 +1,93 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/login-style.jsp" %>
-        <title>Hoàn thiện thông tin</title>
+        <title>Đăng nhập cho quản trị viên</title>
     </head>
     <body>
-        <!-- Section: Design Block -->
-        <section
-            class="text-center h-100 w-100 d-inline-block"
-            style="min-height: 100vh"
-            >
-            <!-- Background image -->
-            <div
-                class="p-4 bg-image"
-                >
-                <div class="d-flex justify-content-start align-items-start">
-                    <a
-                        class="btn btn-outline-light"
-                        href="home"
-                        style="font-weight: 500"
-                        >
-                        <i class="bi bi-house me-1"></i>Trang chủ
-                    </a>
-                </div>
-                <h1 style="color: white">Awns's Store</h1>
-                <h4 style="color: white">
-                    Store chuyên cung cấp đồ công nghệ hàng đầu Việt Nam
-                </h4>
+
+        <!--Background-->
+        <div class="header">
+
+            <!--Content before waves-->
+            <div class="inner-header flex">
             </div>
-            <!-- Background image -->
 
-            <div class="container-fluid d-inline-block">
-                <div class="row">
+            <!--Waves Container-->
+            <div>
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+                </svg>
+            </div>
+            <!--Waves end-->
+        </div>
 
-                    <!--Col-6-->
-                    <div class="col-md-8" style="padding: 0; margin: auto">
-                        <div
-                            class="card rounded-5 shadow-5-strong"
-                            style="
-                            background: hsla(0, 0%, 100%, 0.7);
-                            backdrop-filter: blur(30px);
-                            "
-                            >
-                            <div class="card-body py-5 px-md-5">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-lg-8">
-                                        <h1 class="fw-bold mb-2">
-                                            HOÀN THIỆN THÔNG TIN
-                                        </h1>
-                                        <div class="border-top border-dark border-3 my-3"></div>
+        <div class="back-btn">
+            <a href="login-user.jsp">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i><span> Quay lại</span>
+            </a>
+        </div>
 
-                                        <!--Login with account password-->
-                                        <form action="SignupUser"  method="post">
-                                            <%
-                                String mess = (String)request.getAttribute("err");
-                                if(mess == null) mess="Bạn vui lòng hoàn thiện thêm thông tin bên dưới";           
-                                            %>
-                                            <p><%=mess%></p>
-                                            
+        <!--Login Form-->
+        <div class="login-form">
+            <form action="SignupUser" method="post">
+                <%
+                    String mess = (String) request.getAttribute("err");
+                    if (mess == null)
+                        mess = "";
+                %>
 
-                                            <div class="mb-3">
-                                                <input name = "name"
-                                                       type="text"
-                                                       class="form-control"
-                                                       placeholder="Họ và tên"
-                                                       />
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <input name="phone"
-                                                       type="text"
-                                                       class="form-control"
-                                                       placeholder="Số điện thoại"
-                                                       />
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <input name="place"
-                                                       type="text"
-                                                       class="form-control"
-                                                       placeholder="Địa chỉ"
-                                                       />
-                                            </div>
-                                            
-                                            <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" value="">
-                                                <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
-                                            </div>
-
-                                            <button
-                                                type="submit"
-                                                class="btn w-100 btn-submit"
-                                                style=""
-                                                >
-                                                Hoàn tất
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-title">
+                    <h4 class="text-danger">Awns's Store</h4>
+                    <h2 class="mb-1">Hoàn Thiện Thông Tin</h2>
+                    <span>Bạn lòng hoàn thiện hết thông tin bên dưới để có thể tiếp tục sử dụng website</span>
 
                 </div>
-            </div>
-        </section>
+                <div class="form-input">
+                    <label for="name">Họ và tên</label>
+                    <input type="text" id="name" name="name" placeholder="VD: Hoàng Chu Anh Vũ" maxlength="50" required>
+                    <small class="text-danger"><%=mess%></small>
+                </div>
+                <div class="form-input">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" id="phone" name="phone" placeholder="VD: 0833232520" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="20" required>
+                </div>
+                <div class="form-input">
+                    <label for="address">Địa chỉ</label>
+                    <input type="text" id="address" name="place" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="100" required>
+                </div>
+
+                <div class="input-group mb-3" hidden>
+                    <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" value="">
+                    <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
+                </div>
+                <div class="form-input">
+                    <input type="submit" class="btn btn-danger" id="login-btn" value="Hoàn Tât">
+                </div>
+            </form>
+        </div>
+
+        <!--Content ends-->
+        <%@include file="styles/js/login-capcha.jsp" %>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <!--JS bootstrap 5 include -->
         <script
@@ -128,9 +105,5 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
         ></script>
-        <%@include file="styles/js/script.jsp" %>
     </body>
 </html>
-
-
-                              

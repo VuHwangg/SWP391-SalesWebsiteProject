@@ -52,15 +52,17 @@
                     if (mess == null)
                         mess = "";
                 %>
-                <p><%=mess%></p>
+                
                 <div class="form-title">
                     <h4 class="text-danger">Awns's Store</h4>
                     <h1>ADMIN LOGIN</h1>
                     <span>Chức năng đăng nhập chỉ dành cho quản trị viên</span>
+                    
                 </div>
                 <div class="form-input">
                     <label for="username">Tên đăng nhập</label>
                     <input type="text" id="username" name="email">
+                    <small class="text-danger"><%=mess%></small>
                 </div>
                 <div class="form-input">
                     <label for="password">Mật khẩu</label>
