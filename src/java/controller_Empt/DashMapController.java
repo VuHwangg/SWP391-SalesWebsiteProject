@@ -31,9 +31,10 @@ public class DashMapController extends HttpServlet {
         java.sql.Date from = null;
         java.sql.Date to = null;
         BrandDBContext brdb = new BrandDBContext();
-        ArrayList<Brand> phoneBrands = brdb.listByType(0);
-        List<String> phoneBrandNames = new ArrayList<>();
+        List<Brand> brands = brdb.getAllBrand();
+        List<String> brandNames = new ArrayList<>();
         List<Integer> numOfPhones = new ArrayList<>();
+        List<Integer> numOfLaps = new ArrayList<>();
         List<Double> totalPrice = new ArrayList<>();
         DateTimeHelper dateTime = new DateTimeHelper();
         OrderDAO orderDB = new OrderDAO();
@@ -49,9 +50,10 @@ public class DashMapController extends HttpServlet {
             to = java.sql.Date.valueOf(raw_to);           
         }
         List<Date> dates = dateTime.getDateList(from, to);
-        for(Brand br : phoneBrands){
-            phoneBrandNames.add(br.getName());
+        for(Brand br : brands){
+            brandNames.add(br.getName());
             numOfPhones.add(orderDB.getTotalNumByBrand(from, to, br.getName(), 0));
+            numOfLaps.add(orderDB.getTotalNumByBrand(from, to, br.getName(), 1));
         }
         List<String> dayMonthList = dateTime.getDayMonthList(dates);
         for (Date a : dates) {
@@ -59,8 +61,9 @@ public class DashMapController extends HttpServlet {
         }
         request.setAttribute("from", from);
         request.setAttribute("to", to);
-        request.setAttribute("phoneBrandNames", phoneBrandNames);
+        request.setAttribute("brandNames", brandNames);
         request.setAttribute("numOfPhones", numOfPhones);
+        request.setAttribute("numOfLaps", numOfLaps);
         request.setAttribute("dayMonthList", dayMonthList);
         request.setAttribute("totalPrice", totalPrice);
         request.getRequestDispatcher("admin-dashmap.jsp").forward(request, response);

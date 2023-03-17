@@ -178,16 +178,18 @@
         <%
             List<String> dayMonthList = (List<String>) request.getAttribute("dayMonthList");
             List<Double> totalPrice = (List<Double>) request.getAttribute("totalPrice");
-            List<String> phoneBrandNames = (List<String>) request.getAttribute("phoneBrandNames");
+            List<String> brandNames = (List<String>) request.getAttribute("brandNames");
             List<Integer> numOfPhones = (List<Integer>) request.getAttribute("numOfPhones");
+            List<Integer> numOfLaps = (List<Integer>) request.getAttribute("numOfLaps");
             double x = Helper.findTopOfY(totalPrice);
             double y = Helper.findTopOfYForInt(numOfPhones);
         %>
         <script>
             var dayMonth = <%= new Gson().toJson(dayMonthList)%>;
             var price = <%= new Gson().toJson(totalPrice)%>;
-            var phoneBrandNames = <%= new Gson().toJson(phoneBrandNames)%>;
+            var brandNames = <%= new Gson().toJson(brandNames)%>;
             var numOfPhones = <%= new Gson().toJson(numOfPhones)%>;
+            var numOfLaps = <%= new Gson().toJson(numOfLaps)%>;
             var x = <%= new Gson().toJson(x)%>;
             var y = <%= new Gson().toJson(y)%>;
         </script>
@@ -257,7 +259,7 @@
             var myLineChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: phoneBrandNames,
+                    labels: brandNames,
                     datasets: [{
                             label: "Revenue",
                             backgroundColor: "rgba(2,117,216,1)",
@@ -383,13 +385,7 @@
                     text: ''
                 },
                 xAxis: {
-                    categories: [
-                        'Apple',
-                        'Asus',
-                        'Gigabyte',
-                        'MSI',
-                        'Dell'
-                    ],
+                    categories: brandNames,
                     crosshair: true
                 },
                 yAxis: {
@@ -414,11 +410,11 @@
                 },
                 series: [{
                         name: 'Điện thoại',
-                        data: [41661561, 34419934, 33158027, 31209230, 23632635]
+                        data: numOfPhones
 
                     }, {
                         name: 'Laptop',
-                        data: [40514123, 32340016, 32224529, 29456321, 22807464]
+                        data: numOfLaps
 
                     }]
             });

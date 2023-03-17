@@ -83,7 +83,7 @@ public class BrandDBContext extends DBContext {
             String sql = "SELECT [brand_id]\n"
                     + "      ,[brand_name]\n"
                     + "      ,[description]\n"
-                    + "  FROM [dbo].[Brand]";
+                    + "  FROM [Brand]";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
