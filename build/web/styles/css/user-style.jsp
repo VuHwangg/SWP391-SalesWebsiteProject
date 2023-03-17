@@ -484,10 +484,7 @@
         overflow: hidden;
     }
     
-    .profile-left, .profile-right {
-        box-shadow: rgba(220, 56, 72, 0.4) 5px 5px, rgba(220, 56, 72, 0.3) 10px 10px, rgba(220, 56, 72, 0.2) 15px 15px, rgba(220, 56, 72, 0.1) 20px 20px, rgba(220, 56, 72, 0.05) 25px 25px;
-        border: 3px outset black;
-    }
+    
 
     .list-product .cover-block {
         background-color: white;
@@ -813,6 +810,11 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+    
+    .profile-left, .profile-right {
+        box-shadow: rgba(220, 56, 72, 0.4) 5px 5px, rgba(220, 56, 72, 0.3) 10px 10px, rgba(220, 56, 72, 0.2) 15px 15px, rgba(220, 56, 72, 0.1) 20px 20px, rgba(220, 56, 72, 0.05) 25px 25px;
+        border: 3px outset black;
     }
 
     .avatar {

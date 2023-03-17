@@ -48,7 +48,7 @@
                             </h1>
                             <br/>
                             <form action="SearchOrder" method="post">
-                                <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden;">
+                                <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                                     <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
                                     <span class="input-group-append">
                                         <button class="btn bg-danger" type="submit" style="border-radius: 0">
