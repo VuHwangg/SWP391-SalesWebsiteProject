@@ -3,6 +3,7 @@
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="helper" class="util.Helper"/>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                1,892,000,000&nbsp;VNĐ
+                                                ${helper.convertBigNum(requestScope.totalPriceInOnePeriod)}&nbsp;VNĐ
                                             </span>
                                         </span>
                                     </div>

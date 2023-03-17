@@ -354,6 +354,26 @@ public class OrderDAO extends DBContext {
         }
         return totalPrice;
     }
+    
+    public double getTotalPriceInOnePeriod(Date from, Date to) {
+        double totalPrice = 0;
+        try {
+            String sql = "SELECT SUM([total_price]) as [total]\n"
+                    + "  FROM [Order] WHERE [date] BETWEEN ? AND ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setDate(1, from);
+            stm.setDate(2, to);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                totalPrice = rs.getDouble("total");
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return totalPrice;
+    }
 
     public int getTotalNumByBrand(Date from, Date to, String brand, int type) {
         int totalNum = 0;

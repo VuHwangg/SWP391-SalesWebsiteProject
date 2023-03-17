@@ -55,6 +55,7 @@ public class DashMapController extends HttpServlet {
             from = java.sql.Date.valueOf(raw_from);
             to = java.sql.Date.valueOf(raw_to);           
         }
+        double totalPriceInOnePeriod = orderDB.getTotalPriceInOnePeriod(from, to);
         List<Date> dates = dateTime.getDateList(from, to);
         for(Brand br : brands){
             brandNames.add(br.getName());
@@ -69,6 +70,7 @@ public class DashMapController extends HttpServlet {
             numOfOrderByStatus.add(orderDB.numOfOrderByStatus(sta));
 //            response.getWriter().print(sta + ": "+orderDB.numOfOrderByStatus(sta));
         }
+        request.setAttribute("totalPriceInOnePeriod", totalPriceInOnePeriod);
         request.setAttribute("numOfItem", numOfItem);
         request.setAttribute("numOfProduct", numOfProduct);
         request.setAttribute("status", status);
