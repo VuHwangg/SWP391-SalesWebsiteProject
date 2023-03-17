@@ -37,9 +37,9 @@
 
                         <div class="row w-100">
                             <!--User information Col 1-->
-                            <div class="cover-block profile-left col-sm-3 bg-offwhite">
+                            <div class="cover-block profile-left col-sm-3">
                                 <div class="avatar">
-                                    <img src="<%=acc.getImg_url()%>" alt="avatar"/>
+                                    <img src="img/avatar-profile.png" alt="avatar"/>
                                 </div>
                                 <div class="profile-name">
                                     <p><%=cus.getCustomerName()%></p>
@@ -56,7 +56,7 @@
                                 </a>
                             </div>
                             <!--User information Col 2-->
-                            <div class="cover-block profile-right col-sm-8 bg-offwhite">
+                            <div class="cover-block profile-right col-sm-8">
                                 <h3 class="title-profile">Thông tin cá nhân</h3>
                                 <div class="border-top border-dark border-3 mb-2"></div>
                                 <div class="col">

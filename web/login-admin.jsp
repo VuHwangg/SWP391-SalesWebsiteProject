@@ -39,7 +39,7 @@
         </div>
 
         <div class="back-btn">
-            <a onclick="history.back(-1)">
+            <a href="login-user.jsp">
                 <i class="fa fa-chevron-left" aria-hidden="true"></i><span> Quay lại</span>
             </a>
         </div>

@@ -273,7 +273,7 @@
                                                     </div>
                                                     <c:if test="${filter.discount>0}">
                                                         <div class="col-4">
-                                                            <p class="sale-percent">${filter.discount}%</p>
+                                                            <p class="sale-percent">${helper.convertBigNum(filter.discount)}%</p>
                                                         </div>
                                                     </c:if>   
 

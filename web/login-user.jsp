@@ -1,8 +1,9 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,79 +12,66 @@
         <title>Đăng nhập</title>
     </head>
     <body>
-        <!-- Section: Design Block -->
-        <section
-            class="text-center h-100 w-100 d-inline-block"
-            style="min-height: 100vh"
-            >
-            <!-- Background image -->
-            <div
-                class="p-4 bg-image"
-                >
-                <div class="d-flex justify-content-start align-items-start">
-                    <a
-                        class="btn btn-outline-light"
-                        href="home"
-                        style="font-weight: 500"
+
+        <!--Background-->
+        <div class="header">
+
+            <!--Content before waves-->
+            <div class="inner-header flex">
+            </div>
+
+            <!--Waves Container-->
+            <div>
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+                </svg>
+            </div>
+            <!--Waves end-->
+        </div>
+
+        <div class="back-btn">
+            <a href="home">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i><span> Quay lại</span>
+            </a>
+        </div>
+
+        <!--Login Form-->
+        <div class="login-form">
+            <form class="mb-5" action="LoginEmpt" method="post">
+                <div class="form-title">
+                    <h4 class="text-danger">Awns's Store</h4>
+                    <h1>ĐĂNG NHẬP</h1>
+                    <span>Vui lòng chọn tài khoản để đăng nhập</span>
+                </div>
+                <div>
+                    <a  style="text-decoration: none"
+                        href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/SWP391-SalesWebsiteProject/LoginUser&response_type=code&client_id=1085689904569-u4662st25sdv1a20rngoqc2vn1ucibrh.apps.googleusercontent.com&approval_prompt=force"
+                        class="btn mb-2 w-100 btn-google"
                         >
-                        <i class="bi bi-house me-1"></i>Trang chủ
+                        <i class="bi bi-google me-1"></i>
+                        <span  class="d-line h5" >
+                            <strong>Sử dụng tài khoản Google </strong>
+                        </span>
                     </a>
                 </div>
-                <h1 style="color: white">Awns's Store</h1>
-                <h4 style="color: white">
-                    Store chuyên cung cấp đồ công nghệ hàng đầu Việt Nam
-                </h4>
-            </div>
-            <!-- Background image -->
+            </form>
+            <a class="admin-login-btn" href="login-admin.jsp">Đăng nhập dành cho nhân viên</a>
+        </div>
 
-            <div class="container-fluid d-inline-block">
-                <div class="row">
+        <!--Content ends-->
+        <%@include file="styles/js/login-capcha.jsp" %>
 
-                    <!--Col-6-->
-                    <div class="col-md-8" style="padding: 0; margin: auto">
-                        <div
-                            class="card rounded-5 shadow-5-strong"
-                            style="
-                            background: hsla(0, 0%, 100%, 0.7);
-                            backdrop-filter: blur(30px);
-                            "
-                            >
-                            <div class="card-body py-5 px-md-5">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-lg-8">
-                                        <h1 class="fw-bold mb-2">
-                                            ĐĂNG NHẬP
-                                        </h1>
-                                        <div class="border-top border-dark border-3 my-3"></div>
-                                        <p class="mb-3" style="font-size: 20px">
-                                            Chọn tài khoản bạn muốn đăng nhập vào FTECH Store
-                                        </p>
-
-                                        <!--Login with gmail-->
-                                        <div>
-                                            <a  style="text-decoration: none"
-                                                href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/SWP391-SalesWebsiteProject/LoginUser&response_type=code&client_id=1085689904569-u4662st25sdv1a20rngoqc2vn1ucibrh.apps.googleusercontent.com&approval_prompt=force"
-                                                class="btn mb-2 w-100 btn-google"
-                                                >
-                                                <i class="bi bi-google me-1"></i>
-                                                <span  class="d-line h5" >
-                                                    <strong>Sử dụng tài khoản Google </strong>
-                                                </span>
-                                            </a>
-
-                                        </div>
-                                        
-                                        <!--Login with account password-->
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <!--JS bootstrap 5 include -->
         <script

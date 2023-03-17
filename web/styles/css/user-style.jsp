@@ -483,6 +483,11 @@
         border-radius: 30px;
         overflow: hidden;
     }
+    
+    .profile-left, .profile-right {
+        box-shadow: rgba(220, 56, 72, 0.4) 5px 5px, rgba(220, 56, 72, 0.3) 10px 10px, rgba(220, 56, 72, 0.2) 15px 15px, rgba(220, 56, 72, 0.1) 20px 20px, rgba(220, 56, 72, 0.05) 25px 25px;
+        border: 3px outset black;
+    }
 
     .list-product .cover-block {
         background-color: white;
@@ -713,13 +718,13 @@
         background-image: url('img/seven-pointed-star-svgrepo-com.svg');
         background-repeat: no-repeat;
         background-size: 64px;
-        background-position: 0 0px;
+        background-position: 0 4px;
     }
     .product .sale-percent {
         color: white;
         font-weight: 700;
         margin-top: 23px;
-        font-size: 15px;
+        padding-left: 6px;
     }
 
     @media (max-width: 575px) {

@@ -37,12 +37,12 @@
                     <p><%=mess%></p>
                 <div class="row w-100">
                   <!-- list of filter check-box column -->
-                  <div class="cover-block profile-left col-sm-3 bg-offwhite">
+                  <div class="cover-block profile-left col-sm-3">
                       <div class="avatar">
                           <img src="img/avatar-profile.png" alt="avatar"/>
                       </div>
                       <div class="profile-name">
-                          <p><%=acc.getImg_url()%></p>
+                          <p><%=cus.getCustomerName()%></p>
                       </div>
                       <div class="profile-email">
                           <p><%=cus.getEmail()%></p>
@@ -56,7 +56,7 @@
                       </a>
                   </div>
                   <!-- list of product column -->
-                  <div class="cover-block profile-right col-sm-8 bg-offwhite">
+                  <div class="cover-block profile-right col-sm-8">
                     <!-- sort method radio check -->
                     <h3 class="title-profile">Thông tin cá nhân</h3>
                     <div class="border-top border-dark border-3 mb-2"></div>

@@ -102,7 +102,7 @@
                                                 </div>
                                                 <c:if test="${onSale.discount>0}">
                                                     <div class="col-4">
-                                                        <p class="sale-percent">${onSale.discount}%</p>
+                                                        <p class="sale-percent">${helper.convertBigNum(onSale.discount)}%</p>
                                                     </div>
                                                 </c:if>   
 
@@ -157,7 +157,7 @@
                                                 </div>
                                                 <c:if test="${topSold.discount>0}">
                                                     <div class="col-4">
-                                                        <p class="sale-percent">${topSold.discount}%</p>
+                                                        <p class="sale-percent">${helper.convertBigNum(topSold.discount)}%</p>
                                                     </div>
                                                 </c:if>   
                                             </div>
@@ -210,7 +210,7 @@
                                                 </div>
                                                 <c:if test="${phone.discount>0}">
                                                     <div class="col-4">
-                                                        <p class="sale-percent">${phone.discount}%</p>
+                                                        <p class="sale-percent">${helper.convertBigNum(phone.discount)}%</p>
                                                     </div>
                                                 </c:if>   
                                             </div>
@@ -263,7 +263,7 @@
                                                 </div>
                                                 <c:if test="${laptop.discount>0}">
                                                     <div class="col-4">
-                                                        <p class="sale-percent">${laptop.discount}%</p>
+                                                        <p class="sale-percent">${helper.convertBigNum(laptop.discount)}%</p>
                                                     </div>
                                                 </c:if>   
                                             </div>

@@ -173,10 +173,27 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(sameList.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
+                                                    <div class="product-status">
+                                                            <c:if test="${sameList.qty >= 1}">
+
+                                                                <!--Còn hàng-->
+                                                                <div class="text-success">
+                                                                    <i class="bi bi-check-all"></i>
+                                                                    <span>Còn hàng</span>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${sameList.qty < 1}">
+                                                                <!--Hết hàng-->
+                                                                <div class="text-danger">
+                                                                    <i class="bi bi-x-lg"></i>
+                                                                    <span>Hết hàng</span>
+                                                                </div>
+                                                            </c:if>
+                                                        </div>
                                                 </div>
                                                 <c:if test="${sameList.discount>0}">
                                                     <div class="col-4">
-                                                        <p class="sale-percent">${sameList.discount}%</p>
+                                                        <p class="sale-percent">${helper.convertBigNum(sameList.discount)}%</p>
                                                     </div>
                                                 </c:if>   
                                             </div>

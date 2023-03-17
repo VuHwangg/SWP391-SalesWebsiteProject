@@ -26,17 +26,6 @@ public class LoginEmpt extends HttpServlet {
         String password = req.getParameter("pass");
         String err = "1";
         HttpSession session = req.getSession();
-        if (email.isEmpty()) {
-            err = " Please input the your Username";
-
-        } else {
-            if (password.isEmpty()) {
-                err = "Please input the your Password";
-
-            }
-
-        }
-       
         
         if (err.equals("1") == false) {
             req.setAttribute("err", err);

@@ -101,8 +101,11 @@
         .content {
             height:30vh;
         }
-        h1 {
-            font-size:24px;
+        .login-form .form-title h1 {
+            font-size:32px;
+        }
+        .login-form .form-title span {
+            display: none;
         }
     }
 
@@ -120,11 +123,11 @@
         color: #fff !important;
         text-decoration: none;
     }
-    
+
     .back-btn a span {
         transition: all 0.4s ease;
     }
-    
+
     .back-btn a span:hover {
         padding-left: 8px;
     }
@@ -242,5 +245,31 @@
         text-transform:uppercase;
         color:#fff;
         cursor:pointer;
+    }
+
+    .bi-google {
+        color: #dc3545;
+        justify-items: left;
+
+    }
+    .btn-google{
+        border: 3px solid #000;
+
+    }
+    .btn-google:hover
+    {
+        background-color: #dc3545;
+        color: white;
+    }
+    .btn-google:hover .bi-google{
+        color: white;
+    }
+    
+    .admin-login-btn {
+        color: #dc3545;
+    }
+    
+    .admin-login-btn:hover {
+        color: #83121d;
     }
 </style>
