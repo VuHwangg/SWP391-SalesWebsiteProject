@@ -27,6 +27,9 @@ public class SearchController extends HttpServlet{
         String sort = request.getParameter("sort");
         int numOfPage;
         if (rawNumOfPage != null) {
+            if(rawNumOfPage.length() == 0){
+                numOfPage = 1;
+            }else
             numOfPage = Integer.parseInt(request.getParameter("page"));
         } else {
             numOfPage = 1;

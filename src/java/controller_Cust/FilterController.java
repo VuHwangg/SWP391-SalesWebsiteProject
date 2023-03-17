@@ -45,6 +45,13 @@ public class FilterController extends HttpServlet {
         request.setAttribute("allRequirements", allRequirements);
         request.setAttribute("allBrands", allBrands);
         String sort;
+        
+//        if (brands.length == 0) {
+//            brands[0] = "all";
+//        }
+//        if (sizes.length == 0) {
+//            sizes[0] = "all";
+//        }
         int numOfPage;
         if (brands == null) {
             String[] buffer = {"all"};
@@ -63,11 +70,17 @@ public class FilterController extends HttpServlet {
         request.setAttribute("sizes", sizes);
         double from, to;
         if (rawSort != null) {
+            if (rawSort.length() == 0) {
+                sort = "none";
+            }else  
             sort = rawSort;
         } else {
             sort = "none";
         }
         if (rawNumOfPage != null) {
+            if(rawNumOfPage.length() == 0){
+                numOfPage = 1;
+            }else
             numOfPage = Integer.parseInt(request.getParameter("page"));
         } else {
             numOfPage = 1;
