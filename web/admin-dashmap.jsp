@@ -73,7 +73,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                60&nbsp;mặt hàng
+                                                ${requestScope.numOfItem}&nbsp;mặt hàng
                                             </span>
                                         </span>
                                     </div>
@@ -101,7 +101,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                19,034&nbsp;sản phẩm
+                                                ${requestScope.numOfProduct}&nbsp;sản phẩm
                                             </span>
                                         </span>
                                     </div>
@@ -181,6 +181,8 @@
             List<String> brandNames = (List<String>) request.getAttribute("brandNames");
             List<Integer> numOfPhones = (List<Integer>) request.getAttribute("numOfPhones");
             List<Integer> numOfLaps = (List<Integer>) request.getAttribute("numOfLaps");
+            List<String> statusName = (List<String>) request.getAttribute("status");
+            List<Integer> numOfOrderByStatus = (List<Integer>) request.getAttribute("numOfOrderByStatus");
             double x = Helper.findTopOfY(totalPrice);
             double y = Helper.findTopOfYForInt(numOfPhones);
         %>
@@ -190,6 +192,8 @@
             var brandNames = <%= new Gson().toJson(brandNames)%>;
             var numOfPhones = <%= new Gson().toJson(numOfPhones)%>;
             var numOfLaps = <%= new Gson().toJson(numOfLaps)%>;
+            var statusName = <%= new Gson().toJson(statusName)%>;
+            var numOfOrderByStatus = <%= new Gson().toJson(numOfOrderByStatus)%>;
             var x = <%= new Gson().toJson(x)%>;
             var y = <%= new Gson().toJson(y)%>;
         </script>
@@ -305,11 +309,11 @@
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Blue", "Red", "Yellow", "Green"],
+                    labels: statusName,
                     datasets: [{
 
                             // Input data below
-                            data: [12.21, 15.58, 11.25, 8.32],
+                            data: numOfOrderByStatus,
                             backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
                         }],
                 },

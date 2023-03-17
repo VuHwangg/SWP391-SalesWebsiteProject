@@ -344,6 +344,44 @@ public class ProductDBContext extends DBContext {
         }
         return 0;
     }
+
+    public int numOfItem() {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(*) AS x\n"
+                    + "  FROM [Product]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("x");
+            }
+            stm.close();
+            rs.close();
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public int numOfProduct() {
+        int count = 0;
+        try {
+            String sql = "SELECT SUM(qty) AS total\n"
+                    + "  FROM [Product]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("total");
+            }
+            stm.close();
+            rs.close();
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 //for search screen(lấy sản phẩm theo một từ khóa)
 
     public ArrayList<Product> listProduct(String rawTxtSearch, String sort, int numOfPage) {
