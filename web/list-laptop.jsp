@@ -71,11 +71,12 @@
                     </div>
                     <!-- list product block -->
                     <div class="list-product">
-                        <form action="" method="get">
 
-                            <div class="row">
-                                <!-- list of filter check-box column -->
-                                <div class="filter col-sm-3">
+
+                        <div class="row">
+                            <!-- list of filter check-box column -->
+                            <div class="filter col-sm-3">
+                                <form action="" method="get">
                                     <div class="row">
                                         <p class="filter-title">Hãng sản xuất</p>
                                         <div class="col-lg-6">
@@ -191,16 +192,18 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="type" value="${param.type}"/>
-                                    <input class="btn-filter" type="submit" value=" Tìm kiếm " />
-                                </div>
-                                <!-- list of product column -->
-                                <div class="list cover-block col-sm-9">
-                                    <!-- sort method radio check -->
-                                    <div class="sort-method row">
-                                        <div class="col-4 sort-method-title">
-                                            <p>Sắp xếp theo:</p>
-                                        </div>
-                                        <div class="col-md-8">
+                                    <input class="btn-filter" type="submit" value=" Tìm kiếm" />
+                                </form>
+                            </div>
+                            <!-- list of product column -->
+                            <div class="list cover-block col-sm-9">
+                                <!-- sort method radio check -->
+                                <div class="sort-method row">
+                                    <div class="col-4 sort-method-title">
+                                        <p>Sắp xếp theo:</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <form action="" method="get">
                                             <div class="btn-group sort-method-selection" role="group">
                                                 <button class="btn btn-outline-danger
                                                         <c:if test="${helper.checkSort(param.sort)==1}">
@@ -224,65 +227,66 @@
                                                     Giá giảm dần
                                                 </button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
+                                </div>
 
-                                    <!-- list all product -->
+                                <!-- list all product -->
 
-                                    <div class="row">
-                                        <c:forEach items="${requestScope.filterList}" var="filter">
-                                            <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
-                                                <div class="product-img">
-                                                    <img
-                                                        src="${filter.image[0].url}"
-                                                        alt="iphone"
-                                                        />
-                                                </div>
-                                                <div class="product-name">
-                                                    <p>${filter.name}</p>
-                                                </div>
-                                                <div class="row price-block">
-                                                    <div class="col-8">
-                                                        <c:if test="${filter.discount>0}">
-                                                            <div class="product-old-price">
-                                                                <s> ${helper.convertBigNum(filter.original_price)}&nbsp;<span>VNĐ</span></s>
+                                <div class="row">
+                                    <c:forEach items="${requestScope.filterList}" var="filter">
+                                        <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
+                                            <div class="product-img">
+                                                <img
+                                                    src="${filter.image[0].url}"
+                                                    alt="iphone"
+                                                    />
+                                            </div>
+                                            <div class="product-name">
+                                                <p>${filter.name}</p>
+                                            </div>
+                                            <div class="row price-block">
+                                                <div class="col-8">
+                                                    <c:if test="${filter.discount>0}">
+                                                        <div class="product-old-price">
+                                                            <s> ${helper.convertBigNum(filter.original_price)}&nbsp;<span>VNĐ</span></s>
+                                                        </div>
+                                                    </c:if>
+
+                                                    <div class="product-price">
+                                                        <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
+                                                    </div>
+
+                                                    <div class="product-status">
+                                                        <c:if test="${filter.qty >= 1}">
+
+                                                            <!--Còn hàng-->
+                                                            <div class="text-success">
+                                                                <i class="bi bi-check-all"></i>
+                                                                <span>Còn hàng</span>
                                                             </div>
                                                         </c:if>
-
-                                                        <div class="product-price">
-                                                            <p> ${helper.convertBigNum(filter.current_price)}&nbsp;<span>VNĐ</span></p>
-                                                        </div>
-
-                                                        <div class="product-status">
-                                                            <c:if test="${filter.qty >= 1}">
-
-                                                                <!--Còn hàng-->
-                                                                <div class="text-success">
-                                                                    <i class="bi bi-check-all"></i>
-                                                                    <span>Còn hàng</span>
-                                                                </div>
-                                                            </c:if>
-                                                            <c:if test="${filter.qty < 1}">
-                                                                <!--Hết hàng-->
-                                                                <div class="text-danger">
-                                                                    <i class="bi bi-x-lg"></i>
-                                                                    <span>Hết hàng</span>
-                                                                </div>
-                                                            </c:if>
-                                                        </div>
+                                                        <c:if test="${filter.qty < 1}">
+                                                            <!--Hết hàng-->
+                                                            <div class="text-danger">
+                                                                <i class="bi bi-x-lg"></i>
+                                                                <span>Hết hàng</span>
+                                                            </div>
+                                                        </c:if>
                                                     </div>
-                                                    <c:if test="${filter.discount>0}">
-                                                        <div class="col-4">
-                                                            <p class="sale-percent">${helper.convertBigNum(filter.discount)}%</p>
-                                                        </div>
-                                                    </c:if>   
-
                                                 </div>
-                                            </a>
-                                        </c:forEach>
-                                    </div>
-                                    <div class="pagination d-flex justify-content-center mt-5">
+                                                <c:if test="${filter.discount>0}">
+                                                    <div class="col-4">
+                                                        <p class="sale-percent">${helper.convertBigNum(filter.discount)}%</p>
+                                                    </div>
+                                                </c:if>   
 
+                                            </div>
+                                        </a>
+                                    </c:forEach>
+                                </div>
+                                <div class="pagination d-flex justify-content-center mt-5">
+                                    <form action="" method="get">
                                         <div class="btn-group" role="group">
                                             <c:if test="${requestScope.page!=1}">
                                                 <button class="btn btn-outline-danger arrow
@@ -307,13 +311,11 @@
                                                     <i class="bi bi-chevron-double-right"></i>
                                                 </button>
                                             </c:if>
-
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
-
+                        </div>
                     </div>
                 </div>
             </div>
