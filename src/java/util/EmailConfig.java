@@ -48,8 +48,8 @@ public class EmailConfig {
      
     
     public void SendEmail(String to, float total_price, String messageTo, int ordId) throws AddressException, MessagingException {
-    final String username = "awnsshop@gmail.com";
-        final String password = "domesnykgatzcmuh";
+    final String username = "awnssshop@gmail.com";
+        final String password = "nvnfnlvyrdtblnvb";
         Helper h = new Helper();         
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -80,9 +80,9 @@ public class EmailConfig {
 "        <div class=\"container mt-2\">\n" +
 "            <div>\n" +
 "                <div class=\"row\">\n" +
-"                    <div class=\"col-md-6\">\n" +
+"                    <a href=\"http://localhost:9999/SWP391-SalesWebsiteProject/home\"><div class=\"col-md-6\">\n" +
 "                        <h3>AWNSSTORE.COM</h3>\n" +
-"                    </div>\n" +
+"                    </div></a>\n" +
 "                    <div class=\"col-md-6 d-flex justify-content-end\">\n" +
 "                        <h5>ĐƠN HÀNG "+ordId+"</h5>\n" +
 "                    </div>\n" +
