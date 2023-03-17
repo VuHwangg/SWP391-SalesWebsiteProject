@@ -43,6 +43,7 @@
                                     <div class="mr-3">
                                         <div>
                                             <h4>Tổng số doanh thu</h4>
+                                            <h6>(from ${requestScope.from} to ${requestScope.to})<h6/>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
