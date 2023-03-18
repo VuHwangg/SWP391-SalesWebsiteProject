@@ -29,9 +29,9 @@
                 <%@include file="components/side-banner.jsp" %>
 
                 <!-- Content Center -->
-                <div class="content-center bg-offwhite">
+                <div class="content-center bg-invisible">
                     <!-- Breadcrumb -->
-                    <div class="breadcrumb">
+                    <div class="breadcrumb" style="background-color: rgba(255, 255, 255, 0)">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
                         <c:if test="${param.type == 1}">
@@ -356,5 +356,7 @@
             crossorigin="anonymous"
         ></script>
         <%@include file="styles/js/script.jsp" %>
+        <!--Vanta.js Animation Background-->
+        <%@include file="components/vantajs-link.jsp" %>
     </body>
 </html>

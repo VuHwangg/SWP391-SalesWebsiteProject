@@ -86,6 +86,10 @@
     .bg-offwhite {
         background-color: rgb(235, 235, 235) !important;
     }
+    
+    .bg-invisible {
+        background-color: rgba(255, 255, 255, 0.6) !important;
+    }
 
     /*==============================================================================
                                     Mini banner
@@ -404,7 +408,7 @@
         margin-bottom: 0;
         background-color: white;
     }
-
+    
     .breadcrumb a {
         color: var(--main-color-black);
         text-decoration: none;
@@ -413,6 +417,20 @@
 
     .breadcrumb a:hover {
         color: var(--main-bg-color);
+    }
+    
+    .breadcrumb-invisible {
+        background-color: rgba(0,0,0,0);
+        color: white;
+    }
+    
+    .breadcrumb-invisible a {
+        color: white;
+    }
+    
+    .breadcrumb-invisible a:hover {
+        color: white;
+        text-decoration: underline;
     }
 
 
@@ -441,7 +459,7 @@
     }
 
     .main-carousel .carousel-item {
-        height: 500px;
+        height: 450px;
         width: 100%;
         border-radius: 30px;
     }
@@ -483,12 +501,18 @@
         border-radius: 30px;
         overflow: hidden;
     }
-    
-    
+
+
 
     .list-product .cover-block {
         background-color: white;
     }
+    
+    .list-product.home .cover-block {
+        background-color: rgba(255, 255, 255, 0.4);
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+        
 
     @media (max-width: 1200px) {
         .list-product.home {
@@ -747,6 +771,7 @@
         flex-direction: column;
         width: 265px;
         margin: 10px 0 20px 10px;
+        background-color: white;
     }
 
     .slider-product.slider-product-similar {
@@ -811,10 +836,10 @@
         align-items: center;
         flex-direction: column;
     }
-    
+
     .profile-left, .profile-right {
         box-shadow: rgba(220, 56, 72, 0.4) 5px 5px, rgba(220, 56, 72, 0.3) 10px 10px, rgba(220, 56, 72, 0.2) 15px 15px, rgba(220, 56, 72, 0.1) 20px 20px, rgba(220, 56, 72, 0.05) 25px 25px;
-        border: 3px outset black;
+        background-color: rgba(255, 255, 255, 0.7);
     }
 
     .avatar {
