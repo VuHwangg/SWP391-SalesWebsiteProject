@@ -3,6 +3,7 @@
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="helper" class="util.Helper"/>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +43,11 @@
                                     <div class="mr-3">
                                         <div>
                                             <h4>Tổng số doanh thu</h4>
+                                            <h6>(from ${requestScope.from} to ${requestScope.to})<h6/>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                1,892,000,000&nbsp;VNĐ
+                                                ${helper.convertBigNum(requestScope.totalPriceInOnePeriod)}&nbsp;VNĐ
                                             </span>
                                         </span>
                                     </div>
@@ -73,7 +75,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                60&nbsp;mặt hàng
+                                                ${requestScope.numOfItem}&nbsp;mặt hàng
                                             </span>
                                         </span>
                                     </div>
@@ -101,7 +103,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                19,034&nbsp;sản phẩm
+                                                ${requestScope.numOfProduct}&nbsp;sản phẩm
                                             </span>
                                         </span>
                                     </div>
@@ -178,16 +180,22 @@
         <%
             List<String> dayMonthList = (List<String>) request.getAttribute("dayMonthList");
             List<Double> totalPrice = (List<Double>) request.getAttribute("totalPrice");
-            List<String> phoneBrandNames = (List<String>) request.getAttribute("phoneBrandNames");
+            List<String> brandNames = (List<String>) request.getAttribute("brandNames");
             List<Integer> numOfPhones = (List<Integer>) request.getAttribute("numOfPhones");
+            List<Integer> numOfLaps = (List<Integer>) request.getAttribute("numOfLaps");
+            List<String> statusName = (List<String>) request.getAttribute("status");
+            List<Integer> numOfOrderByStatus = (List<Integer>) request.getAttribute("numOfOrderByStatus");
             double x = Helper.findTopOfY(totalPrice);
             double y = Helper.findTopOfYForInt(numOfPhones);
         %>
         <script>
             var dayMonth = <%= new Gson().toJson(dayMonthList)%>;
             var price = <%= new Gson().toJson(totalPrice)%>;
-            var phoneBrandNames = <%= new Gson().toJson(phoneBrandNames)%>;
+            var brandNames = <%= new Gson().toJson(brandNames)%>;
             var numOfPhones = <%= new Gson().toJson(numOfPhones)%>;
+            var numOfLaps = <%= new Gson().toJson(numOfLaps)%>;
+            var statusName = <%= new Gson().toJson(statusName)%>;
+            var numOfOrderByStatus = <%= new Gson().toJson(numOfOrderByStatus)%>;
             var x = <%= new Gson().toJson(x)%>;
             var y = <%= new Gson().toJson(y)%>;
         </script>
@@ -257,7 +265,7 @@
             var myLineChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: phoneBrandNames,
+                    labels: brandNames,
                     datasets: [{
                             label: "Revenue",
                             backgroundColor: "rgba(2,117,216,1)",
@@ -303,11 +311,11 @@
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Blue", "Red", "Yellow", "Green"],
+                    labels: statusName,
                     datasets: [{
 
                             // Input data below
-                            data: [12.21, 15.58, 11.25, 8.32],
+                            data: numOfOrderByStatus,
                             backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
                         }],
                 },
@@ -383,13 +391,7 @@
                     text: ''
                 },
                 xAxis: {
-                    categories: [
-                        'Apple',
-                        'Asus',
-                        'Gigabyte',
-                        'MSI',
-                        'Dell'
-                    ],
+                    categories: brandNames,
                     crosshair: true
                 },
                 yAxis: {
@@ -414,11 +416,11 @@
                 },
                 series: [{
                         name: 'Điện thoại',
-                        data: [41661561, 34419934, 33158027, 31209230, 23632635]
+                        data: numOfPhones
 
                     }, {
                         name: 'Laptop',
-                        data: [40514123, 32340016, 32224529, 29456321, 22807464]
+                        data: numOfLaps
 
                     }]
             });

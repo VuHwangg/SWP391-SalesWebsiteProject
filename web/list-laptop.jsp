@@ -192,6 +192,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="type" value="${param.type}"/>
+                                    <input type="hidden" name="sort" value="${param.sort}"/>
                                     <input class="btn-filter" type="submit" value=" Tìm kiếm" />
                                 </form>
                             </div>
@@ -227,6 +228,19 @@
                                                     Giá giảm dần
                                                 </button>
                                             </div>
+                                            <c:forEach items="${requestScope.needs}" var="needs">
+                                                <input type="hidden" name="needs" value="${needs}"/>
+                                            </c:forEach>
+                                            <c:forEach items="${requestScope.brands}" var="brands">
+                                                <input type="hidden" name="brand" value="${brands}"/>
+                                            </c:forEach>
+                                            <c:forEach items="${requestScope.sizes}" var="sizes">
+                                                <input type="hidden" name="size-screen" value="${sizes}"/>
+                                            </c:forEach>
+                                            <input type="hidden" name="from" value="${param.from}"/>
+                                            <input type="hidden" name="to" value="${param.to}"/>
+                                            <input type="hidden" name="type" value="${param.type}"/>
+                                            <input type="hidden" name="page" value="${param.page}"/>
                                         </form>
                                     </div>
                                 </div>
@@ -312,6 +326,19 @@
                                                 </button>
                                             </c:if>
                                         </div>
+                                        <c:forEach items="${requestScope.needs}" var="needs">
+                                            <input type="hidden" name="needs" value="${needs}"/>
+                                        </c:forEach>
+                                        <c:forEach items="${requestScope.brands}" var="brands">
+                                            <input type="hidden" name="brand" value="${brands}"/>
+                                        </c:forEach>
+                                        <c:forEach items="${requestScope.sizes}" var="sizes">
+                                            <input type="hidden" name="size-screen" value="${sizes}"/>
+                                        </c:forEach>
+                                        <input type="hidden" name="from" value="${param.from}"/>
+                                        <input type="hidden" name="to" value="${param.to}"/>
+                                        <input type="hidden" name="type" value="${param.type}"/>
+                                        <input type="hidden" name="sort" value="${param.sort}"/>
                                     </form>
                                 </div>
                             </div>

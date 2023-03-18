@@ -69,6 +69,7 @@
                                             </button>
                                         </div>
                                         <input type="hidden" name="txtSearch" value=${param.txtSearch} />
+                                        <input type="hidden" name="page" value="${param.page}" />
                                     </form>
                                 </div>
                             </div>

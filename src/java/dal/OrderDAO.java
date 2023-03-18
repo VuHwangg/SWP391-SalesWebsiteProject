@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
@@ -40,6 +41,49 @@ public class OrderDAO extends DBContext {
         } catch (Exception e) {
         }
         return check;
+    }
+
+    public List<String> getStatusName() {
+        List<String> status = new ArrayList<>();
+        try {
+            String sql = "SELECT [status_name]\n"
+                    + "  FROM [Status]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                String sta = rs.getString("status_name");
+                status.add(sta);
+            }
+            stm.close();
+            rs.close();
+            return status;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public int numOfOrderByStatus(String statusName) {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(ord.[status]) AS c\n"
+                    + "FROM [Order] ord\n"
+                    + "INNER JOIN [Status] sta ON sta.status_id = ord.[status]\n"
+                    + "WHERE sta.status_name = ?\n"
+                    + "GROUP BY ord.[status] ORDER BY ord.[status] ASC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, statusName);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                count=rs.getInt("c");
+            }
+            stm.close();
+            rs.close();
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
     public boolean addOrder_Detail(int order_id, int product_id, int num, float price) {
@@ -299,6 +343,26 @@ public class OrderDAO extends DBContext {
                     + "  FROM [Order] WHERE [date] = ? GROUP BY [date]";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDate(1, date);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                totalPrice = rs.getDouble("total");
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return totalPrice;
+    }
+    
+    public double getTotalPriceInOnePeriod(Date from, Date to) {
+        double totalPrice = 0;
+        try {
+            String sql = "SELECT SUM([total_price]) as [total]\n"
+                    + "  FROM [Order] WHERE [date] BETWEEN ? AND ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setDate(1, from);
+            stm.setDate(2, to);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 totalPrice = rs.getDouble("total");
