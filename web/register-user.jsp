@@ -56,21 +56,21 @@
                 </div>
                 <div class="form-input">
                     <label for="name">Họ và tên</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="VD: Hoàng Chu Anh Vũ" maxlength="50" required>
+                    <input type="text" class="form-control" id="name" name="name" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Hoàng Chu Anh Vũ" maxlength="100" required>
                     <div class="invalid-feedback">
                         Họ và tên không được để trống
                     </div>
                 </div>
                 <div class="form-input">
                     <label for="phone">Số điện thoại</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="VD: 0833232520" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="20" required>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="VD: 0833232520" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="30" required>
                     <div class="invalid-feedback">
                         Số điện thoại không đuợc để trống
                     </div>
                 </div>
                 <div class="form-input">
                     <label for="address">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" name="place" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="100" required>
+                    <input type="text" class="form-control" id="address" name="place" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="100" required>
                     <div class="invalid-feedback">
                         Số điện thoại không đuợc để trống
                     </div>
