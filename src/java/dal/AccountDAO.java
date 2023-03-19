@@ -57,7 +57,7 @@ public class AccountDAO extends DBContext {
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
                 String img_url = rs.getString("image_url");
-                acc = new Account(username, password, displayname, status, img_url);
+                acc = new Account(username, password, displayname, status);
             }
 
         } catch (Exception ex) {
@@ -136,7 +136,7 @@ public class AccountDAO extends DBContext {
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
                 String img_url = rs.getString("image_url");
-                acc = new Account(name, pass, displayname, status, img_url);
+                acc = new Account(name, pass, displayname, status);
             }
 
         } catch (Exception ex) {
@@ -244,7 +244,7 @@ public class AccountDAO extends DBContext {
                 boolean status = rs.getBoolean("status");
                 String img_url = rs.getString("image_url");
                 int role_id = rs.getInt("role_id");
-                arr.add(new Account(name, pass, displayname, status, img_url, role_id));
+                arr.add(new Account(name, pass, displayname, status, role_id));
             }
 
         } catch (SQLException e) {
@@ -281,9 +281,8 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 boolean status = rs.getBoolean("status");
-                String img_url = rs.getString("image_url");
                 int role = rs.getInt("role_id");
-                acc = new Account(username, pass, displayname, status, img_url, role);
+                acc = new Account(username, pass, displayname, status, role);
             }
 
         } catch (Exception ex) {

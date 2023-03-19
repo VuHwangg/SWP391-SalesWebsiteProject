@@ -87,14 +87,21 @@
                                         <tr>
                                             <td>${history.id}</td>
                                             <td>${history.product.name}</td>
-                                            <td>${history.product.type}</td>
+                                            <td>
+                                                <c:if test="${history.product.type == 1}">
+                                                    Laptop
+                                                </c:if>
+                                                <c:if test="${history.product.type == 0}">
+                                                    Điện thoại
+                                                </c:if>
+                                            </td>
                                             <td>${history.product.color}</td>
                                             <td>${history.product.ram}<span>GB</span></td>
                                             <td>${history.product.memory}<span>GB</span></td>
                                             <td class="text-right">${helper.convertBigNum(history.cost)}&nbsp;&#8363;</td>
                                             <td>${history.num}</td>
                                             <td>${history.date}</td>
-                                            <td>${history.account}</td>
+                                            <td>${history.account.username}</td>
                                         </tr>
                                     </c:forEach>                                   
                                 </tbody>
