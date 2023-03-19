@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.Map;
 import model.Account;
 import model.Cart;
@@ -59,15 +60,15 @@ public class LoginUser extends HttpServlet {
         AccountDAO adao = new AccountDAO();
         OrderDAO odao = new OrderDAO();
         HttpSession session = request.getSession();
-        Account acc = adao.checkExistAcc(mail,true);
+        Account acc = adao.checkExistAcc(mail, true);
         Customer cust = adao.getCust(mail, true);
         int role = adao.getRole(mail);
 //        if (odao.checkExist(cust.getCustomerId())){
 //            session.invalidate();
 //        }
 // response.getWriter().print(mail);
-       
-        if (adao.loginGoogle(mail,true)) {
+
+        if (adao.loginGoogle(mail, true)) {
             CartDAO cartDAO = new CartDAO();
             Map<Integer, Cart> carts = cartDAO.getCartsByCustomerId(cust.getCustomerId());
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
@@ -81,6 +82,11 @@ public class LoginUser extends HttpServlet {
             session.setAttribute("cust", cust);
             session.setAttribute("acc", acc);
             session.setAttribute("role", role);
+            String message = "Đăng nhập thành công!";
+
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body><script>Swal.fire({title: 'Thành công!', text: '" + message + "', icon: 'success', confirmButtonText: 'OK'}).then(function(){window.location='home';});</script></body></html>");
             request.getRequestDispatcher("home").forward(request, response);
         } else {
             request.getRequestDispatcher("register-user.jsp").forward(request, response);
