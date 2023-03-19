@@ -13,25 +13,25 @@ public class Account {
     private String password;
     private String displayname;
     private boolean status;
-    private String img_url;
+   
     private int Role;
     public Account() {
     }
 
-    public Account(String username, String password, String displayname, boolean status, String img_url) {
+    public Account(String username, String password, String displayname, boolean status) {
         this.username = username;
         this.password = password;
         this.displayname = displayname;
         this.status = status;
-        this.img_url = img_url;
+        
     }
 
-    public Account(String username, String password, String displayname, boolean status, String img_url, int Role) {
+    public Account(String username, String password, String displayname, boolean status, int Role) {
         this.username = username;
         this.password = password;
         this.displayname = displayname;
         this.status = status;
-        this.img_url = img_url;
+     
         this.Role = Role;
     }
 
@@ -51,13 +51,7 @@ public class Account {
         this.status = status;
     }
 
-    public String getImg_url() {
-        return img_url;
-    }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
-    }
 
 
 

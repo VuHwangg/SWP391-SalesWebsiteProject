@@ -26,7 +26,7 @@ public class SignupEmpt extends HttpServlet {
         String name = req.getParameter("name");
         String pass = req.getParameter("pass");
         String repass = req.getParameter("repass");
-        String img = req.getParameter("img");
+       
         int role = Integer.parseInt(req.getParameter("role"));
         String err = "1";
         AccountDAO acc = new AccountDAO();
@@ -52,7 +52,7 @@ public class SignupEmpt extends HttpServlet {
              req.getRequestDispatcher("register-admin.jsp").forward(req, resp);
         }else{
             
-            if(acc.addAcount(user, pass, name,img,true)){
+            if(acc.addAcount(user, pass, name,true)){
                 if(acc.addRole(role, user)){
                      req.getRequestDispatcher("controllerEmployee").forward(req, resp);
                 }
