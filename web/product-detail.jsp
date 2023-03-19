@@ -109,6 +109,7 @@
                                     <div class="col-4" style="padding: 0">
                                         <div class="quantity-input quantity-input-pd">
                                             <button class="minus-btn" type="button">-</button>
+                                            
                                             <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="${requestScope.maxQuantity}" readonly/>
                                             <button class="plus-btn" type="button">+</button>
                                         </div>
