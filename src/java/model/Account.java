@@ -13,7 +13,7 @@ public class Account {
     private String password;
     private String displayname;
     private boolean status;
-   
+
     private int Role;
     public Account() {
     }
@@ -23,7 +23,7 @@ public class Account {
         this.password = password;
         this.displayname = displayname;
         this.status = status;
-        
+
     }
 
     public Account(String username, String password, String displayname, boolean status, int Role) {
@@ -31,7 +31,6 @@ public class Account {
         this.password = password;
         this.displayname = displayname;
         this.status = status;
-     
         this.Role = Role;
     }
 
@@ -50,8 +49,6 @@ public class Account {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-
 
 
 

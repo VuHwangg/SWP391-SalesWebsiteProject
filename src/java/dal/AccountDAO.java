@@ -56,7 +56,7 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
-                
+
                 acc = new Account(username, password, displayname, status);
             }
 
@@ -135,7 +135,7 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
-                
+
                 acc = new Account(name, pass, displayname, status);
             }
 
@@ -281,7 +281,7 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 boolean status = rs.getBoolean("status");
-               
+
                 int role = rs.getInt("role_id");
                 acc = new Account(username, pass, displayname, status, role);
             }
