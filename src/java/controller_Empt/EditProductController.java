@@ -39,7 +39,10 @@ public class EditProductController extends HttpServlet {
         String rawProductId = request.getParameter("product_id");
         int productID = Integer.parseInt(rawProductId);
         ProductDBContext p = new ProductDBContext();
-        Product product = p.getProductByID(productID);
+        Product product = p.getForAllProductByID(productID);
+        int brandId = product.getBrands().get(0).getId();
+        int reqId = product.getRequirement().get(0).getId();
+        product.setId(productID);
         int totalAllProduct = p.totalProduct(1);
         int totalComputer = p.totalProduct(1, 1);
         int totalPhone = p.totalProduct(0, 1);
@@ -53,6 +56,8 @@ public class EditProductController extends HttpServlet {
         request.setAttribute("totalComputer", totalComputer);
         request.setAttribute("totalPhone", totalPhone);
         request.setAttribute("product", product);
+        request.setAttribute("brandId", brandId);
+        request.setAttribute("reqId", reqId);
         request.getRequestDispatcher("admin-product-edit.jsp").forward(request, response);
     }
 
@@ -118,6 +123,7 @@ public class EditProductController extends HttpServlet {
         double size = Double.parseDouble(rawSzie);
         
         Product product = new Product();
+        product.setId(productId);
         product.setName(rawProductName);
         product.setType(type);
         product.setOs(rawOs);
@@ -136,8 +142,14 @@ public class EditProductController extends HttpServlet {
         product.setStatus(false);
         ProductDBContext pdb = new ProductDBContext();
         
+        pdb.updateProduct(product);
+        
+        pdb.deleteOldProductBrand(productId);
+        pdb.deleteOldProductRequirment(productId);
         pdb.setProductBrand(productId, brandId);
         pdb.setProductRequirment(productId, requirementId);
+        
+        response.sendRedirect("EditProduct?product_id=" + productId);
     }
 
     /**
