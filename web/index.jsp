@@ -96,8 +96,8 @@
                                                             <i class="bi bi-check-all"></i>
                                                             <span>Còn hàng</span>
                                                         </div>
-                                                        
-                                                       
+
+
                                                     </div>
                                                 </div>
                                                 <c:if test="${onSale.discount>0}">
@@ -144,15 +144,15 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(topSold.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
-                                                    
+
                                                     <div class="product-status">
                                                         <!--Còn hàng-->
                                                         <div class="text-success">
                                                             <i class="bi bi-check-all"></i>
                                                             <span>Còn hàng</span>
                                                         </div>
-                                                        
-                                                       
+
+
                                                     </div>
                                                 </div>
                                                 <c:if test="${topSold.discount>0}">
@@ -197,15 +197,15 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(phone.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
-                                                    
+
                                                     <div class="product-status">
                                                         <!--Còn hàng-->
                                                         <div class="text-success">
                                                             <i class="bi bi-check-all"></i>
                                                             <span>Còn hàng</span>
                                                         </div>
-                                                        
-                                                      
+
+
                                                     </div>
                                                 </div>
                                                 <c:if test="${phone.discount>0}">
@@ -250,15 +250,15 @@
                                                     <div class="product-price">
                                                         <p> ${helper.convertBigNum(laptop.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
-                                                    
+
                                                     <div class="product-status">
                                                         <!--Còn hàng-->
                                                         <div class="text-success">
                                                             <i class="bi bi-check-all"></i>
                                                             <span>Còn hàng</span>
                                                         </div>
-                                                        
-                                                        
+
+
                                                     </div>
                                                 </div>
                                                 <c:if test="${laptop.discount>0}">
@@ -294,6 +294,8 @@
         <!--Light Slider JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <!--Vanta.js Animation Background-->
+        <%@include file="components/vantajs-link.jsp" %>
     </body>
 </html>
 

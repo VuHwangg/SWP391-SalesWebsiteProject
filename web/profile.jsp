@@ -15,13 +15,14 @@
         <main>
             <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
-
+            
             <div class="main-container">
+                <%@include file="components/side-banner.jsp" %>
 
                 <!-- Content Center -->
                 <div class="content-center min-vh-100">
                     <!-- Breadcrumb -->
-                    <div class="breadcrumb">
+                    <div class="breadcrumb breadcrumb-invisible">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
                         <a href="#">Thông tin cá nhân</a>
@@ -94,5 +95,7 @@
             crossorigin="anonymous"
         ></script>
         <%@include file="styles/js/script.jsp" %>
+        <!--Vanta.js Animation Background-->
+        <%@include file="components/vantajs-link.jsp" %>
     </body>
 </html>

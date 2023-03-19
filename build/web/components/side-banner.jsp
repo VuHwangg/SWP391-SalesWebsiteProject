@@ -1,7 +1,7 @@
 <!-- Side banner -->
 
-<div class="img-bg">
-    <img class="sb-img" src="img/banner/6290069.jpg" alt="background"/>
+<div class="img-bg" id="my-background">
+    <!--<img class="sb-img" src="img/banner/6290069.jpg" alt="background"/>-->
 </div>
 <!--<div class="sb-left">
   <img
