@@ -99,7 +99,7 @@
                                        String price= helper.convertBigNum(arr.get(i).getTotal_price());
                         
                         %>
-                        <tr class="row">
+                        <tr class="row py-1">
                             <th class="col fw-normal"><%=arr.get(i).getOrder_id()%></th>
                             <th class="col fw-normal"><%=arr.get(i).getDate()%></th>
                             <th class="col fw-normal">Đang vận chuyển</th>

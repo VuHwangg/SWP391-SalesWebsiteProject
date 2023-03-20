@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import model.Account;
 
 /**
@@ -24,24 +25,17 @@ public class LoginEmpt extends HttpServlet {
         // super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
-        String err = "1";
         HttpSession session = req.getSession();
-        
-        if (err.equals("1") == false) {
-            req.setAttribute("err", err);
-            req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
+
+        AccountDAO acc = new AccountDAO();
+        Account accout = acc.checkLoginCus(email, password, true);
+
+        if (accout == null) {
+            resp.getWriter().write("error");
         } else {
-            AccountDAO acc = new AccountDAO();
-            Account accout = acc.checkLoginCus(email, password,true);
-            
-            if (accout == null) {
-                req.setAttribute("err", "Tài khoản không tồn tại");
-                req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
-            }else{
-                accout = acc.getAcc(email);
-                session.setAttribute("acc1", accout);
-                req.getRequestDispatcher("dashmap").forward(req, resp);
-            }
+            accout = acc.getAcc(email);
+            session.setAttribute("acc1", accout);
+            req.getRequestDispatcher("dashmap").forward(req, resp);
         }
 
     }
