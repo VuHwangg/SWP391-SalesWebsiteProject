@@ -62,7 +62,7 @@
                         <div class="sale-product cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Khuyến mại</a>
+                                <a href="topdiscount">Khuyến mại</a>
                             </div>
 
                             <ul class="list-slider autoWidth cs-hidden">

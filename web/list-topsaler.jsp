@@ -81,7 +81,7 @@
 
                             <!-- list all product -->
                             <div class="row">
-                                <c:forEach items="${requestScope.topSoldList}" var="search">
+                                <c:forEach items="${requestScope.topList}" var="search">
                                     <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${search.id}">
                                         <div class="product-img">
                                             <img

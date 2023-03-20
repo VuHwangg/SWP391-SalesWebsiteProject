@@ -51,6 +51,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>TopDiscount</servlet-name>
+        <servlet-class>controller_Cust.TopDiscountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopDiscount</servlet-name>
+        <url-pattern>/topdiscount</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller_Cust.AddToCartController</servlet-class>
     </servlet>

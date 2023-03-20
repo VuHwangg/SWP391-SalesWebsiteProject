@@ -21,7 +21,7 @@ import model.Product;
  *
  * @author admin
  */
-public class TopSalerController extends HttpServlet {
+public class TopDiscountController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,38 +47,37 @@ public class TopSalerController extends HttpServlet {
         } else {
             numOfPage = 1;
         }
-        OrderDAO orderDB = new OrderDAO();
-        List<Integer> topSaler = orderDB.getTopSaler(24);
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> topSoldListToSort = new ArrayList<>();
-        ArrayList<Product> topSoldList = new ArrayList<>();
+        List<Integer> topDiscount = productList.getTopDiscount(48);
+        ArrayList<Product> topDiscountListToSort = new ArrayList<>();
+        ArrayList<Product> topDiscountList = new ArrayList<>();
         int i = 1;
-        for (int x : topSaler) {
-            topSoldListToSort.add(productList.getProductByID(x));
+        for (int x : topDiscount) {
+            topDiscountListToSort.add(productList.getProductByID(x));
         }
         if(sort.compareTo("none")==0){
-            Collections.sort(topSoldListToSort, new ProductPriceComparatorNone());
+            Collections.sort(topDiscountListToSort, new ProductPriceComparatorNone());
         }
         if(sort.compareTo("ASC")==0){
-            Collections.sort(topSoldListToSort, new ProductPriceComparatorASC());
+            Collections.sort(topDiscountListToSort, new ProductPriceComparatorASC());
         }
         if(sort.compareTo("DESC")==0){
-            Collections.sort(topSoldListToSort, new ProductPriceComparatorDESC());
+            Collections.sort(topDiscountListToSort, new ProductPriceComparatorDESC());
         }
         
-        for (Product x : topSoldListToSort) {
+        for (Product x : topDiscountListToSort) {
             if (i > 12 * (numOfPage - 1) && i <= 12 * numOfPage) {
-                topSoldList.add(x);
+                topDiscountList.add(x);
             }
             i++;
         }
-        double totalPage = 24;
+        double totalPage = 48;
         totalPage = Math.ceil(totalPage / 12);
         request.setAttribute("page", numOfPage);
         request.setAttribute("totalPage", totalPage);
-        request.setAttribute("topList", topSoldList);
+        request.setAttribute("topList", topDiscountList);
         request.getRequestDispatcher("list-topsaler.jsp").forward(request, response);
-//            response.getWriter().print(topSaler);
+//            response.getWriter().print(topDiscount);
     }
 
     @Override
