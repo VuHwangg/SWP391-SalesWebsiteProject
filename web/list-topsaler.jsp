@@ -37,7 +37,7 @@
                             <a href="#">Sản phẩm bán chạy</a>
                         </c:if>
                         <c:if test="${requestScope.namePage==1}">
-                            <a href="#">Sản phẩm khuyến mãi</a>
+                            <a href="#">Sản phẩm khuyến mại</a>
                         </c:if>
                         
                     </div>
