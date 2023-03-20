@@ -123,22 +123,22 @@ public class Payment2 extends HttpServlet {
 //                     response.getWriter().println((cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
 
                     if (pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty() - cart.getValue().getQuantity()))) {
-                       
-                            if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
 
-                                if (session.getAttribute("acc") != null) {
+                        if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
 
-                                    if (od.deleteCart(cart.getValue().getCartId())) {
+                            if (session.getAttribute("acc") != null) {
 
-                                    } else {
+                                if (od.deleteCart(cart.getValue().getCartId())) {
+
+                                } else {
 //                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
-                                        response.getWriter().print(cart.getValue().getCartId());
-                                    }
+                                    response.getWriter().print(cart.getValue().getCartId());
                                 }
-                            } else {
-                                request.getRequestDispatcher("cart-null.jsp").forward(request, response);
                             }
-                       
+                        } else {
+                            request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                        }
+
                     }
                 }
 
@@ -162,15 +162,11 @@ public class Payment2 extends HttpServlet {
             response.getWriter().write("error");
             request.getRequestDispatcher("home").forward(request, response);
         } catch (SQLException ex) {
+            response.getWriter().write("error");
             Logger.getLogger(Payment2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

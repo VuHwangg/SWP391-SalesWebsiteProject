@@ -127,7 +127,22 @@
                 </a>
                 <div class="dropdown-menu">
                     <div class="dropdown-item text-center">
-                      
+                        <span>
+                            Vai trò: 
+                            <%if (acc.getRole() == 1) {%>
+                            <strong class="text-danger">Admin</strong>
+                            <%}
+                                if (acc.getRole() == 2) {
+                            %>
+                            <strong class="text-danger">Bán Hàng</strong>
+                            <%}
+                                if (acc.getRole() == 3) {
+                            %>
+                            <strong class="text-danger">Quản Kho</strong>
+                            <%}
+                            %>
+
+                        </span>
                     </div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item nav-link text-dark text-center" href="logoutEmpt">
