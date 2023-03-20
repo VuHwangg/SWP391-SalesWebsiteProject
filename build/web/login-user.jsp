@@ -64,7 +64,7 @@
                     </a>
                 </div>
             </form>
-            <a class="admin-login-btn" href="login-admin.jsp">Đăng nhập dành cho nhân viên</a>
+            <a class="admin-login-btn" href="login-admin.jsp"><i class="bi bi-person-fill-gear" style="font-size: 22px; line-height: 1"></i> Nhân Viên</a>
         </div>
 
         <!--Content ends-->

@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
 
     <!-- LOGO -->
-    <a class="navbar-brand" href="admin-dashmap.jsp">Anwn's Store Management</a>
+    <a class="navbar-brand" href="dashmap">Anwn's Store Management</a>
 
     <!-- MENU BUTTON FOR RESPONSIVE -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +127,22 @@
                 </a>
                 <div class="dropdown-menu">
                     <div class="dropdown-item text-center">
-                      
+                        <span>
+                            Vai trò: 
+                            <%if (acc.getRole() == 1) {%>
+                            <strong class="text-danger">Admin</strong>
+                            <%}
+                                if (acc.getRole() == 2) {
+                            %>
+                            <strong class="text-danger">Bán Hàng</strong>
+                            <%}
+                                if (acc.getRole() == 3) {
+                            %>
+                            <strong class="text-danger">Quản Kho</strong>
+                            <%}
+                            %>
+
+                        </span>
                     </div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item nav-link text-dark text-center" href="logoutEmpt">

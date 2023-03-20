@@ -36,7 +36,10 @@ public class EmailConfig {
             float Price = (float) cart.getValue().getProduct().getCurrent_price();
             Message+="<tr>\n" +
 "                            <td scope=\"col\">" +
-"                                <img style=\"height: 100px;\" src=\""+ idc.getImageUrl(cart.getValue().getProduct().getId()) +"\">\n" +
+"                                <img\n" +
+"                                                    src=\"data:image/png;base64,"+idc.getImageUrl(cart.getValue().getProduct().getId())+"\"\n" +
+"                                                    alt=\"iphone\"\n" +
+"                                                    />" +
 "                            </td>\n" +
 "                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ " : " + Quantity + "</td>\n" +
 "                            <td class=\"p-0\" scope=\"col\"> <span class=\"d-flex justify-content-end\">"+h.convertBigNum(Price*Quantity) +"</span></td>\n" +

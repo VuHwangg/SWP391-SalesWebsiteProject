@@ -24,36 +24,29 @@ public class LoginEmpt extends HttpServlet {
         // super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
-        String err = "1";
         HttpSession session = req.getSession();
 
-        if (err.equals("1") == false) {
-            req.setAttribute("err", err);
-            req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
-        } else {
-            AccountDAO acc = new AccountDAO();
-            Account accout = acc.checkLoginCus(email, password, true);
+        AccountDAO acc = new AccountDAO();
+        Account accout = acc.checkLoginCus(email, password, true);
 
-            if (accout == null) {
-                req.setAttribute("err", "Tài khoản không tồn tại");
-                req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
+        if (accout == null) {
+            resp.getWriter().write("error");
+        } else {
+            accout = acc.getAcc(email);
+
+            session.setAttribute("acc1", accout);
+            if (accout.getRole() == 1) {
+                req.getRequestDispatcher("dashmap").forward(req, resp);
             } else {
-                accout = acc.getAcc(email);
-               
-                session.setAttribute("acc1", accout);
-                if (accout.getRole() == 1) {
-                    req.getRequestDispatcher("dashmap").forward(req, resp);
+                if (accout.getRole() == 2) {
+                    accout = acc.getAcc(email);
+                    session.setAttribute("acc1", accout);
+                    req.getRequestDispatcher("ProductManagement").forward(req, resp);
                 } else {
-                    if (accout.getRole() == 2) {
-                        accout = acc.getAcc(email);
-                        session.setAttribute("acc1", accout);
-                        req.getRequestDispatcher("ProductManagement").forward(req, resp);
-                    }else{
-                        accout = acc.getAcc(email);
-                        session.setAttribute("acc1", accout);
-                        req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
-                    
-                    }
+                    accout = acc.getAcc(email);
+                    session.setAttribute("acc1", accout);
+                    req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
+
                 }
             }
         }
