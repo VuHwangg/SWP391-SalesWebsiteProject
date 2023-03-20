@@ -74,6 +74,7 @@ public class TopSalerController extends HttpServlet {
         }
         double totalPage = 24;
         totalPage = Math.ceil(totalPage / 12);
+        request.setAttribute("namePage", 0);
         request.setAttribute("page", numOfPage);
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("topList", topSoldList);

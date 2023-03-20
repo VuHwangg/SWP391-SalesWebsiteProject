@@ -33,7 +33,13 @@
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Tìm kiếm</a>
+                        <c:if test="${requestScope.namePage==0}">
+                            <a href="#">Sản phẩm bán chạy</a>
+                        </c:if>
+                        <c:if test="${requestScope.namePage==1}">
+                            <a href="#">Sản phẩm khuyến mãi</a>
+                        </c:if>
+                        
                     </div>
                     <!-- list product block -->
                     <div class="list-product">

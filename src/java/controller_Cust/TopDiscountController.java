@@ -73,6 +73,7 @@ public class TopDiscountController extends HttpServlet {
         }
         double totalPage = 48;
         totalPage = Math.ceil(totalPage / 12);
+        request.setAttribute("namePage", 1);
         request.setAttribute("page", numOfPage);
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("topList", topDiscountList);
