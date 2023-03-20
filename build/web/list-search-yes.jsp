@@ -80,7 +80,7 @@
                                     <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${search.id}">
                                         <div class="product-img">
                                             <img
-                                                src="${search.image[0].url}"
+                                                src="data:image/png;base64,${search.image[0].url}"
                                                 alt="iphone"
                                                 />
                                         </div>

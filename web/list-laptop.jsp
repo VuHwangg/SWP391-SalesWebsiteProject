@@ -252,7 +252,7 @@
                                         <a class="product col-md-4 col-sm-6" href="product_detail?product_id=${filter.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${filter.image[0].url}"
+                                                    src="data:image/png;base64,${filter.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>

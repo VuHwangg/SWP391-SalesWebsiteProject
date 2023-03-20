@@ -57,10 +57,10 @@
                     <div class="row mt-3 w-100 mx-auto product-detail">
                         <div class="col-md-8">
                             <div class="slider-img">
-                                <div class="main-slider-img text-center p-4"> <img id="main-image" src="${requestScope.product.image[0].url}"/> </div>
+                                <div class="main-slider-img text-center p-4"> <img id="main-image" src="data:image/png;base64,${requestScope.product.image[0].url}"/> </div>
                                 <div class="thumbnail text-center"> 
                                     <c:forEach items="${requestScope.product.image}" var="image">
-                                        <img onclick="change_image(this)" src="${image.url}"> 
+                                        <img onclick="change_image(this)" src="data:image/png;base64,${image.url}"> 
                                     </c:forEach>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                         <a class="slider-product slider-product-similar product" href="product_detail?product_id=${sameList.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${sameList.image[0].url}"
+                                                    src="data:image/png;base64,${sameList.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>
