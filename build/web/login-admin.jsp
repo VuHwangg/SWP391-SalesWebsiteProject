@@ -45,13 +45,8 @@
         </div>
 
         <!--Login Form-->
-        <div class="login-form">
-            <form action="LoginEmpt" method="post">
-                <%
-                    String mess = (String) request.getAttribute("err");
-                    if (mess == null)
-                        mess = "";
-                %>
+        <div class="login-form" >
+            <form id="login-form" action="LoginEmpt" method="post">
                 
                 <div class="form-title">
                     <h4 class="text-danger">Awns's Store</h4>
@@ -62,7 +57,6 @@
                 <div class="form-input">
                     <label for="username">Tên đăng nhập</label>
                     <input type="text" id="username" name="email">
-                    <small class="text-danger"><%=mess%></small>
                 </div>
                 <div class="form-input">
                     <label for="password">Mật khẩu</label>
@@ -73,9 +67,9 @@
                     <div class="preview"></div>
                     <div class="captcha-form">
                         <input type="text" id="captcha-form" placeholder="Nhập mã captcha tương tự với đoạn mã trên">
-                        <button class="captcha-refresh">
+                        <div class="btn captcha-refresh" style="padding: 8px; border-radius: 0">
                             <i class="fa fa-refresh"></i>
-                        </button>
+                        </div>
                     </div>
                 </div>
                 <div class="form-input">
@@ -86,6 +80,7 @@
 
         <!--Content ends-->
         <%@include file="styles/js/login-script.jsp" %>
+        <%@include file="styles/js/popup-submit-form.jsp" %>
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -48,7 +48,7 @@
                                                     <img
                                                         class="align-items-center"
                                                         style="width: 100%; object-fit: contain;"
-                                                        src="${cart.value.product.image[0].url}"
+                                                        src="data:image/png;base64,${cart.value.product.image[0].url}"
                                                         />
                                                 </div>
                                             </th>

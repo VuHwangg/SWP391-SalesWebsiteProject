@@ -1360,6 +1360,7 @@
         position: relative;
         margin-bottom: 20px;
         height: 52px;
+        font-family: 'Fredoka One', cursive;
     }
 
     .footer-about .footer-logo img {
@@ -1384,10 +1385,11 @@
         justify-content: center;
         align-items: center;
         transition: all 0.4s ease;
+        overflow: hidden;
     }
 
-    .footer-about .media-icons .fa-github {
-        font-size: 42px;
+    .footer-about .media-icons .bi-github {
+        font-size: 26px;
     }
 
     .footer-about .media-icons a:nth-child(1) {
@@ -1418,12 +1420,13 @@
     }
 
     .footer-about .media-icons a:nth-child(4) {
-        background: #0077b5;
+        background: #fff;
+        color: #9c36b5;
     }
 
     .footer-about .media-icons a:nth-child(4):hover {
-        color: #0077b5;
-        background: #fff;
+        color: #fff;
+        background: #9c36b5;
     }
 
     .footer-about .media-icons a:nth-child(5) {

@@ -268,9 +268,11 @@
     
     .admin-login-btn {
         color: #dc3545;
+        text-decoration: none;
     }
     
     .admin-login-btn:hover {
         color: #83121d;
+        text-decoration: underline;
     }
 </style>
