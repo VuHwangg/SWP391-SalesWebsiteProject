@@ -1,6 +1,7 @@
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="helper" class="util.Helper"/>
+<%@page import="model.Account"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -278,17 +279,21 @@
                                     </c:forEach>
                                 </div>
                             </div>
+                                <% acc = (Account) session.getAttribute("acc");%>
                             <div class="d-flex justify-content-center align-items-center flex-column">
+                                <%if(acc != null){%>
                                 <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
                                 <h5 class="text-center">Bạn thấy sao về sản phẩm này ?</h5>
                                 <!-- Khi người dùng đã đăng nhập -->
                                 <button type="button" class="btn btn-danger fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                                     Đánh giá ngay
-                                </button>
+                                </button><!-- comment -->
+                                <%}else{%>
                                 <!-- Khi người dùng chưa đăng nhập -->
                                 <a href="login-user.jsp" class="btn btn-danger fs-5 w-100" style="max-width: 600px">
                                     Đăng nhập ngay để có thể đánh giá sản phẩm
                                 </a>
+                                <%}%>
                             </div>
 
                             <!-- Modal -->
