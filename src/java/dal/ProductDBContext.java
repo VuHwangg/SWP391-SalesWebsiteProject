@@ -63,7 +63,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+               
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -130,7 +130,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+             
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -213,7 +213,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+                
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -451,7 +451,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+           
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -583,7 +583,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+             
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -653,7 +653,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+          
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -723,7 +723,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+          
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -1289,7 +1289,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+               
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();

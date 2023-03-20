@@ -31,7 +31,7 @@ public class Product {
     private ArrayList<Vote> votes = new ArrayList<>();
     private ArrayList<Import_History> import_history = new ArrayList<>();
     private int qty;
-    private int sold;
+ 
     private ArrayList<Image> image = new ArrayList<>();
     private boolean status;
 
@@ -205,13 +205,7 @@ public class Product {
         this.qty = qty;
     }
 
-    public int getSold() {
-        return sold;
-    }
-
-    public void setSold(int sold) {
-        this.sold = sold;
-    }
+  
 
     public boolean isStatus() {
         return status;

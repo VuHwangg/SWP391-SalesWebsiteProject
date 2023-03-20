@@ -138,7 +138,7 @@ public class EditProductController extends HttpServlet {
         product.setDescription(rawDescription);
         product.setDiscount(discount);
         product.setQty(0);
-        product.setSold(0);
+      
         product.setStatus(false);
         ProductDBContext pdb = new ProductDBContext();
         
