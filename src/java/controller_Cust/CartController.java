@@ -4,6 +4,7 @@
  */
 package controller_Cust;
 
+import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -40,6 +41,14 @@ public class CartController extends HttpServlet {
             if (carts == null) {
                 carts = new LinkedHashMap<>();
             }
+            for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                Integer key = cart.getKey();
+                Cart val = cart.getValue();
+                int maxQuantity = new ProductDBContext().getProductQuantityById(val.getProduct().getId());
+                if (maxQuantity == 0) {
+                    carts.remove(key);
+                }
+            }
             
             // caculate total money
             double originalTotalPrice = 0;
@@ -49,6 +58,7 @@ public class CartController extends HttpServlet {
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
                 Integer key = entry.getKey();
                 Cart cart = entry.getValue();
+                int maxQuantity = new ProductDBContext().getProductQuantityById(cart.getProduct().getId());
                 totalMoney += cart.getQuantity() * cart.getProduct().getCurrent_price();
                 originalTotalPrice += cart.getQuantity() * cart.getProduct().getOriginal_price();
                 discountTotalPrice += cart.getQuantity() * ((cart.getProduct().

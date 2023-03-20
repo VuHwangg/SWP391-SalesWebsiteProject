@@ -1,3 +1,9 @@
+<%-- 
+    Document   : list-topsaler
+    Created on : Mar 20, 2023, 2:39:10 PM
+    Author     : admin
+--%>
+
 
 <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +33,13 @@
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
-                        <a href="#">Tìm kiếm</a>
+                        <c:if test="${requestScope.namePage==0}">
+                            <a href="#">Sản phẩm bán chạy</a>
+                        </c:if>
+                        <c:if test="${requestScope.namePage==1}">
+                            <a href="#">Sản phẩm khuyến mại</a>
+                        </c:if>
+                        
                     </div>
                     <!-- list product block -->
                     <div class="list-product">
@@ -42,7 +54,7 @@
                                     <form
                                         class="d-flex search-box"
                                         role="search"
-                                        action="search"
+                                        action=""
                                         method="GET"
                                         >
                                         <div class="btn-group sort-method-selection" role="group">
@@ -68,7 +80,6 @@
                                                 Giá giảm dần
                                             </button>
                                         </div>
-                                        <input type="hidden" name="txtSearch" value=${param.txtSearch} />
                                         <input type="hidden" name="page" value="${param.page}" />
                                     </form>
                                 </div>
@@ -76,7 +87,7 @@
 
                             <!-- list all product -->
                             <div class="row">
-                                <c:forEach items="${requestScope.searchList}" var="search">
+                                <c:forEach items="${requestScope.topList}" var="search">
                                     <a class="product col-md-3 col-sm-6" href="product_detail?product_id=${search.id}">
                                         <div class="product-img">
                                             <img
@@ -139,7 +150,6 @@
 
                                     </div>
                                 </div>
-                                <input type="hidden" name="txtSearch" value="${param.txtSearch}" />
                                 <input type="hidden" name="sort" value="${param.sort}" />
                             </form>
 

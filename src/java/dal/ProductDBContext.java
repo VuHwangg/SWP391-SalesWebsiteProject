@@ -62,7 +62,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-               
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -128,7 +128,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-             
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -199,7 +199,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -436,7 +436,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-           
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -567,7 +567,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-             
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -636,7 +636,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-          
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -705,7 +705,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-          
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -1228,7 +1228,7 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Product getForAllProductByID(int id) {
         Product product = new Product();
         try {
@@ -1269,7 +1269,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-               
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -1288,6 +1288,27 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+
+    public List<Integer> getTopDiscount(int num) {
+        List<Integer> topDiscount = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP (?) [product_id]\n"
+                    + "  FROM [Product] WHERE discount>0 ORDER BY discount DESC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, num);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                topDiscount.add(id);
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return topDiscount;
+    }
+
 
     public static void main(String[] args) {
         ProductDBContext pdb = new ProductDBContext();

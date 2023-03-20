@@ -32,6 +32,8 @@ public class AddToCartController extends HttpServlet {
 
         String rawQuantity = req.getParameter("quantity");
         int productQuantity = Integer.parseInt(rawQuantity);
+        
+        int maxQuantity = new ProductDBContext().getProductQuantityById(productId);
 
         // Get carts from session
         HttpSession session = req.getSession();
@@ -46,7 +48,11 @@ public class AddToCartController extends HttpServlet {
         // When product is exist in cart update quantity
         if (carts.containsKey(productId)) {
             int oldQuantity = carts.get(productId).getQuantity();
-            carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            if (oldQuantity + productQuantity >= maxQuantity) {
+                carts.get(productId).setQuantity(maxQuantity);
+            } else {
+                carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            }
             if (sessionCustomer != null) {
                 cartDAO.updateQuantity(carts.get(productId));
             }
@@ -58,7 +64,11 @@ public class AddToCartController extends HttpServlet {
             Cart cart = new Cart();
             cart.setProduct(product);
             cart.setCustomer(customer);
-            cart.setQuantity(productQuantity);
+            if (productQuantity >= maxQuantity) {
+                cart.setQuantity(maxQuantity);
+            } else {
+                cart.setQuantity(productQuantity);
+            }
             carts.put(productId, cart);
             // Save cart to DB
             if (sessionCustomer != null) {
@@ -82,6 +92,8 @@ public class AddToCartController extends HttpServlet {
         String rawQuantity = req.getParameter("quantity");
         int productQuantity = Integer.parseInt(rawQuantity);
 
+        int maxQuantity = new ProductDBContext().getProductQuantityById(productId);
+
         // Get carts from session
         HttpSession session = req.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
@@ -95,7 +107,11 @@ public class AddToCartController extends HttpServlet {
         // When product is exist in cart update quantity
         if (carts.containsKey(productId)) {
             int oldQuantity = carts.get(productId).getQuantity();
-            carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            if (oldQuantity + productQuantity >= maxQuantity) {
+                carts.get(productId).setQuantity(maxQuantity);
+            } else {
+                carts.get(productId).setQuantity(oldQuantity + productQuantity);
+            }
             if (sessionCustomer != null) {
                 cartDAO.updateQuantity(carts.get(productId));
             }
@@ -107,7 +123,12 @@ public class AddToCartController extends HttpServlet {
             Cart cart = new Cart();
             cart.setProduct(product);
             cart.setCustomer(customer);
-            cart.setQuantity(productQuantity);
+            if (productQuantity >= maxQuantity) {
+                cart.setQuantity(maxQuantity);
+            } else {
+                cart.setQuantity(productQuantity);
+            }
+
             carts.put(productId, cart);
             // Save cart to DB
             if (sessionCustomer != null) {

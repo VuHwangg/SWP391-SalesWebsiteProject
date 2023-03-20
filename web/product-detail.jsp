@@ -57,10 +57,10 @@
                     <div class="row mt-3 w-100 mx-auto product-detail">
                         <div class="col-md-8">
                             <div class="slider-img">
-                                <div class="main-slider-img text-center p-4"> <img id="main-image" src="${requestScope.product.image[0].url}"/> </div>
+                                <div class="main-slider-img text-center p-4"> <img id="main-image" src="data:image/png;base64,${requestScope.product.image[0].url}"/> </div>
                                 <div class="thumbnail text-center"> 
                                     <c:forEach items="${requestScope.product.image}" var="image">
-                                        <img onclick="change_image(this)" src="${image.url}"> 
+                                        <img onclick="change_image(this)" src="data:image/png;base64,${image.url}"> 
                                     </c:forEach>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                     <div class="col-4" style="padding: 0">
                                         <div class="quantity-input quantity-input-pd">
                                             <button class="minus-btn" type="button">-</button>
-                                            
+
                                             <input type="number" class="quantity" id="quantityInput" name="quantity" value="1" min="1" max="${requestScope.maxQuantity}" readonly/>
                                             <button class="plus-btn" type="button">+</button>
                                         </div>
@@ -156,7 +156,7 @@
                                         <a class="slider-product slider-product-similar product" href="product_detail?product_id=${sameList.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${sameList.image[0].url}"
+                                                    src="data:image/png;base64,${sameList.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>
@@ -175,22 +175,22 @@
                                                         <p> ${helper.convertBigNum(sameList.current_price)}&nbsp;<span>VNĐ</span></p>
                                                     </div>
                                                     <div class="product-status">
-                                                            <c:if test="${sameList.qty >= 1}">
+                                                        <c:if test="${sameList.qty >= 1}">
 
-                                                                <!--Còn hàng-->
-                                                                <div class="text-success">
-                                                                    <i class="bi bi-check-all"></i>
-                                                                    <span>Còn hàng</span>
-                                                                </div>
-                                                            </c:if>
-                                                            <c:if test="${sameList.qty < 1}">
-                                                                <!--Hết hàng-->
-                                                                <div class="text-danger">
-                                                                    <i class="bi bi-x-lg"></i>
-                                                                    <span>Hết hàng</span>
-                                                                </div>
-                                                            </c:if>
-                                                        </div>
+                                                            <!--Còn hàng-->
+                                                            <div class="text-success">
+                                                                <i class="bi bi-check-all"></i>
+                                                                <span>Còn hàng</span>
+                                                            </div>
+                                                        </c:if>
+                                                        <c:if test="${sameList.qty < 1}">
+                                                            <!--Hết hàng-->
+                                                            <div class="text-danger">
+                                                                <i class="bi bi-x-lg"></i>
+                                                                <span>Hết hàng</span>
+                                                            </div>
+                                                        </c:if>
+                                                    </div>
                                                 </div>
                                                 <c:if test="${sameList.discount>0}">
                                                     <div class="col-4">
@@ -295,12 +295,12 @@
                             <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <form>
+                                        <form action="sendrate" method="get">
                                             <div class="modal-header justify-content-center">
                                                 <h1 class="modal-title fs-5 text-center">Đánh giá và nhận xét sản phẩm <br> ${requestScope.product.name}</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <textarea class="form-control" rows="5" placeholder="Bạn nghĩ sao về sản phẩm này" minlength="1" maxlength="1000"></textarea>
+                                                <textarea class="form-control" rows="5" name="comment" placeholder="Bạn nghĩ sao về sản phẩm này" minlength="1" maxlength="1000"></textarea>
                                                 <div class="mb-3 mt-3">
                                                     <h5 class="fs-5">Bình chọn số sao cho sản phẩm</h5>
                                                 </div>
@@ -312,6 +312,7 @@
                                                     <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="productId" value="${requestScope.product.id}"/>
                                             <div class="modal-footer">
                                                 <input type="submit" class="btn btn-danger w-100" value="Gửi đánh giá">
                                             </div>
@@ -319,6 +320,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <c:forEach items="${requestScope.userVotes}" var="userVote">
+                                <h1>${userVote.acc.displayname}</h1>
+                                <div class="stars">
+                                    <c:forEach var = "i" begin = "1" end = "5">
+                                        <c:choose>
+                                            <c:when test="${i <= userVote.rating}">
+                                                <i class="bi bi-star-fill active"></i>
+                                            </c:when>    
+                                            <c:otherwise>
+                                                <i class="bi bi-star-fill"></i>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </div>
+                                <h2>${userVote.comment}</h2>
+                            </c:forEach>                       
                         </div>
                     </div>
                 </div>
