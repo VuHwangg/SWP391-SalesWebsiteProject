@@ -69,6 +69,24 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>CommentManagement</servlet-name>
+        <servlet-class>controller_Empt.ManageCommentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentManagement</servlet-name>
+        <url-pattern>/commentmanagement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChangeCommentStatus</servlet-name>
+        <servlet-class>controller_Empt.ChangeCommentStatusController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeCommentStatus</servlet-name>
+        <url-pattern>/changecommentstatus</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller_Cust.AddToCartController</servlet-class>
     </servlet>
