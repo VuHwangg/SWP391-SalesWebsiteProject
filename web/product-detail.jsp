@@ -279,7 +279,7 @@
                                     </c:forEach>
                                 </div>
                             </div>
-                                <%Account acc = (Account) session.getAttribute("acc");%>
+                                <% acc = (Account) session.getAttribute("acc");%>
                             <div class="d-flex justify-content-center align-items-center flex-column">
                                 <%if(acc != null){%>
                                 <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
