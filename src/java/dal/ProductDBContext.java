@@ -40,7 +40,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where  [status] = 1 AND [product_id] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -63,7 +62,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -102,7 +101,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "  FROM [Product]\n"
                     + "  where  [status] = 1 and [name] like ? \n"
@@ -130,7 +128,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -151,7 +149,7 @@ public class ProductDBContext extends DBContext {
     }
 
     //for home screen(lấy ra các sản phẩm theo phân loại, top sale, top sold)
-    public ArrayList<Product> listProduct(int type, int num, boolean topSale, boolean topSold) {
+    public ArrayList<Product> listProduct(int type, int num, boolean topSale) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT TOP (?) [product_id]\n"
@@ -169,25 +167,13 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where  [status] = 1 and [qty] > 0";
             if (type != -1) {
                 sql = sql + "AND [type] = ?";
             }
-            if (topSold == true || topSale == true) {
-                sql = sql + " ORDER BY ";
-            }
-
-            if (topSold == true) {
-                sql = sql + "[sold] DESC";
-            }
-
             if (topSale == true) {
-                if (topSold == true) {
-                    sql = sql + ", ";
-                }
-                sql = sql + " [discount] DESC";
+                sql = sql + " ORDER BY [discount] DESC";
             }
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
@@ -213,7 +199,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -404,7 +390,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "  FROM   [Product] \n"
                     + "  WHERE [name] LIKE ?\n"
@@ -451,7 +436,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -493,7 +478,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM  [Product] pr "
                     + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
@@ -583,7 +567,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -624,7 +608,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr\n"
                     + "  where  pr.[status] = 1  and pr.[name] LIKE ?\n"
@@ -653,7 +636,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -694,7 +677,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr\n"
                     + "  where  pr.[status] = 1\n"
@@ -723,7 +705,7 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-                product.setSold(rs.getInt("sold"));
+
                 product.setStatus(rs.getBoolean("status"));
                 BrandDBContext brdb = new BrandDBContext();
                 RequirementDBContext reqdb = new RequirementDBContext();
@@ -1014,7 +996,6 @@ public class ProductDBContext extends DBContext {
                     + "           ,[description]\n"
                     + "           ,[discount]\n"
                     + "           ,[qty]\n"
-                    + "           ,[sold]\n"
                     + "           ,[status])\n"
                     + "     VALUES\n"
                     + "           (?\n"
@@ -1185,6 +1166,149 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void updateProduct(Product p) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [name] = ?\n"
+                    + "      ,[type] = ?\n"
+                    + "      ,[os] = ?\n"
+                    + "      ,[color] = ?\n"
+                    + "      ,[current_price] = ?\n"
+                    + "      ,[original_price] = ?\n"
+                    + "      ,[ram] = ?\n"
+                    + "      ,[memory] = ?\n"
+                    + "      ,[cpu] = ?\n"
+                    + "      ,[graphics_card] = ?\n"
+                    + "      ,[size] = ?\n"
+                    + "      ,[description] = ?\n"
+                    + "      ,[discount] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, p.getName());
+            ps.setInt(2, p.getType());
+            ps.setString(3, p.getOs());
+            ps.setString(4, p.getColor());
+            ps.setDouble(5, p.getCurrent_price());
+            ps.setDouble(6, p.getOriginal_price());
+            ps.setString(7, String.valueOf(p.getRam()));
+            ps.setString(8, String.valueOf(p.getMemory()));
+            ps.setString(9, p.getOs());
+            ps.setString(10, p.getGraphic_card());
+            ps.setDouble(11, p.getSize());
+            ps.setString(12, p.getDescription());
+            ps.setDouble(13, p.getDiscount());
+            ps.setInt(14, p.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteOldProductBrand(int productId) {
+        try {
+            String sql = "DELETE FROM [dbo].[Product_Brand]\n"
+                    + "      WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteOldProductRequirment(int productId) {
+        try {
+            String sql = "DELETE FROM [dbo].[Product_Requirement]\n"
+                    + "      WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Product getForAllProductByID(int id) {
+        Product product = new Product();
+        try {
+            String sql = "SELECT   [product_id]\n"
+                    + "		  ,[name]\n"
+                    + "		  ,[type]\n"
+                    + "		  ,[os]\n"
+                    + "		  ,[color]\n"
+                    + "		  ,[current_price]\n"
+                    + "           ,[original_price]\n"
+                    + "		  ,[ram]\n"
+                    + "		  ,[memory]\n"
+                    + "		  ,[cpu]\n"
+                    + "		  ,[graphics_card]\n"
+                    + "		  ,[size]\n"
+                    + "		  ,[description]\n"
+                    + "		  ,[discount]\n"
+                    + "		  ,[qty]\n"
+                    + "		  ,[status]\n"
+                    + "	  FROM [Product] where [product_id] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                RequirementDBContext reqdb = new RequirementDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setRequirement(reqdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+            }
+            stm.close();
+            rs.close();
+            return product;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<Integer> getTopDiscount(int num) {
+        List<Integer> topDiscount = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP (?) [product_id]\n"
+                    + "  FROM [Product] WHERE discount>0 ORDER BY discount DESC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, num);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                topDiscount.add(id);
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return topDiscount;
+    }
+
 
     public static void main(String[] args) {
         ProductDBContext pdb = new ProductDBContext();

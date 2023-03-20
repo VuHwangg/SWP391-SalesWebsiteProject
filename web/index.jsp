@@ -62,7 +62,7 @@
                         <div class="sale-product cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <span>Khuyến mại</span>
+                                <a href="topdiscount">Khuyến mại</a>
                             </div>
 
                             <ul class="list-slider autoWidth cs-hidden">
@@ -71,7 +71,7 @@
                                         <a class="slider-product product" href="product_detail?product_id=${onSale.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${onSale.image[0].url}"
+                                                    src="data:image/png;base64,${onSale.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>
@@ -118,7 +118,7 @@
                         <div class="bestseller-products cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <span>Bán chạy</span>
+                                <a href="topsaler">Bán chạy</a>
                             </div>
                             <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.topSoldList}" var="topSold">
@@ -126,7 +126,7 @@
                                         <a class="slider-product product" href="product_detail?product_id=${topSold.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${topSold.image[0].url}"
+                                                    src="data:image/png;base64,${topSold.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>
@@ -179,7 +179,7 @@
                                         <a class="slider-product product" href="product_detail?product_id=${phone.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${phone.image[0].url}"
+                                                    src="data:image/png;base64,${phone.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>
@@ -232,7 +232,7 @@
                                         <a class="slider-product product" href="product_detail?product_id=${laptop.id}">
                                             <div class="product-img">
                                                 <img
-                                                    src="${laptop.image[0].url}"
+                                                    src="data:image/png;base64,${laptop.image[0].url}"
                                                     alt="iphone"
                                                     />
                                             </div>

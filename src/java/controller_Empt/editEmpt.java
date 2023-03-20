@@ -26,8 +26,7 @@ public class editEmpt extends HttpServlet {
         String name = req.getParameter("name");
         String pass = req.getParameter("password");
         int role = Integer.parseInt(req.getParameter("flexRadioDefault"));
-        String url = req.getParameter("img");
-        if(url == null) url ="";
+       
         AccountDAO adao = new AccountDAO();
 //        resp.getWriter().println(adao.updateAcc(name, username, pass, url));
 //        resp.getWriter().println(username);
@@ -35,7 +34,7 @@ public class editEmpt extends HttpServlet {
 //       resp.getWriter().println(pass);
 //       resp.getWriter().println(role);
 //       resp.getWriter().println(adao.updateRole_Acc(role, username));
-        if (adao.updateAcc(name, username, pass, url) == true && adao.updateRole_Acc(role, username) == true) {
+        if (adao.updateAcc(name, username, pass) == true && adao.updateRole_Acc(role, username) == true) {
 
             req.getRequestDispatcher("controllerEmployee").forward(req, resp);
         } else {

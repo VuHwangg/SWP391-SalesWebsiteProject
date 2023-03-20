@@ -56,8 +56,8 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
-                String img_url = rs.getString("image_url");
-                acc = new Account(username, password, displayname, status, img_url);
+
+                acc = new Account(username, password, displayname, status);
             }
 
         } catch (Exception ex) {
@@ -66,17 +66,17 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean addAcount(String username, String password, String displayname, String url, boolean status) {
+    public boolean addAcount(String username, String password, String displayname, boolean status) {
         boolean check = false;
         try {
             String sql = "Insert into Account "
-                    + "(username,password,displayname,[status],image_url) values (?,?,?,?,?)";
+                    + "(username,password,displayname,[status]) values (?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, displayname);
             ps.setBoolean(4, status);
-            ps.setString(5, url);
+           
             check = ps.executeUpdate() > 0;
 
         } catch (Exception e) {
@@ -135,8 +135,8 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 status = rs.getBoolean("status");
-                String img_url = rs.getString("image_url");
-                acc = new Account(name, pass, displayname, status, img_url);
+
+                acc = new Account(name, pass, displayname, status);
             }
 
         } catch (Exception ex) {
@@ -242,9 +242,9 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 boolean status = rs.getBoolean("status");
-                String img_url = rs.getString("image_url");
+               
                 int role_id = rs.getInt("role_id");
-                arr.add(new Account(name, pass, displayname, status, img_url, role_id));
+                arr.add(new Account(name, pass, displayname, status, role_id));
             }
 
         } catch (SQLException e) {
@@ -281,9 +281,9 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 boolean status = rs.getBoolean("status");
-                String img_url = rs.getString("image_url");
+
                 int role = rs.getInt("role_id");
-                acc = new Account(username, pass, displayname, status, img_url, role);
+                acc = new Account(username, pass, displayname, status, role);
             }
 
         } catch (Exception ex) {
@@ -292,15 +292,15 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    public boolean updateAcc(String name, String username, String pass, String url) {
+    public boolean updateAcc(String name, String username, String pass) {
         boolean check = false;
         try {
             String sql = "Update Account "
-                    + "set  [password] = ? ,displayname = ? ,image_url=? where username = ?";
+                    + "set  [password] = ? ,displayname = ?  where username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, pass);
             ps.setString(2, name);
-            ps.setString(3, url);
+           
             ps.setString(4, username);
 
             check = ps.executeUpdate() > 0;

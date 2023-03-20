@@ -44,6 +44,9 @@ public class ImportProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String rawProductId = request.getParameter("productId");
+        request.setAttribute("productId", Integer.parseInt(rawProductId));
+        request.getRequestDispatcher("admin-product-import.jsp").forward(request, response);
     }
 
     /**

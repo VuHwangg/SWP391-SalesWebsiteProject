@@ -184,15 +184,15 @@
                                                 <div class="d-flex ">
                                                     <!-- Button trigger modal -->
 
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
-                                                        Thêm số lượng
+                                                    <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
+                                                        <a href="ImportProduct?productId=${p.id}">Thêm số lượng</a>
                                                     </button>
 
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
-                                                                <form action="ImportProduct" method="POST">
+                                                                <form >
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title">Thêm số lượng sản phẩm mới</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

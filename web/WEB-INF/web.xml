@@ -40,6 +40,34 @@
         <servlet-name>ImportHistory</servlet-name>
         <url-pattern>/importhistory</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SendRate</servlet-name>
+        <servlet-class>controller_Cust.UserVoteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendRate</servlet-name>
+        <url-pattern>/sendrate</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TopSaler</servlet-name>
+        <servlet-class>controller_Cust.TopSalerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopSaler</servlet-name>
+        <url-pattern>/topsaler</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TopDiscount</servlet-name>
+        <servlet-class>controller_Cust.TopDiscountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopDiscount</servlet-name>
+        <url-pattern>/topdiscount</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller_Cust.AddToCartController</servlet-class>

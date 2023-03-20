@@ -32,7 +32,7 @@ public class SignupUser extends HttpServlet {
         String place = req.getParameter("place");
         String email = mail;
         String err = "1";
-        String img= req.getParameter("img");
+        
         Check ch = new Check();
         if (name.isEmpty()) {
             err = " Please input the your name";
@@ -58,7 +58,7 @@ public class SignupUser extends HttpServlet {
             req.getRequestDispatcher("register-user.jsp").forward(req, resp);
         } else {
 
-            if (acc.addAcount(mail, "!!", name,img,true) && acc.addCust(name, place, phone, email, true)) {
+            if (acc.addAcount(mail, "!!", name,true) && acc.addCust(name, place, phone, email, true)) {
                 if (acc.addRole(4, mail)) {
                     Account acc1 = acc.checkExistAcc(mail,true);
                     Customer cust1 = acc.getCust(mail,true);

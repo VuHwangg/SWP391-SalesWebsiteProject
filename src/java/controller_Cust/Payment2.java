@@ -103,7 +103,7 @@ public class Payment2 extends HttpServlet {
                 cus = (Customer) session.getAttribute("cust");
                 Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
                 float total_price = 0;
-               
+
                 //loop qua map
                 for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                     total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
@@ -121,21 +121,24 @@ public class Payment2 extends HttpServlet {
                     float price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "");
 //                    response.getWriter().println(cart.getValue().getProduct().getId());
 //                     response.getWriter().println((cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
-                     pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
-                     pdo.updateSold(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getSold()+cart.getValue().getQuantity()));
-                    if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
-                        
-                        if (session.getAttribute("acc") != null) {
-                            
-                            if (od.deleteCart(cart.getValue().getCartId())) {
 
-                            } else {
+                    if (pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty() - cart.getValue().getQuantity()))) {
+                       
+                            if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
+
+                                if (session.getAttribute("acc") != null) {
+
+                                    if (od.deleteCart(cart.getValue().getCartId())) {
+
+                                    } else {
 //                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
-                                response.getWriter().print(cart.getValue().getCartId());
+                                        response.getWriter().print(cart.getValue().getCartId());
+                                    }
+                                }
+                            } else {
+                                request.getRequestDispatcher("cart-null.jsp").forward(request, response);
                             }
-                        }
-                    } else {
-                        request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                       
                     }
                 }
 
@@ -144,8 +147,7 @@ public class Payment2 extends HttpServlet {
                 session.setAttribute("OrderDetails", od.getOrder_Details(NewOrderId));
 
                 session.setAttribute("carts", null);
-               
-                
+
                 if (!cus.isStatus()) {
                     session.setAttribute("cus", null);
                 }

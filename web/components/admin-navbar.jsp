@@ -14,11 +14,12 @@
 
     <!-- NAVBAR RESPONSIVE -->
     <div class="collapse navbar-collapse" id="navbarResponsive">
-
+        <%Account acc = (Account) session.getAttribute("acc1");%>
         <!--  LEFT SIDE NAVIGATION BAR ============================================================================= -->
         <ul class="navbar-nav navbar-sidenav" id="MainAccordion">
 
             <!-- 1 -->
+            <%if (acc.getRole() == 1) {%>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Thống kê">
                 <a class="nav-link" href="dashmap">
                     <i class="fa fa-fw fa-dashboard" style="font-size: 20px"></i>&nbsp;
@@ -33,7 +34,9 @@
                     <span class="nav-link-text">Nhân viên</span>
                 </a>
             </li>
-
+            <%}
+                if (acc.getRole() == 2) {
+            %>
             <!-- 3 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
                 <a class="nav-link" href="ProductManagement">
@@ -41,14 +44,17 @@
                     <span class="nav-link-text">Sản phẩm đang bán</span>
                 </a>
             </li>
-            
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản phẩm đang bán">
                 <a class="nav-link" href="ProductManagmentDisable">
                     <i class="bi bi-bag-x-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Sản phẩm chưa bán</span>
                 </a>
             </li>
+            <%}
+                if (acc.getRole() == 3) {
 
+            %>
             <!-- 5 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kho hàng">
                 <a class="nav-link" href="WarehouseManagment">
@@ -56,7 +62,10 @@
                     <span class="nav-link-text">Kho hàng</span>
                 </a>
             </li>
+            <%}
 
+                if (acc.getRole() == 2) {
+            %>
             <!-- 6 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đơn hàng">
                 <a class="nav-link" href="ViewOrder">
@@ -64,7 +73,10 @@
                     <span class="nav-link-text">Đơn hàng</span>
                 </a>
             </li>
+            <%}
+                if (acc.getRole() == 3 || acc.getRole() == 2) {
 
+            %>
             <!-- 7 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử nhập hàng">
                 <a class="nav-link" href="importhistory">
@@ -72,7 +84,10 @@
                     <span class="nav-link-text">Lịch sử nhập hàng</span>
                 </a>
             </li>
+            <%}
 
+                if (acc.getRole() == 2) {
+            %>
             <!-- 8 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đánh giá sản phẩm">
                 <a class="nav-link" href="admin-feedback-list.jsp">
@@ -80,7 +95,8 @@
                     <span class="nav-link-text">Đánh giá sản phẩm</span>
                 </a>
             </li>
-
+            <%}
+                if (acc.getRole() == 1) {%>
             <!-- 9 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tạo tài khoản cho nhân viên">
                 <a class="nav-link" href="register-admin.jsp">
@@ -88,6 +104,7 @@
                     <span class="nav-link-text">Tạo tài khoản nhân viên</span>
                 </a>
             </li>
+            <%}%>
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
@@ -100,23 +117,17 @@
 
         <!--  UPPER NAVIGATION BAR ============================================================================= -->
         <ul class="navbar-nav ml-auto">
-
+            <% acc = (Account) session.getAttribute("acc1");%>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown" style="font-size: 18px; font-weight: 700">
-                    Hoàng Chu Anh Vũ
+                    <%=acc.getDisplayname()%>
                     <span class="indicator text-primary d-none d-lg-block">
                         <i class="fa fa-fw"></i>
                     </span>
                 </a>
                 <div class="dropdown-menu">
                     <div class="dropdown-item text-center">
-                        <span>
-                            Tài khoản: 
-                            <strong class="text-danger">Admin</strong>
-                            <!--<strong class="text-danger">Bán Hàng</strong>-->
-                            <!--<strong class="text-danger">Quản Kho</strong>-->
-                            
-                        </span>
+                      
                     </div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item nav-link text-dark text-center" href="logoutEmpt">

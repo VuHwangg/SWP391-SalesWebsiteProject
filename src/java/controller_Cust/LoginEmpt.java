@@ -26,15 +26,34 @@ public class LoginEmpt extends HttpServlet {
         String password = req.getParameter("pass");
         HttpSession session = req.getSession();
 
-        AccountDAO acc = new AccountDAO();
-        Account accout = acc.checkLoginCus(email, password, true);
-
-        if (accout == null) {
-            resp.getWriter().write("error");
+        if (err.equals("1") == false) {
+            req.setAttribute("err", err);
+            req.getRequestDispatcher("login-admin.jsp").forward(req, resp);
         } else {
-            accout = acc.getAcc(email);
-            session.setAttribute("acc1", accout);
-            req.getRequestDispatcher("dashmap").forward(req, resp);
+            AccountDAO acc = new AccountDAO();
+            Account accout = acc.checkLoginCus(email, password, true);
+
+            if (accout == null) {
+                resp.getWriter().write("error");
+            } else {
+                accout = acc.getAcc(email);
+               
+                session.setAttribute("acc1", accout);
+                if (accout.getRole() == 1) {
+                    req.getRequestDispatcher("dashmap").forward(req, resp);
+                } else {
+                    if (accout.getRole() == 2) {
+                        accout = acc.getAcc(email);
+                        session.setAttribute("acc1", accout);
+                        req.getRequestDispatcher("ProductManagement").forward(req, resp);
+                    }else{
+                        accout = acc.getAcc(email);
+                        session.setAttribute("acc1", accout);
+                        req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
+                    
+                    }
+                }
+            }
         }
 
     }

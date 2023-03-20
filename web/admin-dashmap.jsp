@@ -124,7 +124,7 @@
                 <!-- AREA CHART CARD -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ thống kê doanh thu
+                        <i class="fa fa-area-chart"></i>&nbsp;Biểu đồ doanh thu
                     </div>
                     <div class="d-flex justify-content-end mt-3" style="padding: 0 12px">
                         <form action="dashmap" method="GET">
@@ -150,7 +150,7 @@
                         <!-- BAR CHART CARD-->
                         <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-bar-chart"></i>&nbsp;Biểu đồ thống kê số lượng mặt hàng</div>
+                                <i class="fa fa-bar-chart"></i>&nbsp;Biểu đồ thống kê số lượng mặt hàng đã bán</div>
                             <div class="card-body">
                                 <canvas id="myBarChart" width="100" height="70" hidden></canvas>
                                 <div id="double-column-chart" class="w-100 h-100"></div>
@@ -163,7 +163,7 @@
                         <!-- PIE CHART CARD-->
                         <div class="card h-100">
                             <div class="card-header">
-                                <i class="fa fa-pie-chart"></i>&nbsp;Biểu đồ thống kê số lượng nhân viên</div>
+                                <i class="fa fa-pie-chart"></i>&nbsp;Biểu đồ thống kê số lượng đơn hàng</div>
                             <div class="card-body">
                                 <canvas id="myPieChart" width="100%" height="100"></canvas>
                             </div>
