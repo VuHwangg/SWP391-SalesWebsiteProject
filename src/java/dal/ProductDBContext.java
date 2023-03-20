@@ -40,7 +40,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where  [status] = 1 AND [product_id] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -102,7 +101,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "  FROM [Product]\n"
                     + "  where  [status] = 1 and [name] like ? \n"
@@ -151,7 +149,7 @@ public class ProductDBContext extends DBContext {
     }
 
     //for home screen(lấy ra các sản phẩm theo phân loại, top sale, top sold)
-    public ArrayList<Product> listProduct(int type, int num, boolean topSale, boolean topSold) {
+    public ArrayList<Product> listProduct(int type, int num, boolean topSale) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT TOP (?) [product_id]\n"
@@ -169,25 +167,13 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where  [status] = 1 and [qty] > 0";
             if (type != -1) {
                 sql = sql + "AND [type] = ?";
             }
-            if (topSold == true || topSale == true) {
-                sql = sql + " ORDER BY ";
-            }
-
-            if (topSold == true) {
-                sql = sql + "[sold] DESC";
-            }
-
             if (topSale == true) {
-                if (topSold == true) {
-                    sql = sql + ", ";
-                }
-                sql = sql + " [discount] DESC";
+                sql = sql + " ORDER BY [discount] DESC";
             }
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
@@ -404,7 +390,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "  FROM   [Product] \n"
                     + "  WHERE [name] LIKE ?\n"
@@ -493,7 +478,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM  [Product] pr "
                     + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
@@ -624,7 +608,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr\n"
                     + "  where  pr.[status] = 1  and pr.[name] LIKE ?\n"
@@ -694,7 +677,6 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[description]\n"
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
-                    + "      ,pr.[sold]\n"
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr\n"
                     + "  where  pr.[status] = 1\n"
@@ -1014,7 +996,6 @@ public class ProductDBContext extends DBContext {
                     + "           ,[description]\n"
                     + "           ,[discount]\n"
                     + "           ,[qty]\n"
-                    + "           ,[sold]\n"
                     + "           ,[status])\n"
                     + "     VALUES\n"
                     + "           (?\n"
@@ -1266,7 +1247,6 @@ public class ProductDBContext extends DBContext {
                     + "		  ,[description]\n"
                     + "		  ,[discount]\n"
                     + "		  ,[qty]\n"
-                    + "		  ,[sold]\n"
                     + "		  ,[status]\n"
                     + "	  FROM [Product] where [product_id] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);

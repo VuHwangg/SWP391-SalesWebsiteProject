@@ -23,14 +23,12 @@ public class HomeController extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ProductDBContext productList = new ProductDBContext();
-        ArrayList<Product> laptopList = productList.listProduct(1, 8, false, false);
-        ArrayList<Product> phoneList = productList.listProduct(0, 8, false, false);
-        ArrayList<Product> onSaleList = productList.listProduct(-1, 8, true, false);
-        ArrayList<Product> topSoldList = productList.listProduct(-1, 8, false, true);
+        ArrayList<Product> laptopList = productList.listProduct(1, 8, false);
+        ArrayList<Product> phoneList = productList.listProduct(0, 8, false);
+        ArrayList<Product> onSaleList = productList.listProduct(-1, 8, true);
         request.setAttribute("laptopList", laptopList);
         request.setAttribute("phoneList", phoneList);
         request.setAttribute("onSaleList", onSaleList);
-        request.setAttribute("topSoldList", topSoldList);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
