@@ -240,7 +240,11 @@ Insert into Role(role_name) values ('Admin'),
 										   ('Manage'),
 										   ('Customer')
 Insert into Account(username,[password],displayname,[status]) values	('admin','admin','admin',1)	
+Insert into Account(username,[password],displayname,[status]) values	('empt1','empt1','empt',2)	
+Insert into Account(username,[password],displayname,[status]) values	('mana1','mana1','mana',3)	
 Insert into Role_Account(role_id,username) values (1,'admin')
+Insert into Role_Account(role_id,username) values (2,'empt1')
+Insert into Role_Account(role_id,username) values (3,'mana1')
 Insert into Status(status_name) values ('Preparing'),('Shipping'),('Success'),('Cancelled')
 
 
