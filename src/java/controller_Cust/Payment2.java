@@ -128,8 +128,6 @@ public class Payment2 extends HttpServlet {
 
                             if (session.getAttribute("acc") != null) {
 
-
-
                                 if (od.deleteCart(cart.getValue().getCartId())) {
                                     
                                 } else {
