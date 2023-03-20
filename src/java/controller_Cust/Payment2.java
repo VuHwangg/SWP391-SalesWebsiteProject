@@ -123,7 +123,7 @@ public class Payment2 extends HttpServlet {
 //                     response.getWriter().println((cart.getValue().getProduct().getQty()-cart.getValue().getQuantity()));
 
                     if (pdo.deleteNumberProduct(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getQty() - cart.getValue().getQuantity()))) {
-                        if (pdo.updateSold(cart.getValue().getProduct().getId(), (cart.getValue().getProduct().getSold() + cart.getValue().getQuantity()))) {
+                       
                             if (od.addOrder_Detail(NewOrderId, cart.getKey(), cart.getValue().getQuantity(), price)) {
 
                                 if (session.getAttribute("acc") != null) {
@@ -138,7 +138,7 @@ public class Payment2 extends HttpServlet {
                             } else {
                                 request.getRequestDispatcher("cart-null.jsp").forward(request, response);
                             }
-                        }
+                       
                     }
                 }
 
