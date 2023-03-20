@@ -129,7 +129,7 @@ public class Payment2 extends HttpServlet {
                             if (session.getAttribute("acc") != null) {
 
                                 if (od.deleteCart(cart.getValue().getCartId())) {
-
+                                    
                                 } else {
 //                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
                                     response.getWriter().print(cart.getValue().getCartId());
@@ -162,7 +162,6 @@ public class Payment2 extends HttpServlet {
             response.getWriter().write("error");
             request.getRequestDispatcher("home").forward(request, response);
         } catch (SQLException ex) {
-            response.getWriter().write("error");
             Logger.getLogger(Payment2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
