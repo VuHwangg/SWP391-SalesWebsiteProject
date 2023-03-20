@@ -21,6 +21,12 @@ public class Helper {
         String result = formatter.format(x);
         return result;
     }
+    
+    public String convertBigNumDefault(double x) {
+        DecimalFormat formatter = new DecimalFormat("####");
+        String result = formatter.format(x);
+        return result;
+    }
 
     public boolean checked(String x, String[] ys) {
         for (String y : ys) {
