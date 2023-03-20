@@ -118,7 +118,7 @@
                         <div class="bestseller-products cover-block">
                             <div class="row-title">
                                 <i class="bi bi-caret-right-fill"></i>
-                                <a href="#">Bán chạy</a>
+                                <a href="topsaler">Bán chạy</a>
                             </div>
                             <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.topSoldList}" var="topSold">
