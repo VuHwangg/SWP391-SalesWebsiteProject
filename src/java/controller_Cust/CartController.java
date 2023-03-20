@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import model.Cart;
+import model.Customer;
 
 /**
  *
@@ -37,6 +38,8 @@ public class CartController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            Customer sessionCustomer = (Customer) session.getAttribute("cust");
+            
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
             if (carts == null) {
                 carts = new LinkedHashMap<>();
