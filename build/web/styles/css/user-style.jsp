@@ -150,7 +150,7 @@
         /* text color */
         background: linear-gradient(90deg, #0000 33%, #a0a0a0, #0000 67%) var(--_p,100%)/300% no-repeat,
             #fff;
-        border-radius: 50%;
+        border-radius: 5px;
         /* background color */
         color: var(--main-bg-color) !important;
         border: none;
@@ -815,6 +815,11 @@
         border-radius: 20px;
         box-sizing: content-box;
         padding: 10px 20px;
+    }
+    
+    .lSSlideOuter .lSPager.lSpg > li:hover a, 
+    .lSSlideOuter .lSPager.lSpg > li.active a  {
+        background-color: white !important;
     }
 
 

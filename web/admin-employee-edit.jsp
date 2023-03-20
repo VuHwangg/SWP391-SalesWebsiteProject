@@ -20,8 +20,7 @@
         <%@include file="components/admin-navbar.jsp" %>
 
         <!-- CONTENT PART -->
-        <%
-            ArrayList<Account> arr = (ArrayList<Account>) session.getAttribute("arrAcc");
+        <%            ArrayList<Account> arr = (ArrayList<Account>) session.getAttribute("arrAcc");
             int mana = (int) session.getAttribute("mana");
             int empt = (int) session.getAttribute("empt");
             int total = mana + empt;
@@ -146,33 +145,40 @@
                         </span>
                     </div>
                     <div class="card-body p-3">
-                        <form action="editEmpt" method="post" id="<%=acc.getUsername()%>">
+                        <form action="editEmpt" method="post" id="<%=acc.getUsername()%>" class="needs-validation" novalidate>
 
                             <!--Họ và tên-->
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="name">Họ và tên</label>
+                                    <label class="input-group-text" style="min-width: 100px" for="name">Họ và tên</label>
                                 </div>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="<%=acc.getDisplayname()%>" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên thật của nhân viên (có độ dài từ 3 đến 100 ký tự)" value="<%=acc.getDisplayname()%>" minlength="3" maxlength="100" required>
+                                <div class="invalid-feedback" style="padding-left: 100px">
+                                    Họ và tên phải có tối thiểu 3 ký tự, tối đa 100 ký tự 
+                                </div>
                             </div>
 
                             <!--Mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="password">Mật khẩu</label>
+                                        <label class="input-group-text" style="min-width: 100px" for="password">Mật khẩu</label>
                                     </div>
-                                    <input type="password" class="form-control password-toggle" id="password" name="password" placeholder="Mật khẩu" value="<%=acc.getPassword()%>" required>
+                                    <input type="password" class="form-control password-toggle" id="password" name="password" placeholder="Mật khẩu (có độ dài từ 5 đến 30 ký tự)" value="<%=acc.getPassword()%>" minlength="5" maxlength="50" required>
+                                    
                                     <div class="input-group-append">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text bg-danger">
                                             <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
+                                    </div>
+                                    <div class="invalid-feedback" style="padding-left: 100px">
+                                        Mật khẩu phải có tối thiểu 5 ký tự, tối đa 30 ký tự 
                                     </div>
                                 </div>
                             </div>
                             <div class="input-group mb-3" hidden="">
                                 <!--Thêm ảnh 1 ảnh-->
-                                
+
                             </div>
                             <div>
                                 <h5 class="fw-bold">Vai Trò</h5>
@@ -230,5 +236,6 @@
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/password-script.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-validate-script.jsp" %>
     </body>
 </html>
