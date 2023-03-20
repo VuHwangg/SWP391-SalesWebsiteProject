@@ -66,7 +66,7 @@ public class UpdateCartQuantityController extends HttpServlet {
         int productId = Integer.parseInt(rawProductId);
         String rawQuantity = request.getParameter("quantity");
         int quantity = Integer.parseInt(rawQuantity);
-        
+
         int maxQuantity = new ProductDBContext().getProductQuantityById(productId);
 
         HttpSession session = request.getSession();
@@ -77,12 +77,16 @@ public class UpdateCartQuantityController extends HttpServlet {
             carts = new LinkedHashMap<>();
         }
         if (carts.containsKey(productId)) {
-            if (quantity >= maxQuantity) {
-                carts.get(productId).setQuantity(maxQuantity);
+            if (maxQuantity == 0) {
+                carts.remove(productId);
             } else {
-                carts.get(productId).setQuantity(quantity);
+                if (quantity >= maxQuantity) {
+                    carts.get(productId).setQuantity(maxQuantity);
+                } else {
+                    carts.get(productId).setQuantity(quantity);
+                }
             }
-            
+
             if (sessionCustomer != null) {
                 cartDAO.updateQuantity(carts.get(productId));
             }
