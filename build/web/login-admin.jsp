@@ -67,9 +67,9 @@
                     <div class="preview"></div>
                     <div class="captcha-form">
                         <input type="text" id="captcha-form" placeholder="Nhập mã captcha tương tự với đoạn mã trên">
-                        <button class="captcha-refresh">
+                        <div class="btn captcha-refresh" style="padding: 8px; border-radius: 0">
                             <i class="fa fa-refresh"></i>
-                        </button>
+                        </div>
                     </div>
                 </div>
                 <div class="form-input">
