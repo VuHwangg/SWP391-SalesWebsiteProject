@@ -295,13 +295,12 @@ public class AccountDAO extends DBContext {
     public boolean updateAcc(String name, String username, String pass) {
         boolean check = false;
         try {
-            String sql = "Update Account "
-                    + "set  [password] = ? ,displayname = ?  where username = ?";
+            String sql = "Update Account set  [password] = ? , displayname = ?  where username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, pass);
             ps.setString(2, name);
            
-            ps.setString(4, username);
+            ps.setString(3, username);
 
             check = ps.executeUpdate() > 0;
 

@@ -133,13 +133,13 @@ public class Payment2 extends HttpServlet {
                                 if (od.deleteCart(cart.getValue().getCartId())) {
 
                                 } else {
-//                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
+//                                
                                     response.getWriter().print(cart.getValue().getCartId());
                                 }
 
                             }
                         } else {
-                            request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                            request.getRequestDispatcher("404-page.jsp").forward(request, response);
                         }
 
                     }
