@@ -31,6 +31,7 @@ public class SignupUser extends HttpServlet {
         String phone = req.getParameter("phone");
         String place = req.getParameter("place");
         String email = mail;
+<<<<<<< Updated upstream
         String err = "1";
         
         Check ch = new Check();
@@ -62,16 +63,25 @@ public class SignupUser extends HttpServlet {
                 if (acc.addRole(4, mail)) {
                     Account acc1 = acc.checkExistAcc(mail,true);
                     Customer cust1 = acc.getCust(mail,true);
+=======
+        String img = req.getParameter("img");
+        AccountDAO acc = new AccountDAO();
+
+        if (acc.addAcount(mail, "!!", name, img, true) && acc.addCust(name, place, phone, email, true)) {
+            if (acc.addRole(4, mail)) {
+                Account acc1 = acc.checkExistAcc(mail, true);
+                Customer cust1 = acc.getCust(mail, true);
+>>>>>>> Stashed changes
 //                    resp.getWriter().print(acc1.getDisplayname());
 //                    resp.getWriter().print(cust1.getCustomerName());
-                    HttpSession session = req.getSession();
-                    session.setAttribute("cust", cust1);
-                    session.setAttribute("acc", acc1);
-                    req.getRequestDispatcher("home").forward(req, resp);
-                }
-            } else {
-                req.getRequestDispatcher("register-user.jsp").forward(req, resp);
+                HttpSession session = req.getSession();
+                session.setAttribute("cust", cust1);
+                session.setAttribute("acc", acc1);
+                req.getRequestDispatcher("home").forward(req, resp);
             }
+        } else {
+            resp.getWriter().write("error");
+            req.getRequestDispatcher("register-user.jsp").forward(req, resp);
         }
 
     }

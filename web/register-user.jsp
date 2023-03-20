@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/login-style.jsp" %>
-        <title>Đăng nhập cho quản trị viên</title>
+        <title>Hoàn thiện thông tin khách hàng</title>
     </head>
     <body>
 
@@ -46,7 +46,7 @@
 
         <!--Login Form-->
         <div class="login-form">
-            <form action="SignupUser" method="post" class="needs-validation" novalidate>
+            <form id="sign-up-user-form" action="SignupUser" method="post" class="needs-validation" novalidate>
 
                 <div class="form-title">
                     <h4 class="text-danger">Awns's Store</h4>
@@ -77,8 +77,8 @@
                 </div>
 
                 <div class="input-group mb-3" hidden>
-                    <input type="file" class="form-control" id="inputGroupFile02" accept="image/png, image/jpeg"name="img" value="">
-                    <label class="input-group-text" for="inputGroupFile02">Tải lên ảnh đại diện</label>
+                    <input type="file" class="form-control" id="img" accept="image/png, image/jpeg"name="img" value="">
+                    <label class="input-group-text" for="img">Tải lên ảnh đại diện</label>
                 </div>
                 <div class="form-input">
                     <input type="submit" class="btn btn-danger" id="login-btn" value="Hoàn Tât">
@@ -88,7 +88,8 @@
 
         <!--Content ends-->
         <%@include file="styles/js/login-script.jsp" %>
-
+        <%@include file="styles/js/popup-submit-form.jsp" %>
+        
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

@@ -6,7 +6,7 @@
 
         const fonts = ["cursive", "sans-serif", "serif", "monospace"];
         let captchaValue = "";
-        
+
         function generateCaptcha() {
             let value = btoa(Math.random() * 1000000000);
             value = value.substr(0, 5 + Math.random() * 5);
@@ -190,6 +190,57 @@
                             timer: 3000
                         }).then(function () {
                             window.location.href = 'cart';
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Đã xảy ra lỗi',
+                        text: 'Không thể kết nối đến máy chủ, vui lòng thử lại sau',
+                        confirmButtonText: 'Thử lại'
+                    });
+                }
+            });
+        });
+    });
+
+
+//    Sign up User Form
+    $(document).ready(function () {
+        $('#sign-up-user-form"').submit(function (event) {
+            event.preventDefault();
+            let name = $('#name').val();
+            let phone = $('#phone').val();
+            let img = $('#img').val();
+            let address = $('#address').val();
+
+            $.ajax({
+                url: 'SignupUser',
+                type: 'POST',
+                data: {
+                    name: name,
+                    phone: phone,
+                    img: img,
+                    address: address
+                },
+                success: function (data) {
+                    if (data === 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Đã xảy ra lỗi',
+                            text: 'Có lỗi xảy ra, vui lòng thử lại',
+                            confirmButtonText: 'Thử Lại'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành Công',
+                            text: 'Bạn đã hoàn thiện đầy đủ thông tin',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function () {
+                            window.location.href = 'home';
                         });
                     }
                 },
