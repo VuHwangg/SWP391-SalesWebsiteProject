@@ -35,10 +35,10 @@ public class EmailConfig {
             int Quantity = cart.getValue().getQuantity();
             float Price = (float) cart.getValue().getProduct().getCurrent_price();
             Message+="<tr>\n" +
-"                            <td scope=\"col\">\n" +
-"                                <img style=\"height: 100px;\" src=\""+ idc.getImageUrl(cart.getKey()) +"\">\n" +
+"                            <td scope=\"col\">" +
+"                                <img style=\"height: 100px;\" src=\""+ idc.getImageUrl(cart.getValue().getProduct().getId()) +"\">\n" +
 "                            </td>\n" +
-"                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ "x" + Quantity + "</td>\n" +
+"                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ " : " + Quantity + "</td>\n" +
 "                            <td class=\"p-0\" scope=\"col\"> <span class=\"d-flex justify-content-end\">"+h.convertBigNum(Price*Quantity) +"</span></td>\n" +
 "                    </tr>\n";
         }
