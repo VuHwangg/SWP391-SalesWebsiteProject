@@ -37,8 +37,7 @@ public class EmailConfig {
             Message+="<tr>\n" +
 "                            <td scope=\"col\">" +
 "                                <img\n" +
-"                                                    src=\"data:image/png;base64,"+idc.getImageUrl(cart.getValue().getProduct().getId())+"\"\n" +
-"                                                    alt=\"iphone\"\n" +
+"                                                    src=\"data:image/png;base64,"+idc.getImageUrl(cart.getValue().getProduct().getId())+"\"\n" +                                               
 "                                                    />" +
 "                            </td>\n" +
 "                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ " : " + Quantity + "</td>\n" +
