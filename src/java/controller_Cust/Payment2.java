@@ -157,6 +157,7 @@ public class Payment2 extends HttpServlet {
 ////            
 ////        }
 //
+            
             request.getRequestDispatcher("home").forward(request, response);
 
         } catch (MessagingException ex) {

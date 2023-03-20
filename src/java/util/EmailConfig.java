@@ -36,11 +36,9 @@ public class EmailConfig {
             float Price = (float) cart.getValue().getProduct().getCurrent_price();
             Message+="<tr>\n" +
 "                            <td scope=\"col\">" +
-"                                <img\n" +
-"                                                    src=\"data:image/png;base64,"+idc.getImageUrl(cart.getValue().getProduct().getId())+"\"\n" +                                               
-"                                                    />" +
+"                                <img src=\"data:image/png;base64,"+idc.getImageUrl(cart.getValue().getProduct().getId())+"\" />" +
 "                            </td>\n" +
-"                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ " : " + Quantity + "</td>\n" +
+"                            <td scope=\"col\">"+cart.getValue().getProduct().getName()+ " số lượng: " + Quantity + " giá: " + "</td>\n" +
 "                            <td class=\"p-0\" scope=\"col\"> <span class=\"d-flex justify-content-end\">"+h.convertBigNum(Price*Quantity) +"</span></td>\n" +
 "                    </tr>\n";
         }
@@ -50,8 +48,8 @@ public class EmailConfig {
      
     
     public void SendEmail(String to, float total_price, String messageTo, int ordId) throws AddressException, MessagingException {
-    final String username = "awnssshop@gmail.com";
-        final String password = "nvnfnlvyrdtblnvb";
+    final String username = "awnssstore@gmail.com";
+        final String password = "podkdpsgxtrbnfnd";
         Helper h = new Helper();         
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
