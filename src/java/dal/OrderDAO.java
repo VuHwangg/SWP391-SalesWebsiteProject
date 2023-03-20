@@ -75,7 +75,7 @@ public class OrderDAO extends DBContext {
             stm.setString(1, statusName);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                count=rs.getInt("c");
+                count = rs.getInt("c");
             }
             stm.close();
             rs.close();
@@ -354,7 +354,7 @@ public class OrderDAO extends DBContext {
         }
         return totalPrice;
     }
-    
+
     public double getTotalPriceInOnePeriod(Date from, Date to) {
         double totalPrice = 0;
         try {
@@ -401,6 +401,28 @@ public class OrderDAO extends DBContext {
             Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return totalNum;
+    }
+
+    public List<Integer> getTopSaler(int num) {
+        List<Integer> topSaler = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP (?) pro.[product_id],\n"
+                    + "		COUNT(od.product_id) as num\n"
+                    + "FROM [Product] pro \n"
+                    + "LEFT JOIN Order_Details od on pro.product_id = od.product_id group by pro.product_id order by num DESC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, num);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                topSaler.add(id);
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return topSaler;
     }
 
 //    public static void main(String[] args) {

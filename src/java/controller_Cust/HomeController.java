@@ -4,6 +4,7 @@
  */
 package controller_Cust;
 
+import dal.OrderDAO;
 import dal.ProductDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Product;
 
 /**
@@ -23,12 +25,19 @@ public class HomeController extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ProductDBContext productList = new ProductDBContext();
+        OrderDAO orderDB = new OrderDAO();
+        List<Integer> topSaler = orderDB.getTopSaler(8);
+        ArrayList<Product> topSoldList = new ArrayList<>();
+        for(int x : topSaler){
+            topSoldList.add(productList.getProductByID(x));
+        }
         ArrayList<Product> laptopList = productList.listProduct(1, 8, false);
         ArrayList<Product> phoneList = productList.listProduct(0, 8, false);
         ArrayList<Product> onSaleList = productList.listProduct(-1, 8, true);
         request.setAttribute("laptopList", laptopList);
         request.setAttribute("phoneList", phoneList);
         request.setAttribute("onSaleList", onSaleList);
+        request.setAttribute("topSoldList", topSoldList);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
