@@ -42,6 +42,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>SendRate</servlet-name>
+        <servlet-class>controller_Cust.UserVoteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendRate</servlet-name>
+        <url-pattern>/sendrate</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>TopSaler</servlet-name>
         <servlet-class>controller_Cust.TopSalerController</servlet-class>
     </servlet>

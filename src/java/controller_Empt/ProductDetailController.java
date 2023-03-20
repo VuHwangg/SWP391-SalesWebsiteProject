@@ -5,6 +5,7 @@
 package controller_Empt;
 
 import dal.ProductDBContext;
+import dal.VoteDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import model.Product;
+import model.UserVote;
 
 /**
  *
@@ -23,11 +25,13 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ProductDBContext productList = new ProductDBContext();
+        VoteDBContext voteDB = new VoteDBContext();
         int id = Integer.parseInt(request.getParameter("product_id"));
-        
+        ArrayList<UserVote> userVotes = voteDB.listByProductId(id);
         Product product = productList.getProductByID(id);
         int maxQuantity = product.getQty();
         request.setAttribute("maxQuantity", maxQuantity);
+        request.setAttribute("userVotes", userVotes);
         request.setAttribute("product", product);
         ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
         ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
