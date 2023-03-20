@@ -1289,6 +1289,7 @@ public class ProductDBContext extends DBContext {
         return null;
     }
 
+<<<<<<< Updated upstream
     public List<Integer> getTopDiscount(int num) {
         List<Integer> topDiscount = new ArrayList<>();
         try {
@@ -1308,6 +1309,8 @@ public class ProductDBContext extends DBContext {
         }
         return topDiscount;
     }
+=======
+>>>>>>> Stashed changes
 
     public static void main(String[] args) {
         ProductDBContext pdb = new ProductDBContext();

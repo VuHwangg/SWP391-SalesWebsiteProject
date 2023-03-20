@@ -5,6 +5,7 @@
 package controller_Cust;
 
 import dal.CartDAO;
+import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -65,6 +66,8 @@ public class UpdateCartQuantityController extends HttpServlet {
         int productId = Integer.parseInt(rawProductId);
         String rawQuantity = request.getParameter("quantity");
         int quantity = Integer.parseInt(rawQuantity);
+        
+        int maxQuantity = new ProductDBContext().getProductQuantityById(productId);
 
         HttpSession session = request.getSession();
         Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
@@ -74,7 +77,12 @@ public class UpdateCartQuantityController extends HttpServlet {
             carts = new LinkedHashMap<>();
         }
         if (carts.containsKey(productId)) {
-            carts.get(productId).setQuantity(quantity);
+            if (quantity >= maxQuantity) {
+                carts.get(productId).setQuantity(maxQuantity);
+            } else {
+                carts.get(productId).setQuantity(quantity);
+            }
+            
             if (sessionCustomer != null) {
                 cartDAO.updateQuantity(carts.get(productId));
             }
