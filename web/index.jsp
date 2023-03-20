@@ -16,6 +16,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <title>Trang chủ</title>
+
+        <style>
+            .cover-block {
+                padding: 10px;
+            }
+            .lSSlideWrapper {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        </style>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
 

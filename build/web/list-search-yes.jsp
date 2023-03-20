@@ -22,9 +22,9 @@
                 <!--Side banner-->
                 <%@include file="components/side-banner.jsp" %>
                 <!-- Content Center -->
-                <div class="content-center bg-offwhite">
+                <div class="content-center">
                     <!-- Breadcrumb -->
-                    <div class="breadcrumb">
+                    <div class="breadcrumb" style="border-radius: 0 0 20px 20px">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
                         <a href="#">Tìm kiếm</a>
@@ -98,10 +98,28 @@
                                                 <div class="product-price">
                                                     <p> ${helper.convertBigNum(search.current_price)}&nbsp;<span>VNĐ</span></p>
                                                 </div>
+                                                
+                                                <div class="product-status">
+                                                        <c:if test="${search.qty >= 1}">
+
+                                                            <!--Còn hàng-->
+                                                            <div class="text-success">
+                                                                <i class="bi bi-check-all"></i>
+                                                                <span>Còn hàng</span>
+                                                            </div>
+                                                        </c:if>
+                                                        <c:if test="${search.qty < 1}">
+                                                            <!--Hết hàng-->
+                                                            <div class="text-danger">
+                                                                <i class="bi bi-x-lg"></i>
+                                                                <span>Hết hàng</span>
+                                                            </div>
+                                                        </c:if>
+                                                    </div>
                                             </div>
                                             <c:if test="${search.discount>0}">
                                                 <div class="col-4">
-                                                    <p class="sale-percent">${search.discount}%</p>
+                                                    <p class="sale-percent">${helper.convertBigNum(search.discount)}%</p>
                                                 </div>
                                             </c:if>   
 
@@ -157,6 +175,8 @@
             crossorigin="anonymous"
         ></script>
         <%@include file="styles/js/script.jsp" %>
+        <!--Vanta.js Animation Background-->
+        <%@include file="components/vantajs-link.jsp" %>
     </body>
 </html>
 

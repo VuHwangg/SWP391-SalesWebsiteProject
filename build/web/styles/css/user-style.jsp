@@ -509,8 +509,8 @@
     }
     
     .list-product.home .cover-block {
-        background-color: rgba(255, 255, 255, 0.4);
-        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        background-color: rgba(255, 255, 255, 0);
+        /*box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;*/
     }
         
 
@@ -527,19 +527,19 @@
         font-size: 32px;
         font-weight: 700;
         text-transform: capitalize;
-        color: var(--main-bg-color);
+        color: white;
+        text-shadow: 2px 3px 3px #111;
     }
 
     .list-product .row-title a {
         transition: all 0.5s ease;
         cursor: pointer;
         text-decoration: none;
-        color: var(--main-bg-color);
+        color: white;
     }
 
     .list-product .row-title a:hover{
         padding-left: 10px;
-        text-decoration: underline;
     }
 
     @media (max-width: 575px) {
@@ -807,6 +807,14 @@
     .lSAction > .lSNext::after {
         transform: rotate(-45deg) !important;
         -webkit-transform: rotage(-45px) !important;
+    }
+    
+    
+    .lSSlideWrapper {
+        background-color: white;
+        border-radius: 20px;
+        box-sizing: content-box;
+        padding: 10px 20px;
     }
 
 
