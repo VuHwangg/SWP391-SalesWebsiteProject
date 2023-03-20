@@ -167,7 +167,7 @@
                                             <td>
                                                 <div class="d-flex ">
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
-                                                    <a class="btn btn-secondary w-100" href="product_detail?product_id=${p.id}">Xem</a>&nbsp;
+                                                    <a class="btn btn-secondary w-100" href="ProductDetailDisable?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
                                                     <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
                                                     <form action="ChangeProductStatus" method="POST">

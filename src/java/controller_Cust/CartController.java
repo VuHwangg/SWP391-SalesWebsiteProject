@@ -4,6 +4,7 @@
  */
 package controller_Cust;
 
+import dal.CartDAO;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,23 +40,42 @@ public class CartController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             Customer sessionCustomer = (Customer) session.getAttribute("cust");
-            
+            CartDAO dao = new CartDAO();
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
             if (carts == null) {
                 carts = new LinkedHashMap<>();
             }
+            boolean change = false;
             for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
                 Integer key = cart.getKey();
                 Cart val = cart.getValue();
                 int maxQuantity = new ProductDBContext().getProductQuantityById(val.getProduct().getId());
                 if (maxQuantity == 0) {
+                    if (sessionCustomer != null) {
+                        dao.deleteProduct(val.getProduct().getId(), sessionCustomer.getCustomerId());
+                    }
                     carts.remove(key);
+                    change = true;
+                } else if (val.getQuantity() >= maxQuantity) {
+                    val.setQuantity(maxQuantity);
+                    if (sessionCustomer != null) {
+                        dao.updateQuantity(val);
+                    }
+                    change = true;
                 }
             }
-            
+
+            if (change) {
+                session.setAttribute("carts", carts);
+                carts = (Map<Integer, Cart>) session.getAttribute("carts");
+                if (carts == null) {
+                    carts = new LinkedHashMap<>();
+                }
+            }
+
             // caculate total money
             double originalTotalPrice = 0;
-            double totalMoney  = 0;
+            double totalMoney = 0;
             double discountTotalPrice = 0;
             int quantity = 0;
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
@@ -75,10 +95,10 @@ public class CartController extends HttpServlet {
             request.setAttribute("quantity", quantity);
             if (quantity == 0) {
                 request.getRequestDispatcher("cart-null.jsp").forward(request, response);
-            } else{
+            } else {
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
             }
-            
+
         }
     }
 
