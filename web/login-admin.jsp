@@ -62,7 +62,7 @@
                     <label for="password">Mật khẩu</label>
                     <input type="password" id="password" name="pass">
                 </div>
-                <div class="captcha">
+<!--                <div class="captcha">
                     <label for="captcha-input">Captcha</label>
                     <div class="preview"></div>
                     <div class="captcha-form">
@@ -71,7 +71,7 @@
                             <i class="fa fa-refresh"></i>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-input">
                     <input type="submit" class="btn btn-danger" id="login-btn" value="Đăng nhập">
                 </div>
@@ -79,7 +79,7 @@
         </div>
 
         <!--Content ends-->
-        <%@include file="styles/js/login-script.jsp" %>
+        <%@include file="styles/js/validate-script.jsp" %>
         <%@include file="styles/js/popup-submit-form.jsp" %>
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

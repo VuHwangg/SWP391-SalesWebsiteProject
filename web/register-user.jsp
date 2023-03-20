@@ -70,9 +70,9 @@
                 </div>
                 <div class="form-input">
                     <label for="address">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" name="place" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="100" required>
+                    <input type="text" class="form-control" id="address" name="place" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="200" required>
                     <div class="invalid-feedback">
-                        Số điện thoại không đuợc để trống
+                        Địa chỉ không đuợc để trống
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
         </div>
 
         <!--Content ends-->
-        <%@include file="styles/js/login-script.jsp" %>
+        <%@include file="styles/js/validate-script.jsp" %>
         <%@include file="styles/js/popup-submit-form.jsp" %>
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

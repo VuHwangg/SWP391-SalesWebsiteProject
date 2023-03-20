@@ -172,10 +172,7 @@
                             </div>
                             <div class="input-group mb-3" hidden="">
                                 <!--Thêm ảnh 1 ảnh-->
-                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
-                                <div class="input-group-append" >
-                                    <label class="input-group-text" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
-                                </div>
+                                
                             </div>
                             <div>
                                 <h5 class="fw-bold">Vai Trò</h5>

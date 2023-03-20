@@ -36,6 +36,14 @@
         <servlet-name>ImportHistory</servlet-name>
         <servlet-class>controller_Empt.ImportHistoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductDetailDisableController</servlet-name>
+        <servlet-class>controller_Cust.ProductDetailDisableController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetailDisableController</servlet-name>
+        <url-pattern>/ProductDetailDisable</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ImportHistory</servlet-name>
         <url-pattern>/importhistory</url-pattern>
@@ -66,6 +74,24 @@
     <servlet-mapping>
         <servlet-name>TopDiscount</servlet-name>
         <url-pattern>/topdiscount</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CommentManagement</servlet-name>
+        <servlet-class>controller_Empt.ManageCommentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentManagement</servlet-name>
+        <url-pattern>/commentmanagement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChangeCommentStatus</servlet-name>
+        <servlet-class>controller_Empt.ChangeCommentStatusController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeCommentStatus</servlet-name>
+        <url-pattern>/changecommentstatus</url-pattern>
     </servlet-mapping>
     
     <servlet>

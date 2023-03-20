@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import model.Account;
 import model.Cart;
@@ -67,8 +68,10 @@ public class LoginUser extends HttpServlet {
 //            session.invalidate();
 //        }
 // response.getWriter().print(mail);
-
+        
         if (adao.loginGoogle(mail, true)) {
+            Map<Integer, Cart> nullCart = new LinkedHashMap<>();
+            session.setAttribute("carts", nullCart);
             CartDAO cartDAO = new CartDAO();
             Map<Integer, Cart> carts = cartDAO.getCartsByCustomerId(cust.getCustomerId());
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {

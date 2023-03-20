@@ -40,8 +40,8 @@
     input[type="color"]:focus,
     input[type="file"]:focus,
     .uneditable-input:focus {
-        border-color: rgba(220, 53, 69, 0.8) !important;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(220, 53, 69, 0.6) !important;
+        border-color: rgba(109, 46, 208, 0.8) !important;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(109, 46, 208, 0.6) !important;
         outline: 0 none !important;
     }
 

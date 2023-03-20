@@ -140,19 +140,27 @@
 
 //    Payment Submit Loading
     function submitPayment() {
-        let timerInterval
-        Swal.fire({
-            title: 'Đăng tiến hành đặt hàng',
-            text: 'Bạn vui lòng chờ trong giây lát',
-            allowOutsideClick: false,
-            timer: 30000,
-            didOpen: () => {
-                Swal.showLoading()
-            },
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        })
+        const name = document.getElementById('name');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        const address = document.getElementById('address');
+
+        if (!name.checkValidity() || !phone.checkValidity() || !email.checkValidity()|| !address.checkValidity() ) {
+        }else {
+            let timerInterval
+            Swal.fire({
+                title: 'Đăng tiến hành đặt hàng',
+                text: 'Bạn vui lòng chờ trong giây lát',
+                allowOutsideClick: false,
+                timer: 30000,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
+        }
     }
 
 

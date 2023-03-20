@@ -128,15 +128,18 @@ public class Payment2 extends HttpServlet {
 
                             if (session.getAttribute("acc") != null) {
 
+
+
                                 if (od.deleteCart(cart.getValue().getCartId())) {
                                     
                                 } else {
-//                                request.getRequestDispatcher("404-page.jsp").forward(request, response);
+//                                
                                     response.getWriter().print(cart.getValue().getCartId());
                                 }
+
                             }
                         } else {
-                            request.getRequestDispatcher("cart-null.jsp").forward(request, response);
+                            request.getRequestDispatcher("404-page.jsp").forward(request, response);
                         }
 
                     }
@@ -156,6 +159,7 @@ public class Payment2 extends HttpServlet {
 ////        }catch(Exception ex){
 ////            
 ////        }
+
             request.getRequestDispatcher("home").forward(request, response);
 
         } catch (MessagingException ex) {

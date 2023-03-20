@@ -81,7 +81,67 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
+    
+    public Product getProductByIDWithOutStatus(int id) {
+        Product product = new Product();
+        try {
+            String sql = "SELECT   [product_id]\n"
+                    + "		  ,[name]\n"
+                    + "		  ,[type]\n"
+                    + "		  ,[os]\n"
+                    + "		  ,[color]\n"
+                    + "		  ,[current_price]\n"
+                    + "           ,[original_price]\n"
+                    + "		  ,[ram]\n"
+                    + "		  ,[memory]\n"
+                    + "		  ,[cpu]\n"
+                    + "		  ,[graphics_card]\n"
+                    + "		  ,[size]\n"
+                    + "		  ,[description]\n"
+                    + "		  ,[discount]\n"
+                    + "		  ,[qty]\n"
+                    + "		  ,[status]\n"
+                    + "	  FROM [Product] where [product_id] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
 
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                product.setId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setType(rs.getInt("type"));
+                product.setOs(rs.getString("os"));
+                product.setColor(rs.getString("color"));
+                product.setOriginal_price(rs.getDouble("original_price"));
+                product.setCurrent_price(rs.getDouble("current_price"));
+                product.setRam(rs.getInt("ram"));
+                product.setMemory(rs.getInt("memory"));
+                product.setCpu(rs.getString("cpu"));
+                product.setGraphic_card(rs.getString("graphics_card"));
+                product.setSize(rs.getDouble("size"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQty(rs.getInt("qty"));
+
+                product.setStatus(rs.getBoolean("status"));
+                BrandDBContext brdb = new BrandDBContext();
+                RequirementDBContext reqdb = new RequirementDBContext();
+                ImageDBContext imgdb = new ImageDBContext();
+                VoteDBContext vdb = new VoteDBContext();
+                product.setVotes(vdb.listByID(product.getId()));
+                product.setBrands(brdb.listByID(product.getId()));
+                product.setRequirement(reqdb.listByID(product.getId()));
+                product.setImage(imgdb.listByID(product.getId()));
+            }
+            stm.close();
+            rs.close();
+            return product;
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     //lấy ra các sản phẩm có thuộc tính cụ thể
     public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
         Product product = new Product();

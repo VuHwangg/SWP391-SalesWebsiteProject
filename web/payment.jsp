@@ -29,7 +29,7 @@
                 </div>
 
                 <!--Main info-->
-                <form id="payment-form" action="Payment2" method="post">
+                <form id="payment-form" class="needs-validation" action="Payment2" method="post" novalidate>
                     <div class="row mt-3 w-100 mx-auto">
                         <!--Shipment Details-->
                         <div class="col-md-6 border border-2 rounded-1 p-4">
@@ -59,20 +59,29 @@
                             %>
 
 
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name == null ? "readonly" : ""%>>
-
+                            <div class="form-input mb-3">
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name == null ? "readonly" : ""%> maxlength="100">
+                                <div class="invalid-feedback">
+                                    Họ và tên không được để trống
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>" required <%=phone == null ? "readonly" : ""%>>
-
+                            <div class="form-input mb-3">
+                                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Số điện thoại" value="<%=phone%>" required <%=phone == null ? "readonly" : ""%> oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="30">
+                                <div class="invalid-feedback">
+                                    Số điện thoại không đuợc để trống
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>" required <%=email == null ? "readonly" : ""%>>
-
+                            <div class="form-input mb-3">
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<%=email%>" required <%=email == null ? "readonly" : ""%>>
+                                <div class="invalid-feedback" id="invalid-email">
+                                    Email không hợp lệ
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Địa chỉ nhận hàng" required <%=address == null ? "readonly" : ""%>><%=address%></textarea>
+                            <div class="form-input mb-3">
+                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Địa chỉ nhận hàng" required <%=address == null ? "readonly" : ""%> maxlength="200"><%=address%></textarea>
+                                <div class="invalid-feedback">
+                                    Địa chỉ không đuợc để trống
+                                </div>
                             </div>
 
                             <div>
@@ -149,15 +158,20 @@
                     </div>
                 </form>
             </div>
-                                
-                                
+
+
             <!--footer-->
             <!-- Modal -->
 
             <%@include file="components/footer.jsp" %>
         </main>
 
+        <%@include file="styles/js/validate-script.jsp" %>
         <%@include file="styles/js/popup-submit-form.jsp" %>
+
+        <script>
+            
+        </script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

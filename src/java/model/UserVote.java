@@ -12,7 +12,16 @@ public class UserVote {
     private int id;
     private int rating;
     private String comment;
-    Account acc;
+    private Account acc;
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
     
     public int getId() {
         return id;
