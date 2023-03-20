@@ -120,16 +120,14 @@ public class CartDAO {
     
     public static void main(String[] args) {
         CartDAO dao = new CartDAO();
-        Cart cart = new Cart();
-        
-        Map<Integer, Cart> carts = dao.getCartsByCustomerId(2);
-        for (Map.Entry<Integer, Cart> e : carts.entrySet()) {
-            int key = e.getKey();
-            Cart val = e.getValue();
-            System.out.println(key);
-            System.out.println(val.getQuantity());
-            
-        }
+        Cart c = new Cart();
+        Customer cus = new Customer();
+        cus.setCustomerId(1);
+        c.setCustomer(cus);
+        Product p = new Product(1, "name", "vang");
+        c.setProduct(p);
+        c.setQuantity(222);
+        dao.saveCartToDB(c);
     }
 
 }

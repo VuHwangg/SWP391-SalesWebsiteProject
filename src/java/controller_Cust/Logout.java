@@ -35,6 +35,7 @@ public class Logout extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             if (session != null) {
+                
                 session.invalidate();
                 url = SUCCESS;
             }
