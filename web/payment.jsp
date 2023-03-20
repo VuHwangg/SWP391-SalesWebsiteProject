@@ -29,34 +29,35 @@
                 </div>
 
                 <!--Main info-->
-                <div class="row mt-3 w-100 mx-auto">
-                    <!--Shipment Details-->
-                    <div class="col-md-6 border border-2 rounded-1 p-4">
-                        <div>
-                            <h3 class="fw-bold mb-4">THÔNG TIN GIAO HÀNG</h3>
-                        </div>
-                        <%
-                            Customer cus1 = (Customer) session.getAttribute("cust");
-                            String email = "";
-                            String name = "";
-                            String address = "";
-                            String phone = "";
-                            if (cus != null) {
-                                email = cus1.getEmail();
-                                name = cus1.getCustomerName();
-                                address = cus1.getAddress();
-                                phone = cus1.getPhone();
-                            }
-                            float total_price = 0;
-                            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-                            if (carts != null) {
-                                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-                                    total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                <form id="payment-form" action="Payment2" method="post">
+                    <div class="row mt-3 w-100 mx-auto">
+                        <!--Shipment Details-->
+                        <div class="col-md-6 border border-2 rounded-1 p-4">
+                            <div>
+                                <h3 class="fw-bold mb-4">THÔNG TIN GIAO HÀNG</h3>
+                            </div>
+                            <%
+                                Customer cus1 = (Customer) session.getAttribute("cust");
+                                String email = "";
+                                String name = "";
+                                String address = "";
+                                String phone = "";
+                                if (cus != null) {
+                                    email = cus1.getEmail();
+                                    name = cus1.getCustomerName();
+                                    address = cus1.getAddress();
+                                    phone = cus1.getPhone();
                                 }
-                            }
+                                float total_price = 0;
+                                Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+                                if (carts != null) {
+                                    for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                                        total_price += Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                                    }
+                                }
 
-                        %>
-                        <form action="Payment2" method="post">
+                            %>
+
 
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Họ và tên" value="<%=name%>" required <%=name == null ? "readonly" : ""%>>
@@ -85,82 +86,87 @@
                                     </label>
                                 </div>
                             </div>
-
-                    </div>
-
-
-
-                    <!--Payment-->
-                    <div class="col-md-6 border border-2 rounded-1 p-4">
-                        <div>
-                            <h3 class="fw-bold mb-4">HÓA ĐƠN ĐẶT HÀNG</h3>
-                        </div>
-                        <div class="border-top border-dark border-3 my-3"></div>
-
-                        <%
-                            float price = 0;
-                            if (carts != null) {
-                                for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
-                                    price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
-                        %>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5" style="color: #555555;"><%=cart.getValue().getProduct().getName()%></span>
-                                <br>
-                                <span class="fw-light fs-6">Màu sắc: <%=cart.getValue().getProduct().getColor()%></span>
-                                <br>
-                                <span class="fw-light fs-6">Số lượng: <%=cart.getValue().getQuantity()%></span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6"><%=helper.convertBigNum(price)%>&#8363;</span>
-                            </div>
-                        </div>
-                        <div class="border-top border-dark border-1 my-2"></div>
-                        <%}
-                            }%>
-
-                        <!---Shipment cost-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-5">Phí vận chuyển</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fw-light fs-6">Freeship</span>
-                            </div>
                         </div>
 
-                        <div class="border-top border-dark border-3 my-3"></div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="fw-bolder fs-4">Tổng cộng</span>
+
+                        <!--Payment-->
+                        <div class="col-md-6 border border-2 rounded-1 p-4">
+                            <div>
+                                <h3 class="fw-bold mb-4">HÓA ĐƠN ĐẶT HÀNG</h3>
                             </div>
-                            <div class="col-md-6 d-flex justify-content-end ">
-                                <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> VNĐ</span>
+                            <div class="border-top border-dark border-3 my-3"></div>
+
+                            <%
+                                float price = 0;
+                                if (carts != null) {
+                                    for (Map.Entry<Integer, Cart> cart : carts.entrySet()) {
+                                        price = Float.parseFloat(cart.getValue().getProduct().getCurrent_price() + "") * cart.getValue().getQuantity();
+                            %>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="fw-bolder fs-5" style="color: #555555;"><%=cart.getValue().getProduct().getName()%></span>
+                                    <br>
+                                    <span class="fw-light fs-6">Màu sắc: <%=cart.getValue().getProduct().getColor()%></span>
+                                    <br>
+                                    <span class="fw-light fs-6">Số lượng: <%=cart.getValue().getQuantity()%></span>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end ">
+                                    <span class="fw-light fs-6"><%=helper.convertBigNum(price)%> &#8363;</span>
+                                </div>
+                            </div>
+                            <div class="border-top border-dark border-1 my-2"></div>
+                            <%}
+                                }%>
+
+                            <!---Shipment cost-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="fw-bolder fs-5">Phí vận chuyển</span>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end ">
+                                    <span class="fw-light fs-6">Freeship</span>
+                                </div>
                             </div>
 
+                            <div class="border-top border-dark border-3 my-3"></div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="fw-bolder fs-4">Tổng cộng</span>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end ">
+                                    <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> &#8363;</span>
+                                </div>
+
+
+                            </div>
                             <div class="d-flex justify-content-center mt-3">
-                                <button type="submit" class="btn btn-danger w-100 fs-4" data-toggle="modal" data-target="#exampleModal">HOÀN TẤT ĐẶT HÀNG</button>
+                                <button onclick="submitPayment()" type="submit" class="btn btn-danger w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
-                        </form>
                     </div>
-
-                </div>
+                </form>
             </div>
+                                
+                                
             <!--footer-->
             <!-- Modal -->
 
-        </div>
-        <%@include file="components/footer.jsp" %>
-    </main>
+            <%@include file="components/footer.jsp" %>
+        </main>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"
-    ></script>
-    <%@include file="styles/js/script.jsp" %>
-</body>
+        <%@include file="styles/js/popup-submit-form.jsp" %>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+        ></script>
+        <%@include file="styles/js/script.jsp" %>
+    </body>
 </html>

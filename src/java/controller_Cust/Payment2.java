@@ -154,10 +154,10 @@ public class Payment2 extends HttpServlet {
 ////        }catch(Exception ex){
 ////            
 ////        }
-//
             request.getRequestDispatcher("home").forward(request, response);
 
         } catch (MessagingException ex) {
+            response.getWriter().write("error");
             request.getRequestDispatcher("home").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(Payment2.class.getName()).log(Level.SEVERE, null, ex);
