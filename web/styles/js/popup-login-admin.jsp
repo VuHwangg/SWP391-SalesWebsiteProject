@@ -23,7 +23,7 @@
                 captchaHTML += "<span style=\"transform:rotate(" + rotate + "deg);font-family:" + fonts[font] + "\">" + captchaChar + "</span>";
             }
             document.querySelector(".login-form .captcha .preview").innerHTML = captchaHTML;
-            
+
         }
 
         function initCaptcha() {
@@ -36,7 +36,7 @@
         }
 
         initCaptcha();
-        
+
 
         $('#login-form').submit(function (event) {
             event.preventDefault();
@@ -66,15 +66,38 @@
                                 text: 'Tài khoản hoặc mật khẩu của bạn không đúng',
                                 confirmButtonText: 'Thử Lại'
                             });
+                        } else if (data === 'admin') {
+                            console.log(data);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đăng nhập thành công',
+                                text: 'Bạn đang đăng nhập trong vai trò Quản Trị Viên',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function () {
+                                window.location.href = 'dashmap';
+                            });
+                        } else if (data === 'seller') {
+                            console.log(data);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đăng nhập thành công',
+                                text: 'Bạn đang đăng nhập trong vai trò Người Bán Hàng',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function () {
+                                window.location.href = 'ProductManagement';
+                            });
                         } else {
                             console.log(data);
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Đăng nhập thành công',
+                                text: 'Bạn đang đăng nhập trong vai trò Người Quản Kho',
                                 showConfirmButton: false,
                                 timer: 1500
                             }).then(function () {
-                                window.location.href = 'dashmap';
+                                window.location.href = 'WarehouseManagment';
                             });
                         }
                     },

@@ -28,10 +28,6 @@
         <servlet-name>ImportProductController</servlet-name>
         <servlet-class>controller_Empt.ImportProductController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>forwardAcc</servlet-name>
-        <servlet-class>controller_Empt.forwardAcc</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Dashmap</servlet-name>
         <url-pattern>/dashmap</url-pattern>
@@ -395,10 +391,6 @@
     <servlet-mapping>
         <servlet-name>ImportProductController</servlet-name>
         <url-pattern>/ImportProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>forwardAcc</servlet-name>
-        <url-pattern>/forwardAcc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
