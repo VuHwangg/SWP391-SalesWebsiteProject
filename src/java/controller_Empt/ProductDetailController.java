@@ -34,7 +34,7 @@ public class ProductDetailController extends HttpServlet {
         request.setAttribute("userVotes", userVotes);
         request.setAttribute("product", product);
         ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
-        ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> sameList = productList.listSameProduct(8, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card(),product.getId());
         ArrayList<Product> bufferList = productList.bufferObject(product.getName());
         ArrayList<Product> optionList = new ArrayList<>();
         for(Product pro : bufferList){

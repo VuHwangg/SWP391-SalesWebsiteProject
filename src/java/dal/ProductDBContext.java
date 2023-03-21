@@ -234,10 +234,10 @@ public class ProductDBContext extends DBContext {
             }
             if (topSale == true) {
                 sql = sql + " ORDER BY [discount] DESC, ";
-            }else{
-                 sql = sql + " ORDER BY ";
+            } else {
+                sql = sql + " ORDER BY ";
             }
-            sql = sql + "[feature_product] DESC";          
+            sql = sql + "[feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             if (type != -1) {
@@ -721,7 +721,7 @@ public class ProductDBContext extends DBContext {
     }
 
     // sản phẩm tương tự
-    public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card) {
+    public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card, int productId) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT TOP (?) pr.[product_id]\n"
@@ -741,15 +741,16 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
                     + "      ,pr.[status]\n"
-                    + "  FROM [Product] pr\n"
-                    + "  where  pr.[status] = 1\n"
-                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ?";
+                    + "  FROM [Product] pr \n"
+                    + "  where  pr.[status] = 1 and [product_id] != ?\n"
+                    + "or pr.[ram] like ? or pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
-            stm.setInt(2, ram);
-            stm.setInt(3, memory);
-            stm.setString(4, cpu);
-            stm.setString(5, graphic_card);
+            stm.setInt(2, productId);
+            stm.setInt(3, ram);
+            stm.setInt(4, memory);
+            stm.setString(5, cpu);
+            stm.setString(6, graphic_card);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
