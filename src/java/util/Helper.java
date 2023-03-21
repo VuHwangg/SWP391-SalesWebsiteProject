@@ -112,7 +112,7 @@ public class Helper {
             for (Vote vote : product.getVotes()) {
                 totalStar += vote.getNum() * vote.getNum_of_vote();
             }
-            avg = totalStar / totalVote;
+            avg = (double)totalStar / totalVote;
         }
         return avg;
     }
