@@ -75,7 +75,7 @@ public class ImportDBContext extends DBContext {
                 //System.out.println(rs.getString("username"));
                 history.setCost(rs.getDouble("cost"));
                 //System.out.println(rs.getDouble("cost"));
-                history.setProduct(proDB.getProductByID(rs.getInt("product_id")));
+                history.setProduct(proDB.getProductByIDWithOutStatus(rs.getInt("product_id")));
                 // System.out.println(rs.getInt("product_id"));
                 listHistory.add(history);
             }
