@@ -227,4 +227,23 @@ public class VoteDBContext extends DBContext {
         return -1;
     }
 
+    public int getNumOfVoteByStatus(int status) {
+        int num = 0;
+        try {
+            String sql = "SELECT COUNT(vote_of_user_id) AS num\n"
+                    + "  FROM [Vote_Of_User] WHERE confirm = ? GROUP BY [confirm]	";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, status);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt("num");
+            }
+            stm.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return num;
+    }
+
 }

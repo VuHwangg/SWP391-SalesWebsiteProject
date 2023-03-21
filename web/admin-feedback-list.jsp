@@ -46,7 +46,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                3&nbsp;đánh giá
+                                                ${requestScope.unconfirmed}&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>
@@ -74,7 +74,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                2&nbsp;đánh giá
+                                                ${requestScope.confirmed}&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>
@@ -102,7 +102,7 @@
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                2&nbsp;đánh giá
+                                                ${requestScope.reject}&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>

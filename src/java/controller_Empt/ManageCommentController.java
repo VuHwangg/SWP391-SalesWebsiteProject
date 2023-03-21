@@ -10,8 +10,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import model.UserVote;
+import util.DateTimeHelper;
 
 /**
  *
@@ -24,6 +26,12 @@ public class ManageCommentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         VoteDBContext voteDB = new VoteDBContext();
         ArrayList<UserVote> userVotes = voteDB.listAllUnconfimred();
+        int unconfirmed = userVotes.size();
+        int reject = voteDB.getNumOfVoteByStatus(2);
+        int confirmed = voteDB.getNumOfVoteByStatus(1);
+        request.setAttribute("unconfirmed", unconfirmed);
+        request.setAttribute("reject", reject);
+        request.setAttribute("confirmed", confirmed);
         request.setAttribute("userVotes", userVotes);
         request.getRequestDispatcher("admin-feedback-list.jsp").forward(request, response);
 //        response.getWriter().print(userVotes);

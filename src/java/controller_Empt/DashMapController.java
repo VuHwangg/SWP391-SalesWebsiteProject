@@ -46,7 +46,6 @@ public class DashMapController extends HttpServlet {
         DateTimeHelper dateTime = new DateTimeHelper(); 
         if (raw_from == null || raw_from.length() == 0) {
             java.util.Date today = new java.util.Date();
-            int todayOfWeek = DateTimeHelper.getDayofWeek(today);
             java.util.Date e_from = DateTimeHelper.addDays(today, -6);
             java.util.Date e_to = DateTimeHelper.addDays(today, 0);
             from = DateTimeHelper.toDateSql(e_from);

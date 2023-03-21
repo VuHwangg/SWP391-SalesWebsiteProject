@@ -233,8 +233,11 @@ public class ProductDBContext extends DBContext {
                 sql = sql + "AND [type] = ?";
             }
             if (topSale == true) {
-                sql = sql + " ORDER BY [discount] DESC";
+                sql = sql + " ORDER BY [discount] DESC, ";
+            }else{
+                 sql = sql + " ORDER BY ";
             }
+            sql = sql + "[feature_product] DESC";          
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             if (type != -1) {
