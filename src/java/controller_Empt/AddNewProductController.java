@@ -59,6 +59,7 @@ public class AddNewProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         Collection<Part> parts = request.getParts();
         List<String> base64Images = new ArrayList<>();
         for (Part filePart : parts) {
@@ -129,7 +130,6 @@ public class AddNewProductController extends HttpServlet {
 
         ProductDBContext pdb = new ProductDBContext();
         int productId = pdb.insertAndReturnId(product);
-        
         pdb.setProductBrand(productId, brandId);
         pdb.setProductRequirment(productId, requirementId);
         ImageDBContext dao = new ImageDBContext();
