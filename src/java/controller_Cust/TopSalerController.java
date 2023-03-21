@@ -56,9 +56,6 @@ public class TopSalerController extends HttpServlet {
         for (int x : topSaler) {
             topSoldListToSort.add(productList.getProductByID(x));
         }
-        if(sort.compareTo("none")==0){
-            Collections.sort(topSoldListToSort, new ProductPriceComparatorNone());
-        }
         if(sort.compareTo("ASC")==0){
             Collections.sort(topSoldListToSort, new ProductPriceComparatorASC());
         }
@@ -105,14 +102,6 @@ public class TopSalerController extends HttpServlet {
         @Override
         public int compare(Product p1, Product p2) {
             return Double.compare(p2.getCurrent_price(), p1.getCurrent_price());
-        }
-    }
-
-    public class ProductPriceComparatorNone implements Comparator<Product> {
-
-        @Override
-        public int compare(Product p1, Product p2) {
-            return Double.compare(p2.getDiscount(), p1.getDiscount());
         }
     }
 }

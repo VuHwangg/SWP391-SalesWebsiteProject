@@ -81,7 +81,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-    
+
     public Product getProductByIDWithOutStatus(int id) {
         Product product = new Product();
         try {
@@ -141,7 +141,7 @@ public class ProductDBContext extends DBContext {
         }
         return null;
     }
-    
+
     //lấy ra các sản phẩm có thuộc tính cụ thể
     public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
         Product product = new Product();
@@ -825,12 +825,22 @@ public class ProductDBContext extends DBContext {
             String sql = "SELECT [product_id]\n"
                     + "      ,[name]\n"
                     + "      ,[type]\n"
+                    + "      ,[os]\n"
+                    + "      ,[feature_product]\n"
                     + "      ,[color]\n"
                     + "      ,[current_price]\n"
                     + "      ,[original_price]\n"
                     + "      ,[ram]\n"
                     + "      ,[memory]\n"
-                    + "  FROM [dbo].[Product] Where [status] = ?";
+                    + "      ,[cpu]\n"
+                    + "      ,[graphics_card]\n"
+                    + "      ,[size]\n"
+                    + "      ,[description]\n"
+                    + "      ,[discount]\n"
+                    + "      ,[qty]\n"
+                    + "      ,[status]\n"
+                    + "  FROM [dbo].[Product]\n"
+                    + "  WHERE status = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, status);
@@ -1041,25 +1051,24 @@ public class ProductDBContext extends DBContext {
     public int insertAndReturnId(Product product) {
         try {
             String sql = "INSERT INTO [dbo].[Product]\n"
-                    + "           ([name]\n"
-                    + "           ,[type]\n"
-                    + "           ,[os]\n"
-                    + "           ,[feature_product]\n"
-                    + "           ,[color]\n"
-                    + "           ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "           ,[ram]\n"
-                    + "           ,[memory]\n"
-                    + "           ,[cpu]\n"
-                    + "           ,[graphics_card]\n"
-                    + "           ,[size]\n"
-                    + "           ,[description]\n"
-                    + "           ,[discount]\n"
-                    + "           ,[qty]\n"
-                    + "           ,[status])\n"
+                    + "           ([name]\n" //1
+                    + "           ,[type]\n" //2
+                    + "           ,[os]\n" //3
+                    + "           ,[feature_product]\n" //4
+                    + "           ,[color]\n" //5
+                    + "           ,[current_price]\n" //6
+                    + "           ,[original_price]\n" //7
+                    + "           ,[ram]\n" //8
+                    + "           ,[memory]\n" //9
+                    + "           ,[cpu]\n" //10
+                    + "           ,[graphics_card]\n" //11
+                    + "           ,[size]\n" //12
+                    + "           ,[description]\n" //13
+                    + "           ,[discount]\n" //14
+                    + "           ,[qty]\n" //15
+                    + "           ,[status])\n" //16
                     + "     VALUES\n"
                     + "           (?\n"
-                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
@@ -1091,8 +1100,7 @@ public class ProductDBContext extends DBContext {
             ps.setString(13, product.getDescription());
             ps.setDouble(14, product.getDiscount());
             ps.setInt(15, 0);
-            ps.setInt(16, 0);
-            ps.setBoolean(17, product.isStatus());
+            ps.setBoolean(16, product.isStatus());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             while (rs.next()) {
@@ -1253,7 +1261,7 @@ public class ProductDBContext extends DBContext {
             ps.setDouble(6, p.getOriginal_price());
             ps.setString(7, String.valueOf(p.getRam()));
             ps.setString(8, String.valueOf(p.getMemory()));
-            ps.setString(9, p.getOs());
+            ps.setString(9, p.getCpu());
             ps.setString(10, p.getGraphic_card());
             ps.setDouble(11, p.getSize());
             ps.setString(12, p.getDescription());
@@ -1368,7 +1376,6 @@ public class ProductDBContext extends DBContext {
         }
         return topDiscount;
     }
-
 
     public static void main(String[] args) {
         ProductDBContext pdb = new ProductDBContext();
