@@ -14,7 +14,7 @@
                 title: 'Đăng tiến hành đặt hàng',
                 text: 'Bạn vui lòng chờ trong giây lát',
                 allowOutsideClick: false,
-                timer: 30000,
+                timer: 60000,
                 didOpen: () => {
                     Swal.showLoading()
                 },
