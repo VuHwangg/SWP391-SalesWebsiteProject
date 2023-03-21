@@ -68,7 +68,7 @@ public class LoginUser extends HttpServlet {
 //            session.invalidate();
 //        }
 // response.getWriter().print(mail);
-        
+
         if (adao.loginGoogle(mail, true)) {
             Map<Integer, Cart> nullCart = new LinkedHashMap<>();
             session.setAttribute("carts", nullCart);
