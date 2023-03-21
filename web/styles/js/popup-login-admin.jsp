@@ -11,6 +11,7 @@
             let value = btoa(Math.random() * 1000000000);
             value = value.substr(0, 5 + Math.random() * 5);
             captchaValue = value;
+            console.log(value);
         }
 
         function setCaptcha() {
@@ -22,6 +23,7 @@
                 captchaHTML += "<span style=\"transform:rotate(" + rotate + "deg);font-family:" + fonts[font] + "\">" + captchaChar + "</span>";
             }
             document.querySelector(".login-form .captcha .preview").innerHTML = captchaHTML;
+            
         }
 
         function initCaptcha() {
@@ -34,6 +36,7 @@
         }
 
         initCaptcha();
+        
 
         $('#login-form').submit(function (event) {
             event.preventDefault();

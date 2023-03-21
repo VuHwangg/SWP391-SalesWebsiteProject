@@ -159,9 +159,9 @@
                                                     Điện thoại
                                                 </c:if>
                                             </td>
-                                            <td>Xanh</td>
-                                            <td>6<span>GB</span></td>
-                                            <td>128<span>GB</span></td>
+                                            <td>${p.color}</td>
+                                            <td>${p.ram}<span>GB</span></td>
+                                            <td>${p.memory}<span>GB</span></td>
                                             <td class="text-right">${helper.convertBigNum(p.original_price)}&nbsp;&#8363;</td>
                                             <td class="text-right">${helper.convertBigNum(p.current_price)}&nbsp;&#8363;</td>
                                             <td>

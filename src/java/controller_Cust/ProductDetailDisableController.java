@@ -34,16 +34,12 @@ public class ProductDetailDisableController extends HttpServlet {
         request.setAttribute("maxQuantity", maxQuantity);
         request.setAttribute("userVotes", userVotes);
         request.setAttribute("product", product);
-        ArrayList<Product> colorList = productList.listColor(product.getName(), product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> colorList = new ArrayList<>();
         ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
         ArrayList<Product> bufferList = productList.bufferObject(product.getName());
         ArrayList<Product> optionList = new ArrayList<>();
-        
-        for(Product pro : bufferList){
-            Product diffOption = productList.getProduct(pro.getName(), pro.getRam(), pro.getMemory(), pro.getCpu(), pro.getGraphic_card());
-//            response.getWriter().print(diffOption.getName());
-            optionList.add(diffOption);
-        }
+        colorList.add(product);
+        optionList.add(product);
         request.setAttribute("colorList", colorList);
         request.setAttribute("optionList", optionList);
         request.setAttribute("sameList", sameList);

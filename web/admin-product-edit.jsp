@@ -62,7 +62,7 @@
                                         <label class="input-group-text" for="OldPrice">Giá gốc</label>
                                     </div>
                                     <!--Giá gốc-->
-                                    <input name="originalPrice" type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNum(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                                    <input name="originalPrice" type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNumDefault(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
@@ -72,7 +72,7 @@
                                         <label class="input-group-text" for="SalePrice">Giá bán ra</label>
                                     </div>
                                     <!--Giá sale-->
-                                    <input name="salePrice" type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNum(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <input name="salePrice" type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNumDefault(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
