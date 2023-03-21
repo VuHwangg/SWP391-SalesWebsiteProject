@@ -749,7 +749,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr \n"
                     + "  where  pr.[status] = 1 and [product_id] != ?\n"
-                    + "or pr.[ram] like ? or pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
+                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             stm.setInt(2, productId);
