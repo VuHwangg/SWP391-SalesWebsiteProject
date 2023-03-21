@@ -823,14 +823,24 @@ public class ProductDBContext extends DBContext {
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             String sql = "SELECT [product_id]\n"
-                    + ",[name]\n"
-                    + ",[type]\n"
-                    + ",[color]\n"
-                    + ",[current_price]\n"
-                    + ",[original_price]\n"
-                    + ",[ram]\n"
-                    + ",[memory]\n"
-                    + "FROM [dbo].[Product] Where [status] = ?";
+                    + "      ,[name]\n"
+                    + "      ,[type]\n"
+                    + "      ,[os]\n"
+                    + "      ,[feature_product]\n"
+                    + "      ,[color]\n"
+                    + "      ,[current_price]\n"
+                    + "      ,[original_price]\n"
+                    + "      ,[ram]\n"
+                    + "      ,[memory]\n"
+                    + "      ,[cpu]\n"
+                    + "      ,[graphics_card]\n"
+                    + "      ,[size]\n"
+                    + "      ,[description]\n"
+                    + "      ,[discount]\n"
+                    + "      ,[qty]\n"
+                    + "      ,[status]\n"
+                    + "  FROM [dbo].[Product]\n"
+                    + "  WHERE status = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, status);

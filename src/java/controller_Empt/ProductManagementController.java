@@ -42,8 +42,10 @@ public class ProductManagementController extends HttpServlet {
             request.setAttribute("totalAllProduct", totalAllProduct);
             request.setAttribute("totalComputer", totalComputer);
             request.setAttribute("totalPhone", totalPhone);
+
 //            
 //            response.getWriter().print(products.size());
+
             request.getRequestDispatcher("admin-product-list.jsp").forward(request, response);
         }
     }
