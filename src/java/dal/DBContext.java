@@ -27,10 +27,23 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+            String user = "sa";
+            String pass = "12345678";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+>>>>>>> b6b00cffea0d51c7fe30f3b0d0ff61e9f2e84b2a
             // Edit URL , username, password to authenticate with your MS SQL Server
             String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP";
             String username = "sa";
             String password = "30082002Xyz@";
+<<<<<<< HEAD
+=======
 =======
 
             String user = "sa";
@@ -45,8 +58,13 @@ public class DBContext {
 
 
 >>>>>>> 327d89e9e9fe39c93a6bb20ecf92036b339dfed2
+<<<<<<< Updated upstream
+=======
+>>>>>>> 977bb91d63f3111d28b9f0186a9ffa7837f898ee
+>>>>>>> Stashed changes
+>>>>>>> b6b00cffea0d51c7fe30f3b0d0ff61e9f2e84b2a
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
