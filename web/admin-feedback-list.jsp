@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
-        <title>Sản phẩm đang bán</title>
+        <title>Đánh giá sản phẩm</title>
 
     </head>
     <body class="fixed-nav sticky-footer bg-danger" id="page-top">
@@ -31,7 +31,7 @@
                     <!-- <li class="breadcrumb-item">
                       <a href="#">Thống kê</a>
                     </li> -->
-                    <li class="breadcrumb-item active">Sản phẩm đang bán</li>
+                    <li class="breadcrumb-item active">Đánh giá sản phẩm</li>
                 </ol>
 
                 <div class="row">
@@ -42,17 +42,17 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="mr-3">
                                         <div>
-                                            <h4>Mặt hàng đang bán</h4>
+                                            <h4>Số đánh giá chưa duyệt</h4>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                ${requestScope.totalAllProduct}&nbsp;mặt hàng
+                                                3&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>
                                     <div>
                                         <div class="icon-card-custom bg-danger text-white">
-                                            <i class="bi bi-basket-fill"></i>
+                                            <i class="bi bi-hourglass-split"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -70,17 +70,17 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="mr-3">
                                         <div>
-                                            <h4>Điện thoại</h4>
+                                            <h4>Số đánh giá đã duyệt</h4>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                ${requestScope.totalPhone}&nbsp;mặt hàng
+                                                2&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>
                                     <div>
                                         <div class="icon-card-custom bg-danger text-white">
-                                            <i class="bi bi-phone-fill"></i>
+                                            <i class="bi bi-check-circle-fill"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -98,17 +98,17 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="mr-3">
                                         <div>
-                                            <h4>Laptop</h4>
+                                            <h4>Số đánh giá đã từ chối</h4>
                                         </div>
                                         <span style="font-size: 17px">Số lượng: 
                                             <span class="text-danger" style="font-weight: 700; font-size: 18px">
-                                                ${requestScope.totalComputer}&nbsp;mặt hàng
+                                                2&nbsp;đánh giá
                                             </span>
                                         </span>
                                     </div>
                                     <div>
                                         <div class="icon-card-custom bg-danger text-white">
-                                            <i class="bi bi-laptop-fill"></i>
+                                            <i class="bi bi-x-circle-fill"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -130,19 +130,18 @@
                     <!--DO NOT TOUCH ON THIS SHIT ABOVE-->
 
                     <div class="card-header">
-                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách sản phẩm </span>
-                        <span class="text-success" style="font-weight: 700; font-size: 18px; text-decoration: underline">đang bán</span>
+                        <span style="line-height: 1.8"><i class="fa fa-table"></i>&nbsp;Danh sách đánh giá chưa duyệt</span>
                     </div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
-                            <table class="table-pro table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table-feedback table-striped table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-white">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên người dùng</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Rating</th>
-                                        <th>Comment</th>
+                                        <th>Đánh giá</th>
+                                        <th>Bình luận</th>
+                                        <th>Người đánh giá</th>
                                         <th>Quản lý</th>
                                     </tr>
                                 </thead>
@@ -152,7 +151,6 @@
                                     <c:forEach items="${requestScope.userVotes}" var="p">
                                         <tr>
                                             <td>${p.id}</td>
-                                            <td class="text-left">${p.acc.displayname}</td>
                                             <td>${p.product.name}</td>
                                             <td><div class="stars">
                                                     <c:forEach var = "i" begin = "1" end = "5">
@@ -167,22 +165,19 @@
                                                     </c:forEach>
                                                 </div></td>
                                             <td>${p.comment}</td>
+                                            <td>${p.acc.displayname}</td>
                                             <td>
-                                                <div class="d-flex ">
-                                                    <form action="changecommentstatus" method="POST">
-                                                        <input type="text" value="${p.id}" name="voteId" hidden>
-                                                        <input type="text" value="${p.product.id}" name="productId" hidden>
-                                                        <input type="text" value="${p.rating}" name="rating" hidden>
-                                                        <button class="btn btn-outline-danger w-100
-                                                                " name="status" value="1">
-                                                            Xác nhận
-                                                        </button>
-                                                        <button class="btn btn-outline-danger w-100
-                                                                " name="status" value="2">
-                                                            Từ chối
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                <form action="changecommentstatus" method="POST" class="d-flex ">
+                                                    <input type="text" value="${p.id}" name="voteId" hidden>
+                                                    <input type="text" value="${p.product.id}" name="productId" hidden>
+                                                    <input type="text" value="${p.rating}" name="rating" hidden>
+                                                    <button class="btn btn-success w-100" name="status" value="1" style="margin-right: 4px">
+                                                        Xác nhận
+                                                    </button>
+                                                    <button class="btn btn-danger w-100" name="status" value="2">
+                                                        Từ chối
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     </c:forEach>

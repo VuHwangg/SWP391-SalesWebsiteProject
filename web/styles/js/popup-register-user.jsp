@@ -6,20 +6,14 @@
     $(document).ready(function () {
         $('#sign-up-user-form').submit(function (event) {
             event.preventDefault();
-            let name = $('#name').val();
-            let phone = $('#phone').val();
-            let img = $('#img').val();
-            let address = $('#address').val();
+
+            var form = $(this);
+            var formData = form.serialize();
 
             $.ajax({
                 url: 'SignupUser',
                 type: 'POST',
-                data: {
-                    name: name,
-                    phone: phone,
-                    img: img,
-                    address: address
-                },
+                data: formData,
                 success: function (data) {
                     if (data === 'error') {
                         Swal.fire({

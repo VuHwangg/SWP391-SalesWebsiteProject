@@ -753,6 +753,36 @@
     .table-history tr th:nth-child(10) {
         width: 11%;
     }
+    
+    /*Table Feedback*/
+    
+    .bi-star-fill.active {
+        color: #e0c84a;
+    }
+    
+    .table-feedback tr th:nth-child(1) {
+        width: 5%;
+    }
+
+    .table-feedback tr th:nth-child(2) {
+        width: 25%;
+    }
+
+    .table-feedback tr th:nth-child(3) {
+        width: 15%;
+    }
+
+    .table-feedback tr th:nth-child(4) {
+        width: 20%;
+    }
+
+    .table-feedback tr th:nth-child(5) {
+        width: 20%;
+    }
+
+    .table-feedback tr th:nth-child(6) {
+        width: 15%;
+    }
 
 
     /*Custom Design Of Table Defalt*/

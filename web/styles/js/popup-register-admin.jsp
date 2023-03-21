@@ -15,7 +15,7 @@
                 let timerInterval
                 Swal.fire({
                     icon: 'error',
-                    title: 'Vui lòng điền đẩy đủ thông tin',
+                    title: 'Vui lòng điền đầy đủ thông tin',
                     confirmButtonText: 'Thử lại'
                 });
                 
