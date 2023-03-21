@@ -142,7 +142,7 @@ public class AddNewProductController extends HttpServlet {
             count++;
         }
 
-        request.getRequestDispatcher("admin-product-add.jsp").forward(request, response);
+        response.sendRedirect("AddNewProduct");
     }
 
     @Override

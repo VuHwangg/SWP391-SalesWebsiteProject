@@ -1,5 +1,6 @@
 package controller_Cust;
 
+import static controller_Cust.LoginUser.mail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ public class Logout extends HttpServlet {
                 
                 session.invalidate();
                 url = SUCCESS;
+                mail = null;
             }
         } catch (Exception e) {
             log("Error at LogoutController" + e.toString());

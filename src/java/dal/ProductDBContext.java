@@ -459,13 +459,13 @@ public class ProductDBContext extends DBContext {
                     + "INNER JOIN [Brand] br ON br.[brand_id] = prbr.[brand_id]\n"
                     + "INNER JOIN [Product_Requirement] prre ON pr.[product_id] = prre.[product_id]\n"
                     + "INNER JOIN Requirement re ON re.[requirement_id] = prre.[requirement_id]\n"
-                    + "  WHERE pr.[name] LIKE ?\n"
+                    + "  WHERE pr.[status] = 1 AND pr.[name] LIKE ?\n"
                     + "   OR pr.[os] LIKE ?\n"
                     + "   OR pr.[color] LIKE ?\n"
                     + "   OR pr.[ram] LIKE ?\n"
                     + "   OR pr.[memory] LIKE ?\n"
                     + "   OR pr.[cpu] LIKE ?\n"
-                    + "   OR pr.[graphics_card] LIKE ? or re.[requirement_name] like ? or br.[brand_name] like ? AND pr.[status] = 1";
+                    + "   OR pr.[graphics_card] LIKE ? or re.[requirement_name] like ? or br.[brand_name] like ? ";
             if (sort.compareTo("none") == 0) {
                 sql = sql + "\n ORDER BY [discount] DESC";
             }
@@ -749,7 +749,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[status]\n"
                     + "  FROM [Product] pr \n"
                     + "  where  pr.[status] = 1 and [product_id] != ?\n"
-                    + "or pr.[ram] like ? or pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
+                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             stm.setInt(2, productId);
