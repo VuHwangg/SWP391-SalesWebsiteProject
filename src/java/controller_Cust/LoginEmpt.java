@@ -34,6 +34,7 @@ public class LoginEmpt extends HttpServlet {
         } else {
             accout = acc.getAcc(email);
 
+
             session.setAttribute("acc1", accout);
             if (accout.getRole() == 1) {
                 req.getRequestDispatcher("dashmap").forward(req, resp);
@@ -48,6 +49,7 @@ public class LoginEmpt extends HttpServlet {
                     req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
                 }
             }
+
         }
 
     }

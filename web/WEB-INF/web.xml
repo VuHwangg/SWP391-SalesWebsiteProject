@@ -28,6 +28,10 @@
         <servlet-name>ImportProductController</servlet-name>
         <servlet-class>controller_Empt.ImportProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>forwardAcc</servlet-name>
+        <servlet-class>controller_Empt.forwardAcc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Dashmap</servlet-name>
         <url-pattern>/dashmap</url-pattern>
@@ -48,7 +52,6 @@
         <servlet-name>ImportHistory</servlet-name>
         <url-pattern>/importhistory</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>SendRate</servlet-name>
         <servlet-class>controller_Cust.UserVoteController</servlet-class>
@@ -57,7 +60,6 @@
         <servlet-name>SendRate</servlet-name>
         <url-pattern>/sendrate</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>TopSaler</servlet-name>
         <servlet-class>controller_Cust.TopSalerController</servlet-class>
@@ -66,7 +68,6 @@
         <servlet-name>TopSaler</servlet-name>
         <url-pattern>/topsaler</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>TopDiscount</servlet-name>
         <servlet-class>controller_Cust.TopDiscountController</servlet-class>
@@ -75,7 +76,6 @@
         <servlet-name>TopDiscount</servlet-name>
         <url-pattern>/topdiscount</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>CommentManagement</servlet-name>
         <servlet-class>controller_Empt.ManageCommentController</servlet-class>
@@ -84,7 +84,6 @@
         <servlet-name>CommentManagement</servlet-name>
         <url-pattern>/commentmanagement</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>ChangeCommentStatus</servlet-name>
         <servlet-class>controller_Empt.ChangeCommentStatusController</servlet-class>
@@ -93,7 +92,6 @@
         <servlet-name>ChangeCommentStatus</servlet-name>
         <url-pattern>/changecommentstatus</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller_Cust.AddToCartController</servlet-class>
@@ -397,6 +395,10 @@
     <servlet-mapping>
         <servlet-name>ImportProductController</servlet-name>
         <url-pattern>/ImportProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>forwardAcc</servlet-name>
+        <url-pattern>/forwardAcc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
