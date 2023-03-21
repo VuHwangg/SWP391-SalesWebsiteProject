@@ -409,7 +409,7 @@ public class OrderDAO extends DBContext {
             String sql = "SELECT TOP (?) pro.[product_id],\n"
                     + "		COUNT(od.product_id) as num\n"
                     + "FROM [Product] pro \n"
-                    + "LEFT JOIN Order_Details od on pro.product_id = od.product_id group by pro.product_id order by num DESC";
+                    + "LEFT JOIN Order_Details od on pro.product_id = od.product_id WHERE pro.[status] = 1 group by pro.product_id order by num DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             ResultSet rs = stm.executeQuery();

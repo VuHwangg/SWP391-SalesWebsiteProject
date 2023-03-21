@@ -120,7 +120,7 @@ public class VoteDBContext extends DBContext {
                 uv.setRating(rs.getInt("num_of_star"));
                 uv.setComment(rs.getString("comment"));
                 uv.setAcc(accDB.getAcc(rs.getString("username")));
-                uv.setProduct(proDB.getProductByID(rs.getInt("product_id")));
+                uv.setProduct(proDB.getProductByIDWithOutStatus(rs.getInt("product_id")));
                 userVotes.add(uv);
             }
             stm.close();
