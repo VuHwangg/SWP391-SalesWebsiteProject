@@ -804,6 +804,11 @@
         min-width: 100px;
         font-weight: 700;
     }
+    
+    .input-label-box-3 {
+        min-width: 130px;
+        font-weight: 700;
+    }
 
 
     footer.sticky-footer {
