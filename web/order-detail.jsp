@@ -25,8 +25,18 @@
                 <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
-                    <span>&nbsp;/&nbsp;</span>
-                    <a href="order-lookup.jsp">Tra đơn</a>
+                    <%
+                        Helper helper = new Helper();
+                        Order order = (Order) session.getAttribute("Order");
+                        String price1 = helper.convertBigNum(order.getTotal_price());
+                    %>
+
+                    <% if (session.getAttribute("acc") != null) {%>
+                        <%if (order.getStatus() == 1) {%>
+                        <span>&nbsp;/&nbsp;</span>
+                        <a href="ViewAllOrder">Đơn hàng của tôi</a>
+                        <%}%>
+                    <%}%>
                     <span>&nbsp;/&nbsp;</span>
                     <a href="#">Chi tiết đơn hàng</a>
                 </div>
@@ -57,8 +67,7 @@
                             <th class="col-3 border border-1 border-white">Giá tiền</th>
                         </tr>
 
-                        <%                            
-                            Helper helper = new Helper();
+                        <%
                             String err = "";
                             for (int i = 0; i < arrOr.size(); i++) {
                                 String price = helper.convertBigNum(arrOr.get(i).getPrice());
@@ -91,9 +100,7 @@
                             <span>0 VNĐ</span>
                         </div>
                     </div>
-                    <% Order order = (Order) session.getAttribute("Order");
-                        String price1 = helper.convertBigNum(order.getTotal_price());
-                    %>
+
                     <div class="row py-3 fs-5 fw-bolder bg-danger text-white">
                         <div class="col-6 text-start">
                             <span>Tổng cộng</span>
@@ -121,9 +128,9 @@
 
             </div>
             <!--footer-->
-            <%@include file="components/footer.jsp" %>
-        </main>
 
+        </main>
+        <%@include file="components/footer.jsp" %>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
