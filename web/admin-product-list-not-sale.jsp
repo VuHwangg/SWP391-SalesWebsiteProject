@@ -169,7 +169,7 @@
                                                     <!--Nút "XEM" sẽ link đến trang product detail của sản phẩm-->
                                                     <a class="btn btn-secondary w-100" href="ProductDetailDisable?product_id=${p.id}">Xem</a>&nbsp;
                                                     <!----------->
-                                                    <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}">Sửa</a>&nbsp;
+                                                    <a class="btn btn-warning w-100" href="EditProduct?product_id=${p.id}&status=0">Sửa</a>&nbsp;
                                                     <form action="ChangeProductStatus" method="POST">
                                                         <input type="text" value="${p.id}" name="product_id" hidden>
                                                         <input type="text" value="1" name="status" hidden>

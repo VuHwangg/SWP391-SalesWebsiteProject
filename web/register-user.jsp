@@ -56,7 +56,8 @@
                 </div>
                 <div class="form-input">
                     <label for="name">Họ và tên</label>
-                    <input type="text" class="form-control" id="name" name="name" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Hoàng Chu Anh Vũ" maxlength="100" required>
+                    <input type="text" class="form-control" id="name" name="name" onkeydown="if (event.keyCode == 32 && this.selectionStart == 0)
+                                return false;" placeholder="VD: Hoàng Chu Anh Vũ" maxlength="100" required>
                     <div class="invalid-feedback">
                         Họ và tên không được để trống
                     </div>
@@ -70,27 +71,45 @@
                 </div>
                 <div class="form-input">
                     <label for="address">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" name="place" onkeydown="if(event.keyCode==32 && this.selectionStart==0) return false;" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="200" required>
+                    <input type="text" class="form-control" id="address" name="place" onkeydown="if (event.keyCode == 32 && this.selectionStart == 0)
+                                return false;" placeholder="VD: Thôn 4 - Thạch Hòa - Thạch Thất - Hà Nội" maxlength="200" required>
                     <div class="invalid-feedback">
                         Địa chỉ không đuợc để trống
                     </div>
                 </div>
 
-                
                 <div class="form-input">
-                    <input type="submit" class="btn btn-danger" id="login-btn" value="Hoàn Tât">
+                    <input type="submit" onclick="registerUser()" class="btn btn-danger" id="login-btn" value="Hoàn Tất">
                 </div>
             </form>
         </div>
 
         <!--Content ends-->
         <%@include file="styles/js/validate-script.jsp" %>
-   <!-- <%@include file="styles/js/popup-register-user.jsp" %>-->
-        
+        <script>
+            function registerUser() {
+                const name = document.getElementById('name');
+                const phone = document.getElementById('phone');
+                const address = document.getElementById('address');
+
+                if (!name.checkValidity() || !phone.checkValidity() || !address.checkValidity()) {
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Đăng Ký Tài Khoản Thành Công',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(function () {
+                        window.location.href = 'home';
+                    });
+                }
+            }
+        </script>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-      <!-- 
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -105,6 +124,6 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
-        ></script>-->
+        ></script>
     </body>
 </html>

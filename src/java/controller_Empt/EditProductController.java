@@ -38,6 +38,8 @@ public class EditProductController extends HttpServlet {
             throws ServletException, IOException {
         String rawProductId = request.getParameter("product_id");
         int productID = Integer.parseInt(rawProductId);
+        String rawStatus = request.getParameter("status");
+        int status = Integer.parseInt(rawStatus);
         ProductDBContext p = new ProductDBContext();
         Product product = p.getForAllProductByID(productID);
         int brandId = product.getBrands().get(0).getId();
@@ -74,40 +76,40 @@ public class EditProductController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         String rawProductId = request.getParameter("productId");
         int productId = Integer.parseInt(rawProductId);
-        
+
         String rawProductName = request.getParameter("productName").trim();
         //String rawOriginalPrice = request.getParameter("originalPrice");
         //String rawSalePrice = request.getParameter("salePrice");
         
         String rawBrandId = request.getParameter("brand");
         int brandId = Integer.parseInt(rawBrandId);
-        if (brandId == -1 ) {
+        if (brandId == -1) {
             String otherBrandName = request.getParameter("otherBrand").trim();
             brandId = new BrandDBContext().AddNewBrandAndReturnId(otherBrandName);
         }
-        
+
         String rawRequirementId = request.getParameter("requirement");
         int requirementId = Integer.parseInt(rawRequirementId);
         if (requirementId == -1) {
             String otherRequirementName = request.getParameter("otherRequirement").trim();
             requirementId = new RequirementDBContext().AddNewRequirementAndReturnId(otherRequirementName);
         }
-        
+
         String rawOriginalPrice = request.getParameter("originalPrice");
         double originalPrice = Double.parseDouble(rawOriginalPrice);
-        
+
         String rawSalePrice = request.getParameter("salePrice");
         double salePrice = Double.parseDouble(rawSalePrice);
-        
+
         double discount = 100 - (salePrice / originalPrice * 100);
         String rawColor = request.getParameter("productColor").trim();
         String rawType = request.getParameter("productType").trim();
         String rawRam = request.getParameter("productRam").trim();
         String rawRom = request.getParameter("productRom").trim();
-        
+
         String rawOs = request.getParameter("productOs").trim();
         if (rawOs.equals("-1")) {
             rawOs = request.getParameter("otherOs").trim();
@@ -116,12 +118,12 @@ public class EditProductController extends HttpServlet {
         String rawCpu = request.getParameter("productCpu").trim();
         String rawGpu = request.getParameter("productGpu").trim();
         String rawDescription = request.getParameter("productDescription");
-        
+
         int type = Integer.parseInt(rawType);
         int ram = Integer.parseInt(rawRam);
         int rom = Integer.parseInt(rawRom);
         double size = Double.parseDouble(rawSzie);
-        
+
         Product product = new Product();
         product.setId(productId);
         product.setName(rawProductName);
@@ -138,12 +140,12 @@ public class EditProductController extends HttpServlet {
         product.setDescription(rawDescription);
         product.setDiscount(discount);
         product.setQty(0);
-      
+
         product.setStatus(false);
         ProductDBContext pdb = new ProductDBContext();
-        
+
         pdb.updateProduct(product);
-        
+
         pdb.deleteOldProductBrand(productId);
         pdb.deleteOldProductRequirment(productId);
         pdb.setProductBrand(productId, brandId);
