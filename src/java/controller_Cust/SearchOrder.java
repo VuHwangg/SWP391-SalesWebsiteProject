@@ -32,7 +32,7 @@ public class SearchOrder extends HttpServlet {
         String search = "";
         search = req.getParameter("search");
         OrderDAO odao = new OrderDAO();
-        String err = "";
+
         HttpSession session = req.getSession();
         int order_id = 0;
         ArrayList<Order_Details> arrDetail = new ArrayList<>();
@@ -41,7 +41,7 @@ public class SearchOrder extends HttpServlet {
         AccountDAO adao = new AccountDAO();
         Check check = new Check();
         //  resp.getWriter().print(adao.getCust(mail,true).getCustomerId());
-        if (check.CheckPhone(search)) {
+        try {
             order_id = Integer.parseInt(search);
             if (mail == null) {
                 or = odao.getOrder1(order_id);
@@ -61,19 +61,20 @@ public class SearchOrder extends HttpServlet {
                 }
 
             }
-        } else {
-            err = "Không có kết quả bạn cần tìm";
+            session.setAttribute("Order_Details", arrDetail);
+            session.setAttribute("lstPro", arrPro);
+            session.setAttribute("Order", or);
+            resp.getWriter().print(search);
+
+            if (or.getOrder_id() == 0) {
+                req.getRequestDispatcher("order-lookup-null.jsp").forward(req, resp);
+            } else {
+                req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
+            }
+        } catch (Exception ex) {
+            req.getRequestDispatcher("order-lookup-null.jsp").forward(req, resp);
         }
 
-        session.setAttribute("err", err);
-        session.setAttribute("Order_Details", arrDetail);
-        session.setAttribute("lstPro", arrPro);
-        session.setAttribute("Order", or);
-        if (or.getOrder_id() == 0) {
-            req.getRequestDispatcher("order-lookup-null.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
-        }
     }
 
     @Override
