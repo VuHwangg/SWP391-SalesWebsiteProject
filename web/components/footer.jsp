@@ -18,18 +18,29 @@
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-twitter"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-instagram" ></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/VuHwangg/SWP391-SalesWebsiteProject"><i class="bi bi-github"></i></a>
-                <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-google"></i></a>
+                <a onclick="mailto()"><i class="bi bi-google"></i></a>
+                <script>
+                    function mailto() {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'anwsshop@gmail.com',
+                            text: 'Gửi mail cho chúng tôi để được hỗ trợ !!'
+                        })
+                    }
+                </script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             </div>
         </div>
 
         <div class="footer-section footer-links">
             <h2>Truy Cập</h2>
             <ul>
-                <li><a href="home">Trang chủ</a></li>
                 <li><a href="filter?type=0">Điện thoại</a></li>
                 <li><a href="filter?type=1">Laptop</a></li>
-                <li><a href="cart">Giỏ hàng</a></li>
-                <li><a href="order-lookup-guest.jsp">Theo dõi đơn</a></li>
+                <li><a href="topsaler">Sản phẩm bán chạy</a></li>
+                <li><a href="topdiscount">Sản phẩm khuyến mại</a></li>
+                <li><a href="order-lookup-guest.jsp">Tra cứu đơn hàng</a></li>
             </ul>
         </div> 
 
@@ -52,7 +63,7 @@
                 </li>
                 <li>
                     <span><i class="bi bi-envelope-fill" aria-hidden="true"></i>&nbsp;</span>
-                    <span><a href="anwsshop@gmail.com">anwsshop@gmail.com</a></span>
+                    <span><a href="mailto:anwsshop@gmail.com">anwsshop@gmail.com</a></span>
                 </li>
         </div>
     </div>
