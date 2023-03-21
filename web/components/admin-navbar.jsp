@@ -90,7 +90,7 @@
             %>
             <!-- 8 -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Đánh giá sản phẩm">
-                <a class="nav-link" href="admin-feedback-list.jsp">
+                <a class="nav-link" href="commentmanagement">
                     <i class="bi bi-chat-square-dots-fill" style="font-size: 20px"></i>&nbsp;
                     <span class="nav-link-text">Đánh giá sản phẩm</span>
                 </a>

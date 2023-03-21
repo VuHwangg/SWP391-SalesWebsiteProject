@@ -113,6 +113,9 @@ public class Helper {
                 totalStar += vote.getNum() * vote.getNum_of_vote();
             }
             avg = (double)totalStar / totalVote;
+            avg = avg*100;
+            int x =(int)avg;
+            avg =(double)x/100;
         }
         return avg;
     }

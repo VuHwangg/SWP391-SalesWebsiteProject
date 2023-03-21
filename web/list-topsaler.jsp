@@ -39,7 +39,7 @@
                         <c:if test="${requestScope.namePage==1}">
                             <a href="#">Sản phẩm khuyến mại</a>
                         </c:if>
-                        
+
                     </div>
                     <!-- list product block -->
                     <div class="list-product">
@@ -63,7 +63,13 @@
                                                         active
                                                     </c:if>
                                                     " name="sort" value="none">
-                                                Khuyến mãi
+                                                <c:if test="${requestScope.namePage==0}">
+                                                    Bán chạy nhất
+                                                </c:if>
+                                                <c:if test="${requestScope.namePage==1}">
+                                                    Khuyến mãi
+                                                </c:if>
+                                                
                                             </button>
                                             <button class="btn btn-outline-danger
                                                     <c:if test="${helper.checkSort(param.sort)==2}">
