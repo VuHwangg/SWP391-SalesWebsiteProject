@@ -46,7 +46,6 @@ public class LoginEmpt extends HttpServlet {
                     accout = acc.getAcc(email);
                     session.setAttribute("acc1", accout);
                     req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
-
                 }
             }
         }
