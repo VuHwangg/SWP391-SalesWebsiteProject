@@ -88,7 +88,7 @@
 
         <!--Content ends-->
         <%@include file="styles/js/validate-script.jsp" %>
-        <%@include file="styles/js/popup-submit-form.jsp" %>
+        <%@include file="styles/js/popup-register-user.jsp" %>
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

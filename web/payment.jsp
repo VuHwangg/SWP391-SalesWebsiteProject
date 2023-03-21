@@ -167,7 +167,7 @@
         </main>
 
         <%@include file="styles/js/validate-script.jsp" %>
-        <%@include file="styles/js/popup-submit-form.jsp" %>
+        <%@include file="styles/js/popup-payment.jsp" %>
 
         <script>
             

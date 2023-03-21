@@ -35,9 +35,21 @@ public class LoginEmpt extends HttpServlet {
             accout = acc.getAcc(email);
 
 
-//            session.setAttribute("acc1", accout);
+            session.setAttribute("acc1", accout);
+            if (accout.getRole() == 1) {
+                req.getRequestDispatcher("dashmap").forward(req, resp);
+            } else {
+                if (accout.getRole() == 2) {
+                    accout = acc.getAcc(email);
+                    session.setAttribute("acc1", accout);
+                    req.getRequestDispatcher("ProductManagement").forward(req, resp);
+                } else {
+                    accout = acc.getAcc(email);
+                    session.setAttribute("acc1", accout);
+                    req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
+                }
+            }
 
-//            }
         }
 
     }
