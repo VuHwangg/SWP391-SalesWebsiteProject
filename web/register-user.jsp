@@ -76,10 +76,7 @@
                     </div>
                 </div>
 
-                <div class="input-group mb-3" hidden>
-                    <input type="file" class="form-control" id="img" accept="image/png, image/jpeg"name="img" value="">
-                    <label class="input-group-text" for="img">Tải lên ảnh đại diện</label>
-                </div>
+                
                 <div class="form-input">
                     <input type="submit" class="btn btn-danger" id="login-btn" value="Hoàn Tât">
                 </div>
@@ -88,12 +85,12 @@
 
         <!--Content ends-->
         <%@include file="styles/js/validate-script.jsp" %>
-        <%@include file="styles/js/popup-register-user.jsp" %>
+   <!-- <%@include file="styles/js/popup-register-user.jsp" %>
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-        <!--JS bootstrap 5 include -->
+       
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -108,6 +105,6 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
-        ></script>
+        ></script>-->
     </body>
 </html>
