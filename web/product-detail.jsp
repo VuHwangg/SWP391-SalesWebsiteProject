@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <title>Chi tiết sản phẩm</title>
-        
+
         <style>
             .lSPager {
                 display: none;
@@ -285,16 +285,16 @@
                                     </c:forEach>
                                 </div>
                             </div>
-                                <% acc = (Account) session.getAttribute("acc");%>
-                            <div class="d-flex justify-content-center align-items-center flex-column">
+                            <% acc = (Account) session.getAttribute("acc");%>
+                            <div class="d-flex justify-content-center align-items-center flex-column mb-3">
                                 <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
-                                <%if(acc != null){%>
+                                <%if (acc != null) {%>
                                 <h5 class="text-center">Bạn thấy sao về sản phẩm này ?</h5>
                                 <!-- Khi người dùng đã đăng nhập -->
                                 <button type="button" class="btn btn-danger fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                                     Đánh giá ngay
                                 </button><!-- comment -->
-                                <%}else{%>
+                                <%} else {%>
                                 <!-- Khi người dùng chưa đăng nhập -->
                                 <a href="login-user.jsp" class="btn btn-danger fs-5 w-100" style="max-width: 600px">
                                     Đăng nhập ngay để có thể đánh giá sản phẩm
@@ -332,20 +332,29 @@
                                 </div>
                             </div>
                             <c:forEach items="${requestScope.userVotes}" var="userVote">
-                                <h1>${userVote.acc.displayname}</h1>
-                                <div class="stars">
-                                    <c:forEach var = "i" begin = "1" end = "5">
-                                        <c:choose>
-                                            <c:when test="${i <= userVote.rating}">
-                                                <i class="bi bi-star-fill active"></i>
-                                            </c:when>    
-                                            <c:otherwise>
-                                                <i class="bi bi-star-fill"></i>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
+                                <h5 class="mt-3"><i style="font-size: 24px" class="bi bi-person-circle"></i>&nbsp;${userVote.acc.displayname}</h5>
+                                <div style="margin-left: 24px; border-radius: 12px" class="bg-offwhite p-2">
+                                    <div class="d-flex align-items-center">
+                                        <h6 style="margin: 0">Đánh giá:&nbsp;&nbsp;</h6>
+                                        <div class="stars" style="font-size: 15px">
+                                            <c:forEach var = "i" begin = "1" end = "5">
+                                                <c:choose>
+                                                    <c:when test="${i <= userVote.rating}">
+                                                        <i class="bi bi-star-fill active"></i>
+                                                    </c:when>    
+                                                    <c:otherwise>
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-start">
+                                        <h6 style="margin: 4px 0 0 0; width: 85px;">Bình&nbsp;luận:&nbsp;&nbsp;</h6>
+                                        <p>${userVote.comment}</p>
+                                    </div>
                                 </div>
-                                <h2>${userVote.comment}</h2>
+
                             </c:forEach>                       
                         </div>
                     </div>

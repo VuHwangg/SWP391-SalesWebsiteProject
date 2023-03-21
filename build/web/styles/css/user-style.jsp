@@ -60,6 +60,14 @@
         --main-color-black: rgb(39, 39, 39);
     }
 
+    progress::-webkit-progress-value {
+        background-color: #dc3545 !important;
+    }
+
+    progress::-moz-progress-bar {
+        background-color: #dc3545 !important;
+    }
+
     table tr,
     table td,
     table th {
@@ -86,7 +94,7 @@
     .bg-offwhite {
         background-color: rgb(235, 235, 235) !important;
     }
-    
+
     .bg-invisible {
         background-color: rgba(255, 255, 255, 0.6) !important;
     }
@@ -408,7 +416,7 @@
         margin-bottom: 0;
         background-color: white;
     }
-    
+
     .breadcrumb a {
         color: var(--main-color-black);
         text-decoration: none;
@@ -418,16 +426,16 @@
     .breadcrumb a:hover {
         color: var(--main-bg-color);
     }
-    
+
     .breadcrumb-invisible {
         background-color: rgba(0,0,0,0);
         color: white;
     }
-    
+
     .breadcrumb-invisible a {
         color: white;
     }
-    
+
     .breadcrumb-invisible a:hover {
         color: white;
         text-decoration: underline;
@@ -507,12 +515,12 @@
     .list-product .cover-block {
         background-color: white;
     }
-    
+
     .list-product.home .cover-block {
         background-color: rgba(255, 255, 255, 0);
         /*box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;*/
     }
-        
+
 
     @media (max-width: 1200px) {
         .list-product.home {
@@ -808,16 +816,16 @@
         transform: rotate(-45deg) !important;
         -webkit-transform: rotage(-45px) !important;
     }
-    
-    
+
+
     .lSSlideWrapper {
         background-color: white;
         border-radius: 20px;
         box-sizing: content-box;
         padding: 10px 20px;
     }
-    
-    .lSSlideOuter .lSPager.lSpg > li:hover a, 
+
+    .lSSlideOuter .lSPager.lSpg > li:hover a,
     .lSSlideOuter .lSPager.lSpg > li.active a  {
         background-color: white !important;
     }
