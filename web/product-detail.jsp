@@ -252,7 +252,7 @@
                                     <div class="stars">
                                         <c:forEach var = "i" begin = "1" end = "5">
                                             <c:choose>
-                                                <c:when test="${i <= helper.getAvgRate(requestScope.product)}">
+                                                <c:when test="${i <= helper.getAvgRate(requestScope.product)+1}">
                                                     <i class="bi bi-star-fill active"></i>
                                                 </c:when>    
                                                 <c:otherwise>
