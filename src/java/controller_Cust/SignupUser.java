@@ -11,6 +11,9 @@ import java.io.IOException;
 import model.Account;
 import model.Customer;
 import util.Check;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /*
@@ -42,10 +45,14 @@ public class SignupUser extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("cust", cust1);
                 session.setAttribute("acc", acc1);
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SignupUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 req.getRequestDispatcher("home").forward(req, resp);
             }
         } else {
-            resp.getWriter().write("error");
             req.getRequestDispatcher("register-user.jsp").forward(req, resp);
         }
     }

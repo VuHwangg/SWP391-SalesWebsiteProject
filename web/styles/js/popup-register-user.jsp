@@ -16,6 +16,7 @@
                 data: formData,
                 success: function (data) {
                     if (data === 'error') {
+                        console.log(data);
                         Swal.fire({
                             icon: 'error',
                             title: 'Đã xảy ra lỗi',
@@ -25,8 +26,7 @@
                     } else {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Thành Công',
-                            text: 'Bạn đã hoàn thiện đầy đủ thông tin',
+                            title: 'Đăng Ký Tài Khoản Thành Công',
                             showConfirmButton: false,
                             timer: 1500
                         }).then(function () {
