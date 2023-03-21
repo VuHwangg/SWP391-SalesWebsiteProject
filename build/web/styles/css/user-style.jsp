@@ -60,6 +60,14 @@
         --main-color-black: rgb(39, 39, 39);
     }
 
+    progress::-webkit-progress-bar {
+        background-color: #eeeeee;
+    }
+    
+    progress {
+            background-color: #eee;
+        }
+
     progress::-webkit-progress-value {
         background-color: #dc3545 !important;
     }
