@@ -234,10 +234,10 @@ public class ProductDBContext extends DBContext {
             }
             if (topSale == true) {
                 sql = sql + " ORDER BY [discount] DESC, ";
-            }else{
-                 sql = sql + " ORDER BY ";
+            } else {
+                sql = sql + " ORDER BY ";
             }
-            sql = sql + "[feature_product] DESC";          
+            sql = sql + "[feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             if (type != -1) {
@@ -438,30 +438,34 @@ public class ProductDBContext extends DBContext {
         int skip = (numOfPage - 1) * 12;
         String txtSearch = "%" + rawTxtSearch + "%";
         try {
-            String sql = "SELECT [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "  FROM   [Product] \n"
-                    + "  WHERE [name] LIKE ?\n"
-                    + "   OR [os] LIKE ?\n"
-                    + "   OR [color] LIKE ?\n"
-                    + "   OR [ram] LIKE ?\n"
-                    + "   OR [memory] LIKE ?\n"
-                    + "   OR [cpu] LIKE ?\n"
-                    + "   OR [graphics_card] LIKE ? AND [status] = 1";
+            String sql = "SELECT pr.[product_id]\n"
+                    + "		  ,pr.[name]\n"
+                    + "		  ,pr.[type]\n"
+                    + "		  ,pr.[os]\n"
+                    + "		  ,pr.[color]\n"
+                    + "		  ,pr.[current_price]\n"
+                    + "           ,pr.[original_price]\n"
+                    + "		  ,pr.[ram]\n"
+                    + "		  ,pr.[memory]\n"
+                    + "		  ,pr.[cpu]\n"
+                    + "		  ,pr.[graphics_card]\n"
+                    + "		  ,pr.[size]\n"
+                    + "		  ,pr.[description]\n"
+                    + "		  ,pr.[discount]\n"
+                    + "		  ,pr.[qty]\n"
+                    + "		  ,pr.[status]\n"
+                    + "  FROM   [Product] pr\n"
+                    + "INNER JOIN [Product_Brand] prbr ON pr.[product_id] = prbr.[product_id]\n"
+                    + "INNER JOIN [Brand] br ON br.[brand_id] = prbr.[brand_id]\n"
+                    + "INNER JOIN [Product_Requirement] prre ON pr.[product_id] = prre.[product_id]\n"
+                    + "INNER JOIN Requirement re ON re.[requirement_id] = prre.[requirement_id]\n"
+                    + "  WHERE pr.[name] LIKE ?\n"
+                    + "   OR pr.[os] LIKE ?\n"
+                    + "   OR pr.[color] LIKE ?\n"
+                    + "   OR pr.[ram] LIKE ?\n"
+                    + "   OR pr.[memory] LIKE ?\n"
+                    + "   OR pr.[cpu] LIKE ?\n"
+                    + "   OR pr.[graphics_card] LIKE ? or re.[requirement_name] like ? or br.[brand_name] like ? AND pr.[status] = 1";
             if (sort.compareTo("none") == 0) {
                 sql = sql + "\n ORDER BY [discount] DESC";
             }
@@ -480,7 +484,9 @@ public class ProductDBContext extends DBContext {
             stm.setString(5, txtSearch);
             stm.setString(6, txtSearch);
             stm.setString(7, txtSearch);
-            stm.setInt(8, skip);
+            stm.setString(8, txtSearch);
+            stm.setString(9, txtSearch);
+            stm.setInt(10, skip);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -721,7 +727,7 @@ public class ProductDBContext extends DBContext {
     }
 
     // sản phẩm tương tự
-    public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card) {
+    public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card, int productId) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT TOP (?) pr.[product_id]\n"
@@ -741,15 +747,16 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.[discount]\n"
                     + "      ,pr.[qty]\n"
                     + "      ,pr.[status]\n"
-                    + "  FROM [Product] pr\n"
-                    + "  where  pr.[status] = 1\n"
-                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ?";
+                    + "  FROM [Product] pr \n"
+                    + "  where  pr.[status] = 1 and [product_id] != ?\n"
+                    + "or pr.[ram] like ? or pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
-            stm.setInt(2, ram);
-            stm.setInt(3, memory);
-            stm.setString(4, cpu);
-            stm.setString(5, graphic_card);
+            stm.setInt(2, productId);
+            stm.setInt(3, ram);
+            stm.setInt(4, memory);
+            stm.setString(5, cpu);
+            stm.setString(6, graphic_card);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();

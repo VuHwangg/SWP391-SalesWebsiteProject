@@ -35,7 +35,7 @@ public class ProductDetailDisableController extends HttpServlet {
         request.setAttribute("userVotes", userVotes);
         request.setAttribute("product", product);
         ArrayList<Product> colorList = new ArrayList<>();
-        ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card());
+        ArrayList<Product> sameList = productList.listSameProduct(4, product.getRam(), product.getMemory(), product.getCpu(), product.getGraphic_card(),product.getId());
         ArrayList<Product> bufferList = productList.bufferObject(product.getName());
         ArrayList<Product> optionList = new ArrayList<>();
         colorList.add(product);
