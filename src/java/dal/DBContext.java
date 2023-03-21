@@ -13,9 +13,9 @@ public class DBContext {
         try {
             // Edit URL , username, password to authenticate with your MS SQL Server
             String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP";
-            String username = "sa";
+            String username = "duyct";
 
-            String password = "12345678";
+            String password = "1312002ss";
 
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
