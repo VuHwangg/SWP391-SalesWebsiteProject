@@ -154,8 +154,10 @@
                             </c:if>
                         </div>
                     </div>
+                            
                     <div style="padding: 0 12px">
-                        <div class="cover-block similar-product" style="padding: 20px 20px 0 20px">
+                      <c:if test="${requestScope.sameList.size() >0 }"> 
+                          <div class="cover-block similar-product" style="padding: 20px 20px 0 20px">
                             <h3>Sản phẩm tương tự: </h3>
                             <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.sameList}" var="sameList">
@@ -210,7 +212,7 @@
                                 </c:forEach>
                             </ul>
                         </div>
-
+                          </c:if>
                         <div class="row mt-3 w-100 mx-auto product-description">
 
                             <div class="cover-block product-description-left col-md-7 bg-danger">

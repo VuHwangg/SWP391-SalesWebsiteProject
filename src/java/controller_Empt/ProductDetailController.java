@@ -42,6 +42,7 @@ public class ProductDetailController extends HttpServlet {
 //            response.getWriter().print(diffOption.getName());
             optionList.add(diffOption);
         }
+        
         request.setAttribute("colorList", colorList);
         request.setAttribute("optionList", optionList);
         request.setAttribute("sameList", sameList);
