@@ -75,19 +75,19 @@
                                             <tr>
                                                 <td>Họ và tên:</td>
                                                 <td>
-                                                    <input type="text" name="name" value="<%=cus.getCustomerName()%>" class="form-control" placeholder="Nhập họ tên của bạn">
+                                                    <input type="text" name="name" value="<%=cus.getCustomerName()%>" class="form-control" placeholder="Nhập họ tên của bạn" required maxlength="100">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Số điện thoại:</td>
                                                 <td>
-                                                    <input type="text" name="phone" value="<%=cus.getPhone()%>" class="form-control" placeholder="Nhập số điện thoại của bạn">
+                                                    <input type="text" name="phone" value="<%=cus.getPhone()%>" class="form-control" placeholder="Nhập số điện thoại của bạn" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="30">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Địa chỉ:</td>
                                                 <td>
-                                                    <input type="text" name="adress" value="<%=cus.getAddress()%>" class="form-control" placeholder="Nhập địa chỉ của bạn">
+                                                    <input type="text" name="adress" value="<%=cus.getAddress()%>" class="form-control" placeholder="Nhập địa chỉ của bạn" required maxlength="200">
                                                 </td>
                                             </tr>
                                         </table>

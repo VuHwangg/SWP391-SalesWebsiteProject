@@ -28,7 +28,7 @@ public class DBContext {
         try {
 <<<<<<< Updated upstream
             String user = "sa";
-            String pass = "12345678";
+            String pass = "30082002Xyz@";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
 =======
             // Edit URL , username, password to authenticate with your MS SQL Server
