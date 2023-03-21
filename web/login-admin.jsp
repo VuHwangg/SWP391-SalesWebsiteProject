@@ -47,22 +47,22 @@
         <!--Login Form-->
         <div class="login-form" >
             <form id="login-form" action="LoginEmpt" method="post">
-                
+
                 <div class="form-title">
                     <h4 class="text-danger">Awns's Store</h4>
                     <h1>ADMIN LOGIN</h1>
                     <span>Chức năng đăng nhập chỉ dành cho quản trị viên</span>
-                    
+
                 </div>
                 <div class="form-input">
                     <label for="username">Tên đăng nhập</label>
-                    <input type="text" id="username" name="email">
+                    <input type="text" id="username" name="email" value="" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 50)">
                 </div>
                 <div class="form-input">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" name="pass">
+                    <input type="password" id="password" name="pass" value="">
                 </div>
-<!--                <div class="captcha">
+                <div class="captcha">
                     <label for="captcha-input">Captcha</label>
                     <div class="preview"></div>
                     <div class="captcha-form">
@@ -71,7 +71,7 @@
                             <i class="fa fa-refresh"></i>
                         </div>
                     </div>
-                </div>-->
+                </div>
                 <div class="form-input">
                     <input type="submit" class="btn btn-danger" id="login-btn" value="Đăng nhập">
                 </div>
@@ -80,8 +80,8 @@
 
         <!--Content ends-->
         <%@include file="styles/js/validate-script.jsp" %>
-        <%@include file="styles/js/popup-submit-form.jsp" %>
-        
+        <%@include file="styles/js/popup-login-admin.jsp" %>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

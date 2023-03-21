@@ -25,45 +25,24 @@ public class SignupEmpt extends HttpServlet {
         String user = req.getParameter("email");
         String name = req.getParameter("name");
         String pass = req.getParameter("pass");
-        String repass = req.getParameter("repass");
-       
+
         int role = Integer.parseInt(req.getParameter("role"));
-        String err = "1";
         AccountDAO acc = new AccountDAO();
-        if (user.isEmpty()) {
-            err = "Please input Username";
-        }if(acc.checkExistAcc(user,true) != null){
-            err = "The Username is Exist. Please input anothor username";
-        } 
-        else {
-            if (pass.isEmpty()) {
-                err = "Please input Password";
-
-            } else {
-                if (repass.isEmpty()) {
-                    err = "Please input Repassword";
-                } else if (repass.equals(pass) == false) {
-                    err = "Confirmation passsword is not duplicate";
+        if (acc.checkExistAcc(user, true) != null)  {
+            resp.getWriter().write("error");
+        }else {
+            if (acc.addAcount(user, pass, name, true)) {
+                if (acc.addRole(role, user)) {
+                    req.getRequestDispatcher("controllerEmployee").forward(req, resp);
                 }
             }
         }
-        if (err.equals("1")== false){
-            req.setAttribute("err", err);
-             req.getRequestDispatcher("register-admin.jsp").forward(req, resp);
-        }else{
-            
-            if(acc.addAcount(user, pass, name,true)){
-                if(acc.addRole(role, user)){
-                     req.getRequestDispatcher("controllerEmployee").forward(req, resp);
-                }
-            }
+        }
+
+        @Override
+        protected void doGet
+        (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         }
 
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-}

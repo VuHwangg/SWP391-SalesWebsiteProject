@@ -29,7 +29,7 @@ public class LoginEmpt extends HttpServlet {
         AccountDAO acc = new AccountDAO();
         Account accout = acc.checkLoginCus(email, password, true);
 
-        if (accout == null) {
+        if (accout == null || email.isEmpty() || password.isEmpty()) {
             resp.getWriter().write("error");
         } else {
             accout = acc.getAcc(email);

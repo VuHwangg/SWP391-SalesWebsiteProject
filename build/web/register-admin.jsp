@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/admin-head.jsp" %>
         <%@include file="styles/css/admin-style.jsp" %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Tạo tài khoản cho nhân viên</title>
 
     </head>
@@ -40,85 +41,71 @@
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Tạo tài khoản cho nhân viên 
                     </div>
                     <div class="card-body p-3">
-                        <form action="SignupEmpt" method="post">
-
-                            <%
-                                String mess = (String) request.getAttribute("err");
-                                if (mess == null)
-                                    mess = "Bạn vui lòng hoàn thiện thông tin bên dưới";
-                            %>
-                            <p><%=mess%></p>
-
+                        <form action="SignupEmpt" method="post" id="admin-register-form" class="needs-validation" novalidate oninput='repass.setCustomValidity(repass.value != pass.value ? "Passwords do not match." : "")'>
                             <!--Tên đăng nhập-->
                             <div class="mb-3">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text input-label-box-1" for="username">Tên đăng nhập</label>
                                     </div>
-                                    <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập (có độ dài từ 6 đến 50 ký tự, không được bao gồm dấu cách)" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 50)" minlength="6" maxlength="50" required>
+                                    <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập (có độ dài từ 3 đến 50 ký tự, không bao gồm dấu cách)" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 50)" minlength="3" maxlength="50" required>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        Tên đăng nhập phải có tối thiểu 3 ký tự, tối đa 50 ký tự, và không chứa dấu cách 
+                                    </div>
                                 </div>
-                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-                            
-                            <!--Tên đăng nhập v2-->
-<!--                            <div class="mb-3">
-                                <div class="d-flex align-items-center">
-                                    <label class="input-label-box-1" for="username">Tên đăng nhập: </label>
-                                    <input type="text" class="form-control" id="username" name="email" placeholder="Tên dùng để đăng nhập (có độ dài từ 6 đến 50 ký tự, không được bao gồm dấu cách)" required>
-                                </div>
-                                <small style="margin-left: 180px;">Error Message</small>
-                            </div>-->
-
                             <!--Họ và tên-->
                             <div class="mb-3">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text input-label-box-1" for="name">Họ và tên</label>
                                     </div>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên (có độ dài từ 6 đến 100 ký tự)" required>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên đầy đủ của nhân viên (có độ dài từ 3 đến 100 ký tự)" minlength="3" maxlength="100" required>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        Họ và tên phải có tối thiểu 3 ký tự, tối đa 100 ký tự
+                                    </div>
                                 </div>
-                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-
-
                             <div class="input-group mb-3" hidden>
                                 <!--Thêm ảnh 1 ảnh-->
-                                <input type="file" class="form-control" id="inputGroupFile01" accept="image/png, image/jpeg"  name="img" value ="">
+                                <input type="file" class="form-control" id="img" accept="image/png, image/jpeg"  name="img" value ="">
                                 <div class="input-group-append" >
-                                    <label class="input-group-text input-label-box-1" style="cursor: pointer" for="inputGroupFile01">Tải ảnh lên</label>
+                                    <label class="input-group-text input-label-box-1" style="cursor: pointer" for="img">Tải ảnh lên</label>
                                 </div>
                             </div>
-
                             <!--Mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text input-label-box-1" for="password">Mật khẩu</label>
                                     </div>
-                                    <input type="password" class="form-control password-toggle" id="password" name="pass" placeholder="Mật khẩu bao gồm cả số, chữ, và ký tự đặc biệt (có độ dài từ 8 đến 20 ký tự)" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control password-toggle" id="password" name="pass" placeholder="Mật khẩu (có độ dài từ 5 đến 30 ký tự)" minlength="5" maxlength="30" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-dark">
+                                        <span class="input-group-text bg-danger">
                                             <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        Mật khẩu phải có tối thiểu 5 ký tự, tối đa 30 ký tự 
+                                    </div>
                                 </div>
-                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
-
                             <!--Nhập lại mật khẩu-->
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text input-label-box-1" for="re-password">Nhập lại mật khẩu</label>
                                     </div>
-                                    <input type="password" class="form-control password-toggle" id="re-password" name="repass" placeholder="Mật khẩu bao gồm cả số, chữ, và ký tự đặc biệt (có độ dài từ 8 đến 20 ký tự)" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control password-toggle" id="re-password" name="repass" placeholder="Mật khẩu (có độ dài từ 5 đến 30 ký tự)" minlength="5" maxlength="30" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-dark">
+                                        <span class="input-group-text bg-danger">
                                             <a href="" class="toggle-password" style="color: #fff;"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        Mật khẩu chưa khớp
+                                    </div>
                                 </div>
-                                <small style="margin-left: 180px;">Error Message</small>
                             </div>
 
                             <div>
@@ -147,6 +134,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
@@ -158,5 +146,8 @@
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/password-script.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-validate-script.jsp" %>
+        <%@include file="styles/js/popup-register-admin.jsp" %>
+
     </body>
 </html>

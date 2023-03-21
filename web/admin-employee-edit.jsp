@@ -150,7 +150,7 @@
                             <!--Họ và tên-->
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" style="min-width: 100px" for="name">Họ và tên</label>
+                                    <label class="input-group-text input-label-box-2" for="name">Họ và tên</label>
                                 </div>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên thật của nhân viên (có độ dài từ 3 đến 100 ký tự)" value="<%=acc.getDisplayname()%>" minlength="3" maxlength="100" required>
                                 <div class="invalid-feedback" style="padding-left: 100px">
@@ -162,7 +162,7 @@
                             <div class="mb-3">
                                 <div class="password-input-group input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" style="min-width: 100px" for="password">Mật khẩu</label>
+                                        <label class="input-group-text input-label-box-2" for="password">Mật khẩu</label>
                                     </div>
                                     <input type="password" class="form-control password-toggle" id="password" name="password" placeholder="Mật khẩu (có độ dài từ 5 đến 30 ký tự)" value="<%=acc.getPassword()%>" minlength="5" maxlength="50" required>
                                     

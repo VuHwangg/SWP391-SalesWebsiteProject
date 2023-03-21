@@ -799,6 +799,11 @@
         padding-right: 12px; 
         text-align: right;*/
     }
+    
+    .input-label-box-2 {
+        min-width: 100px;
+        font-weight: 700;
+    }
 
 
     footer.sticky-footer {
