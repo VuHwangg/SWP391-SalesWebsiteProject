@@ -22,7 +22,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="admin-warehouse-management.jsp">Quản lý kho hàng</a>
+                        <a href="WarehouseManagment">Quản lý kho hàng</a>
                     </li> 
                     <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
                 </ol>

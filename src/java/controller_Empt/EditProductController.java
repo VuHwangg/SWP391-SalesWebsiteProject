@@ -38,8 +38,6 @@ public class EditProductController extends HttpServlet {
             throws ServletException, IOException {
         String rawProductId = request.getParameter("product_id");
         int productID = Integer.parseInt(rawProductId);
-        String rawStatus = request.getParameter("status");
-        int status = Integer.parseInt(rawStatus);
         ProductDBContext p = new ProductDBContext();
         Product product = p.getForAllProductByID(productID);
         int brandId = product.getBrands().get(0).getId();
