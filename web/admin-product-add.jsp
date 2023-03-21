@@ -40,28 +40,34 @@
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Thêm mới sản phẩm
                     </div>
                     <div class="card-body p-3">
-                        <form action="AddNewProduct" method="POST" enctype="multipart/form-data">
+                        <form action="AddNewProduct" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-12 input-group mb-3">
                                     <!--Tên sản phẩm-->
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
+                                        <label class="input-group-text input-label-box-3" for="inputNameProduct">Tên sản phẩm</label>
                                     </div>
-                                    <input type="text" name="productName" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" minlength="1" maxlength="40" required>
+                                    <input type="text" name="productName" class="form-control" id="inputNameProduct" placeholder=" Độ dài từ 1 đến 40 ký tự, dấu cách không được là ký tự đầu tiên" maxlength="40" oninput="if(this.value[0] === ' ') this.value = this.value.trim();" required>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        Tên sản phẩm phải có tối thiểu 1 ký tự, tối đa 40 ký tự 
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputColorProduct">Màu sắc</label>
+                                        <label class="input-group-text input-label-box-3" for="inputColorProduct">Màu sắc</label>
                                     </div>
                                     <!--Màu sắc-->
-                                    <input type="text" name="productColor" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" maxlength="40" required>
+                                    <input type="text" name="productColor" class="form-control" id="inputColorProduct" placeholder=" Độ dài từ 1 đến 40 ký tự" maxlength="40" oninput="if(this.value[0] === ' ') this.value = this.value.trim();" required>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        Màu sắc của sản phẩm phải có tối thiểu 1 ký tự, tối đa 40 ký tự 
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputTypeProduct">Loại sản phẩm</label>
+                                        <label class="input-group-text input-label-box-1" style="height: 38px" for="inputTypeProduct">Loại sản phẩm</label>
                                     </div>
                                     <!--Loại sản phẩm-->
                                     <select class="custom-select" name="productType" id="inputTypeProduct">
@@ -78,7 +84,7 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
+                                        <label class="input-group-text input-label-box-3" for="inputBrandProduct">Hãng sản xuất</label>
                                     </div>
                                     <!--Hãng sản xuất của sản phẩm-->
                                     <select name="brand" class="custom-select" id="inputBrandProduct">
@@ -92,7 +98,7 @@
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
+                                        <label class="input-group-text input-label-box-1" for="inputDemandProduct">Nhu cầu sử dụng</label>
                                     </div>
                                     <!--Nhu cầu sử dụng sản phẩm-->
                                     <select name="requirement" class="custom-select" id="inputDemandProduct">
@@ -111,7 +117,10 @@
                                 <!--Thêm nhiều ảnh-->
                                 <input type="file" name="photo" class="form-control" id="inputFile" multiple required>
                                 <div class="input-group-append" >
-                                    <label class="input-group-text" style="cursor: pointer" for="inputFile">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
+                                    <label class="input-group-text input-label-box-3" style="cursor: pointer" for="inputFile">Tải ảnh lên (có thể chọn nhiều ảnh)</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Phải có ít nhất 1 ảnh được tải lên
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -120,29 +129,35 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputRam">RAM</label>
+                                        <label class="input-group-text input-label-box-3" for="inputRam">RAM</label>
                                     </div>
                                     <!--RAM-->
                                     <input type="text" name="productRam" class="form-control" id="inputRam" placeholder="VD: 16" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        RAM không được để trống
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputRom">ROM</label>
+                                        <label class="input-group-text input-label-box-1" for="inputRom">ROM</label>
                                     </div>
                                     <!--ROM-->
                                     <input type="text" class="form-control" name="productRom" id="inputRom" placeholder="VD: 512" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        ROM không được để trống
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputOSProduct">Hệ điều hành</label>
+                                        <label class="input-group-text input-label-box-3" for="inputOSProduct" >Hệ điều hành</label>
                                     </div>
                                     <!--Hệ điều hành-->
                                     <select class="custom-select" name="productOs" id="inputOSProduct">
@@ -155,7 +170,7 @@
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
+                                        <label class="input-group-text input-label-box-1" for="screenProduct">Kích thước màn</label>
                                     </div>
                                     <!--Kích thước màn hình-->
                                     <input type="text" class="form-control" id="screenProduct" name="productSize" placeholder="VD: 15.6" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
@@ -167,14 +182,14 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
+                                        <label class="input-group-text input-label-box-3" for="CpuProduct">CPU (Chipset)</label>
                                     </div>
                                     <!--CPU-->
-                                    <input type="text" name="productCpu" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" maxlength="30">
+                                    <input type="text" name="productCpu" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" maxlength="30" >
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
+                                        <label class="input-group-text input-label-box-1" for="GpuProduct">GPU (Card đồ họa)</label>
                                     </div>
                                     <!--GPU-->
                                     <input type="text" name="productGpu" class="form-control" id="GpuProduct" placeholder="VD: Geforce RTX 3060 6GB" maxlength="30">
@@ -203,5 +218,6 @@
         </div>
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-validate-script.jsp" %>
     </body>
 </html>

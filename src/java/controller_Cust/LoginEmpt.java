@@ -29,26 +29,25 @@ public class LoginEmpt extends HttpServlet {
         AccountDAO acc = new AccountDAO();
         Account accout = acc.checkLoginCus(email, password, true);
 
-        if (accout == null) {
+        if (accout == null || email.isEmpty() || password.isEmpty()) {
             resp.getWriter().write("error");
         } else {
             accout = acc.getAcc(email);
-
             session.setAttribute("acc1", accout);
             if (accout.getRole() == 1) {
-                req.getRequestDispatcher("dashmap").forward(req, resp);
+                resp.getWriter().write("admin");
             } else {
                 if (accout.getRole() == 2) {
                     accout = acc.getAcc(email);
                     session.setAttribute("acc1", accout);
-                    req.getRequestDispatcher("ProductManagement").forward(req, resp);
+                    resp.getWriter().write("seller");
                 } else {
                     accout = acc.getAcc(email);
                     session.setAttribute("acc1", accout);
-                    req.getRequestDispatcher("WarehouseManagment").forward(req, resp);
-
+                    resp.getWriter().write("warehouseManager");
                 }
             }
+
         }
 
     }

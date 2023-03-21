@@ -185,7 +185,7 @@
                                                     <!-- Button trigger modal -->
 
                                                     <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#addProductModal">
-                                                        <a href="ImportProduct?productId=${p.id}">Thêm số lượng</a>
+                                                        <a href="ImportProduct?productId=${p.id}" class="text-white">Thêm số lượng</a>
                                                     </button>
 
                                                     <!-- Modal -->

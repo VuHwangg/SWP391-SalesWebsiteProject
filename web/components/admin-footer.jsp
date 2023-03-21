@@ -4,7 +4,7 @@
 <footer class="sticky-footer">
     <div class="container">
         <div class="text-center">
-            <small>Copyright © Your Website 2018</small>
+            <small>Copyright &copy2023 | A project of Team 1 - SE1643 - SWP391 - FPTUniversity</small>
         </div>
     </div>
 </footer>

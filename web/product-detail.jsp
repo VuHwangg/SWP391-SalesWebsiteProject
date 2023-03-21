@@ -16,6 +16,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <title>Chi tiết sản phẩm</title>
+        
+        <style>
+            .lSPager {
+                display: none;
+            }
+        </style>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
@@ -149,7 +155,7 @@
                         </div>
                     </div>
                     <div style="padding: 0 12px">
-                        <div class="cover-block similar-product">
+                        <div class="cover-block similar-product" style="padding: 20px 20px 0 20px">
                             <h3>Sản phẩm tương tự: </h3>
                             <ul class="list-slider autoWidth cs-hidden">
                                 <c:forEach items="${requestScope.sameList}" var="sameList">
@@ -281,8 +287,8 @@
                             </div>
                                 <% acc = (Account) session.getAttribute("acc");%>
                             <div class="d-flex justify-content-center align-items-center flex-column">
-                                <%if(acc != null){%>
                                 <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
+                                <%if(acc != null){%>
                                 <h5 class="text-center">Bạn thấy sao về sản phẩm này ?</h5>
                                 <!-- Khi người dùng đã đăng nhập -->
                                 <button type="button" class="btn btn-danger fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">

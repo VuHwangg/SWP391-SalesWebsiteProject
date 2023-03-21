@@ -46,49 +46,61 @@
                         </span>
                     </div>
                     <div class="card-body p-3">
-                        <form action="EditProduct" method="POST">
+                        <form action="EditProduct" method="POST" class="needs-validation" novalidate>
                             <div class="input-group mb-3">
-                                <input type="text" name="productId" value="${requestScope.product.id}">
+                                <input type="text" name="productId" hidden value="${requestScope.product.id}">
                                 <!--Tên sản phẩm-->
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputNameProduct">Tên sản phẩm</label>
+                                    <label class="input-group-text input-label-box-3" for="inputNameProduct">Tên sản phẩm</label>
                                 </div>
-                                <input name="productName" type="text" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" value="${requestScope.product.name}" minlength="1" maxlength="40" required>
+                                <input name="productName" type="text" class="form-control" id="inputNameProduct" placeholder="Độ dài từ 1 đến 40 ký tự" value="${requestScope.product.name}" maxlength="40" oninput="if(this.value[0] === ' ') this.value = this.value.trim();" required>
+                                <div class="invalid-feedback" style="padding-left: 130px">
+                                    Tên sản phẩm phải có tối thiểu 1 ký tự, tối đa 40 ký tự 
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="OldPrice">Giá gốc</label>
+                                        <label class="input-group-text input-label-box-3" for="OldPrice">Giá gốc</label>
                                     </div>
                                     <!--Giá gốc-->
                                     <input name="originalPrice" type="text" class="form-control" id="OldPrice" placeholder="VD: 19000000" value="${helper.convertBigNumDefault(product.original_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        Giá gốc của sản phẩm không được để trống
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="SalePrice">Giá bán ra</label>
+                                        <label class="input-group-text input-label-box-1" for="SalePrice">Giá bán ra</label>
                                     </div>
                                     <!--Giá sale-->
-                                    <input name="salePrice" type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value=" ${helper.convertBigNumDefault(product.current_price)} " maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                                    <input name="salePrice" type="text" class="form-control" id="SalePrice" placeholder="VD: 12990000" value="${helper.convertBigNumDefault(product.current_price)}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        Giá bán ra của sản phẩm không được để trống 
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputColorProduct">Màu sắc</label>
+                                        <label class="input-group-text input-label-box-3" for="inputColorProduct">Màu sắc</label>
                                     </div>
                                     <!--Màu sắc-->
-                                    <input type="text" name="productColor" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" value="${requestScope.product.color}" maxlength="40" required>
+                                    <input type="text" name="productColor" class="form-control" id="inputColorProduct" placeholder="Màu sắc của sản phẩm" value="${requestScope.product.color}" maxlength="40" oninput="if(this.value[0] === ' ') this.value = this.value.trim();" required>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        Màu sắc của sản phẩm phải có tối thiểu 1 ký tự, tối đa 40 ký tự 
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputTypeProduct">Loại sản phẩm</label>
+                                        <label class="input-group-text input-label-box-1" style="height: 38px" for="inputTypeProduct">Loại sản phẩm</label>
                                     </div>
                                     <!--Loại sản phẩm-->
                                     <select class="custom-select" name="productType" id="inputTypeProduct">
@@ -110,7 +122,7 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputBrandProduct">Hãng sản xuất</label>
+                                        <label class="input-group-text input-label-box-3" for="inputBrandProduct">Hãng sản xuất</label>
                                     </div>
                                     <!--Hãng sản xuất của sản phẩm-->
                                     <select name="brand" class="custom-select" id="inputBrandProduct">
@@ -129,7 +141,7 @@
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputDemandProduct">Nhu cầu sử dụng</label>
+                                        <label class="input-group-text input-label-box-1" for="inputDemandProduct">Nhu cầu sử dụng</label>
                                     </div>
                                     <!--Nhu cầu sử dụng sản phẩm-->
                                     <select name="requirement" class="custom-select" id="inputDemandProduct">
@@ -153,29 +165,35 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label  class="input-group-text" for="inputRam">RAM</label>
+                                        <label  class="input-group-text input-label-box-3" for="inputRam">RAM</label>
                                     </div>
                                     <!--RAM-->
                                     <input name="productRam" type="text" class="form-control" id="inputRam" placeholder="VD: 16" value="${requestScope.product.ram}" maxlength="5" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 130px">
+                                        RAM không được để trống
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" name="productRom" for="inputRom">ROM</label>
+                                        <label class="input-group-text input-label-box-1" name="productRom" for="inputRom">ROM</label>
                                     </div>
                                     <!--ROM-->
                                     <input name="productRom" type="text" class="form-control" id="inputRom" placeholder="VD: 512" value="${requestScope.product.memory}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">GB</span>
                                     </div>
+                                    <div class="invalid-feedback" style="padding-left: 170px">
+                                        ROM không được để trống
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputOSProduct">Hệ điều hành</label>
+                                        <label class="input-group-text input-label-box-3" for="inputOSProduct">Hệ điều hành</label>
                                     </div>
                                     <!--Hệ điều hành-->
                                     <select class="custom-select" name="productOs" id="inputOSProduct">
@@ -189,7 +207,7 @@
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="screenProduct">Kích thước màn hình</label>
+                                        <label class="input-group-text input-label-box-1" for="screenProduct">Kích thước màn</label>
                                     </div>
                                     <!--Kích thước màn hình-->
                                     <input name="productSize" id="screenProduct" type="text" class="form-control" placeholder="VD: VD: 15.6" value="${requestScope.product.size}" maxlength="6" oninput="this.value = this.value.replace(/^0(?=[^.]|$)/g,'').replace(/^\.|\.{2,}/g, '').replace(/([^0-9.])+/g, '').replace(/(\.\d{2})\d+/, '$1').replace(/^(\d*\.?)|\./g, '$1').replace(/^0+\B/, '')">
@@ -201,14 +219,14 @@
                             <div class="row">
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="CpuProduct">CPU (Chipset)</label>
+                                        <label class="input-group-text input-label-box-3" for="CpuProduct">CPU (Chipset)</label>
                                     </div>
                                     <!--CPU-->
                                     <input type="text" name="productCpu" class="form-control" id="CpuProduct" placeholder="VD: Ryzen 7 4800H" value="${requestScope.product.cpu}" maxlength="30">
                                 </div>
                                 <div class="col-sm-6 input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="GpuProduct">GPU (Card đồ họa)</label>
+                                        <label class="input-group-text input-label-box-1" for="GpuProduct">GPU (Card đồ họa)</label>
                                     </div>
                                     <!--GPU-->
                                     <input type="text" name="productGpu" class="form-control" id="GpuProduct" placeholder="VD: Geforce RTX 3060 6GB" value="${requestScope.product.graphic_card}" maxlength="30">
@@ -237,5 +255,6 @@
         </div>
         <%@include file="components/admin-footer-link.jsp" %>
         <%@include file="styles/js/admin-script.jsp" %>
+        <%@include file="styles/js/admin-validate-script.jsp" %>
     </body>
 </html>
