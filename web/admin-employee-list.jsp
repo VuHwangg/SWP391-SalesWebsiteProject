@@ -170,9 +170,9 @@
                                             </div>
                                         </td>
                                         <%if (arr.get(i).getRole() == 2)
-                                                err = "Quản kho";
-                                            else
                                                 err = "Bán Hàng";
+                                            else
+                                                err = "Quản kho";
                                         %>
                                         <td><%=err%></td>
                                         <td>
