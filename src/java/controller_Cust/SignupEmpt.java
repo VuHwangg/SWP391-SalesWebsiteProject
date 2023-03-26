@@ -44,5 +44,11 @@ public class SignupEmpt extends HttpServlet {
         (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         }
+        
+        public boolean checkName(String name) {
+            if (name.trim() == null || name.isEmpty())
+                return false;
+            return true;
+        }
 
     }
