@@ -23,9 +23,8 @@ public class ImportDBContext extends DBContext {
     public double getTotalCostByDay(Date date) {
         double totalCost = 0;
         try {
-            String sql = "SELECT [num]\n"
-                    + "      ,[cost]\n"
-                    + "  FROM [Import_History] WHERE [date] = ? ";
+            // Loại bỏ các dấu ngoặc vuông []
+            String sql = "SELECT num, cost FROM Import_History WHERE date = ? ";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDate(1, date);
             ResultSet rs = stm.executeQuery();
@@ -35,26 +34,23 @@ public class ImportDBContext extends DBContext {
             stm.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            // Sửa tên class trong Logger cho đúng
+            Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return totalCost;
     }
 
-    public ArrayList<Import_History>
-            listHistoryByDay(Date from, Date to) {
+    public ArrayList<Import_History> listHistoryByDay(Date from, Date to) {
         ArrayList<Import_History> listHistory = new ArrayList<>();
         ProductDBContext proDB = new ProductDBContext();
         AccountDAO accDB = new AccountDAO();
 
         try {
-            String sql = "SELECT [import_id]\n"
-                    + "      ,[num]\n"
-                    + "      ,[date]\n"
-                    + "      ,[note]\n"
-                    + "      ,[username]\n"
-                    + "      ,[cost]\n"
-                    + "      ,[product_id]\n"
-                    + "  FROM [Import_History] WHERE [date] BETWEEN ? AND ? ORDER BY [date] DESC";
+            // Loại bỏ các dấu ngoặc vuông []
+            String sql = "SELECT import_id, num, date, note, username, cost, product_id "
+                    + " FROM Import_History "
+                    + " WHERE date BETWEEN ? AND ? "
+                    + " ORDER BY date DESC";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDate(1, from);
@@ -63,32 +59,23 @@ public class ImportDBContext extends DBContext {
             while (rs.next()) {
                 Import_History history = new Import_History();
                 history.setId(rs.getInt("import_id"));
-                //System.out.println(rs.getInt("import_id"));
                 history.setNum(rs.getInt("num"));
-                //  System.out.println(rs.getInt("num"));
                 history.setDate(rs.getDate("date"));
-                // System.out.println(rs.getDate("date"));
                 history.setNote(rs.getString("note"));
-                //System.out.println(rs.getString("note"));
+                
+                // Giữ nguyên logic lấy Account và Product từ các DAO/Context khác
                 history.setAccount(accDB.getAcc(rs.getString("username")));
-                //System.out.println(accDB.getAcc(rs.getString("username")).toString());
-                //System.out.println(rs.getString("username"));
                 history.setCost(rs.getDouble("cost"));
-                //System.out.println(rs.getDouble("cost"));
                 history.setProduct(proDB.getProductByIDWithOutStatus(rs.getInt("product_id")));
-                // System.out.println(rs.getInt("product_id"));
+                
                 listHistory.add(history);
             }
             stm.close();
             rs.close();
             return listHistory;
-//           System.out.println(listHistory.size());
-//            for (int i = 0; i < listHistory.size(); i++) {
-//                System.out.println( listHistory.get(i).toString());
-//                
-//            }
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            // Sửa tên class trong Logger cho đúng
+            Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listHistory;
     }
@@ -96,26 +83,24 @@ public class ImportDBContext extends DBContext {
     public int importProduct(Import_History ih) {
         int x = -1;
         try {
-            String sql = "INSERT INTO [dbo].[Import_History]\n"
-                    + "           ([num]\n"
-                    + "           ,[date]\n"
-                    + "           ,[username]\n"
-                    + "           ,[cost]\n"
-                    + "           ,[product_id])\n"
-                    + "     VALUES\n"
-                    + "           (?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?)";
+            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
+            String sql = "INSERT INTO Import_History (num, date, username, cost, product_id) "
+                    + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, ih.getNum());
+            
+            // PostgreSQL tương thích tốt với java.sql.Date
             LocalDate ld = LocalDate.now();
             ps.setDate(2, Date.valueOf(ld));
+            
             ps.setString(3, ih.getAccount().getUsername());
             ps.setDouble(4, ih.getCost());
+            
+            // Giữ nguyên logic dùng getId() cho product_id
             ps.setInt(5, ih.getId());
+            
             x = ps.executeUpdate();
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
