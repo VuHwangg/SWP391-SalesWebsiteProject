@@ -24,12 +24,8 @@ public class CartDAO {
 
     public void saveCartToDB(Cart cart) {
         try {
-            String sql = "INSERT INTO [dbo].[Cart]\n"
-                    + "           ([product_id]\n"
-                    + "           ,[customer_id]\n"
-                    + "           ,[num])\n"
-                    + "     VALUES\n"
-                    + "           (?, ?, ?)";
+            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
+            String sql = "INSERT INTO Cart (product_id, customer_id, num) VALUES (?, ?, ?)";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cart.getProduct().getId());
@@ -43,11 +39,10 @@ public class CartDAO {
 
     public void updateQuantity(Cart cart) {
         try {
-            String sql = "UPDATE [dbo].[Cart]\n"
-                    + "   SET [product_id] = ?\n"
-                    + "      ,[customer_id] = ?\n"
-                    + "      ,[num] = ?\n"
-                    + " WHERE product_id = ? And customer_id = ?";
+            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
+            String sql = "UPDATE Cart "
+                    + " SET product_id = ?, customer_id = ?, num = ? "
+                    + " WHERE product_id = ? AND customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cart.getProduct().getId());
@@ -63,8 +58,8 @@ public class CartDAO {
 
     public void deleteProduct(int productId, int customerId) {
         try {
-            String sql = "DELETE FROM [dbo].[Cart]\n"
-                    + "      WHERE product_id = ? and customer_id = ?";
+            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
+            String sql = "DELETE FROM Cart WHERE product_id = ? AND customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, productId);
@@ -77,8 +72,8 @@ public class CartDAO {
 
     public void deleteAllProduct(int customerId) {
         try {
-            String sql = "DELETE FROM [dbo].[Cart]\n"
-                    + "      WHERE customer_id = ?";
+            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
+            String sql = "DELETE FROM Cart WHERE customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, customerId);
@@ -91,7 +86,8 @@ public class CartDAO {
     public Map<Integer, Cart> getCartsByCustomerId(int customerId) {
         Map<Integer, Cart> carts = new LinkedHashMap<>();
         try {
-            String sql = "SELECT cart_id, product_id, customer_id, num from Cart where customer_id = ?";
+            // Câu lệnh này cơ bản đã đúng chuẩn, giữ nguyên để chạy trên PostgreSQL
+            String sql = "SELECT cart_id, product_id, customer_id, num FROM Cart WHERE customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, customerId);
@@ -129,5 +125,4 @@ public class CartDAO {
         c.setQuantity(222);
         dao.saveCartToDB(c);
     }
-
 }
