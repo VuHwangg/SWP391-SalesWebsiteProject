@@ -23,11 +23,11 @@ public class RequirementDBContext extends DBContext {
     public ArrayList<Requirement> listByID(int product_id) {
         ArrayList<Requirement> requirements = new ArrayList<>();
         try {
-            String sql = "SELECT p.[requirement_id]\n"
-                    + "      ,p.[requirement_name]\n"
-                    + "      ,p.[description]\n"
-                    + "  FROM [Requirement] p INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id\n"
-                    + "  WHERE pr.product_id = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT p.requirement_id, p.requirement_name, p.description "
+                    + " FROM Requirement p "
+                    + " INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id "
+                    + " WHERE pr.product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -42,7 +42,8 @@ public class RequirementDBContext extends DBContext {
             rs.close();
             return requirements;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            // Cập nhật Logger đúng tên class
+            Logger.getLogger(RequirementDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -50,13 +51,12 @@ public class RequirementDBContext extends DBContext {
     public ArrayList<Requirement> listByType(int type) {
         ArrayList<Requirement> requirements = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT p.[requirement_id]\n"
-                    + "      ,p.[requirement_name]\n"
-                    + "      ,p.[description]\n"
-                    + "      FROM [Requirement] p\n"
-                    + "      INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id\n"
-                    + "      INNER JOIN Product prd ON prd.product_id = pr.product_id\n"
-                    + "      WHERE prd.[type] = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT DISTINCT p.requirement_id, p.requirement_name, p.description "
+                    + " FROM Requirement p "
+                    + " INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id "
+                    + " INNER JOIN Product prd ON prd.product_id = pr.product_id "
+                    + " WHERE prd.type = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, type);
             ResultSet rs = stm.executeQuery();
@@ -71,7 +71,7 @@ public class RequirementDBContext extends DBContext {
             rs.close();
             return requirements;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RequirementDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -79,10 +79,8 @@ public class RequirementDBContext extends DBContext {
     public List<Requirement> getAllRequirement() {
         List<Requirement> requirements = new ArrayList<>();
         try {
-            String sql = "SELECT [requirement_id]\n"
-                    + "      ,[requirement_name]\n"
-                    + "      ,[description]\n"
-                    + "  FROM [dbo].[Requirement]";
+            // Loại bỏ [dbo]. và []
+            String sql = "SELECT requirement_id, requirement_name, description FROM Requirement";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -96,22 +94,22 @@ public class RequirementDBContext extends DBContext {
             rs.close();
             return requirements;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RequirementDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     public int AddNewRequirementAndReturnId(String name) {
         try {
-            String sql = "INSERT INTO [dbo].[Requirement]\n"
-                    + "           ([requirement_name])\n"
-                    + "     VALUES\n"
-                    + "           (?)";
+            // Loại bỏ [dbo]. và []
+            String sql = "INSERT INTO Requirement (requirement_name) VALUES (?)";
+            
+            // PostgreSQL JDBC Driver hỗ trợ tốt RETURN_GENERATED_KEYS
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            while (rs.next()) {
+            while (rs.next()) {                
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
