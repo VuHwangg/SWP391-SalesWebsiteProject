@@ -27,11 +27,11 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
 
-            String user = "sa";
-            String pass = "12345678";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP";
+            String user = "postgres";
+            String pass = "30082002Xyz@";
+            String url = "jdbc:postgresql://db.dlwedbkzfhfrnrhmgkw.supabase.co:5432/postgres";
 
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
