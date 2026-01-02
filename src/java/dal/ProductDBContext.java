@@ -25,23 +25,23 @@ public class ProductDBContext extends DBContext {
     public Product getProductByID(int id) {
         Product product = new Product();
         try {
-            String sql = "SELECT   [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "	  FROM [Product] where  [status] = 1 AND [product_id] = ?";
+            String sql = "SELECT   product_id\n"
+                    + "		  ,name\n"
+                    + "		  ,type\n"
+                    + "		  ,os\n"
+                    + "		  ,color\n"
+                    + "		  ,current_price\n"
+                    + "           ,original_price\n"
+                    + "		  ,ram\n"
+                    + "		  ,memory\n"
+                    + "		  ,cpu\n"
+                    + "		  ,graphics_card\n"
+                    + "		  ,size\n"
+                    + "		  ,description\n"
+                    + "		  ,discount\n"
+                    + "		  ,qty\n"
+                    + "		  ,status\n"
+                    + "	  FROM Product where  status = 1 AND product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -77,7 +77,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return product;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -85,23 +85,23 @@ public class ProductDBContext extends DBContext {
     public Product getProductByIDWithOutStatus(int id) {
         Product product = new Product();
         try {
-            String sql = "SELECT   [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "	  FROM [Product] where [product_id] = ?";
+            String sql = "SELECT   product_id\n"
+                    + "		  ,name\n"
+                    + "		  ,type\n"
+                    + "		  ,os\n"
+                    + "		  ,color\n"
+                    + "		  ,current_price\n"
+                    + "           ,original_price\n"
+                    + "		  ,ram\n"
+                    + "		  ,memory\n"
+                    + "		  ,cpu\n"
+                    + "		  ,graphics_card\n"
+                    + "		  ,size\n"
+                    + "		  ,description\n"
+                    + "		  ,discount\n"
+                    + "		  ,qty\n"
+                    + "		  ,status\n"
+                    + "	  FROM Product where product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -137,7 +137,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return product;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -146,25 +146,26 @@ public class ProductDBContext extends DBContext {
     public Product getProduct(String name, int ram, int memory, String cpu, String graphic_card) {
         Product product = new Product();
         try {
-            String sql = "SELECT TOP (1)  [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "  FROM [Product]\n"
-                    + "  where  [status] = 1 and [name] like ? \n"
-                    + "and [ram] like ? and [memory] like ? and [cpu] like ? and [graphics_card] like ?";
+            // Thay TOP 1 bằng LIMIT 1 ở cuối
+            String sql = "SELECT  product_id\n"
+                    + "		  ,name\n"
+                    + "		  ,type\n"
+                    + "		  ,os\n"
+                    + "		  ,color\n"
+                    + "		  ,current_price\n"
+                    + "           ,original_price\n"
+                    + "		  ,ram\n"
+                    + "		  ,memory\n"
+                    + "		  ,cpu\n"
+                    + "		  ,graphics_card\n"
+                    + "		  ,size\n"
+                    + "		  ,description\n"
+                    + "		  ,discount\n"
+                    + "		  ,qty\n"
+                    + "		  ,status\n"
+                    + "  FROM Product\n"
+                    + "  where  status = 1 and name like ? \n"
+                    + "and ram like ? and memory like ? and cpu like ? and graphics_card like ? LIMIT 1";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setInt(2, ram);
@@ -203,7 +204,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return product;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -212,37 +213,42 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> listProduct(int type, int num, boolean topSale) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "SELECT TOP (?) [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "	  FROM [Product] where  [status] = 1 and [qty] > 0";
+            // Thay TOP (?) bằng LIMIT ? ở cuối
+            String sql = "SELECT product_id\n"
+                    + "		  ,name\n"
+                    + "		  ,type\n"
+                    + "		  ,os\n"
+                    + "		  ,color\n"
+                    + "		  ,current_price\n"
+                    + "           ,original_price\n"
+                    + "		  ,ram\n"
+                    + "		  ,memory\n"
+                    + "		  ,cpu\n"
+                    + "		  ,graphics_card\n"
+                    + "		  ,size\n"
+                    + "		  ,description\n"
+                    + "		  ,discount\n"
+                    + "		  ,qty\n"
+                    + "		  ,status\n"
+                    + "	  FROM Product where  status = 1 and qty > 0";
             if (type != -1) {
-                sql = sql + "AND [type] = ?";
+                sql = sql + " AND type = ?";
             }
             if (topSale == true) {
-                sql = sql + " ORDER BY [discount] DESC, ";
+                sql = sql + " ORDER BY discount DESC, ";
             } else {
                 sql = sql + " ORDER BY ";
             }
-            sql = sql + "[feature_product] DESC";
+            sql = sql + "feature_product DESC LIMIT ?";
+            
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, num);
+            
+            // Cập nhật lại logic set tham số vì LIMIT chuyển xuống cuối
+            int paramIndex = 1;
             if (type != -1) {
-                stm.setInt(2, type);
+                stm.setInt(paramIndex++, type);
             }
+            stm.setInt(paramIndex, num);
 
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -278,7 +284,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -287,16 +293,16 @@ public class ProductDBContext extends DBContext {
     public int countProductByType(int type, double from, double to, String[] needs, String[] brands, String[] sizes) {
         int count = 0;
         try {
-            String sql = "SELECT pr.[product_id]\n"
-                    + "  FROM  [Product] pr "
-                    + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
-                    + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
-                    + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
-                    + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
-                    + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+            String sql = "SELECT pr.product_id\n"
+                    + "  FROM  Product pr "
+                    + "  Inner Join Product_Brand prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join Brand br on prbr.brand_id = br.brand_id\n"
+                    + "  Inner Join Product_Requirement prre On pr.product_id = prre.product_id\n"
+                    + "  Inner Join Requirement re on prre.requirement_id =re.requirement_id\n"
+                    + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
-                    sql = sql + " AND re.[requirement_name] in (";
+                    sql = sql + " AND re.requirement_name in (";
                     for (String need : needs) {
                         sql = sql + "'" + need + "',";
                     }
@@ -308,7 +314,7 @@ public class ProductDBContext extends DBContext {
 
             if (brands != null) {
                 if (brands[0].compareTo("all") != 0) {
-                    sql = sql + " AND br.[brand_name] in (";
+                    sql = sql + " AND br.brand_name in (";
                     for (String brand : brands) {
                         sql = sql + "'" + brand + "',";
                     }
@@ -321,22 +327,22 @@ public class ProductDBContext extends DBContext {
             if (sizes != null) {
                 if (sizes[0].compareTo("all") != 0) {
                     int i = 0;
-                    sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
+                    sql = sql + " AND pr.product_id in (SELECT pr.product_id FROM Product pr where";
                     for (String size : sizes) {
                         if (i != 0) {
                             sql += " OR ";
                         }
                         if (size.compareTo("size1") == 0) {
-                            sql = sql + " pr.[size] < 13";
+                            sql = sql + " pr.size < 13";
                         }
                         if (size.compareTo("size2") == 0) {
-                            sql = sql + " pr.[size] >=13 AND pr.[size]<15";
+                            sql = sql + " pr.size >=13 AND pr.size<15";
                         }
                         if (size.compareTo("size3") == 0) {
-                            sql = sql + " pr.[size] >=15 AND pr.[size]<17";
+                            sql = sql + " pr.size >=15 AND pr.size<17";
                         }
                         if (size.compareTo("size4") == 0) {
-                            sql = sql + " pr.[size] >= 17";
+                            sql = sql + " pr.size >= 17";
                         }
                         i++;
                     }
@@ -355,7 +361,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return count;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -364,15 +370,16 @@ public class ProductDBContext extends DBContext {
         int count = 0;
         String txtSearch = "%" + rawTxtSearch + "%";
         try {
-            String sql = "SELECT [product_id]\n"
-                    + "  FROM   [Product] \n"
-                    + "  WHERE [name] LIKE ?\n"
-                    + "   OR [os] LIKE ?\n"
-                    + "   OR [color] LIKE ?\n"
-                    + "   OR [ram] LIKE ?\n"
-                    + "   OR [memory] LIKE ?\n"
-                    + "   OR [cpu] LIKE ?\n"
-                    + "   OR [graphics_card] LIKE ? AND [status] = 1";
+            // Dùng ILIKE để tìm kiếm không phân biệt hoa thường trong Postgres
+            String sql = "SELECT product_id\n"
+                    + "  FROM   Product \n"
+                    + "  WHERE name ILIKE ?\n"
+                    + "   OR os ILIKE ?\n"
+                    + "   OR color ILIKE ?\n"
+                    + "   OR ram ILIKE ?\n"
+                    + "   OR memory ILIKE ?\n"
+                    + "   OR cpu ILIKE ?\n"
+                    + "   OR graphics_card ILIKE ? AND status = 1";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, txtSearch);
             stm.setString(2, txtSearch);
@@ -389,7 +396,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return count;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -397,8 +404,7 @@ public class ProductDBContext extends DBContext {
     public int numOfItem() {
         int count = 0;
         try {
-            String sql = "SELECT COUNT(*) AS x\n"
-                    + "  FROM [Product]";
+            String sql = "SELECT COUNT(*) AS x FROM Product";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -408,7 +414,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return count;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -416,8 +422,7 @@ public class ProductDBContext extends DBContext {
     public int numOfProduct() {
         int count = 0;
         try {
-            String sql = "SELECT SUM(qty) AS total\n"
-                    + "  FROM [Product]";
+            String sql = "SELECT SUM(qty) AS total FROM Product";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -427,7 +432,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return count;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -438,43 +443,45 @@ public class ProductDBContext extends DBContext {
         int skip = (numOfPage - 1) * 12;
         String txtSearch = "%" + rawTxtSearch + "%";
         try {
-            String sql = "SELECT pr.[product_id]\n"
-                    + "		  ,pr.[name]\n"
-                    + "		  ,pr.[type]\n"
-                    + "		  ,pr.[os]\n"
-                    + "		  ,pr.[color]\n"
-                    + "		  ,pr.[current_price]\n"
-                    + "           ,pr.[original_price]\n"
-                    + "		  ,pr.[ram]\n"
-                    + "		  ,pr.[memory]\n"
-                    + "		  ,pr.[cpu]\n"
-                    + "		  ,pr.[graphics_card]\n"
-                    + "		  ,pr.[size]\n"
-                    + "		  ,pr.[description]\n"
-                    + "		  ,pr.[discount]\n"
-                    + "		  ,pr.[qty]\n"
-                    + "		  ,pr.[status]\n"
-                    + "  FROM   [Product] pr\n"
-                    + "INNER JOIN [Product_Brand] prbr ON pr.[product_id] = prbr.[product_id]\n"
-                    + "INNER JOIN [Brand] br ON br.[brand_id] = prbr.[brand_id]\n"
-                    + "INNER JOIN [Product_Requirement] prre ON pr.[product_id] = prre.[product_id]\n"
-                    + "INNER JOIN Requirement re ON re.[requirement_id] = prre.[requirement_id]\n"
-                    + "  WHERE pr.[status] = 1 AND pr.[name] LIKE ?\n"
-                    + "   OR pr.[os] LIKE ?\n"
-                    + "   OR pr.[color] LIKE ?\n"
-                    + "   OR pr.[ram] LIKE ?\n"
-                    + "   OR pr.[memory] LIKE ?\n"
-                    + "   OR pr.[cpu] LIKE ?\n"
-                    + "   OR pr.[graphics_card] LIKE ? or re.[requirement_name] like ? or br.[brand_name] like ? ";
+            // Dùng ILIKE cho Postgres
+            String sql = "SELECT pr.product_id\n"
+                    + "		  ,pr.name\n"
+                    + "		  ,pr.type\n"
+                    + "		  ,pr.os\n"
+                    + "		  ,pr.color\n"
+                    + "		  ,pr.current_price\n"
+                    + "           ,pr.original_price\n"
+                    + "		  ,pr.ram\n"
+                    + "		  ,pr.memory\n"
+                    + "		  ,pr.cpu\n"
+                    + "		  ,pr.graphics_card\n"
+                    + "		  ,pr.size\n"
+                    + "		  ,pr.description\n"
+                    + "		  ,pr.discount\n"
+                    + "		  ,pr.qty\n"
+                    + "		  ,pr.status\n"
+                    + "  FROM   Product pr\n"
+                    + "INNER JOIN Product_Brand prbr ON pr.product_id = prbr.product_id\n"
+                    + "INNER JOIN Brand br ON br.brand_id = prbr.brand_id\n"
+                    + "INNER JOIN Product_Requirement prre ON pr.product_id = prre.product_id\n"
+                    + "INNER JOIN Requirement re ON re.requirement_id = prre.requirement_id\n"
+                    + "  WHERE pr.status = 1 AND (pr.name ILIKE ?\n"
+                    + "   OR pr.os ILIKE ?\n"
+                    + "   OR pr.color ILIKE ?\n"
+                    + "   OR pr.ram ILIKE ?\n"
+                    + "   OR pr.memory ILIKE ?\n"
+                    + "   OR pr.cpu ILIKE ?\n"
+                    + "   OR pr.graphics_card ILIKE ? or re.requirement_name ILIKE ? or br.brand_name ILIKE ?) ";
             if (sort.compareTo("none") == 0) {
-                sql = sql + "\n ORDER BY [discount] DESC";
+                sql = sql + "\n ORDER BY discount DESC";
             }
             if (sort.compareTo("ASC") == 0) {
-                sql = sql + "\n ORDER BY [current_price] ASC";
+                sql = sql + "\n ORDER BY current_price ASC";
             }
             if (sort.compareTo("DESC") == 0) {
-                sql = sql + "\n ORDER BY [current_price] DESC";
+                sql = sql + "\n ORDER BY current_price DESC";
             }
+            // Postgres hỗ trợ syntax này
             sql = sql + " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, txtSearch);
@@ -521,7 +528,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -531,32 +538,32 @@ public class ProductDBContext extends DBContext {
         int skip = (numOfPage - 1) * 9;
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT pr.[product_id]\n"
-                    + "      ,pr.[name]\n"
-                    + "      ,pr.[type]\n"
-                    + "      ,pr.[os]\n"
-                    + "      ,pr.[feature_product]\n"
-                    + "      ,pr.[color]\n"
-                    + "      ,pr.[current_price]\n"
-                    + "      ,pr.[original_price]\n"
-                    + "      ,pr.[ram]\n"
-                    + "      ,pr.[memory]\n"
-                    + "      ,pr.[cpu]\n"
-                    + "      ,pr.[graphics_card]\n"
-                    + "      ,pr.[size]\n"
-                    + "      ,pr.[description]\n"
-                    + "      ,pr.[discount]\n"
-                    + "      ,pr.[qty]\n"
-                    + "      ,pr.[status]\n"
-                    + "  FROM  [Product] pr "
-                    + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
-                    + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
-                    + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
-                    + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
-                    + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
+            String sql = "SELECT DISTINCT pr.product_id\n"
+                    + "      ,pr.name\n"
+                    + "      ,pr.type\n"
+                    + "      ,pr.os\n"
+                    + "      ,pr.feature_product\n"
+                    + "      ,pr.color\n"
+                    + "      ,pr.current_price\n"
+                    + "      ,pr.original_price\n"
+                    + "      ,pr.ram\n"
+                    + "      ,pr.memory\n"
+                    + "      ,pr.cpu\n"
+                    + "      ,pr.graphics_card\n"
+                    + "      ,pr.size\n"
+                    + "      ,pr.description\n"
+                    + "      ,pr.discount\n"
+                    + "      ,pr.qty\n"
+                    + "      ,pr.status\n"
+                    + "  FROM  Product pr "
+                    + "  Inner Join Product_Brand prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join Brand br on prbr.brand_id = br.brand_id\n"
+                    + "  Inner Join Product_Requirement prre On pr.product_id = prre.product_id\n"
+                    + "  Inner Join Requirement re on prre.requirement_id =re.requirement_id\n"
+                    + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
-                    sql = sql + " AND re.[requirement_name] in (";
+                    sql = sql + " AND re.requirement_name in (";
                     for (String need : needs) {
                         sql = sql + "'" + need + "',";
                     }
@@ -568,7 +575,7 @@ public class ProductDBContext extends DBContext {
 
             if (brands != null) {
                 if (brands[0].compareTo("all") != 0) {
-                    sql = sql + " AND br.[brand_name] in (";
+                    sql = sql + " AND br.brand_name in (";
                     for (String brand : brands) {
                         sql = sql + "'" + brand + "',";
                     }
@@ -581,22 +588,22 @@ public class ProductDBContext extends DBContext {
             if (sizes != null) {
                 if (sizes[0].compareTo("all") != 0) {
                     int i = 0;
-                    sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
+                    sql = sql + " AND pr.product_id in (SELECT pr.product_id FROM Product pr where";
                     for (String size : sizes) {
                         if (i != 0) {
                             sql += " OR ";
                         }
                         if (size.compareTo("size1") == 0) {
-                            sql = sql + " pr.[size] < 13";
+                            sql = sql + " pr.size < 13";
                         }
                         if (size.compareTo("size2") == 0) {
-                            sql = sql + " pr.[size] >=13 AND pr.[size]<15";
+                            sql = sql + " pr.size >=13 AND pr.size<15";
                         }
                         if (size.compareTo("size3") == 0) {
-                            sql = sql + " pr.[size] >=15 AND pr.[size]<17";
+                            sql = sql + " pr.size >=15 AND pr.size<17";
                         }
                         if (size.compareTo("size4") == 0) {
-                            sql = sql + " pr.[size] >= 17";
+                            sql = sql + " pr.size >= 17";
                         }
                         i++;
                     }
@@ -604,13 +611,13 @@ public class ProductDBContext extends DBContext {
                 }
             }
             if (sort.compareTo("none") == 0) {
-                sql = sql + "\n ORDER BY pr.[discount] DESC";
+                sql = sql + "\n ORDER BY pr.discount DESC";
             }
             if (sort.compareTo("ASC") == 0) {
-                sql = sql + "\n ORDER BY pr.[current_price] ASC";
+                sql = sql + "\n ORDER BY pr.current_price ASC";
             }
             if (sort.compareTo("DESC") == 0) {
-                sql = sql + "\n ORDER BY pr.[current_price] DESC";
+                sql = sql + "\n ORDER BY pr.current_price DESC";
             }
             sql = sql + " OFFSET ? ROWS FETCH NEXT 9 ROWS ONLY";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -652,7 +659,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -661,26 +668,26 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> listColor(String name, int ram, int memory, String cpu, String graphic_card) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT pr.[product_id]\n"
-                    + "      ,pr.[name]\n"
-                    + "      ,pr.[type]\n"
-                    + "      ,pr.[os]\n"
-                    + "      ,pr.[feature_product]\n"
-                    + "      ,pr.[color]\n"
-                    + "      ,pr.[current_price]\n"
-                    + "      ,pr.[original_price]\n"
-                    + "      ,pr.[ram]\n"
-                    + "      ,pr.[memory]\n"
-                    + "      ,pr.[cpu]\n"
-                    + "      ,pr.[graphics_card]\n"
-                    + "      ,pr.[size]\n"
-                    + "      ,pr.[description]\n"
-                    + "      ,pr.[discount]\n"
-                    + "      ,pr.[qty]\n"
-                    + "      ,pr.[status]\n"
-                    + "  FROM [Product] pr\n"
-                    + "  where  pr.[status] = 1  and pr.[name] LIKE ?\n"
-                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ?";
+            String sql = "SELECT DISTINCT pr.product_id\n"
+                    + "      ,pr.name\n"
+                    + "      ,pr.type\n"
+                    + "      ,pr.os\n"
+                    + "      ,pr.feature_product\n"
+                    + "      ,pr.color\n"
+                    + "      ,pr.current_price\n"
+                    + "      ,pr.original_price\n"
+                    + "      ,pr.ram\n"
+                    + "      ,pr.memory\n"
+                    + "      ,pr.cpu\n"
+                    + "      ,pr.graphics_card\n"
+                    + "      ,pr.size\n"
+                    + "      ,pr.description\n"
+                    + "      ,pr.discount\n"
+                    + "      ,pr.qty\n"
+                    + "      ,pr.status\n"
+                    + "  FROM Product pr\n"
+                    + "  where  pr.status = 1  and pr.name LIKE ?\n"
+                    + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setInt(2, ram);
@@ -721,7 +728,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -730,33 +737,37 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card, int productId) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT TOP (?) pr.[product_id]\n"
-                    + "      ,pr.[name]\n"
-                    + "      ,pr.[type]\n"
-                    + "      ,pr.[os]\n"
-                    + "      ,pr.[feature_product]\n"
-                    + "      ,pr.[color]\n"
-                    + "      ,pr.[current_price]\n"
-                    + "      ,pr.[original_price]\n"
-                    + "      ,pr.[ram]\n"
-                    + "      ,pr.[memory]\n"
-                    + "      ,pr.[cpu]\n"
-                    + "      ,pr.[graphics_card]\n"
-                    + "      ,pr.[size]\n"
-                    + "      ,pr.[description]\n"
-                    + "      ,pr.[discount]\n"
-                    + "      ,pr.[qty]\n"
-                    + "      ,pr.[status]\n"
-                    + "  FROM [Product] pr \n"
-                    + "  where  pr.[status] = 1 and [product_id] != ?\n"
-                    + "and pr.[ram] like ? and pr.[memory] like ? and pr.[cpu] like ? and pr.[graphics_card] like ? ORDER BY [feature_product] DESC";
+            // Thay TOP (?) bằng LIMIT ? ở cuối
+            String sql = "SELECT DISTINCT pr.product_id\n"
+                    + "      ,pr.name\n"
+                    + "      ,pr.type\n"
+                    + "      ,pr.os\n"
+                    + "      ,pr.feature_product\n"
+                    + "      ,pr.color\n"
+                    + "      ,pr.current_price\n"
+                    + "      ,pr.original_price\n"
+                    + "      ,pr.ram\n"
+                    + "      ,pr.memory\n"
+                    + "      ,pr.cpu\n"
+                    + "      ,pr.graphics_card\n"
+                    + "      ,pr.size\n"
+                    + "      ,pr.description\n"
+                    + "      ,pr.discount\n"
+                    + "      ,pr.qty\n"
+                    + "      ,pr.status\n"
+                    + "  FROM Product pr \n"
+                    + "  where  pr.status = 1 and product_id != ?\n"
+                    + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ? ORDER BY feature_product DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, num);
-            stm.setInt(2, productId);
-            stm.setInt(3, ram);
-            stm.setInt(4, memory);
-            stm.setString(5, cpu);
-            stm.setString(6, graphic_card);
+            
+            // Đảo thứ tự tham số để LIMIT ở cuối cùng
+            stm.setInt(1, productId);
+            stm.setInt(2, ram);
+            stm.setInt(3, memory);
+            stm.setString(4, cpu);
+            stm.setString(5, graphic_card);
+            stm.setInt(6, num);
+            
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -791,7 +802,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -801,13 +812,13 @@ public class ProductDBContext extends DBContext {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT \n"
-                    + "      pr.[name]\n"
-                    + "      ,pr.[ram]\n"
-                    + "      ,pr.[memory]\n"
-                    + "      ,pr.[cpu]\n"
-                    + "      ,pr.[graphics_card]\n"
-                    + "  FROM [Product] pr\n"
-                    + "  where  pr.[status] = 1 and pr.[name] LIKE ?";
+                    + "      pr.name\n"
+                    + "      ,pr.ram\n"
+                    + "      ,pr.memory\n"
+                    + "      ,pr.cpu\n"
+                    + "      ,pr.graphics_card\n"
+                    + "  FROM Product pr\n"
+                    + "  where  pr.status = 1 and pr.name LIKE ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             ResultSet rs = stm.executeQuery();
@@ -824,7 +835,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -832,24 +843,24 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> getAllProduct(int status) {
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
-            String sql = "SELECT [product_id]\n"
-                    + "      ,[name]\n"
-                    + "      ,[type]\n"
-                    + "      ,[os]\n"
-                    + "      ,[feature_product]\n"
-                    + "      ,[color]\n"
-                    + "      ,[current_price]\n"
-                    + "      ,[original_price]\n"
-                    + "      ,[ram]\n"
-                    + "      ,[memory]\n"
-                    + "      ,[cpu]\n"
-                    + "      ,[graphics_card]\n"
-                    + "      ,[size]\n"
-                    + "      ,[description]\n"
-                    + "      ,[discount]\n"
-                    + "      ,[qty]\n"
-                    + "      ,[status]\n"
-                    + "  FROM [dbo].[Product]\n"
+            String sql = "SELECT product_id\n"
+                    + "      ,name\n"
+                    + "      ,type\n"
+                    + "      ,os\n"
+                    + "      ,feature_product\n"
+                    + "      ,color\n"
+                    + "      ,current_price\n"
+                    + "      ,original_price\n"
+                    + "      ,ram\n"
+                    + "      ,memory\n"
+                    + "      ,cpu\n"
+                    + "      ,graphics_card\n"
+                    + "      ,size\n"
+                    + "      ,description\n"
+                    + "      ,discount\n"
+                    + "      ,qty\n"
+                    + "      ,status\n"
+                    + "  FROM Product\n"
                     + "  WHERE status = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -878,9 +889,10 @@ public class ProductDBContext extends DBContext {
         try {
             String sql = "";
             if (status == 1 || status == 0) {
-                sql = "SELECT COUNT(product_id)[total] FROM Product Where [status] = ?";
+                // Sửa cú pháp alias [total] -> AS total
+                sql = "SELECT COUNT(product_id) AS total FROM Product Where status = ?";
             } else {
-                sql = "SELECT COUNT(product_id)[total] FROM Product";
+                sql = "SELECT COUNT(product_id) AS total FROM Product";
             }
             PreparedStatement ps = connection.prepareStatement(sql);
             if (status == 1 || status == 0) {
@@ -901,9 +913,10 @@ public class ProductDBContext extends DBContext {
         try {
             String sql = "";
             if (status == 1 || status == 0) {
-                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ? AND [status] = ?";
+                // Sửa cú pháp alias
+                sql = "SELECT COUNT(product_id) AS total FROM Product WHERE type = ? AND status = ?";
             } else {
-                sql = "SELECT COUNT(product_id)[total] FROM Product WHERE [type] = ?";
+                sql = "SELECT COUNT(product_id) AS total FROM Product WHERE type = ?";
             }
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, type);
@@ -922,8 +935,8 @@ public class ProductDBContext extends DBContext {
 
     public void changeProductStatus(int id, boolean status) {
         try {
-            String sql = "UPDATE [dbo].[Product]\n"
-                    + "   SET [status] = ?\n"
+            String sql = "UPDATE Product\n"
+                    + "   SET status = ?\n"
                     + " WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setBoolean(1, status);
@@ -934,92 +947,6 @@ public class ProductDBContext extends DBContext {
         }
     }
 
-//test query cái này bỏ qua
-//    public String testString(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes) {
-//        String sql = "SELECT DISTINCT pr.[product_id]\n"
-//                + "      ,pr.[name]\n"
-//                + "      ,pr.[type]\n"
-//                + "      ,pr.[os]\n"
-//                + "      ,pr.[feature_product]\n"
-//                + "      ,pr.[color]\n"
-//                + "      ,pr.[current_price]\n"
-//                + "      ,pr.[original_price]\n"
-//                + "      ,pr.[ram]\n"
-//                + "      ,pr.[memory]\n"
-//                + "      ,pr.[cpu]\n"
-//                + "      ,pr.[graphics_card]\n"
-//                + "      ,pr.[size]\n"
-//                + "      ,pr.[description]\n"
-//                + "      ,pr.[discount]\n"
-//                + "      ,pr.[qty]\n"
-//                + "      ,pr.[sold]\n"
-//                + "      ,pr.[status]\n"
-//                + "  FROM  [Product] pr "
-//                + "  Inner Join [Product_Brand] prbr On pr.product_id = prbr.product_id\n"
-//                + "  Inner Join [Brand] br on prbr.brand_id = br.brand_id\n"
-//                + "  Inner Join [Product_Requirement] prre On pr.product_id = prre.product_id\n"
-//                + "  Inner Join [Requirement] re on prre.requirement_id =re.requirement_id\n"
-//                + "  where  pr.[status] = 1 AND pr.[current_price] >= ? AND pr.[current_price] <= ? AND pr.[type] = ?\n";
-//        if (needs != null) {
-//            if (needs[0].compareTo("all") != 0) {
-//                sql = sql + " AND re.[requirement_name] in (";
-//                for (String need : needs) {
-//                    sql = sql + "'" + need + "',";
-//                }
-//                sql = sql.substring(0, sql.length() - 1);
-//                sql = sql + ")";
-//            }
-//
-//        }
-//
-//        if (brands != null) {
-//            if (brands[0].compareTo("all") != 0) {
-//                sql = sql + " AND br.[brand_name] in (";
-//                for (String brand : brands) {
-//                    sql = sql + "'" + brand + "',";
-//                }
-//                sql = sql.substring(0, sql.length() - 1);
-//                sql = sql + ")";
-//            }
-//
-//        }
-//
-//        if (sizes != null) {
-//            if (sizes[0].compareTo("all") != 0) {
-//                int i = 0;
-//                sql = sql + " AND pr.product_id in (SELECT pr.[product_id] FROM [Product] pr where";
-//                for (String size : sizes) {
-//                    if (i != 0) {
-//                        sql += " OR ";
-//                    }
-//                    if (size.compareTo("size1") == 0) {
-//                        sql = sql + " pr.[size] < 13";
-//                    }
-//                    if (size.compareTo("size2") == 0) {
-//                        sql = sql + " pr.[size] >=14 AND pr.[size]<15";
-//                    }
-//                    if (size.compareTo("size3") == 0) {
-//                        sql = sql + " pr.[size] >=15 AND pr.[size]<17";
-//                    }
-//                    if (size.compareTo("size4") == 0) {
-//                        sql = sql + " pr.[size] >= 17";
-//                    }
-//                    i++;
-//                }
-//                sql = sql + ")";
-//            }
-//        }
-//        if (sort.compareTo("none") == 0) {
-//            sql = sql + "\n ORDER BY pr.[discount] DESC";
-//        }
-//        if (sort.compareTo("ASC") == 0) {
-//            sql = sql + "\n ORDER BY pr.[current_price] ASC";
-//        }
-//        if (sort.compareTo("DESC") == 0) {
-//            sql = sql + "\n ORDER BY pr.[current_price] DESC";
-//        }
-//        return sql;
-//    }
     public boolean deleteNumberProduct(int product_id, int num) {
         boolean check = false;
         try {
@@ -1060,23 +987,23 @@ public class ProductDBContext extends DBContext {
 
     public int insertAndReturnId(Product product) {
         try {
-            String sql = "INSERT INTO [dbo].[Product]\n"
-                    + "           ([name]\n" //1
-                    + "           ,[type]\n" //2
-                    + "           ,[os]\n" //3
-                    + "           ,[feature_product]\n" //4
-                    + "           ,[color]\n" //5
-                    + "           ,[current_price]\n" //6
-                    + "           ,[original_price]\n" //7
-                    + "           ,[ram]\n" //8
-                    + "           ,[memory]\n" //9
-                    + "           ,[cpu]\n" //10
-                    + "           ,[graphics_card]\n" //11
-                    + "           ,[size]\n" //12
-                    + "           ,[description]\n" //13
-                    + "           ,[discount]\n" //14
-                    + "           ,[qty]\n" //15
-                    + "           ,[status])\n" //16
+            String sql = "INSERT INTO Product\n"
+                    + "           (name\n" //1
+                    + "           ,type\n" //2
+                    + "           ,os\n" //3
+                    + "           ,feature_product\n" //4
+                    + "           ,color\n" //5
+                    + "           ,current_price\n" //6
+                    + "           ,original_price\n" //7
+                    + "           ,ram\n" //8
+                    + "           ,memory\n" //9
+                    + "           ,cpu\n" //10
+                    + "           ,graphics_card\n" //11
+                    + "           ,size\n" //12
+                    + "           ,description\n" //13
+                    + "           ,discount\n" //14
+                    + "           ,qty\n" //15
+                    + "           ,status)\n" //16
                     + "     VALUES\n"
                     + "           (?\n"
                     + "           ,?\n"
@@ -1125,8 +1052,7 @@ public class ProductDBContext extends DBContext {
     public List<String> getAllOs() {
         List<String> list = new ArrayList<>();
         try {
-            String sql = "SELECT distinct [os]\n"
-                    + "  FROM [dbo].[Product]";
+            String sql = "SELECT distinct os FROM Product";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -1140,12 +1066,7 @@ public class ProductDBContext extends DBContext {
 
     public void setProductBrand(int productId, int brandId) {
         try {
-            String sql = "INSERT INTO [dbo].[Product_Brand]\n"
-                    + "           ([brand_id]\n"
-                    + "           ,[product_id])\n"
-                    + "     VALUES\n"
-                    + "           (?\n"
-                    + "           ,?)";
+            String sql = "INSERT INTO Product_Brand (brand_id, product_id) VALUES (?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, brandId);
             ps.setInt(2, productId);
@@ -1158,12 +1079,7 @@ public class ProductDBContext extends DBContext {
 
     public void setProductRequirment(int productId, int reqId) {
         try {
-            String sql = "INSERT INTO [dbo].[Product_Requirement]\n"
-                    + "           ([requirement_id]\n"
-                    + "           ,[product_id])\n"
-                    + "     VALUES\n"
-                    + "           (?\n"
-                    + "           ,?)";
+            String sql = "INSERT INTO Product_Requirement (requirement_id, product_id) VALUES (?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, reqId);
             ps.setInt(2, productId);
@@ -1177,17 +1093,17 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> getAllProductAndBrand() {
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
-            String sql = "SELECT p.[product_id]\n"
-                    + "      ,p.[name]\n"
-                    + "      ,p.[type]\n"
-                    + "      ,p.[color]\n"
-                    + "      ,p.[ram]\n"
-                    + "      ,p.[memory]\n"
-                    + "      ,p.[qty]\n"
+            String sql = "SELECT p.product_id\n"
+                    + "      ,p.name\n"
+                    + "      ,p.type\n"
+                    + "      ,p.color\n"
+                    + "      ,p.ram\n"
+                    + "      ,p.memory\n"
+                    + "      ,p.qty\n"
                     + "	  ,b.brand_id\n"
                     + "	  ,b.brand_name\n"
-                    + "  FROM [dbo].[Product] p\n"
-                    + "  JOIN Product_Brand pb ON p.[product_id] = pb.[product_id]\n"
+                    + "  FROM Product p\n"
+                    + "  JOIN Product_Brand pb ON p.product_id = pb.product_id\n"
                     + "  JOIN Brand b ON pb.brand_id = b.brand_id";
 
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -1216,9 +1132,7 @@ public class ProductDBContext extends DBContext {
     public int getProductQuantityById(int productId) {
         int quantity = 0;
         try {
-            String sql = "SELECT [qty]\n"
-                    + "  FROM [dbo].[Product]\n"
-                    + "  WHERE product_id = ?";
+            String sql = "SELECT qty FROM Product WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ResultSet rs = ps.executeQuery();
@@ -1233,9 +1147,7 @@ public class ProductDBContext extends DBContext {
 
     public void updateQuatityById(int productId, int quantity) {
         try {
-            String sql = "UPDATE [dbo].[Product]\n"
-                    + "   SET [qty] = ?\n"
-                    + " WHERE product_id = ?";
+            String sql = "UPDATE Product SET qty = ? WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, quantity);
             ps.setInt(2, productId);
@@ -1247,20 +1159,20 @@ public class ProductDBContext extends DBContext {
 
     public void updateProduct(Product p) {
         try {
-            String sql = "UPDATE [dbo].[Product]\n"
-                    + "   SET [name] = ?\n"
-                    + "      ,[type] = ?\n"
-                    + "      ,[os] = ?\n"
-                    + "      ,[color] = ?\n"
-                    + "      ,[current_price] = ?\n"
-                    + "      ,[original_price] = ?\n"
-                    + "      ,[ram] = ?\n"
-                    + "      ,[memory] = ?\n"
-                    + "      ,[cpu] = ?\n"
-                    + "      ,[graphics_card] = ?\n"
-                    + "      ,[size] = ?\n"
-                    + "      ,[description] = ?\n"
-                    + "      ,[discount] = ?\n"
+            String sql = "UPDATE Product\n"
+                    + "   SET name = ?\n"
+                    + "      ,type = ?\n"
+                    + "      ,os = ?\n"
+                    + "      ,color = ?\n"
+                    + "      ,current_price = ?\n"
+                    + "      ,original_price = ?\n"
+                    + "      ,ram = ?\n"
+                    + "      ,memory = ?\n"
+                    + "      ,cpu = ?\n"
+                    + "      ,graphics_card = ?\n"
+                    + "      ,size = ?\n"
+                    + "      ,description = ?\n"
+                    + "      ,discount = ?\n"
                     + " WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, p.getName());
@@ -1285,8 +1197,7 @@ public class ProductDBContext extends DBContext {
 
     public void deleteOldProductBrand(int productId) {
         try {
-            String sql = "DELETE FROM [dbo].[Product_Brand]\n"
-                    + "      WHERE product_id = ?";
+            String sql = "DELETE FROM Product_Brand WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ps.executeUpdate();
@@ -1297,8 +1208,7 @@ public class ProductDBContext extends DBContext {
 
     public void deleteOldProductRequirment(int productId) {
         try {
-            String sql = "DELETE FROM [dbo].[Product_Requirement]\n"
-                    + "      WHERE product_id = ?";
+            String sql = "DELETE FROM Product_Requirement WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ps.executeUpdate();
@@ -1310,23 +1220,23 @@ public class ProductDBContext extends DBContext {
     public Product getForAllProductByID(int id) {
         Product product = new Product();
         try {
-            String sql = "SELECT   [product_id]\n"
-                    + "		  ,[name]\n"
-                    + "		  ,[type]\n"
-                    + "		  ,[os]\n"
-                    + "		  ,[color]\n"
-                    + "		  ,[current_price]\n"
-                    + "           ,[original_price]\n"
-                    + "		  ,[ram]\n"
-                    + "		  ,[memory]\n"
-                    + "		  ,[cpu]\n"
-                    + "		  ,[graphics_card]\n"
-                    + "		  ,[size]\n"
-                    + "		  ,[description]\n"
-                    + "		  ,[discount]\n"
-                    + "		  ,[qty]\n"
-                    + "		  ,[status]\n"
-                    + "	  FROM [Product] where [product_id] = ?";
+            String sql = "SELECT   product_id\n"
+                    + "		  ,name\n"
+                    + "		  ,type\n"
+                    + "		  ,os\n"
+                    + "		  ,color\n"
+                    + "		  ,current_price\n"
+                    + "           ,original_price\n"
+                    + "		  ,ram\n"
+                    + "		  ,memory\n"
+                    + "		  ,cpu\n"
+                    + "		  ,graphics_card\n"
+                    + "		  ,size\n"
+                    + "		  ,description\n"
+                    + "		  ,discount\n"
+                    + "		  ,qty\n"
+                    + "		  ,status\n"
+                    + "	  FROM Product where product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -1362,7 +1272,7 @@ public class ProductDBContext extends DBContext {
             rs.close();
             return product;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -1370,8 +1280,9 @@ public class ProductDBContext extends DBContext {
     public List<Integer> getTopDiscount(int num) {
         List<Integer> topDiscount = new ArrayList<>();
         try {
-            String sql = "SELECT TOP (?) [product_id]\n"
-                    + "  FROM [Product] WHERE discount>0 ORDER BY discount DESC";
+            // Thay TOP (?) bằng LIMIT ? ở cuối
+            String sql = "SELECT product_id\n"
+                    + "  FROM Product WHERE discount > 0 ORDER BY discount DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             ResultSet rs = stm.executeQuery();
@@ -1382,7 +1293,7 @@ public class ProductDBContext extends DBContext {
             stm.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return topDiscount;
     }
