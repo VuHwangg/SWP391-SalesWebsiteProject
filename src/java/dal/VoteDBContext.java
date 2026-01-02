@@ -23,10 +23,9 @@ public class VoteDBContext extends DBContext {
     public ArrayList<Vote> listByID(int product_id) {
         ArrayList<Vote> votes = new ArrayList<>();
         try {
-            String sql = "SELECT  [vote_id]\n"
-                    + "      ,[num]\n"
-                    + "      ,[num_of_vote]\n"
-                    + "      FROM [Vote] WHERE product_id = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT vote_id, num, num_of_vote "
+                    + " FROM Vote WHERE product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -48,13 +47,9 @@ public class VoteDBContext extends DBContext {
 
     public int sendRate(String username, int productId, String comment, int rating) {
         try {
-            String sql = "INSERT INTO [Vote_Of_User](username,product_id,comment,num_of_star,confirm)\n"
-                    + "     VALUES\n"
-                    + "           (?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?)";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "INSERT INTO Vote_Of_User (username, product_id, comment, num_of_star, confirm) "
+                    + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, username);
             ps.setInt(2, productId);
@@ -67,7 +62,7 @@ public class VoteDBContext extends DBContext {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
@@ -75,11 +70,9 @@ public class VoteDBContext extends DBContext {
     public ArrayList<UserVote> listByProductId(int product_id) {
         ArrayList<UserVote> userVotes = new ArrayList<>();
         try {
-            String sql = "SELECT [vote_of_user_id]\n"
-                    + "      ,[num_of_star]\n"
-                    + "      ,[comment]\n"
-                    + "      ,[username]\n"
-                    + "  FROM [Vote_Of_User] WHERE product_id = ? AND [confirm] = 1";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT vote_of_user_id, num_of_star, comment, username "
+                    + " FROM Vote_Of_User WHERE product_id = ? AND confirm = 1";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -104,12 +97,9 @@ public class VoteDBContext extends DBContext {
     public ArrayList<UserVote> listAllUnconfimred() {
         ArrayList<UserVote> userVotes = new ArrayList<>();
         try {
-            String sql = "SELECT [vote_of_user_id]\n"
-                    + "      ,[num_of_star]\n"
-                    + "      ,[product_id]\n"
-                    + "      ,[comment]\n"
-                    + "      ,[username]\n"
-                    + "  FROM [Vote_Of_User] WHERE [confirm] = 0";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT vote_of_user_id, num_of_star, product_id, comment, username "
+                    + " FROM Vote_Of_User WHERE confirm = 0";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -134,9 +124,8 @@ public class VoteDBContext extends DBContext {
 
     public int updateStatus(int id, int status) {
         try {
-            String sql = "UPDATE [Vote_Of_User]\n"
-                    + "SET confirm = ?\n"
-                    + "WHERE vote_of_user_id = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "UPDATE Vote_Of_User SET confirm = ? WHERE vote_of_user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, status);
             ps.setInt(2, id);
@@ -146,7 +135,7 @@ public class VoteDBContext extends DBContext {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
@@ -154,8 +143,8 @@ public class VoteDBContext extends DBContext {
     public int getByProductIdAndRating(int product_id, int rating) {
         int id = 0;
         try {
-            String sql = "SELECT [vote_id]\n"
-                    + "  FROM [Vote] WHERE product_id = ? AND num = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT vote_id FROM Vote WHERE product_id = ? AND num = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             stm.setInt(2, rating);
@@ -174,8 +163,8 @@ public class VoteDBContext extends DBContext {
     public int getNumOfVoteByID(int voteID) {
         int num = 0;
         try {
-            String sql = "SELECT [num_of_vote]\n"
-                    + "  FROM [Vote] WHERE [vote_id] = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT num_of_vote FROM Vote WHERE vote_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, voteID);
             ResultSet rs = stm.executeQuery();
@@ -192,7 +181,8 @@ public class VoteDBContext extends DBContext {
 
     public int insertVote(int productId, int rating) {
         try {
-            String sql = "Insert into [Vote](product_id,num,num_of_vote) values (?,?,1)";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "INSERT INTO Vote (product_id, num, num_of_vote) VALUES (?, ?, 1)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, productId);
             ps.setInt(2, rating);
@@ -202,7 +192,7 @@ public class VoteDBContext extends DBContext {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
@@ -210,9 +200,8 @@ public class VoteDBContext extends DBContext {
     public int updateVote(int voteId, int numOfVote) {
         numOfVote++;
         try {
-            String sql = "UPDATE [Vote]\n"
-                    + "SET num_of_vote = ?\n"
-                    + "WHERE vote_id = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "UPDATE Vote SET num_of_vote = ? WHERE vote_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, numOfVote);
             ps.setInt(2, voteId);
@@ -222,7 +211,7 @@ public class VoteDBContext extends DBContext {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
@@ -230,8 +219,9 @@ public class VoteDBContext extends DBContext {
     public int getNumOfVoteByStatus(int status) {
         int num = 0;
         try {
-            String sql = "SELECT COUNT(vote_of_user_id) AS num\n"
-                    + "  FROM [Vote_Of_User] WHERE confirm = ? GROUP BY [confirm]	";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT COUNT(vote_of_user_id) AS num "
+                    + " FROM Vote_Of_User WHERE confirm = ? GROUP BY confirm";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, status);
             ResultSet rs = stm.executeQuery();
