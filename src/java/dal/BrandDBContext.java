@@ -23,12 +23,11 @@ public class BrandDBContext extends DBContext {
     public ArrayList<Brand> listByID(int product_id) {
         ArrayList<Brand> brands = new ArrayList<>();
         try {
-            String sql = "SELECT b.[brand_id]\n"
-                    + "      ,b.[brand_name]\n"
-                    + "      ,b.[description]\n"
-                    + "      FROM [Brand] b\n"
-                    + "      INNER JOIN Product_Brand pb ON pb.brand_id = b.brand_id\n"
-                    + "      WHERE pb.product_id = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT b.brand_id, b.brand_name, b.description "
+                    + " FROM Brand b "
+                    + " INNER JOIN Product_Brand pb ON pb.brand_id = b.brand_id "
+                    + " WHERE pb.product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -43,7 +42,7 @@ public class BrandDBContext extends DBContext {
             rs.close();
             return brands;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrandDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -51,13 +50,12 @@ public class BrandDBContext extends DBContext {
     public ArrayList<Brand> listByType(int type) {
         ArrayList<Brand> brands = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT b.[brand_id]\n"
-                    + "      ,b.[brand_name]\n"
-                    + "      ,b.[description]\n"
-                    + "      FROM [Brand] b\n"
-                    + "      INNER JOIN Product_Brand pb ON pb.brand_id = b.brand_id\n"
-                    + "      INNER JOIN Product pr ON pr.product_id = pb.product_id\n"
-                    + "      WHERE pr.[type] = ?";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT DISTINCT b.brand_id, b.brand_name, b.description "
+                    + " FROM Brand b "
+                    + " INNER JOIN Product_Brand pb ON pb.brand_id = b.brand_id "
+                    + " INNER JOIN Product pr ON pr.product_id = pb.product_id "
+                    + " WHERE pr.type = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, type);
             ResultSet rs = stm.executeQuery();
@@ -72,7 +70,7 @@ public class BrandDBContext extends DBContext {
             rs.close();
             return brands;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrandDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -80,10 +78,8 @@ public class BrandDBContext extends DBContext {
     public List<Brand> getAllBrand() {
         List<Brand> brands = new ArrayList<>();
         try {
-            String sql = "SELECT [brand_id]\n"
-                    + "      ,[brand_name]\n"
-                    + "      ,[description]\n"
-                    + "  FROM [Brand]";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT brand_id, brand_name, description FROM Brand";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -97,22 +93,23 @@ public class BrandDBContext extends DBContext {
             rs.close();
             return brands;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrandDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     public int AddNewBrandAndReturnId(String brandName) {
         try {
-            String sql = "INSERT INTO [dbo].[Brand]\n"
-                    + "           ([brand_name])\n"
-                    + "     VALUES\n"
-                    + "           (?)";
+            // Loại bỏ [dbo]. và []
+            String sql = "INSERT INTO Brand (brand_name) VALUES (?)";
+            
+            // PostgreSQL hỗ trợ Statement.RETURN_GENERATED_KEYS thông qua JDBC driver rất tốt
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, brandName);
             ps.executeUpdate();
+            
             ResultSet rs = ps.getGeneratedKeys();
-            while (rs.next()) {                
+            if (rs.next()) {                
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
