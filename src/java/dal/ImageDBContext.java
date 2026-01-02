@@ -23,10 +23,10 @@ public class ImageDBContext extends DBContext {
     public ArrayList<Image> listByID(int product_id) {
         ArrayList<Image> images = new ArrayList<>();
         try {
-            String sql = "SELECT [image_id]\n"
-                    + "      ,[url]\n"
-                    + "  FROM [Image] WHERE product_id = ?\n"
-                    + "  ORDER BY thumbnail DESC";
+            // Loại bỏ dấu ngoặc vuông []
+            String sql = "SELECT image_id, url "
+                    + " FROM Image WHERE product_id = ? "
+                    + " ORDER BY thumbnail DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -40,7 +40,7 @@ public class ImageDBContext extends DBContext {
             rs.close();
             return images;
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -50,20 +50,22 @@ public class ImageDBContext extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "Select url from image where product_id = ? ";
+            // Giữ nguyên cú pháp chuẩn
+            String sql = "SELECT url FROM Image WHERE product_id = ? ";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, Proid);
 
             rs = stm.executeQuery();
             if (rs.next()) {
-                url = rs.getString(url);
+                // Sửa lỗi logic nhỏ: rs.getString(url) -> rs.getString("url")
+                url = rs.getString("url"); 
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(VoteDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            stm.close();
-            rs.close();
+            if (stm != null) stm.close();
+            if (rs != null) rs.close();
         }
         return url;
     }
@@ -71,24 +73,18 @@ public class ImageDBContext extends DBContext {
     public void saveImageToDatabase(String image, int id, boolean thumbnail) {
         Runnable task = () -> {
             try {
-                String sql = "INSERT INTO [dbo].[Image]\n"
-                        + "           ([product_id]\n"
-                        + "           ,[thumbnail]\n"
-                        + "           ,[url])\n"
-                        + "     VALUES\n"
-                        + "           (?\n"
-                        + "           ,?\n"
-                        + "           ,?)";
+                // Loại bỏ [dbo]. và dấu ngoặc vuông []
+                String sql = "INSERT INTO Image (product_id, thumbnail, url) VALUES (?, ?, ?)";
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, id);
                 ps.setBoolean(2, thumbnail);
                 ps.setString(3, image);
                 ps.executeUpdate();
+                ps.close(); // Đóng resource sau khi thực thi trong thread
             } catch (SQLException ex) {
                 Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         };
         new Thread(task).start();
-
     }
 }
