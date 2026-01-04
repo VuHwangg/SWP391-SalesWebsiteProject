@@ -28,7 +28,7 @@ import java.util.List;
 import model.Brand;
 import model.Product;
 import model.Requirement;
-import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
+// import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
@@ -65,7 +65,7 @@ public class AddNewProductController extends HttpServlet {
         for (Part filePart : parts) {
             if (filePart != null && filePart.getContentType() != null && filePart.getContentType().startsWith("image/")) {
                 InputStream fileContent = filePart.getInputStream();
-                byte[] bytes = IOUtils.toByteArray(fileContent);
+                byte[] bytes = fileContent.readAllBytes();
                 String base64 = Base64.getEncoder().encodeToString(bytes);
                 base64Images.add(base64);
             }
