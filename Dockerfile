@@ -1,8 +1,8 @@
 # ========================
 # Giai đoạn 1: Build file WAR bằng Java 11
 # ========================
-# Sử dụng image Ant chạy trên nền Java 11 (Amazon Corretto 11 hoặc OpenJDK 11)
-FROM frekele/ant:1.10.13-jdk11 AS build
+# [SỬA LỖI] Đổi sang bản 1.10.12-jdk11 (Bản này ĐANG TỒN TẠI trên Docker Hub)
+FROM frekele/ant:1.10.12-jdk11 AS build
 
 WORKDIR /app
 COPY . .
@@ -32,7 +32,7 @@ RUN export CLASSPATH_STR=$(find lib -name "*.jar" | tr '\n' ':') && \
 # ========================
 # Giai đoạn 2: Chạy Web App trên Tomcat 9 (Java 11)
 # ========================
-# Lưu ý: Runtime cũng phải là Tomcat 9 chạy trên Java 11
+# Runtime Tomcat 9 chạy trên nền Java 11
 FROM tomcat:9.0-jdk11-openjdk-slim
 
 # Xóa ứng dụng mặc định
