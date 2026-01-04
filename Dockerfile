@@ -1,5 +1,5 @@
 # ========================
-# Giai đoạn 1: Build Thủ Công (Không dùng Ant)
+# Giai đoạn 1: Build Thủ Công (Manual Build)
 # ========================
 FROM eclipse-temurin:11-jdk AS build
 WORKDIR /app
@@ -10,40 +10,41 @@ COPY . .
 # 2. Chuẩn bị thư mục chứa thư viện (web/WEB-INF/lib)
 RUN mkdir -p web/WEB-INF/lib
 
-# Copy tất cả file jar từ thư mục lib gốc vào (nếu có)
+# Copy tất cả file jar từ thư mục lib gốc vào
 RUN cp lib/*.jar web/WEB-INF/lib/ || true
 
-# === QUAN TRỌNG: Dọn dẹp thư viện rác gây lỗi ===
+# === DỌN DẸP RÁC (Quan trọng) ===
+# Xóa sạch các thư viện gây xung đột và thư viện API ảo
 RUN rm -f web/WEB-INF/lib/jakarta.* \
           web/WEB-INF/lib/servlet-api.jar \
           web/WEB-INF/lib/jsp-api.jar \
           web/WEB-INF/lib/javax.servlet-api.jar
 
-# Tải JSTL 1.2 chuẩn cho Tomcat 9
+# Tải JSTL 1.2 chuẩn
 RUN curl -L https://repo1.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar -o web/WEB-INF/lib/jstl-1.2.jar
 
-# 3. Tải thư viện Tomcat (Servlet API) để phục vụ biên dịch (Compile)
-# (Chúng ta cần nó để code Java hiểu request/response là gì)
+# 3. Tải thư viện Tomcat 9 để lấy Servlet API (Dùng để Compile)
 RUN mkdir -p /tmp/tomcat-libs && \
     curl -L https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz \
     | tar -xz -C /tmp/tomcat-libs --strip-components=1
 
-# 4. BIÊN DỊCH CODE JAVA (JAVAC)
+# 4. BIÊN DỊCH CODE (JAVAC) - CÁCH MỚI
 # Tạo thư mục chứa class
 RUN mkdir -p web/WEB-INF/classes
 
-# Tìm tất cả file .java trong thư mục src và biên dịch
-# Classpath bao gồm: Thư viện trong WEB-INF/lib + Thư viện của Tomcat
-RUN find src -name "*.java" > sources.txt && \
-    javac -d web/WEB-INF/classes \
-    -cp "web/WEB-INF/lib/*:/tmp/tomcat-libs/lib/*" \
-    @sources.txt
+# --- ĐÂY LÀ PHẦN SỬA LỖI ---
+# Gom tất cả đường dẫn file .jar vào một biến CLASSPATH rõ ràng
+# Bao gồm: Các thư viện trong web/WEB-INF/lib VÀ servlet-api.jar + jsp-api.jar của Tomcat
+RUN LIBS=$(find web/WEB-INF/lib -name "*.jar" | tr '\n' ':') && \
+    TOMCAT_LIBS="/tmp/tomcat-libs/lib/servlet-api.jar:/tmp/tomcat-libs/lib/jsp-api.jar" && \
+    export CLASSPATH="$LIBS:$TOMCAT_LIBS" && \
+    find src -name "*.java" > sources.txt && \
+    javac -d web/WEB-INF/classes -cp "$CLASSPATH" @sources.txt
 
-# Copy các file resource (không phải .java) từ src sang classes (ví dụ: file properties, xml nếu có)
+# Copy các file resource (xml, properties,...)
 RUN find src -type f -not -name "*.java" -exec cp --parents {} web/WEB-INF/classes \; || true
 
-# 5. Đóng gói thành file WAR
-# Dùng lệnh jar để nén thư mục web lại
+# 5. Đóng gói WAR
 RUN jar -cvf ROOT.war -C web .
 
 # ========================
@@ -51,10 +52,10 @@ RUN jar -cvf ROOT.war -C web .
 # ========================
 FROM tomcat:9.0-jdk11-openjdk-slim
 
-# Xóa ứng dụng mặc định của Tomcat
+# Xóa ứng dụng mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy file WAR chúng ta vừa tự gói vào
+# Copy file WAR
 COPY --from=build /app/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
