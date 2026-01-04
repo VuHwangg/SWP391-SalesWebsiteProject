@@ -1,21 +1,27 @@
 # ========================
-# Giai đoạn 1: Build file WAR
+# Giai đoạn 1: Build file WAR bằng Java 11
 # ========================
-FROM frekele/ant:1.10.3-jdk8 AS build
+# Sử dụng image Ant chạy trên nền Java 11 (Amazon Corretto 11 hoặc OpenJDK 11)
+FROM frekele/ant:1.10.13-jdk11 AS build
 
 WORKDIR /app
 COPY . .
 
-# 1. Tạo thư mục lib trong WEB-INF để đóng gói vào file WAR
-RUN mkdir -p web/WEB-INF/lib && cp lib/*.jar web/WEB-INF/lib/ || true
+# 1. Tạo thư mục lib
+RUN mkdir -p web/WEB-INF/lib
 
-# 2. [FIX] Tải Tomcat 10 (thay vì 9) để có bộ thư viện jakarta.* lúc compile
+# 2. Copy thư viện có sẵn từ project
+RUN cp lib/*.jar web/WEB-INF/lib/ || true
+
+# 3. Tải thư viện Tomcat 9 (Vẫn dùng Tomcat 9 để tương thích javax.* trong code bạn)
+# Java 11 dư sức compile được thư viện của Tomcat 9
 RUN mkdir -p /tmp/tomcat-libs && \
-    curl -L https://archive.apache.org/dist/tomcat/tomcat-10/v10.1.18/bin/apache-tomcat-10.1.18.tar.gz \
+    curl -L https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz \
     | tar -xz -C /tmp/tomcat-libs --strip-components=1 && \
     cp /tmp/tomcat-libs/lib/*.jar lib/
 
-# 3. Tạo chuỗi Classpath chuẩn Linux
+# 4. Build
+# Vì dùng Java 11 nên javac sẽ không báo lỗi version 55.0/52.0 nữa
 RUN export CLASSPATH_STR=$(find lib -name "*.jar" | tr '\n' ':') && \
     ant -f build.xml clean dist \
     -Dlibs.CopyLibs.classpath=lib/org-netbeans-modules-java-j2seproject-copylibstask.jar \
@@ -24,13 +30,15 @@ RUN export CLASSPATH_STR=$(find lib -name "*.jar" | tr '\n' ':') && \
     -Dbuild.sysclasspath=last
 
 # ========================
-# Giai đoạn 2: Chạy Web App (Phải là Tomcat 10)
+# Giai đoạn 2: Chạy Web App trên Tomcat 9 (Java 11)
 # ========================
-FROM tomcat:10-jdk11-openjdk-slim
+# Lưu ý: Runtime cũng phải là Tomcat 9 chạy trên Java 11
+FROM tomcat:9.0-jdk11-openjdk-slim
 
+# Xóa ứng dụng mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy file .war thành phẩm vào thư mục webapps của Tomcat 10
+# Copy file .war thành phẩm sang
 COPY --from=build /app/dist/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
