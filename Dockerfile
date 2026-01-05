@@ -47,5 +47,8 @@ FROM tomcat:10.0-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=build /app/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
+# Ép buộc Java ưu tiên dùng IPv4 (Sửa lỗi Network is unreachable)
+ENV JAVA_OPTS="-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
+
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
