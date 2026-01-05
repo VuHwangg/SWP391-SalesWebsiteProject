@@ -26,14 +26,14 @@ public class OrderDAO extends DBContext {
     public boolean addOrder(int status, int cusId, String date, String note, float totalPrice) {
         boolean check = false;
         try {
-            // "Order" là từ khóa trong SQL, cần đặt trong ngoặc kép
+            // Sửa: \"Order\" (vì Order là từ khóa SQL)
             String sql = "INSERT INTO \"Order\" "
                     + "(status, customer_id, date, note, total_price) VALUES (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, status);
             ps.setInt(2, cusId);
-            // PostgreSQL xử lý tốt định dạng ngày chuẩn yyyy-mm-dd. 
-            // Nếu biến 'date' của bạn không chuẩn, có thể cần parse sang java.sql.Date
+            
+            // PostgreSQL tự động convert String yyyy-mm-dd sang Date khá tốt
             ps.setString(3, date); 
             ps.setString(4, note);
             ps.setFloat(5, totalPrice);
@@ -49,8 +49,8 @@ public class OrderDAO extends DBContext {
     public List<String> getStatusName() {
         List<String> status = new ArrayList<>();
         try {
-            // Loại bỏ dấu ngoặc vuông []
-            String sql = "SELECT status_name FROM Status";
+            // Sửa: \"Status\"
+            String sql = "SELECT status_name FROM \"Status\"";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -69,10 +69,10 @@ public class OrderDAO extends DBContext {
     public int numOfOrderByStatus(String statusName) {
         int count = 0;
         try {
-            // "Order" cần ngoặc kép, loại bỏ các ngoặc vuông khác
+            // Sửa: Thêm ngoặc kép cho \"Order\" và \"Status\"
             String sql = "SELECT COUNT(ord.status) AS c "
                     + "FROM \"Order\" ord "
-                    + "INNER JOIN Status sta ON sta.status_id = ord.status "
+                    + "INNER JOIN \"Status\" sta ON sta.status_id = ord.status "
                     + "WHERE sta.status_name = ? "
                     + "GROUP BY ord.status ORDER BY ord.status ASC";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -93,7 +93,8 @@ public class OrderDAO extends DBContext {
     public boolean addOrder_Detail(int order_id, int product_id, int num, float price) {
         boolean check = false;
         try {
-            String sql = "INSERT INTO Order_Details "
+            // Sửa: \"Order_Details\"
+            String sql = "INSERT INTO \"Order_Details\" "
                     + "(order_id, product_id, num, price) VALUES (?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, order_id);
@@ -113,7 +114,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            // Thay TOP 1 bằng LIMIT 1 ở cuối
+            // Sửa: \"Order\" và dùng LIMIT 1 thay vì TOP 1
             String sql = "SELECT order_id FROM \"Order\" ORDER BY order_id DESC LIMIT 1";
             stm = connection.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -132,6 +133,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT * FROM \"Order\" WHERE customer_id = ? ";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, Custid);
@@ -158,7 +160,8 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM Order_Details WHERE order_id = ?";
+            // Sửa: \"Order_Details\"
+            String sql = "SELECT * FROM \"Order_Details\" WHERE order_id = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, order_id);
 
@@ -182,8 +185,8 @@ public class OrderDAO extends DBContext {
         ResultSet rs = null;
 
         try {
-            // Loại bỏ dấu ngoặc vuông
-            String sql = "SELECT name, color FROM Product WHERE product_id = ?";
+            // Sửa: \"Product\"
+            String sql = "SELECT name, color FROM \"Product\" WHERE product_id = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
 
@@ -205,6 +208,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT * FROM \"Order\" WHERE order_id = ? ";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, order_id);
@@ -230,6 +234,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT * FROM \"Order\" WHERE order_id = ? AND customer_id = ? ";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, order_id);
@@ -252,6 +257,7 @@ public class OrderDAO extends DBContext {
     public boolean updateStatusOrder(int order_id, int status) {
         boolean check = false;
         try {
+            // Sửa: \"Order\"
             String sql = "UPDATE \"Order\" SET status = ? WHERE order_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, status);
@@ -269,16 +275,14 @@ public class OrderDAO extends DBContext {
         boolean check = false;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        // Logic mảng int[] arr = null; int a=0; ở code cũ rất dễ gây lỗi NullPointerException
-        // Tuy nhiên tôi giữ nguyên logic kiểm tra tồn tại của bạn
         try {
-            String sql = "SELECT cart_id FROM Cart WHERE customer_id = ?";
+            // Sửa: \"Cart\"
+            String sql = "SELECT cart_id FROM \"Cart\" WHERE customer_id = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, cust_id);
 
             rs = stm.executeQuery();
             if (rs.next()) {
-                // Chỉ cần có kết quả là check = true, không cần logic mảng phức tạp
                 check = true; 
             }
         } catch (Exception ex) {
@@ -290,7 +294,8 @@ public class OrderDAO extends DBContext {
     public boolean deleteCart(int cart_id) {
         boolean check = false;
         try {
-            String sql = "DELETE FROM Cart WHERE cart_id = ?";
+            // Sửa: \"Cart\"
+            String sql = "DELETE FROM \"Cart\" WHERE cart_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, cart_id);
 
@@ -311,6 +316,7 @@ public class OrderDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT * FROM \"Order\" ";
             stm = connection.prepareStatement(sql);
 
@@ -334,6 +340,7 @@ public class OrderDAO extends DBContext {
     public double getTotalPriceByDay(Date date) {
         double totalPrice = 0;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT SUM(total_price) as total "
                     + " FROM \"Order\" WHERE date = ? GROUP BY date";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -353,6 +360,7 @@ public class OrderDAO extends DBContext {
     public double getTotalPriceInOnePeriod(Date from, Date to) {
         double totalPrice = 0;
         try {
+            // Sửa: \"Order\"
             String sql = "SELECT SUM(total_price) as total "
                     + " FROM \"Order\" WHERE date BETWEEN ? AND ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -373,12 +381,13 @@ public class OrderDAO extends DBContext {
     public int getTotalNumByBrand(Date from, Date to, String brand, int type) {
         int totalNum = 0;
         try {
+            // Sửa: Thêm ngoặc kép cho tất cả tên bảng trong câu Join phức tạp
             String sql = "SELECT SUM(orddet.num) as total_num "
-                    + " FROM Order_Details orddet "
+                    + " FROM \"Order_Details\" orddet "
                     + " INNER JOIN \"Order\" ord ON orddet.order_id = ord.order_id "
-                    + " INNER JOIN Product pr ON pr.product_id = orddet.product_id "
-                    + " INNER JOIN Product_Brand prbr ON pr.product_id = prbr.product_id "
-                    + " INNER JOIN Brand br ON prbr.brand_id = br.brand_id "
+                    + " INNER JOIN \"Product\" pr ON pr.product_id = orddet.product_id "
+                    + " INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id "
+                    + " INNER JOIN \"Brand\" br ON prbr.brand_id = br.brand_id "
                     + " WHERE br.brand_name = ? AND pr.type = ? AND ord.date BETWEEN ? AND ? "
                     + " GROUP BY br.brand_id";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -401,11 +410,12 @@ public class OrderDAO extends DBContext {
     public List<Integer> getTopSaler(int num) {
         List<Integer> topSaler = new ArrayList<>();
         try {
-            // Thay TOP (?) bằng LIMIT ? ở cuối
+            // Sửa: Dùng LIMIT ? ở cuối. Thêm ngoặc kép \"Product\", \"Order_Details\"
+            // Lưu ý: Nếu cột status là BOOLEAN trong Postgres, hãy đổi '1' thành 'true'
             String sql = "SELECT pro.product_id, COUNT(od.product_id) as num "
-                    + " FROM Product pro "
-                    + " LEFT JOIN Order_Details od ON pro.product_id = od.product_id "
-                    + " WHERE pro.status = 1 " // hoặc true nếu đã đổi DB
+                    + " FROM \"Product\" pro "
+                    + " LEFT JOIN \"Order_Details\" od ON pro.product_id = od.product_id "
+                    + " WHERE pro.status = 1 " // Nếu lỗi boolean, sửa thành: pro.status = true
                     + " GROUP BY pro.product_id "
                     + " ORDER BY num DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
