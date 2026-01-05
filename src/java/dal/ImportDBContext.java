@@ -23,8 +23,8 @@ public class ImportDBContext extends DBContext {
     public double getTotalCostByDay(Date date) {
         double totalCost = 0;
         try {
-            // Loại bỏ các dấu ngoặc vuông []
-            String sql = "SELECT num, cost FROM Import_History WHERE date = ? ";
+            // Sửa: Thêm ngoặc kép \"Import_History\"
+            String sql = "SELECT num, cost FROM \"Import_History\" WHERE date = ? ";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDate(1, date);
             ResultSet rs = stm.executeQuery();
@@ -34,7 +34,6 @@ public class ImportDBContext extends DBContext {
             stm.close();
             rs.close();
         } catch (SQLException ex) {
-            // Sửa tên class trong Logger cho đúng
             Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return totalCost;
@@ -46,9 +45,9 @@ public class ImportDBContext extends DBContext {
         AccountDAO accDB = new AccountDAO();
 
         try {
-            // Loại bỏ các dấu ngoặc vuông []
+            // Sửa: Thêm ngoặc kép \"Import_History\"
             String sql = "SELECT import_id, num, date, note, username, cost, product_id "
-                    + " FROM Import_History "
+                    + " FROM \"Import_History\" "
                     + " WHERE date BETWEEN ? AND ? "
                     + " ORDER BY date DESC";
 
@@ -63,7 +62,7 @@ public class ImportDBContext extends DBContext {
                 history.setDate(rs.getDate("date"));
                 history.setNote(rs.getString("note"));
                 
-                // Giữ nguyên logic lấy Account và Product từ các DAO/Context khác
+                // Logic map object giữ nguyên
                 history.setAccount(accDB.getAcc(rs.getString("username")));
                 history.setCost(rs.getDouble("cost"));
                 history.setProduct(proDB.getProductByIDWithOutStatus(rs.getInt("product_id")));
@@ -74,7 +73,6 @@ public class ImportDBContext extends DBContext {
             rs.close();
             return listHistory;
         } catch (SQLException ex) {
-            // Sửa tên class trong Logger cho đúng
             Logger.getLogger(ImportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listHistory;
@@ -83,8 +81,8 @@ public class ImportDBContext extends DBContext {
     public int importProduct(Import_History ih) {
         int x = -1;
         try {
-            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
-            String sql = "INSERT INTO Import_History (num, date, username, cost, product_id) "
+            // Sửa: Thêm ngoặc kép \"Import_History\"
+            String sql = "INSERT INTO \"Import_History\" (num, date, username, cost, product_id) "
                     + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, ih.getNum());
@@ -96,7 +94,7 @@ public class ImportDBContext extends DBContext {
             ps.setString(3, ih.getAccount().getUsername());
             ps.setDouble(4, ih.getCost());
             
-            // Giữ nguyên logic dùng getId() cho product_id
+            // Giữ nguyên logic cũ của bạn (ih.getId() ở đây đóng vai trò là product_id khi truyền vào)
             ps.setInt(5, ih.getId());
             
             x = ps.executeUpdate();
