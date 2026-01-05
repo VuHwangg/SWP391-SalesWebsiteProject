@@ -29,7 +29,9 @@ public class DBContext {
 
             String user = "postgres";
             String pass = "30082002Xyz@";
-            String url = "jdbc:postgresql://db.dlwedbkzfhfrnrhmgkw.supabase.co:5432/postgres";
+            // String url = "jdbc:postgresql://db.dlwedbkzfhfrnrhmgkw.supabase.co:5432/postgres";
+            // Thêm ?sslmode=require vào cuối URL để đảm bảo kết nối được với Supabase
+            String url = "jdbc:postgresql://db.dlwedbkzfhfrnrhmgkw.supabase.co:5432/postgres?sslmode=require";
 
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, pass);
