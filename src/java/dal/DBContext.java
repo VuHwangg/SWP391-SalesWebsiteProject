@@ -18,9 +18,11 @@ public class DBContext {
             String pass = "2JqtnpBOpeYq3ttU";
             
             // 3. URL kết nối đến Pooler IPv4 (Port 6543)
-            // Lưu ý: Không cần điền user/pass vào url nữa vì ta truyền riêng ở dưới cho an toàn
-            String url = "jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?sslmode=require";
+            // String url = "jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?sslmode=require";
 
+            // Thêm "&prepareThreshold=0" vào cuối chuỗi
+            String url = "jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?sslmode=require&prepareThreshold=0";
+            
             // Load Driver Postgres
             Class.forName("org.postgresql.Driver");
             
