@@ -469,60 +469,49 @@ public class ProductDBContext extends DBContext {
         int skip = (numOfPage - 1) * 12;
         String txtSearch = "%" + rawTxtSearch + "%";
         try {
-            // Dùng ILIKE cho Postgres
-            String sql = "SELECT pr.product_id\n"
-                    + "		  ,pr.name\n"
-                    + "		  ,pr.type\n"
-                    + "		  ,pr.os\n"
-                    + "		  ,pr.color\n"
-                    + "		  ,pr.current_price\n"
-                    + "           ,pr.original_price\n"
-                    + "		  ,pr.ram\n"
-                    + "		  ,pr.memory\n"
-                    + "		  ,pr.cpu\n"
-                    + "		  ,pr.graphics_card\n"
-                    + "		  ,pr.size\n"
-                    + "		  ,pr.description\n"
-                    + "		  ,pr.discount\n"
-                    + "		  ,pr.qty\n"
-                    + "		  ,pr.status\n"
-                    + "  FROM   \"Product\" pr\n"
-                    + "INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id\n"
-                    + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id\n"
-                    + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id\n"
-                    + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id\n"
-                    + "  WHERE pr.status = 1 AND (pr.name ILIKE ?\n"
-                    + "   OR pr.os ILIKE ?\n"
-                    + "   OR pr.color ILIKE ?\n"
-                    + "   OR pr.ram ILIKE ?\n"
-                    + "   OR pr.memory ILIKE ?\n"
-                    + "   OR pr.cpu ILIKE ?\n"
-                    + "   OR pr.graphics_card ILIKE ? or re.requirement_name ILIKE ? or br.brand_name ILIKE ?) ";
+            // Sửa 1: CAST các cột số (ram, memory) sang TEXT để dùng được ILIKE
+            // Giữ nguyên các INNER JOIN (Lưu ý: Nếu Product thiếu Brand/Req sẽ bị ẩn luôn)
+            String sql = "SELECT pr.product_id, pr.name, pr.type, pr.os, pr.color, "
+                       + "pr.current_price, pr.original_price, pr.ram, pr.memory, "
+                       + "pr.cpu, pr.graphics_card, pr.size, pr.description, "
+                       + "pr.discount, pr.qty, pr.status "
+                       + "FROM \"Product\" pr "
+                       + "INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id "
+                       + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id "
+                       + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id "
+                       + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id "
+                       + "WHERE pr.status = 1 AND (pr.name ILIKE ? "
+                       + "OR pr.os ILIKE ? "
+                       + "OR pr.color ILIKE ? "
+                       + "OR CAST(pr.ram AS TEXT) ILIKE ? "      // <-- Đã sửa: CAST sang TEXT
+                       + "OR CAST(pr.memory AS TEXT) ILIKE ? "   // <-- Đã sửa: CAST sang TEXT
+                       + "OR pr.cpu ILIKE ? "
+                       + "OR pr.graphics_card ILIKE ? "
+                       + "OR re.requirement_name ILIKE ? "
+                       + "OR br.brand_name ILIKE ?) ";
+
             if (sort.compareTo("none") == 0) {
-                sql = sql + "\n ORDER BY discount DESC";
+                sql += " ORDER BY discount DESC";
+            } else if (sort.compareTo("ASC") == 0) {
+                sql += " ORDER BY current_price ASC";
+            } else if (sort.compareTo("DESC") == 0) {
+                sql += " ORDER BY current_price DESC";
             }
-            if (sort.compareTo("ASC") == 0) {
-                sql = sql + "\n ORDER BY current_price ASC";
-            }
-            if (sort.compareTo("DESC") == 0) {
-                sql = sql + "\n ORDER BY current_price DESC";
-            }
-            // Postgres hỗ trợ syntax này
-            sql = sql + " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+
+            // Postgres Syntax OK
+            sql += " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, txtSearch);
-            stm.setString(2, txtSearch);
-            stm.setString(3, txtSearch);
-            stm.setString(4, txtSearch);
-            stm.setString(5, txtSearch);
-            stm.setString(6, txtSearch);
-            stm.setString(7, txtSearch);
-            stm.setString(8, txtSearch);
-            stm.setString(9, txtSearch);
+            // Set params
+            for (int i = 1; i <= 9; i++) {
+                stm.setString(i, txtSearch);
+            }
             stm.setInt(10, skip);
+
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
+                // --- 1. Lấy thông tin cơ bản ---
                 product.setId(rs.getInt("product_id"));
                 product.setName(rs.getString("name"));
                 product.setType(rs.getInt("type"));
@@ -538,22 +527,50 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-
                 product.setStatus(rs.getBoolean("status"));
-                BrandDBContext brdb = new BrandDBContext();
-                RequirementDBContext reqdb = new RequirementDBContext();
-                ImageDBContext imgdb = new ImageDBContext();
-                VoteDBContext vdb = new VoteDBContext();
-                product.setVotes(vdb.listByID(product.getId()));
-                product.setBrands(brdb.listByID(product.getId()));
-                product.setRequirement(reqdb.listByID(product.getId()));
-                product.setImage(imgdb.listByID(product.getId()));
+
+                // --- 2. CÁCH LY LỖI (SAFE MODE) ---
+                
+                // Lấy Vote
+                try {
+                    VoteDBContext vdb = new VoteDBContext();
+                    product.setVotes(vdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setVotes(new ArrayList<>());
+                }
+
+                // Lấy Brand
+                try {
+                    BrandDBContext brdb = new BrandDBContext();
+                    product.setBrands(brdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setBrands(new ArrayList<>());
+                }
+
+                // Lấy Requirement
+                try {
+                    RequirementDBContext reqdb = new RequirementDBContext();
+                    product.setRequirement(reqdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setRequirement(new ArrayList<>());
+                }
+
+                // Lấy Image
+                try {
+                    ImageDBContext imgdb = new ImageDBContext();
+                    product.setImage(imgdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setImage(new ArrayList<>());
+                }
+
                 products.add(product);
             }
             stm.close();
             rs.close();
             return products;
         } catch (SQLException ex) {
+            // In lỗi ra console server nếu có
+            ex.printStackTrace(); 
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
