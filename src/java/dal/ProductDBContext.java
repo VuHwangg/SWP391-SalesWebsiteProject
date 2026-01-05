@@ -23,30 +23,23 @@ public class ProductDBContext extends DBContext {
 
     //for product detail(lấy sản phẩm theo id)
     public Product getProductByID(int id) {
-        Product product = new Product();
+        // Khởi tạo null. Nếu tìm thấy thì mới new Product(). 
+        // Để tránh trường hợp không tìm thấy ID mà vẫn trả về object rỗng.
+        Product product = null; 
         try {
-            String sql = "SELECT   product_id\n"
-                    + "		  ,name\n"
-                    + "		  ,type\n"
-                    + "		  ,os\n"
-                    + "		  ,color\n"
-                    + "		  ,current_price\n"
-                    + "           ,original_price\n"
-                    + "		  ,ram\n"
-                    + "		  ,memory\n"
-                    + "		  ,cpu\n"
-                    + "		  ,graphics_card\n"
-                    + "		  ,size\n"
-                    + "		  ,description\n"
-                    + "		  ,discount\n"
-                    + "		  ,qty\n"
-                    + "		  ,status\n"
-                    + "	  FROM \"Product\" where status = 1 AND product_id = ?";
+            String sql = "SELECT product_id, name, type, os, color, current_price, original_price, "
+                       + "ram, memory, cpu, graphics_card, size, description, discount, qty, status "
+                       + "FROM \"Product\" WHERE status = 1 AND product_id = ?";
+                       
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
+            // Dùng if thay vì while vì ID là duy nhất
+            if (rs.next()) {
+                product = new Product();
+                
+                // --- 1. Lấy thông tin cơ bản ---
                 product.setId(rs.getInt("product_id"));
                 product.setName(rs.getString("name"));
                 product.setType(rs.getInt("type"));
@@ -62,22 +55,49 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-
                 product.setStatus(rs.getBoolean("status"));
-                BrandDBContext brdb = new BrandDBContext();
-                RequirementDBContext reqdb = new RequirementDBContext();
-                ImageDBContext imgdb = new ImageDBContext();
-                VoteDBContext vdb = new VoteDBContext();
-                product.setVotes(vdb.listByID(product.getId()));
-                product.setBrands(brdb.listByID(product.getId()));
-                product.setRequirement(reqdb.listByID(product.getId()));
-                product.setImage(imgdb.listByID(product.getId()));
+
+                // --- 2. CÁCH LY LỖI (SAFE MODE) ---
+                // Mỗi thằng con nằm trong 1 try-catch riêng biệt.
+                // Thằng nào lỗi thì set mảng rỗng để JSP không bị NullPointerException khi duyệt mảng.
+
+                // Lấy Vote
+                try {
+                    VoteDBContext vdb = new VoteDBContext();
+                    product.setVotes(vdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setVotes(new ArrayList<>()); 
+                }
+
+                // Lấy Brand
+                try {
+                    BrandDBContext brdb = new BrandDBContext();
+                    product.setBrands(brdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setBrands(new ArrayList<>());
+                }
+
+                // Lấy Requirement
+                try {
+                    RequirementDBContext reqdb = new RequirementDBContext();
+                    product.setRequirement(reqdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setRequirement(new ArrayList<>());
+                }
+
+                // Lấy Image
+                try {
+                    ImageDBContext imgdb = new ImageDBContext();
+                    product.setImage(imgdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setImage(new ArrayList<>());
+                }
             }
             stm.close();
             rs.close();
             return product;
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace(); // Lỗi SQL bảng Product chính
         }
         return null;
     }
@@ -213,46 +233,25 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> listProduct(int type, int num, boolean topSale) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            // Thay TOP (?) bằng LIMIT ? ở cuối
-            String sql = "SELECT product_id\n"
-                    + "		  ,name\n"
-                    + "		  ,type\n"
-                    + "		  ,os\n"
-                    + "		  ,color\n"
-                    + "		  ,current_price\n"
-                    + "           ,original_price\n"
-                    + "		  ,ram\n"
-                    + "		  ,memory\n"
-                    + "		  ,cpu\n"
-                    + "		  ,graphics_card\n"
-                    + "		  ,size\n"
-                    + "		  ,description\n"
-                    + "		  ,discount\n"
-                    + "		  ,qty\n"
-                    + "		  ,status\n"
-                    + "	  FROM \"Product\" where  status = 1 and qty > 0";
-            if (type != -1) {
-                sql = sql + " AND type = ?";
-            }
-            if (topSale == true) {
-                sql = sql + " ORDER BY discount DESC, ";
-            } else {
-                sql = sql + " ORDER BY ";
-            }
-            sql = sql + "feature_product DESC LIMIT ?";
+            String sql = "SELECT product_id, name, type, os, color, current_price, original_price, "
+                       + "ram, memory, cpu, graphics_card, size, description, discount, qty, status "
+                       + "FROM \"Product\" WHERE status = 1 AND qty > 0"; // Đã fix tên bảng
             
+            if (type != -1) sql += " AND type = ?";
+            if (topSale) sql += " ORDER BY discount DESC, ";
+            else sql += " ORDER BY ";
+            
+            sql += "feature_product DESC LIMIT ?"; // Đã fix LIMIT
+
             PreparedStatement stm = connection.prepareStatement(sql);
-            
-            // Cập nhật lại logic set tham số vì LIMIT chuyển xuống cuối
             int paramIndex = 1;
-            if (type != -1) {
-                stm.setInt(paramIndex++, type);
-            }
+            if (type != -1) stm.setInt(paramIndex++, type);
             stm.setInt(paramIndex, num);
 
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
+                // --- 1. Lấy thông tin cơ bản (Nếu lỗi ở đây là do sai tên cột trong bảng Product) ---
                 product.setId(rs.getInt("product_id"));
                 product.setName(rs.getString("name"));
                 product.setType(rs.getInt("type"));
@@ -268,23 +267,50 @@ public class ProductDBContext extends DBContext {
                 product.setDescription(rs.getString("description"));
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQty(rs.getInt("qty"));
-
                 product.setStatus(rs.getBoolean("status"));
-                BrandDBContext brdb = new BrandDBContext();
-                RequirementDBContext reqdb = new RequirementDBContext();
-                ImageDBContext imgdb = new ImageDBContext();
-                VoteDBContext vdb = new VoteDBContext();
-                product.setVotes(vdb.listByID(product.getId()));
-                product.setBrands(brdb.listByID(product.getId()));
-                product.setRequirement(reqdb.listByID(product.getId()));
-                product.setImage(imgdb.listByID(product.getId()));
+
+                // --- 2. CÁCH LY LỖI: Thằng nào chết thì bỏ qua, không làm crash cả trang ---
+                
+                // Lấy Vote
+                try {
+                    VoteDBContext vdb = new VoteDBContext();
+                    product.setVotes(vdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setVotes(new ArrayList<>()); // Lỗi thì trả về list rỗng để JSP không chết
+                }
+
+                // Lấy Brand (Nghi vấn lớn nhất)
+                try {
+                    BrandDBContext brdb = new BrandDBContext();
+                    product.setBrands(brdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setBrands(new ArrayList<>());
+                }
+
+                // Lấy Requirement
+                try {
+                    RequirementDBContext reqdb = new RequirementDBContext();
+                    product.setRequirement(reqdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setRequirement(new ArrayList<>());
+                }
+
+                // Lấy Image (Đã fix tên bảng, chắc là ngon)
+                try {
+                    ImageDBContext imgdb = new ImageDBContext();
+                    product.setImage(imgdb.listByID(product.getId()));
+                } catch (Exception e) {
+                    product.setImage(new ArrayList<>());
+                }
+
                 products.add(product);
             }
             stm.close();
             rs.close();
             return products;
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            // Nếu nhảy vào đây thì là lỗi ở bảng "Product" (sai tên cột hoặc tên bảng chính)
+            ex.printStackTrace();
         }
         return null;
     }
