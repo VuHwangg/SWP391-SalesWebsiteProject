@@ -23,9 +23,9 @@ public class ImageDBContext extends DBContext {
     public ArrayList<Image> listByID(int product_id) {
         ArrayList<Image> images = new ArrayList<>();
         try {
-            // Loại bỏ dấu ngoặc vuông []
+            // Sửa: Thêm ngoặc kép \"Image\"
             String sql = "SELECT image_id, url "
-                    + " FROM Image WHERE product_id = ? "
+                    + " FROM \"Image\" WHERE product_id = ? "
                     + " ORDER BY thumbnail DESC";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
@@ -50,14 +50,14 @@ public class ImageDBContext extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            // Giữ nguyên cú pháp chuẩn
-            String sql = "SELECT url FROM Image WHERE product_id = ? ";
+            // Sửa: Thêm ngoặc kép \"Image\"
+            String sql = "SELECT url FROM \"Image\" WHERE product_id = ? ";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, Proid);
 
             rs = stm.executeQuery();
             if (rs.next()) {
-                // Sửa lỗi logic nhỏ: rs.getString(url) -> rs.getString("url")
+                // Đã fix lỗi logic nhỏ như ghi chú cũ
                 url = rs.getString("url"); 
             }
 
@@ -73,14 +73,21 @@ public class ImageDBContext extends DBContext {
     public void saveImageToDatabase(String image, int id, boolean thumbnail) {
         Runnable task = () -> {
             try {
-                // Loại bỏ [dbo]. và dấu ngoặc vuông []
-                String sql = "INSERT INTO Image (product_id, thumbnail, url) VALUES (?, ?, ?)";
+                // Sửa: Thêm ngoặc kép \"Image\"
+                String sql = "INSERT INTO \"Image\" (product_id, thumbnail, url) VALUES (?, ?, ?)";
+                
+                // Lưu ý: Connection trong Thread này có thể bị đóng nếu DBContext cha bị hủy.
+                // Tuy nhiên, logic này giữ nguyên theo code gốc của bạn.
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, id);
-                ps.setBoolean(2, thumbnail);
+                
+                // Nếu cột thumbnail trong DB là INT, hãy đổi dòng dưới thành: 
+                // ps.setInt(2, thumbnail ? 1 : 0);
+                ps.setBoolean(2, thumbnail); 
+                
                 ps.setString(3, image);
                 ps.executeUpdate();
-                ps.close(); // Đóng resource sau khi thực thi trong thread
+                ps.close(); 
             } catch (SQLException ex) {
                 Logger.getLogger(ImageDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
