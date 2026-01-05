@@ -25,7 +25,7 @@ public class VoteDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT vote_id, num, num_of_vote "
-                    + " FROM Vote WHERE product_id = ?";
+                    + " FROM \"Vote\" WHERE product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -48,7 +48,7 @@ public class VoteDBContext extends DBContext {
     public int sendRate(String username, int productId, String comment, int rating) {
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "INSERT INTO Vote_Of_User (username, product_id, comment, num_of_star, confirm) "
+            String sql = "INSERT INTO \"Vote_Of_User\" (username, product_id, comment, num_of_star, confirm) "
                     + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, username);
@@ -72,7 +72,7 @@ public class VoteDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT vote_of_user_id, num_of_star, comment, username "
-                    + " FROM Vote_Of_User WHERE product_id = ? AND confirm = 1";
+                    + " FROM \"Vote_Of_User\" WHERE product_id = ? AND confirm = 1";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             ResultSet rs = stm.executeQuery();
@@ -99,7 +99,7 @@ public class VoteDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT vote_of_user_id, num_of_star, product_id, comment, username "
-                    + " FROM Vote_Of_User WHERE confirm = 0";
+                    + " FROM \"Vote_Of_User\" WHERE confirm = 0";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -125,7 +125,7 @@ public class VoteDBContext extends DBContext {
     public int updateStatus(int id, int status) {
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "UPDATE Vote_Of_User SET confirm = ? WHERE vote_of_user_id = ?";
+            String sql = "UPDATE \"Vote_Of_User\" SET confirm = ? WHERE vote_of_user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, status);
             ps.setInt(2, id);
@@ -144,7 +144,7 @@ public class VoteDBContext extends DBContext {
         int id = 0;
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "SELECT vote_id FROM Vote WHERE product_id = ? AND num = ?";
+            String sql = "SELECT vote_id FROM \"Vote\" WHERE product_id = ? AND num = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
             stm.setInt(2, rating);
@@ -164,7 +164,7 @@ public class VoteDBContext extends DBContext {
         int num = 0;
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "SELECT num_of_vote FROM Vote WHERE vote_id = ?";
+            String sql = "SELECT num_of_vote FROM \"Vote\" WHERE vote_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, voteID);
             ResultSet rs = stm.executeQuery();
@@ -182,7 +182,7 @@ public class VoteDBContext extends DBContext {
     public int insertVote(int productId, int rating) {
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "INSERT INTO Vote (product_id, num, num_of_vote) VALUES (?, ?, 1)";
+            String sql = "INSERT INTO \"Vote\" (product_id, num, num_of_vote) VALUES (?, ?, 1)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, productId);
             ps.setInt(2, rating);
@@ -201,7 +201,7 @@ public class VoteDBContext extends DBContext {
         numOfVote++;
         try {
             // Loại bỏ dấu ngoặc vuông []
-            String sql = "UPDATE Vote SET num_of_vote = ? WHERE vote_id = ?";
+            String sql = "UPDATE \"Vote\" SET num_of_vote = ? WHERE vote_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, numOfVote);
             ps.setInt(2, voteId);
@@ -221,7 +221,7 @@ public class VoteDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT COUNT(vote_of_user_id) AS num "
-                    + " FROM Vote_Of_User WHERE confirm = ? GROUP BY confirm";
+                    + " FROM \"Vote_Of_User\" WHERE confirm = ? GROUP BY confirm";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, status);
             ResultSet rs = stm.executeQuery();
