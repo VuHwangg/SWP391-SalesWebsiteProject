@@ -11,19 +11,17 @@ public class DBContext {
 
     public DBContext() {
         try {
-            // === CẤU HÌNH TỪ HÌNH ẢNH SUPABASE CỦA BẠN ===
-            
-            // 1. User: Lấy từ chuỗi kết nối trong ảnh (postgres.dlwedbkzfhfrnrhkmgkw)
+            // 1. Username (Lấy từ project ID của bạn)
             String user = "postgres.dlwedbkzfhfrnrhkmgkw";
             
-            // 2. Password: Mật khẩu bạn đã cung cấp
-            String pass = "30082002Xyz@";
+            // 2. Password MỚI (Đã cập nhật)
+            String pass = "2JqtnpBOpeYq3ttU";
             
-            // 3. URL: Host lấy chính xác từ ảnh (aws-1-ap-south-1...) và Port 6543
-            // Thêm ?sslmode=require để đảm bảo bảo mật
+            // 3. URL kết nối đến Pooler IPv4 (Port 6543)
+            // Lưu ý: Không cần điền user/pass vào url nữa vì ta truyền riêng ở dưới cho an toàn
             String url = "jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?sslmode=require";
 
-            // Load Driver
+            // Load Driver Postgres
             Class.forName("org.postgresql.Driver");
             
             // Tạo kết nối
@@ -31,22 +29,24 @@ public class DBContext {
             
             // Kiểm tra kết nối
             if (connection == null) {
-                throw new SQLException("Connection is NULL after DriverManager.getConnection!");
+                throw new SQLException("Connection is NULL!");
+            } else {
+                // Dòng này sẽ hiện trong log server nếu kết nối thành công
+                System.out.println("Kết nối Supabase thành công!");
             }
             
         } catch (ClassNotFoundException | SQLException ex) {
-            // In lỗi ra log server (để bạn xem trên Render Dashboard)
+            // In lỗi chi tiết ra Server Log
             ex.printStackTrace();
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
             
-            // Ném lỗi ra màn hình trình duyệt (để bạn biết ngay nếu có biến)
-            throw new RuntimeException("Lỗi kết nối Database (IPv4 Pooler): " + ex.getMessage());
+            // Ném lỗi ra màn hình trình duyệt để bạn biết ngay
+            throw new RuntimeException("Lỗi kết nối Database: " + ex.getMessage());
         }
     }
     
-    // Hàm main để test nhanh nếu chạy local
+    // Hàm main để test nhanh (nếu chạy local)
     public static void main(String[] args) {
         new DBContext();
-        System.out.println("Kết nối thành công!");
     }
 }
