@@ -25,8 +25,8 @@ public class RequirementDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT p.requirement_id, p.requirement_name, p.description "
-                    + " FROM Requirement p "
-                    + " INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id "
+                    + " FROM \"Requirement\" p "
+                    + " INNER JOIN \"Product_Requirement\" pr ON pr.requirement_id = p.requirement_id "
                     + " WHERE pr.product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, product_id);
@@ -53,9 +53,9 @@ public class RequirementDBContext extends DBContext {
         try {
             // Loại bỏ dấu ngoặc vuông []
             String sql = "SELECT DISTINCT p.requirement_id, p.requirement_name, p.description "
-                    + " FROM Requirement p "
-                    + " INNER JOIN Product_Requirement pr ON pr.requirement_id = p.requirement_id "
-                    + " INNER JOIN Product prd ON prd.product_id = pr.product_id "
+                    + " FROM \"Requirement\" p "
+                    + " INNER JOIN \"Product_Requirement\" pr ON pr.requirement_id = p.requirement_id "
+                    + " INNER JOIN \"Product\" prd ON prd.product_id = pr.product_id "
                     + " WHERE prd.type = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, type);
@@ -80,7 +80,7 @@ public class RequirementDBContext extends DBContext {
         List<Requirement> requirements = new ArrayList<>();
         try {
             // Loại bỏ [dbo]. và []
-            String sql = "SELECT requirement_id, requirement_name, description FROM Requirement";
+            String sql = "SELECT requirement_id, requirement_name, description FROM \"Requirement\"";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -102,7 +102,7 @@ public class RequirementDBContext extends DBContext {
     public int AddNewRequirementAndReturnId(String name) {
         try {
             // Loại bỏ [dbo]. và []
-            String sql = "INSERT INTO Requirement (requirement_name) VALUES (?)";
+            String sql = "INSERT INTO \"Requirement\" (requirement_name) VALUES (?)";
             
             // PostgreSQL JDBC Driver hỗ trợ tốt RETURN_GENERATED_KEYS
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
