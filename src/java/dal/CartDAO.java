@@ -24,8 +24,8 @@ public class CartDAO {
 
     public void saveCartToDB(Cart cart) {
         try {
-            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
-            String sql = "INSERT INTO Cart (product_id, customer_id, num) VALUES (?, ?, ?)";
+            // Sửa: Thêm ngoặc kép \"Cart\"
+            String sql = "INSERT INTO \"Cart\" (product_id, customer_id, num) VALUES (?, ?, ?)";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cart.getProduct().getId());
@@ -39,8 +39,8 @@ public class CartDAO {
 
     public void updateQuantity(Cart cart) {
         try {
-            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
-            String sql = "UPDATE Cart "
+            // Sửa: Thêm ngoặc kép \"Cart\"
+            String sql = "UPDATE \"Cart\" "
                     + " SET product_id = ?, customer_id = ?, num = ? "
                     + " WHERE product_id = ? AND customer_id = ?";
             Connection conn = new DBContext().connection;
@@ -58,8 +58,8 @@ public class CartDAO {
 
     public void deleteProduct(int productId, int customerId) {
         try {
-            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
-            String sql = "DELETE FROM Cart WHERE product_id = ? AND customer_id = ?";
+            // Sửa: Thêm ngoặc kép \"Cart\"
+            String sql = "DELETE FROM \"Cart\" WHERE product_id = ? AND customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, productId);
@@ -72,8 +72,8 @@ public class CartDAO {
 
     public void deleteAllProduct(int customerId) {
         try {
-            // Loại bỏ [dbo]. và các dấu ngoặc vuông []
-            String sql = "DELETE FROM Cart WHERE customer_id = ?";
+            // Sửa: Thêm ngoặc kép \"Cart\"
+            String sql = "DELETE FROM \"Cart\" WHERE customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, customerId);
@@ -86,8 +86,8 @@ public class CartDAO {
     public Map<Integer, Cart> getCartsByCustomerId(int customerId) {
         Map<Integer, Cart> carts = new LinkedHashMap<>();
         try {
-            // Câu lệnh này cơ bản đã đúng chuẩn, giữ nguyên để chạy trên PostgreSQL
-            String sql = "SELECT cart_id, product_id, customer_id, num FROM Cart WHERE customer_id = ?";
+            // Sửa: Thêm ngoặc kép \"Cart\"
+            String sql = "SELECT cart_id, product_id, customer_id, num FROM \"Cart\" WHERE customer_id = ?";
             Connection conn = new DBContext().connection;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, customerId);
