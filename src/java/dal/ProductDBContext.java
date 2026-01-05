@@ -41,7 +41,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,discount\n"
                     + "		  ,qty\n"
                     + "		  ,status\n"
-                    + "	  FROM Product where  status = 1 AND product_id = ?";
+                    + "	  FROM \"Product\" where status = 1 AND product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -101,7 +101,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,discount\n"
                     + "		  ,qty\n"
                     + "		  ,status\n"
-                    + "	  FROM Product where product_id = ?";
+                    + "	  FROM \"Product\" where product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -163,7 +163,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,discount\n"
                     + "		  ,qty\n"
                     + "		  ,status\n"
-                    + "  FROM Product\n"
+                    + "  FROM \"Product\"\n"
                     + "  where  status = 1 and name like ? \n"
                     + "and ram like ? and memory like ? and cpu like ? and graphics_card like ? LIMIT 1";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -230,7 +230,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,discount\n"
                     + "		  ,qty\n"
                     + "		  ,status\n"
-                    + "	  FROM Product where  status = 1 and qty > 0";
+                    + "	  FROM \"Product\" where  status = 1 and qty > 0";
             if (type != -1) {
                 sql = sql + " AND type = ?";
             }
@@ -294,11 +294,11 @@ public class ProductDBContext extends DBContext {
         int count = 0;
         try {
             String sql = "SELECT pr.product_id\n"
-                    + "  FROM  Product pr "
-                    + "  Inner Join Product_Brand prbr On pr.product_id = prbr.product_id\n"
-                    + "  Inner Join Brand br on prbr.brand_id = br.brand_id\n"
-                    + "  Inner Join Product_Requirement prre On pr.product_id = prre.product_id\n"
-                    + "  Inner Join Requirement re on prre.requirement_id =re.requirement_id\n"
+                    + "  FROM  \"Product\" pr "
+                    + "  Inner Join \"Product_Brand\" prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join \"Brand\" br on prbr.brand_id = br.brand_id\n"
+                    + "  Inner Join \"Product_Requirement\" prre On pr.product_id = prre.product_id\n"
+                    + "  Inner Join \"Requirement\" re on prre.requirement_id =re.requirement_id\n"
                     + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
@@ -372,7 +372,7 @@ public class ProductDBContext extends DBContext {
         try {
             // Dùng ILIKE để tìm kiếm không phân biệt hoa thường trong Postgres
             String sql = "SELECT product_id\n"
-                    + "  FROM   Product \n"
+                    + "  FROM   \"Product\" \n"
                     + "  WHERE name ILIKE ?\n"
                     + "   OR os ILIKE ?\n"
                     + "   OR color ILIKE ?\n"
@@ -404,7 +404,7 @@ public class ProductDBContext extends DBContext {
     public int numOfItem() {
         int count = 0;
         try {
-            String sql = "SELECT COUNT(*) AS x FROM Product";
+            String sql = "SELECT COUNT(*) AS x FROM \"Product\"";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -422,7 +422,7 @@ public class ProductDBContext extends DBContext {
     public int numOfProduct() {
         int count = 0;
         try {
-            String sql = "SELECT SUM(qty) AS total FROM Product";
+            String sql = "SELECT SUM(qty) AS total FROM \"Product\"";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -460,11 +460,11 @@ public class ProductDBContext extends DBContext {
                     + "		  ,pr.discount\n"
                     + "		  ,pr.qty\n"
                     + "		  ,pr.status\n"
-                    + "  FROM   Product pr\n"
-                    + "INNER JOIN Product_Brand prbr ON pr.product_id = prbr.product_id\n"
-                    + "INNER JOIN Brand br ON br.brand_id = prbr.brand_id\n"
-                    + "INNER JOIN Product_Requirement prre ON pr.product_id = prre.product_id\n"
-                    + "INNER JOIN Requirement re ON re.requirement_id = prre.requirement_id\n"
+                    + "  FROM   \"Product\" pr\n"
+                    + "INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id\n"
+                    + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id\n"
+                    + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id\n"
+                    + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id\n"
                     + "  WHERE pr.status = 1 AND (pr.name ILIKE ?\n"
                     + "   OR pr.os ILIKE ?\n"
                     + "   OR pr.color ILIKE ?\n"
@@ -555,11 +555,11 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.discount\n"
                     + "      ,pr.qty\n"
                     + "      ,pr.status\n"
-                    + "  FROM  Product pr "
-                    + "  Inner Join Product_Brand prbr On pr.product_id = prbr.product_id\n"
-                    + "  Inner Join Brand br on prbr.brand_id = br.brand_id\n"
-                    + "  Inner Join Product_Requirement prre On pr.product_id = prre.product_id\n"
-                    + "  Inner Join Requirement re on prre.requirement_id =re.requirement_id\n"
+                    + "  FROM  \"Product\" pr "
+                    + "  Inner Join \"Product_Brand\" prbr On pr.product_id = prbr.product_id\n"
+                    + "  Inner Join \"Brand\" br on prbr.brand_id = br.brand_id\n"
+                    + "  Inner Join \"Product_Requirement\" prre On pr.product_id = prre.product_id\n"
+                    + "  Inner Join \"Requirement\" re on prre.requirement_id =re.requirement_id\n"
                     + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
@@ -588,7 +588,7 @@ public class ProductDBContext extends DBContext {
             if (sizes != null) {
                 if (sizes[0].compareTo("all") != 0) {
                     int i = 0;
-                    sql = sql + " AND pr.product_id in (SELECT pr.product_id FROM Product pr where";
+                    sql = sql + " AND pr.product_id in (SELECT pr.product_id FROM \"Product\" pr where";
                     for (String size : sizes) {
                         if (i != 0) {
                             sql += " OR ";
@@ -685,7 +685,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.discount\n"
                     + "      ,pr.qty\n"
                     + "      ,pr.status\n"
-                    + "  FROM Product pr\n"
+                    + "  FROM \"Product\" pr\n"
                     + "  where  pr.status = 1  and pr.name LIKE ?\n"
                     + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -755,7 +755,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.discount\n"
                     + "      ,pr.qty\n"
                     + "      ,pr.status\n"
-                    + "  FROM Product pr \n"
+                    + "  FROM \"Product\" pr \n"
                     + "  where  pr.status = 1 and product_id != ?\n"
                     + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ? ORDER BY feature_product DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -817,7 +817,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.memory\n"
                     + "      ,pr.cpu\n"
                     + "      ,pr.graphics_card\n"
-                    + "  FROM Product pr\n"
+                    + "  FROM \"Product\" pr\n"
                     + "  where  pr.status = 1 and pr.name LIKE ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
@@ -860,7 +860,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,discount\n"
                     + "      ,qty\n"
                     + "      ,status\n"
-                    + "  FROM Product\n"
+                    + "  FROM \"Product\"\n"
                     + "  WHERE status = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -890,9 +890,9 @@ public class ProductDBContext extends DBContext {
             String sql = "";
             if (status == 1 || status == 0) {
                 // Sửa cú pháp alias [total] -> AS total
-                sql = "SELECT COUNT(product_id) AS total FROM Product Where status = ?";
+                sql = "SELECT COUNT(product_id) AS total FROM \"Product\" Where status = ?";
             } else {
-                sql = "SELECT COUNT(product_id) AS total FROM Product";
+                sql = "SELECT COUNT(product_id) AS total FROM \"Product\"";
             }
             PreparedStatement ps = connection.prepareStatement(sql);
             if (status == 1 || status == 0) {
@@ -914,9 +914,9 @@ public class ProductDBContext extends DBContext {
             String sql = "";
             if (status == 1 || status == 0) {
                 // Sửa cú pháp alias
-                sql = "SELECT COUNT(product_id) AS total FROM Product WHERE type = ? AND status = ?";
+                sql = "SELECT COUNT(product_id) AS total FROM \"Product\" WHERE type = ? AND status = ?";
             } else {
-                sql = "SELECT COUNT(product_id) AS total FROM Product WHERE type = ?";
+                sql = "SELECT COUNT(product_id) AS total FROM \"Product\" WHERE type = ?";
             }
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, type);
@@ -935,7 +935,7 @@ public class ProductDBContext extends DBContext {
 
     public void changeProductStatus(int id, boolean status) {
         try {
-            String sql = "UPDATE Product\n"
+            String sql = "UPDATE \"Product\"\n"
                     + "   SET status = ?\n"
                     + " WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -950,7 +950,7 @@ public class ProductDBContext extends DBContext {
     public boolean deleteNumberProduct(int product_id, int num) {
         boolean check = false;
         try {
-            String sql = "Update Product set qty = ? where product_id= ?";
+            String sql = "Update \"Product\" set qty = ? where product_id= ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(2, product_id);
             ps.setInt(1, num);
@@ -969,7 +969,7 @@ public class ProductDBContext extends DBContext {
     public boolean updateSold(int product_id, int num) {
         boolean check = false;
         try {
-            String sql = "Update Product set sold = ? where product_id= ?";
+            String sql = "Update \"Product\" set sold = ? where product_id= ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(2, product_id);
             ps.setInt(1, num);
@@ -987,7 +987,7 @@ public class ProductDBContext extends DBContext {
 
     public int insertAndReturnId(Product product) {
         try {
-            String sql = "INSERT INTO Product\n"
+            String sql = "INSERT INTO \"Product\"\n"
                     + "           (name\n" //1
                     + "           ,type\n" //2
                     + "           ,os\n" //3
@@ -1066,7 +1066,7 @@ public class ProductDBContext extends DBContext {
 
     public void setProductBrand(int productId, int brandId) {
         try {
-            String sql = "INSERT INTO Product_Brand (brand_id, product_id) VALUES (?, ?)";
+            String sql = "INSERT INTO \"Product_Brand\" (brand_id, product_id) VALUES (?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, brandId);
             ps.setInt(2, productId);
@@ -1079,7 +1079,7 @@ public class ProductDBContext extends DBContext {
 
     public void setProductRequirment(int productId, int reqId) {
         try {
-            String sql = "INSERT INTO Product_Requirement (requirement_id, product_id) VALUES (?, ?)";
+            String sql = "INSERT INTO \"Product_Requirement\" (requirement_id, product_id) VALUES (?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, reqId);
             ps.setInt(2, productId);
@@ -1102,9 +1102,9 @@ public class ProductDBContext extends DBContext {
                     + "      ,p.qty\n"
                     + "	  ,b.brand_id\n"
                     + "	  ,b.brand_name\n"
-                    + "  FROM Product p\n"
-                    + "  JOIN Product_Brand pb ON p.product_id = pb.product_id\n"
-                    + "  JOIN Brand b ON pb.brand_id = b.brand_id";
+                    + "  FROM \"Product\" p\n"
+                    + "  JOIN \"Product_Brand\" pb ON p.product_id = pb.product_id\n"
+                    + "  JOIN \"Brand\" b ON pb.brand_id = b.brand_id";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -1132,7 +1132,7 @@ public class ProductDBContext extends DBContext {
     public int getProductQuantityById(int productId) {
         int quantity = 0;
         try {
-            String sql = "SELECT qty FROM Product WHERE product_id = ?";
+            String sql = "SELECT qty FROM \"Product\" WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ResultSet rs = ps.executeQuery();
@@ -1147,7 +1147,7 @@ public class ProductDBContext extends DBContext {
 
     public void updateQuatityById(int productId, int quantity) {
         try {
-            String sql = "UPDATE Product SET qty = ? WHERE product_id = ?";
+            String sql = "UPDATE \"Product\" SET qty = ? WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, quantity);
             ps.setInt(2, productId);
@@ -1159,7 +1159,7 @@ public class ProductDBContext extends DBContext {
 
     public void updateProduct(Product p) {
         try {
-            String sql = "UPDATE Product\n"
+            String sql = "UPDATE \"Product\"\n"
                     + "   SET name = ?\n"
                     + "      ,type = ?\n"
                     + "      ,os = ?\n"
@@ -1197,7 +1197,7 @@ public class ProductDBContext extends DBContext {
 
     public void deleteOldProductBrand(int productId) {
         try {
-            String sql = "DELETE FROM Product_Brand WHERE product_id = ?";
+            String sql = "DELETE FROM \"Product_Brand\" WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ps.executeUpdate();
@@ -1208,7 +1208,7 @@ public class ProductDBContext extends DBContext {
 
     public void deleteOldProductRequirment(int productId) {
         try {
-            String sql = "DELETE FROM Product_Requirement WHERE product_id = ?";
+            String sql = "DELETE FROM \"Product_Requirement\" WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productId);
             ps.executeUpdate();
@@ -1220,7 +1220,7 @@ public class ProductDBContext extends DBContext {
     public Product getForAllProductByID(int id) {
         Product product = new Product();
         try {
-            String sql = "SELECT   product_id\n"
+            String sql = "SELECT product_id\n"
                     + "		  ,name\n"
                     + "		  ,type\n"
                     + "		  ,os\n"
@@ -1236,7 +1236,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,discount\n"
                     + "		  ,qty\n"
                     + "		  ,status\n"
-                    + "	  FROM Product where product_id = ?";
+                    + "	  FROM \"Product\" where product_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
 
@@ -1282,7 +1282,7 @@ public class ProductDBContext extends DBContext {
         try {
             // Thay TOP (?) bằng LIMIT ? ở cuối
             String sql = "SELECT product_id\n"
-                    + "  FROM Product WHERE discount > 0 ORDER BY discount DESC LIMIT ?";
+                    + "  FROM \"Product\" WHERE discount > 0 ORDER BY discount DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, num);
             ResultSet rs = stm.executeQuery();
