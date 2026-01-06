@@ -48,7 +48,7 @@
         <div class="login-form">
             <form class="mb-5" action="LoginEmpt" method="post">
                 <div class="form-title">
-                    <h4 class="text-danger">ApexTec</h4>
+                    <h4 style="color: #662FB5">ApexTec</h4>
                     <h1>ĐĂNG NHẬP</h1>
                     <span>Vui lòng chọn tài khoản để đăng nhập</span>
                 </div>
