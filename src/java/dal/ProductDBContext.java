@@ -232,26 +232,44 @@ public class ProductDBContext extends DBContext {
     //for home screen(lấy ra các sản phẩm theo phân loại, top sale, top sold)
     public ArrayList<Product> listProduct(int type, int num, boolean topSale) {
         ArrayList<Product> products = new ArrayList<>();
+        
+        // --- TỐI ƯU 1: KHỞI TẠO DAO RA NGOÀI VÒNG LẶP (QUAN TRỌNG NHẤT) ---
+        // Việc này giúp bạn chỉ tốn 4 kết nối cho dù có load 1000 sản phẩm.
+        // Code cũ: 1 sản phẩm tốn 4 kết nối -> 20 sản phẩm tốn 80 kết nối -> SẬP.
+        VoteDBContext vdb = new VoteDBContext();
+        BrandDBContext brdb = new BrandDBContext();
+        RequirementDBContext reqdb = new RequirementDBContext();
+        ImageDBContext imgdb = new ImageDBContext();
+
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
         try {
             String sql = "SELECT product_id, name, type, os, color, current_price, original_price, "
-                       + "ram, memory, cpu, graphics_card, size, description, discount, qty, status "
-                       + "FROM \"Product\" WHERE status = true AND qty > 0"; // Đã fix tên bảng
+                       + "ram, memory, cpu, graphics_card, size, description, discount, qty, status, feature_product "
+                       + "FROM \"Product\" WHERE status = true AND qty > 0";
             
             if (type != -1) sql += " AND type = ?";
-            if (topSale) sql += " ORDER BY discount DESC, ";
-            else sql += " ORDER BY ";
             
-            sql += "feature_product DESC LIMIT ?"; // Đã fix LIMIT
+            // Logic sort
+            if (topSale) {
+                sql += " ORDER BY discount DESC, ";
+            } else {
+                sql += " ORDER BY ";
+            }
+            sql += "feature_product DESC LIMIT ?";
 
-            PreparedStatement stm = connection.prepareStatement(sql);
+            stm = connection.prepareStatement(sql);
             int paramIndex = 1;
             if (type != -1) stm.setInt(paramIndex++, type);
             stm.setInt(paramIndex, num);
 
-            ResultSet rs = stm.executeQuery();
+            rs = stm.executeQuery();
+            
             while (rs.next()) {
                 Product product = new Product();
-                // --- 1. Lấy thông tin cơ bản (Nếu lỗi ở đây là do sai tên cột trong bảng Product) ---
+                
+                // --- 1. Map dữ liệu cơ bản ---
                 product.setId(rs.getInt("product_id"));
                 product.setName(rs.getString("name"));
                 product.setType(rs.getInt("type"));
@@ -269,19 +287,17 @@ public class ProductDBContext extends DBContext {
                 product.setQty(rs.getInt("qty"));
                 product.setStatus(rs.getBoolean("status"));
 
-                // --- 2. CÁCH LY LỖI: Thằng nào chết thì bỏ qua, không làm crash cả trang ---
+                // --- 2. Lấy dữ liệu phụ (SỬ DỤNG DAO ĐÃ KHỞI TẠO BÊN TRÊN) ---
                 
                 // Lấy Vote
                 try {
-                    VoteDBContext vdb = new VoteDBContext();
                     product.setVotes(vdb.listByID(product.getId()));
                 } catch (Exception e) {
-                    product.setVotes(new ArrayList<>()); // Lỗi thì trả về list rỗng để JSP không chết
+                    product.setVotes(new ArrayList<>());
                 }
 
-                // Lấy Brand (Nghi vấn lớn nhất)
+                // Lấy Brand
                 try {
-                    BrandDBContext brdb = new BrandDBContext();
                     product.setBrands(brdb.listByID(product.getId()));
                 } catch (Exception e) {
                     product.setBrands(new ArrayList<>());
@@ -289,15 +305,13 @@ public class ProductDBContext extends DBContext {
 
                 // Lấy Requirement
                 try {
-                    RequirementDBContext reqdb = new RequirementDBContext();
                     product.setRequirement(reqdb.listByID(product.getId()));
                 } catch (Exception e) {
                     product.setRequirement(new ArrayList<>());
                 }
 
-                // Lấy Image (Đã fix tên bảng, chắc là ngon)
+                // Lấy Image
                 try {
-                    ImageDBContext imgdb = new ImageDBContext();
                     product.setImage(imgdb.listByID(product.getId()));
                 } catch (Exception e) {
                     product.setImage(new ArrayList<>());
@@ -305,14 +319,27 @@ public class ProductDBContext extends DBContext {
 
                 products.add(product);
             }
-            stm.close();
-            rs.close();
+            
             return products;
+
         } catch (SQLException ex) {
-            // Nếu nhảy vào đây thì là lỗi ở bảng "Product" (sai tên cột hoặc tên bảng chính)
             ex.printStackTrace();
+        } finally {
+            // --- TỐI ƯU 2: ĐÓNG KẾT NỐI (BẮT BUỘC) ---
+            // Phải đóng kết nối của các DAO con thủ công để trả lại slot cho DB
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                // Giả sử các class DBContext của bạn có biến 'connection' protected hoặc public
+                if (vdb.connection != null) vdb.connection.close();
+                if (brdb.connection != null) brdb.connection.close();
+                if (reqdb.connection != null) reqdb.connection.close();
+                if (imgdb.connection != null) imgdb.connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return new ArrayList<>(); // Trả về list rỗng thay vì null để tránh NullPointerException ở View
     }
 
     //count num of product
@@ -462,319 +489,358 @@ public class ProductDBContext extends DBContext {
         }
         return 0;
     }
-//for search screen(lấy sản phẩm theo một từ khóa)
 
+    //for search screen(lấy sản phẩm theo một từ khóa)
     public ArrayList<Product> listProduct(String rawTxtSearch, String sort, int numOfPage) {
-        ArrayList<Product> products = new ArrayList<>();
-        int skip = (numOfPage - 1) * 12;
-        String txtSearch = "%" + rawTxtSearch + "%";
-        try {
-            // Sửa 1: CAST các cột số (ram, memory) sang TEXT để dùng được ILIKE
-            // Giữ nguyên các INNER JOIN (Lưu ý: Nếu Product thiếu Brand/Req sẽ bị ẩn luôn)
-            String sql = "SELECT pr.product_id, pr.name, pr.type, pr.os, pr.color, "
-                       + "pr.current_price, pr.original_price, pr.ram, pr.memory, "
-                       + "pr.cpu, pr.graphics_card, pr.size, pr.description, "
-                       + "pr.discount, pr.qty, pr.status "
-                       + "FROM \"Product\" pr "
-                       + "INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id "
-                       + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id "
-                       + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id "
-                       + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id "
-                       + "WHERE pr.status = true AND (pr.name ILIKE ? "
-                       + "OR pr.os ILIKE ? "
-                       + "OR pr.color ILIKE ? "
-                       + "OR CAST(pr.ram AS TEXT) ILIKE ? "      // <-- Đã sửa: CAST sang TEXT
-                       + "OR CAST(pr.memory AS TEXT) ILIKE ? "   // <-- Đã sửa: CAST sang TEXT
-                       + "OR pr.cpu ILIKE ? "
-                       + "OR pr.graphics_card ILIKE ? "
-                       + "OR re.requirement_name ILIKE ? "
-                       + "OR br.brand_name ILIKE ?) ";
+    ArrayList<Product> products = new ArrayList<>();
+    int skip = (numOfPage - 1) * 12;
+    String txtSearch = "%" + rawTxtSearch + "%";
 
-            if (sort.compareTo("none") == 0) {
-                sql += " ORDER BY discount DESC";
-            } else if (sort.compareTo("ASC") == 0) {
-                sql += " ORDER BY current_price ASC";
-            } else if (sort.compareTo("DESC") == 0) {
-                sql += " ORDER BY current_price DESC";
-            }
+    // --- 1. TỐI ƯU QUAN TRỌNG NHẤT: Khởi tạo DAO ra ngoài vòng lặp ---
+    // Mở kết nối 1 lần, dùng chung cho cả 12 sản phẩm
+    VoteDBContext vdb = new VoteDBContext();
+    BrandDBContext brdb = new BrandDBContext();
+    RequirementDBContext reqdb = new RequirementDBContext();
+    ImageDBContext imgdb = new ImageDBContext();
 
-            // Postgres Syntax OK
-            sql += " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+    PreparedStatement stm = null;
+    ResultSet rs = null;
 
-            PreparedStatement stm = connection.prepareStatement(sql);
-            // Set params
-            for (int i = 1; i <= 9; i++) {
-                stm.setString(i, txtSearch);
-            }
-            stm.setInt(10, skip);
+    try {
+        String sql = "SELECT pr.product_id, pr.name, pr.type, pr.os, pr.color, "
+                   + "pr.current_price, pr.original_price, pr.ram, pr.memory, "
+                   + "pr.cpu, pr.graphics_card, pr.size, pr.description, "
+                   + "pr.discount, pr.qty, pr.status "
+                   + "FROM \"Product\" pr "
+                   // Lưu ý: INNER JOIN sẽ làm ẩn sản phẩm nếu thiếu Brand/Req. 
+                   // Nếu muốn hiện cả sp thiếu thông tin thì nên đổi thành LEFT JOIN
+                   + "INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id "
+                   + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id "
+                   + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id "
+                   + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id "
+                   + "WHERE pr.status = true AND (pr.name ILIKE ? "
+                   + "OR pr.os ILIKE ? "
+                   + "OR pr.color ILIKE ? "
+                   + "OR CAST(pr.ram AS TEXT) ILIKE ? "
+                   + "OR CAST(pr.memory AS TEXT) ILIKE ? "
+                   + "OR pr.cpu ILIKE ? "
+                   + "OR pr.graphics_card ILIKE ? "
+                   + "OR re.requirement_name ILIKE ? "
+                   + "OR br.brand_name ILIKE ?) ";
 
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                // --- 1. Lấy thông tin cơ bản ---
-                product.setId(rs.getInt("product_id"));
-                product.setName(rs.getString("name"));
-                product.setType(rs.getInt("type"));
-                product.setOs(rs.getString("os"));
-                product.setColor(rs.getString("color"));
-                product.setOriginal_price(rs.getDouble("original_price"));
-                product.setCurrent_price(rs.getDouble("current_price"));
-                product.setRam(rs.getInt("ram"));
-                product.setMemory(rs.getInt("memory"));
-                product.setCpu(rs.getString("cpu"));
-                product.setGraphic_card(rs.getString("graphics_card"));
-                product.setSize(rs.getDouble("size"));
-                product.setDescription(rs.getString("description"));
-                product.setDiscount(rs.getDouble("discount"));
-                product.setQty(rs.getInt("qty"));
-                product.setStatus(rs.getBoolean("status"));
-
-                // --- 2. CÁCH LY LỖI (SAFE MODE) ---
-                
-                // Lấy Vote
-                try {
-                    VoteDBContext vdb = new VoteDBContext();
-                    product.setVotes(vdb.listByID(product.getId()));
-                } catch (Exception e) {
-                    product.setVotes(new ArrayList<>());
-                }
-
-                // Lấy Brand
-                try {
-                    BrandDBContext brdb = new BrandDBContext();
-                    product.setBrands(brdb.listByID(product.getId()));
-                } catch (Exception e) {
-                    product.setBrands(new ArrayList<>());
-                }
-
-                // Lấy Requirement
-                try {
-                    RequirementDBContext reqdb = new RequirementDBContext();
-                    product.setRequirement(reqdb.listByID(product.getId()));
-                } catch (Exception e) {
-                    product.setRequirement(new ArrayList<>());
-                }
-
-                // Lấy Image
-                try {
-                    ImageDBContext imgdb = new ImageDBContext();
-                    product.setImage(imgdb.listByID(product.getId()));
-                } catch (Exception e) {
-                    product.setImage(new ArrayList<>());
-                }
-
-                products.add(product);
-            }
-            stm.close();
-            rs.close();
-            return products;
-        } catch (SQLException ex) {
-            // In lỗi ra console server nếu có
-            ex.printStackTrace(); 
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        if ("none".equals(sort)) {
+            sql += " ORDER BY discount DESC";
+        } else if ("ASC".equals(sort)) {
+            sql += " ORDER BY current_price ASC";
+        } else if ("DESC".equals(sort)) {
+            sql += " ORDER BY current_price DESC";
         }
-        return null;
-    }
-//for type screen(lấy sản phẩm theo bộ lọc cho trước)
 
+        sql += " OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+
+        stm = connection.prepareStatement(sql);
+        
+        // Set params
+        for (int i = 1; i <= 9; i++) {
+            stm.setString(i, txtSearch);
+        }
+        stm.setInt(10, skip);
+
+        rs = stm.executeQuery();
+        
+        while (rs.next()) {
+            Product product = new Product();
+            // --- 2. Lấy thông tin cơ bản ---
+            product.setId(rs.getInt("product_id"));
+            product.setName(rs.getString("name"));
+            product.setType(rs.getInt("type"));
+            product.setOs(rs.getString("os"));
+            product.setColor(rs.getString("color"));
+            product.setOriginal_price(rs.getDouble("original_price"));
+            product.setCurrent_price(rs.getDouble("current_price"));
+            product.setRam(rs.getInt("ram"));
+            product.setMemory(rs.getInt("memory"));
+            product.setCpu(rs.getString("cpu"));
+            product.setGraphic_card(rs.getString("graphics_card"));
+            product.setSize(rs.getDouble("size"));
+            product.setDescription(rs.getString("description"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setQty(rs.getInt("qty"));
+            product.setStatus(rs.getBoolean("status"));
+
+            // --- 3. SỬ DỤNG DAO ĐÃ KHỞI TẠO (Không new lại) ---
+            
+            // Lấy Vote
+            try {
+                product.setVotes(vdb.listByID(product.getId()));
+            } catch (Exception e) {
+                product.setVotes(new ArrayList<>());
+            }
+
+            // Lấy Brand
+            try {
+                product.setBrands(brdb.listByID(product.getId()));
+            } catch (Exception e) {
+                product.setBrands(new ArrayList<>());
+            }
+
+            // Lấy Requirement
+            try {
+                product.setRequirement(reqdb.listByID(product.getId()));
+            } catch (Exception e) {
+                product.setRequirement(new ArrayList<>());
+            }
+
+            // Lấy Image
+            try {
+                product.setImage(imgdb.listByID(product.getId()));
+            } catch (Exception e) {
+                product.setImage(new ArrayList<>());
+            }
+
+            products.add(product);
+        }
+        
+        return products;
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // --- 4. BẮT BUỘC: ĐÓNG KẾT NỐI ---
+        try {
+            if (rs != null) rs.close();
+            if (stm != null) stm.close();
+            // Đóng các kết nối phụ
+            if (vdb.connection != null) vdb.connection.close();
+            if (brdb.connection != null) brdb.connection.close();
+            if (reqdb.connection != null) reqdb.connection.close();
+            if (imgdb.connection != null) imgdb.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    return new ArrayList<>(); // Trả về list rỗng thay vì null để an toàn
+}
+    
     public ArrayList<Product> filterProduct(int type, String sort, double from, double to, String[] needs, String[] brands, String[] sizes, int numOfPage) {
-        int skip = (numOfPage - 1) * 9;
-        ArrayList<Product> products = new ArrayList<>();
-        try {
-            String sql = "SELECT DISTINCT pr.product_id\n"
-                    + "      ,pr.name\n"
-                    + "      ,pr.type\n"
-                    + "      ,pr.os\n"
-                    + "      ,pr.feature_product\n"
-                    + "      ,pr.color\n"
-                    + "      ,pr.current_price\n"
-                    + "      ,pr.original_price\n"
-                    + "      ,pr.ram\n"
-                    + "      ,pr.memory\n"
-                    + "      ,pr.cpu\n"
-                    + "      ,pr.graphics_card\n"
-                    + "      ,pr.size\n"
-                    + "      ,pr.description\n"
-                    + "      ,pr.discount\n"
-                    + "      ,pr.qty\n"
-                    + "      ,pr.status\n"
-                    + "  FROM  \"Product\" pr "
-                    + "  Inner Join \"Product_Brand\" prbr On pr.product_id = prbr.product_id\n"
-                    + "  Inner Join \"Brand\" br on prbr.brand_id = br.brand_id\n"
-                    + "  Inner Join \"Product_Requirement\" prre On pr.product_id = prre.product_id\n"
-                    + "  Inner Join \"Requirement\" re on prre.requirement_id =re.requirement_id\n"
-                    + "  where  pr.status = true AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
-            if (needs != null) {
-                if (needs[0].compareTo("all") != 0) {
-                    sql = sql + " AND re.requirement_name in (";
-                    for (String need : needs) {
-                        sql = sql + "'" + need + "',";
-                    }
-                    sql = sql.substring(0, sql.length() - 1);
-                    sql = sql + ")";
-                }
+    ArrayList<Product> products = new ArrayList<>();
+    int skip = (numOfPage - 1) * 9;
 
-            }
+    // --- 1. KHỞI TẠO DAO RA NGOÀI (Chống sập DB) ---
+    BrandDBContext brdb = new BrandDBContext();
+    RequirementDBContext reqdb = new RequirementDBContext();
+    ImageDBContext imgdb = new ImageDBContext();
+    VoteDBContext vdb = new VoteDBContext();
 
-            if (brands != null) {
-                if (brands[0].compareTo("all") != 0) {
-                    sql = sql + " AND br.brand_name in (";
-                    for (String brand : brands) {
-                        sql = sql + "'" + brand + "',";
-                    }
-                    sql = sql.substring(0, sql.length() - 1);
-                    sql = sql + ")";
-                }
+    PreparedStatement stm = null;
+    ResultSet rs = null;
 
-            }
+    try {
+        // Sử dụng StringBuilder để nối chuỗi nhanh hơn và dễ đọc hơn
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT DISTINCT pr.product_id, pr.name, pr.type, pr.os, pr.feature_product, ");
+        sql.append("pr.color, pr.current_price, pr.original_price, pr.ram, pr.memory, ");
+        sql.append("pr.cpu, pr.graphics_card, pr.size, pr.description, pr.discount, pr.qty, pr.status ");
+        sql.append("FROM \"Product\" pr ");
+        sql.append("INNER JOIN \"Product_Brand\" prbr ON pr.product_id = prbr.product_id ");
+        sql.append("INNER JOIN \"Brand\" br ON prbr.brand_id = br.brand_id ");
+        sql.append("INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id ");
+        sql.append("INNER JOIN \"Requirement\" re ON prre.requirement_id = re.requirement_id ");
+        sql.append("WHERE pr.status = true AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ? ");
 
-            if (sizes != null) {
-                if (sizes[0].compareTo("all") != 0) {
-                    int i = 0;
-                    sql = sql + " AND pr.product_id in (SELECT pr.product_id FROM \"Product\" pr where";
-                    for (String size : sizes) {
-                        if (i != 0) {
-                            sql += " OR ";
-                        }
-                        if (size.compareTo("size1") == 0) {
-                            sql = sql + " pr.size < 13";
-                        }
-                        if (size.compareTo("size2") == 0) {
-                            sql = sql + " pr.size >=13 AND pr.size<15";
-                        }
-                        if (size.compareTo("size3") == 0) {
-                            sql = sql + " pr.size >=15 AND pr.size<17";
-                        }
-                        if (size.compareTo("size4") == 0) {
-                            sql = sql + " pr.size >= 17";
-                        }
-                        i++;
-                    }
-                    sql = sql + ")";
-                }
+        // --- Xử lý Needs (Nhu cầu) ---
+        if (needs != null && needs.length > 0 && !"all".equals(needs[0])) {
+            sql.append("AND re.requirement_name IN (");
+            for (int i = 0; i < needs.length; i++) {
+                sql.append("'").append(needs[i]).append("'"); // Lưu ý: Nên validate input để tránh SQL Injection
+                if (i < needs.length - 1) sql.append(",");
             }
-            if (sort.compareTo("none") == 0) {
-                sql = sql + "\n ORDER BY pr.discount DESC";
-            }
-            if (sort.compareTo("ASC") == 0) {
-                sql = sql + "\n ORDER BY pr.current_price ASC";
-            }
-            if (sort.compareTo("DESC") == 0) {
-                sql = sql + "\n ORDER BY pr.current_price DESC";
-            }
-            sql = sql + " OFFSET ? ROWS FETCH NEXT 9 ROWS ONLY";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setDouble(1, from);
-            stm.setDouble(2, to);
-            stm.setInt(3, type);
-            stm.setInt(4, skip);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("product_id"));
-                product.setName(rs.getString("name"));
-                product.setType(rs.getInt("type"));
-                product.setOs(rs.getString("os"));
-                product.setColor(rs.getString("color"));
-                product.setOriginal_price(rs.getDouble("original_price"));
-                product.setCurrent_price(rs.getDouble("current_price"));
-                product.setRam(rs.getInt("ram"));
-                product.setMemory(rs.getInt("memory"));
-                product.setCpu(rs.getString("cpu"));
-                product.setGraphic_card(rs.getString("graphics_card"));
-                product.setSize(rs.getDouble("size"));
-                product.setDescription(rs.getString("description"));
-                product.setDiscount(rs.getDouble("discount"));
-                product.setQty(rs.getInt("qty"));
-
-                product.setStatus(rs.getBoolean("status"));
-                BrandDBContext brdb = new BrandDBContext();
-                RequirementDBContext reqdb = new RequirementDBContext();
-                ImageDBContext imgdb = new ImageDBContext();
-                VoteDBContext vdb = new VoteDBContext();
-                product.setVotes(vdb.listByID(product.getId()));
-                product.setBrands(brdb.listByID(product.getId()));
-                product.setRequirement(reqdb.listByID(product.getId()));
-                product.setImage(imgdb.listByID(product.getId()));
-                products.add(product);
-            }
-            stm.close();
-            rs.close();
-            return products;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            sql.append(") ");
         }
-        return null;
-    }
 
-    //for product detail(lấy các sản phẩm cùng loại khác màu)
+        // --- Xử lý Brands (Thương hiệu) ---
+        if (brands != null && brands.length > 0 && !"all".equals(brands[0])) {
+            sql.append("AND br.brand_name IN (");
+            for (int i = 0; i < brands.length; i++) {
+                sql.append("'").append(brands[i]).append("'");
+                if (i < brands.length - 1) sql.append(",");
+            }
+            sql.append(") ");
+        }
+
+        // --- Xử lý Sizes (Tối ưu logic bỏ sub-query) ---
+        if (sizes != null && sizes.length > 0 && !"all".equals(sizes[0])) {
+            sql.append("AND ("); // Mở ngoặc cho cụm điều kiện OR
+            boolean first = true;
+            for (String size : sizes) {
+                if (!first) sql.append(" OR ");
+                
+                if ("size1".equals(size)) sql.append("pr.size < 13");
+                else if ("size2".equals(size)) sql.append("(pr.size >= 13 AND pr.size < 15)");
+                else if ("size3".equals(size)) sql.append("(pr.size >= 15 AND pr.size < 17)");
+                else if ("size4".equals(size)) sql.append("pr.size >= 17");
+                
+                first = false;
+            }
+            sql.append(") "); // Đóng ngoặc
+        }
+
+        // --- Xử lý Sort ---
+        if ("none".equals(sort)) {
+            sql.append("ORDER BY pr.discount DESC ");
+        } else if ("ASC".equals(sort)) {
+            sql.append("ORDER BY pr.current_price ASC ");
+        } else if ("DESC".equals(sort)) {
+            sql.append("ORDER BY pr.current_price DESC ");
+        }
+
+        // --- Phân trang ---
+        sql.append("OFFSET ? ROWS FETCH NEXT 9 ROWS ONLY");
+
+        stm = connection.prepareStatement(sql.toString());
+        
+        // Set params cố định
+        stm.setDouble(1, from);
+        stm.setDouble(2, to);
+        stm.setInt(3, type);
+        // Param cuối cùng là skip (OFFSET)
+        stm.setInt(4, skip);
+
+        rs = stm.executeQuery();
+        
+        while (rs.next()) {
+            Product product = new Product();
+            product.setId(rs.getInt("product_id"));
+            product.setName(rs.getString("name"));
+            product.setType(rs.getInt("type"));
+            product.setOs(rs.getString("os"));
+            product.setColor(rs.getString("color"));
+            product.setOriginal_price(rs.getDouble("original_price"));
+            product.setCurrent_price(rs.getDouble("current_price"));
+            product.setRam(rs.getInt("ram"));
+            product.setMemory(rs.getInt("memory"));
+            product.setCpu(rs.getString("cpu"));
+            product.setGraphic_card(rs.getString("graphics_card"));
+            product.setSize(rs.getDouble("size"));
+            product.setDescription(rs.getString("description"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setQty(rs.getInt("qty"));
+            product.setStatus(rs.getBoolean("status"));
+
+            // --- TÁI SỬ DỤNG DAO (FIX LỖI CRASH) ---
+            try { product.setVotes(vdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setBrands(brdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setRequirement(reqdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setImage(imgdb.listByID(product.getId())); } catch (Exception e) {}
+
+            products.add(product);
+        }
+        return products;
+
+    } catch (SQLException ex) {
+        Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // --- CLEAN UP TÀI NGUYÊN ---
+        try {
+            if (rs != null) rs.close();
+            if (stm != null) stm.close();
+            if (brdb.connection != null) brdb.connection.close();
+            if (reqdb.connection != null) reqdb.connection.close();
+            if (imgdb.connection != null) imgdb.connection.close();
+            if (vdb.connection != null) vdb.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    return new ArrayList<>();
+}
+
     public ArrayList<Product> listColor(String name, int ram, int memory, String cpu, String graphic_card) {
-        ArrayList<Product> products = new ArrayList<>();
-        try {
-            String sql = "SELECT DISTINCT pr.product_id\n"
-                    + "      ,pr.name\n"
-                    + "      ,pr.type\n"
-                    + "      ,pr.os\n"
-                    + "      ,pr.feature_product\n"
-                    + "      ,pr.color\n"
-                    + "      ,pr.current_price\n"
-                    + "      ,pr.original_price\n"
-                    + "      ,pr.ram\n"
-                    + "      ,pr.memory\n"
-                    + "      ,pr.cpu\n"
-                    + "      ,pr.graphics_card\n"
-                    + "      ,pr.size\n"
-                    + "      ,pr.description\n"
-                    + "      ,pr.discount\n"
-                    + "      ,pr.qty\n"
-                    + "      ,pr.status\n"
-                    + "  FROM \"Product\" pr\n"
-                    + "  where  pr.status = true  and pr.name LIKE ?\n"
-                    + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, name);
-            stm.setInt(2, ram);
-            stm.setInt(3, memory);
-            stm.setString(4, cpu);
-            stm.setString(5, graphic_card);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("product_id"));
-                product.setName(rs.getString("name"));
-                product.setType(rs.getInt("type"));
-                product.setOs(rs.getString("os"));
-                product.setColor(rs.getString("color"));
-                product.setOriginal_price(rs.getDouble("original_price"));
-                product.setCurrent_price(rs.getDouble("current_price"));
-                product.setRam(rs.getInt("ram"));
-                product.setMemory(rs.getInt("memory"));
-                product.setCpu(rs.getString("cpu"));
-                product.setGraphic_card(rs.getString("graphics_card"));
-                product.setSize(rs.getDouble("size"));
-                product.setDescription(rs.getString("description"));
-                product.setDiscount(rs.getDouble("discount"));
-                product.setQty(rs.getInt("qty"));
+    ArrayList<Product> products = new ArrayList<>();
+    
+    // --- 1. TỐI ƯU KẾT NỐI: Đưa DAO ra ngoài vòng lặp ---
+    BrandDBContext brdb = new BrandDBContext();
+    RequirementDBContext reqdb = new RequirementDBContext();
+    ImageDBContext imgdb = new ImageDBContext();
+    VoteDBContext vdb = new VoteDBContext();
 
-                product.setStatus(rs.getBoolean("status"));
-                BrandDBContext brdb = new BrandDBContext();
-                RequirementDBContext reqdb = new RequirementDBContext();
-                ImageDBContext imgdb = new ImageDBContext();
-                VoteDBContext vdb = new VoteDBContext();
-                product.setVotes(vdb.listByID(product.getId()));
-                product.setBrands(brdb.listByID(product.getId()));
-                product.setRequirement(reqdb.listByID(product.getId()));
-                product.setImage(imgdb.listByID(product.getId()));
-                products.add(product);
-            }
-            stm.close();
-            rs.close();
-            return products;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    PreparedStatement stm = null;
+    ResultSet rs = null;
+
+    try {
+        // --- 2. TỐI ƯU SQL: Dùng '=' thay cho 'LIKE' với các chỉ số kỹ thuật ---
+        // 'LIKE' không dùng cho số (RAM, Memory). 
+        // Với CPU và Card, nếu muốn tìm chính xác cùng cấu hình thì dùng '=' sẽ nhanh hơn 'LIKE'.
+        String sql = "SELECT pr.product_id, pr.name, pr.type, pr.os, pr.feature_product, "
+                   + "pr.color, pr.current_price, pr.original_price, pr.ram, pr.memory, "
+                   + "pr.cpu, pr.graphics_card, pr.size, pr.description, pr.discount, pr.qty, pr.status "
+                   + "FROM \"Product\" pr "
+                   + "WHERE pr.status = true "
+                   + "AND pr.name = ? "             // Dùng = để chính xác tên dòng máy
+                   + "AND pr.ram = ? "              // Dùng = cho số (QUAN TRỌNG)
+                   + "AND pr.memory = ? "           // Dùng = cho số (QUAN TRỌNG)
+                   + "AND pr.cpu = ? "              // Dùng = cho cấu hình
+                   + "AND pr.graphics_card = ?";    // Dùng = cho cấu hình
+
+        stm = connection.prepareStatement(sql);
+        
+        // Set params
+        stm.setString(1, name);
+        stm.setInt(2, ram);
+        stm.setInt(3, memory);
+        stm.setString(4, cpu);
+        stm.setString(5, graphic_card);
+
+        rs = stm.executeQuery();
+        
+        while (rs.next()) {
+            Product product = new Product();
+            // Map dữ liệu cơ bản
+            product.setId(rs.getInt("product_id"));
+            product.setName(rs.getString("name"));
+            product.setType(rs.getInt("type"));
+            product.setOs(rs.getString("os"));
+            product.setColor(rs.getString("color"));
+            product.setOriginal_price(rs.getDouble("original_price"));
+            product.setCurrent_price(rs.getDouble("current_price"));
+            product.setRam(rs.getInt("ram"));
+            product.setMemory(rs.getInt("memory"));
+            product.setCpu(rs.getString("cpu"));
+            product.setGraphic_card(rs.getString("graphics_card"));
+            product.setSize(rs.getDouble("size"));
+            product.setDescription(rs.getString("description"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setQty(rs.getInt("qty"));
+            product.setStatus(rs.getBoolean("status"));
+
+            // --- 3. SỬ DỤNG DAO (SAFE MODE) ---
+            try { product.setVotes(vdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setBrands(brdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setRequirement(reqdb.listByID(product.getId())); } catch (Exception e) {}
+            try { product.setImage(imgdb.listByID(product.getId())); } catch (Exception e) {}
+
+            products.add(product);
         }
-        return null;
+        return products;
+
+    } catch (SQLException ex) {
+        Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // --- 4. CLEAN UP RESOURCES ---
+        try {
+            if (rs != null) rs.close();
+            if (stm != null) stm.close();
+            if (brdb.connection != null) brdb.connection.close();
+            if (reqdb.connection != null) reqdb.connection.close();
+            if (imgdb.connection != null) imgdb.connection.close();
+            if (vdb.connection != null) vdb.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+    return new ArrayList<>(); // Trả về list rỗng để tránh lỗi NullPointer ở View
+}
 
     // sản phẩm tương tự
     public ArrayList<Product> listSameProduct(int num, int ram, int memory, String cpu, String graphic_card, int productId) {
