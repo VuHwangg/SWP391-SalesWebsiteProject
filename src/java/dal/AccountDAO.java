@@ -9,9 +9,7 @@ import model.Customer;
 
 public class AccountDAO extends DBContext {
 
-    // --- LOGIC QUAN TRỌNG VỀ STATUS ---
-    // Status trong Java là boolean (true/false)
-    // Status trong DB là int (0: Block, 1: Active, >1: Cũng coi là Active cho các data cũ)
+    // --- LOGIC MỚI: STATUS LÀ BOOLEAN TỪ JAVA XUỐNG DB ---
     
     public boolean loginGoogle(String email, boolean status) {
         try {
@@ -20,7 +18,9 @@ public class AccountDAO extends DBContext {
                     + " WHERE email = ? AND status = ?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
-            st.setInt(2, status ? 1 : 0); // Convert boolean -> int
+            // DB là boolean nên set thẳng boolean
+            st.setBoolean(2, status); 
+            
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return true;
@@ -31,11 +31,9 @@ public class AccountDAO extends DBContext {
         return false;
     }
 
-    public Account checkLoginCus(String username, String password, boolean status) {
+    public Account checkLoginCus(String username, String password) {
         Account acc = null;
         try {
-            // Lấy tất cả user khớp user/pass, không lọc cứng status = 1 ở câu lệnh SQL
-            // Để code Java tự xử lý logic status 1, 2, 3
             String sql = "SELECT * FROM \"Account\" WHERE username = ? AND password = ?";
             
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -48,13 +46,8 @@ public class AccountDAO extends DBContext {
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
                 
-                // LOGIC QUAN TRỌNG:
-                // Lấy status gốc từ DB (có thể là 1, 2, 3)
-                int dbStatus = rs.getInt("status");
-                
-                // Quy ước: Bất kỳ số nào > 0 đều là Active (true)
-                // 0 hoặc null là Block (false)
-                boolean isActive = (dbStatus > 0);
+                // Lấy thẳng boolean từ DB
+                boolean isActive = rs.getBoolean("status");
 
                 acc = new Account(name, pass, displayname, isActive);
             }
@@ -73,8 +66,8 @@ public class AccountDAO extends DBContext {
             ps.setString(2, password);
             ps.setString(3, displayname);
             
-            // Khi tạo mới, nếu true thì lưu là 1 (Chuẩn hóa data về 1)
-            ps.setInt(4, status ? 1 : 0);
+            // Set thẳng giá trị boolean vào câu lệnh insert
+            ps.setBoolean(4, status);
             
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -92,7 +85,10 @@ public class AccountDAO extends DBContext {
             ps.setString(2, address);
             ps.setString(3, phone);
             ps.setString(4, email);
-            ps.setInt(5, status ? 1 : 0);
+            
+            // Set thẳng giá trị boolean
+            ps.setBoolean(5, status);
+            
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,10 +96,10 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
+    // Role không liên quan status, giữ nguyên logic
     public boolean addRole(int roleid, String username) {
         boolean check = false;
         try {
-            // Đây mới là nơi lưu quyền (1: Admin, 2: Empt, ...)
             String sql = "INSERT INTO \"Role_Account\" (role_id, username) VALUES (?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, roleid);
@@ -115,7 +111,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public Account checkExistAcc(String username, boolean status) {
+    public Account checkExistAcc(String username) {
         Account acc = null;
         try {
             String sql = "SELECT * FROM \"Account\" WHERE username = ?";
@@ -126,9 +122,11 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                int dbStatus = rs.getInt("status");
-                // Logic: > 0 là tồn tại/active
-                acc = new Account(name, pass, displayname, dbStatus > 0);
+                
+                // Lấy boolean trực tiếp
+                boolean isActive = rs.getBoolean("status");
+                
+                acc = new Account(name, pass, displayname, isActive);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -152,7 +150,7 @@ public class AccountDAO extends DBContext {
         return role;
     }
 
-    public Customer getCust(String email, boolean status) {
+    public Customer getCust(String email) {
         Customer cust = null;
         try {
             String sql = "SELECT * FROM \"Customer\" WHERE email = ?";
@@ -165,14 +163,11 @@ public class AccountDAO extends DBContext {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
-                int dbStatus = rs.getInt("status");
                 
-                // Nếu cần check status đúng status truyền vào
-                // int reqStatus = status ? 1 : 0;
-                // if (dbStatus == reqStatus) { ... }
-                // Nhưng để an toàn, ta chỉ cần check > 0 là active
+                // Lấy boolean trực tiếp
+                boolean isActive = rs.getBoolean("status");
                 
-                cust = new Customer(customer_id, customer_name, address, phone, email1, dbStatus > 0);
+                cust = new Customer(customer_id, customer_name, address, phone, email1, isActive);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -213,7 +208,6 @@ public class AccountDAO extends DBContext {
     public ArrayList<Account> arrAcc() {
         ArrayList<Account> arr = new ArrayList<>();
         try {
-            // Join Account với Role_Account để lấy đúng Role
             String sql = "SELECT * FROM \"Account\" "
                     + " INNER JOIN \"Role_Account\" ON \"Account\".username = \"Role_Account\".username "
                     + " WHERE (\"Role_Account\".role_id = 2 OR \"Role_Account\".role_id = 3)";
@@ -224,12 +218,14 @@ public class AccountDAO extends DBContext {
                 String name = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                int dbStatus = rs.getInt("status");
                 int role_id = rs.getInt("role_id");
                 
-                // Chỉ thêm vào list nếu status > 0 (Active)
-                if (dbStatus > 0) {
-                    arr.add(new Account(name, pass, displayname, true, role_id));
+                // Lấy status kiểu boolean
+                boolean isActive = rs.getBoolean("status");
+                
+                // Vẫn giữ logic chỉ add Active vào list (nếu bạn muốn lấy hết thì bỏ if)
+                if (isActive) {
+                    arr.add(new Account(name, pass, displayname, isActive, role_id));
                 }
             }
         } catch (SQLException e) {
@@ -238,13 +234,17 @@ public class AccountDAO extends DBContext {
         return arr;
     }
 
-    public boolean updateStatusAccount(String username) {
+    // Sửa hàm này nhận thêm tham số boolean status để linh hoạt (Block hay Active đều dùng đc)
+    public boolean updateStatusAccount(String username, boolean status) {
         boolean check = false;
         try {
-            // Block user -> set status = 0
-            String sql = "UPDATE \"Account\" SET status = 0 WHERE username = ?";
+            String sql = "UPDATE \"Account\" SET status = ? WHERE username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, username);
+            
+            // Set boolean trực tiếp
+            ps.setBoolean(1, status);
+            ps.setString(2, username);
+            
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -253,7 +253,7 @@ public class AccountDAO extends DBContext {
     }
 
     public Account getAcc(String username) {
-        Account acc = new Account();
+        Account acc = null; 
         try {
             String sql = "SELECT * FROM \"Account\" "
                     + " INNER JOIN \"Role_Account\" ON \"Account\".username = \"Role_Account\".username "
@@ -266,14 +266,15 @@ public class AccountDAO extends DBContext {
                 String uname = rs.getString("username");
                 String pass = rs.getString("password");
                 String displayname = rs.getString("displayname");
-                int dbStatus = rs.getInt("status");
                 int role = rs.getInt("role_id");
                 
-                // Chỉ trả về nếu status > 0
-                if (dbStatus > 0) {
-                    acc = new Account(uname, pass, displayname, true, role);
+                // Lấy boolean
+                boolean isActive = rs.getBoolean("status");
+                
+                if (isActive) {
+                    acc = new Account(uname, pass, displayname, isActive, role);
                 } else {
-                     return null; // Tài khoản bị block
+                    return null; // Tài khoản bị block (false)
                 }
             }
         } catch (Exception ex) {
@@ -282,7 +283,6 @@ public class AccountDAO extends DBContext {
         return acc;
     }
 
-    // Các hàm khác giữ nguyên logic tương tự...
     public boolean updateAcc(String name, String username, String pass) {
         boolean check = false;
         try {
@@ -312,7 +312,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public Customer getlastCust(String email, boolean status) {
+    public Customer getlastCust(String email) {
         Customer cust = null;
         try {
             String sql = "SELECT * FROM \"Customer\" "
@@ -327,8 +327,11 @@ public class AccountDAO extends DBContext {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email1 = rs.getString("email");
-                int dbStatus = rs.getInt("status");
-                cust = new Customer(customer_id, customer_name, address, phone, email1, dbStatus > 0);
+                
+                // Lấy boolean
+                boolean isActive = rs.getBoolean("status");
+                
+                cust = new Customer(customer_id, customer_name, address, phone, email1, isActive);
             }
         } catch (SQLException e) {
             e.printStackTrace();
