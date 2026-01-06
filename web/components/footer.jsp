@@ -6,11 +6,11 @@
         <div class="footer-section footer-about">
             <div class="footer-logo">
                 <!--              <img src="index.jsp" alt="Logo">-->
-                <h1 style="color: white">Awns's Store</h1>
+                <h1 style="color: white">ApexTec</h1>
             </div>
             <div class="description">
                 <p>
-                    Awns's Store là cửa hàng chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá tốt nhất trên thị trường, miễn phí giao hàng trên toàn quốc. 
+                    ApexTec là cửa hàng chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá tốt nhất trên thị trường, miễn phí giao hàng trên toàn quốc. 
                 </p>
             </div>
             <div class="media-icons">
@@ -23,7 +23,7 @@
                     function mailto() {
                         Swal.fire({
                             icon: 'info',
-                            title: 'anwsshop@gmail.com',
+                            title: 'apextecp@gmail.com',
                             text: 'Gửi mail cho chúng tôi để được hỗ trợ !!'
                         })
                     }
@@ -50,25 +50,25 @@
                 <li>
                     <span><i class="bi bi-geo-alt-fill" aria-hidden="true"></i>&nbsp;</span>
                     <span>
-                        Trường Đại Học FPT Hà Nội <br>
-                        Khu Công nghệ cao Hòa Lạc, Km29 Đại lộ Thăng Long, Thạch Thất, Hà Nội<br>
+                        Trường Quốc Tế <br>
+                        Đại Học Quốc Gia Hà Nội<br>
                         Việt Nam
                     </span>
                 </li>
                 <li>
                     <span><i class="bi bi-telephone-fill" aria-hidden="true"></i>&nbsp;</span>
                     <span>
-                        <a href="tel:0833232520">+84 833 232 520</a>
+                        <a href="tel:0833232520">+84 328 696 018</a>
                     </span>
                 </li>
                 <li>
                     <span><i class="bi bi-envelope-fill" aria-hidden="true"></i>&nbsp;</span>
-                    <span><a href="mailto:anwsshop@gmail.com">anwsshop@gmail.com</a></span>
+                    <span><a href="mailto:apectex@gmail.com">apextec@gmail.com</a></span>
                 </li>
         </div>
     </div>
 
     <div class="footer-copyright">
-        <p>Copyright &copy2023 <br><span style="color: #fff;">A project of Team 1 - SE1643 - SWP391 - FPTUniversity</span></p>
+        <p>Made by ThoVu<br><span style="color: #fff;">VNU-IS Group 1 Website Project</span></p>
     </div>
 </footer>
