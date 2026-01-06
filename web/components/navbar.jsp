@@ -12,7 +12,7 @@
     <!-- Mini banner -->
     <div class="mini-banner">
         <div class="banner-text">
-            <span>Đặt trước Galaxy S23 Series - Ưu đãi khủng đến 10 triệu</span>
+            <span>Tết đến xuân về, ngập tràn ưu đãi</span>
         </div>
     </div>
 
@@ -20,9 +20,9 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand logo button-92" role="button" href="home">Apex Tec</a>
+            <a class="navbar-brand logo button-92" role="button" href="home">ApexTec</a>
             
-            <a class="navbar-brand logo mobile-logo" role="button" href="home">Apex Tec</a>
+            <a class="navbar-brand logo mobile-logo" role="button" href="home">ApexTec</a>
 
             <!-- Search box -->
             <form
