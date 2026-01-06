@@ -49,7 +49,7 @@
             <form id="login-form" action="LoginEmpt" method="post">
 
                 <div class="form-title">
-                    <h4 class="text-danger">Awns's Store</h4>
+                    <h4 class="text-danger">ApexTec</h4>
                     <h1>ADMIN LOGIN</h1>
                     <span>Chức năng đăng nhập chỉ dành cho quản trị viên</span>
 
