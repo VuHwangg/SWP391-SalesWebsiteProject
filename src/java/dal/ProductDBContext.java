@@ -29,7 +29,7 @@ public class ProductDBContext extends DBContext {
         try {
             String sql = "SELECT product_id, name, type, os, color, current_price, original_price, "
                        + "ram, memory, cpu, graphics_card, size, description, discount, qty, status "
-                       + "FROM \"Product\" WHERE status = 1 AND product_id = ?";
+                       + "FROM \"Product\" WHERE status = true AND product_id = ?";
                        
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
@@ -184,7 +184,7 @@ public class ProductDBContext extends DBContext {
                     + "		  ,qty\n"
                     + "		  ,status\n"
                     + "  FROM \"Product\"\n"
-                    + "  where  status = 1 and name like ? \n"
+                    + "  where  status = true and name like ? \n"
                     + "and ram like ? and memory like ? and cpu like ? and graphics_card like ? LIMIT 1";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
@@ -235,7 +235,7 @@ public class ProductDBContext extends DBContext {
         try {
             String sql = "SELECT product_id, name, type, os, color, current_price, original_price, "
                        + "ram, memory, cpu, graphics_card, size, description, discount, qty, status "
-                       + "FROM \"Product\" WHERE status = 1 AND qty > 0"; // Đã fix tên bảng
+                       + "FROM \"Product\" WHERE status = true AND qty > 0"; // Đã fix tên bảng
             
             if (type != -1) sql += " AND type = ?";
             if (topSale) sql += " ORDER BY discount DESC, ";
@@ -325,7 +325,7 @@ public class ProductDBContext extends DBContext {
                     + "  Inner Join \"Brand\" br on prbr.brand_id = br.brand_id\n"
                     + "  Inner Join \"Product_Requirement\" prre On pr.product_id = prre.product_id\n"
                     + "  Inner Join \"Requirement\" re on prre.requirement_id =re.requirement_id\n"
-                    + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
+                    + "  where  pr.status = true AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
                     sql = sql + " AND re.requirement_name in (";
@@ -405,7 +405,7 @@ public class ProductDBContext extends DBContext {
                     + "   OR ram ILIKE ?\n"
                     + "   OR memory ILIKE ?\n"
                     + "   OR cpu ILIKE ?\n"
-                    + "   OR graphics_card ILIKE ? AND status = 1";
+                    + "   OR graphics_card ILIKE ? AND status = true";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, txtSearch);
             stm.setString(2, txtSearch);
@@ -480,7 +480,7 @@ public class ProductDBContext extends DBContext {
                        + "INNER JOIN \"Brand\" br ON br.brand_id = prbr.brand_id "
                        + "INNER JOIN \"Product_Requirement\" prre ON pr.product_id = prre.product_id "
                        + "INNER JOIN \"Requirement\" re ON re.requirement_id = prre.requirement_id "
-                       + "WHERE pr.status = 1 AND (pr.name ILIKE ? "
+                       + "WHERE pr.status = true AND (pr.name ILIKE ? "
                        + "OR pr.os ILIKE ? "
                        + "OR pr.color ILIKE ? "
                        + "OR CAST(pr.ram AS TEXT) ILIKE ? "      // <-- Đã sửa: CAST sang TEXT
@@ -603,7 +603,7 @@ public class ProductDBContext extends DBContext {
                     + "  Inner Join \"Brand\" br on prbr.brand_id = br.brand_id\n"
                     + "  Inner Join \"Product_Requirement\" prre On pr.product_id = prre.product_id\n"
                     + "  Inner Join \"Requirement\" re on prre.requirement_id =re.requirement_id\n"
-                    + "  where  pr.status = 1 AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
+                    + "  where  pr.status = true AND pr.current_price >= ? AND pr.current_price <= ? AND pr.type = ?\n";
             if (needs != null) {
                 if (needs[0].compareTo("all") != 0) {
                     sql = sql + " AND re.requirement_name in (";
@@ -729,7 +729,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.qty\n"
                     + "      ,pr.status\n"
                     + "  FROM \"Product\" pr\n"
-                    + "  where  pr.status = 1  and pr.name LIKE ?\n"
+                    + "  where  pr.status = true  and pr.name LIKE ?\n"
                     + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
@@ -799,7 +799,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.qty\n"
                     + "      ,pr.status\n"
                     + "  FROM \"Product\" pr \n"
-                    + "  where  pr.status = 1 and product_id != ?\n"
+                    + "  where  pr.status = true and product_id != ?\n"
                     + "and pr.ram like ? and pr.memory like ? and pr.cpu like ? and pr.graphics_card like ? ORDER BY feature_product DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             
@@ -861,7 +861,7 @@ public class ProductDBContext extends DBContext {
                     + "      ,pr.cpu\n"
                     + "      ,pr.graphics_card\n"
                     + "  FROM \"Product\" pr\n"
-                    + "  where  pr.status = 1 and pr.name LIKE ?";
+                    + "  where  pr.status = true and pr.name LIKE ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             ResultSet rs = stm.executeQuery();
