@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
 
     <!-- LOGO -->
-    <a class="navbar-brand" href="#">Anwn's Store Management</a>
+    <a class="navbar-brand" href="#">ApexTec Management</a>
 
     <!-- MENU BUTTON FOR RESPONSIVE -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
