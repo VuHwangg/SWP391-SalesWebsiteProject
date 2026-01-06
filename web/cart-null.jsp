@@ -28,7 +28,10 @@
                     <i style="font-size: 250px; line-height: 1.3" class="bi bi-cart4"></i>
                     <h3 style="text-align: center">Bạn không có sản phẩm nào trong giỏ hàng</h3>
                         <div style="width: 60%;" class=" border-top border-dark border-1 my-3"></div>
-                        <a href="home" class="btn btn-danger w-50" style="font-weight: bold">Quay Lại Trang Chủ</a>
+                        <a href="home" class="btn w-50" 
+                       style="font-weight: bold; background-color: #662FB5; border-color: #662FB5; color: white;">
+                       Quay Lại Trang Chủ
+                    </a>
                 </div>
 
             </div>
