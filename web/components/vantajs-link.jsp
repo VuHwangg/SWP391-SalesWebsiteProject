@@ -9,7 +9,7 @@
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        skyColor: 0x903640,
-        cloudShadowColor: 0x501818
+        skyColor: 0x9055e6,
+        cloudShadowColor: 0x662FB5
     })
 </script>
