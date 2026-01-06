@@ -49,7 +49,7 @@
             <form id="login-form" action="LoginEmpt" method="post">
 
                 <div class="form-title">
-                    <h4 class="text-danger">ApexTec</h4>
+                    <h4 style="color: #662FB5">ApexTec</h4>
                     <h1>ADMIN LOGIN</h1>
                     <span>Chức năng đăng nhập chỉ dành cho quản trị viên</span>
 
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="form-input">
-                    <input type="submit" class="btn btn-danger" id="login-btn" value="Đăng nhập">
+                    <input type="submit" class="btn" style="color: #662FB5" id="login-btn" value="Đăng nhập">
                 </div>
             </form>
         </div>
