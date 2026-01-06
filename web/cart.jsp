@@ -77,7 +77,7 @@
                                             <!--Price-->
                                             <td style="vertical-align: middle;">
                                                 <div class="d-flex flex-column align-items-center">
-                                                    <span class="fw-bold" style="color: #fb1514; margin: 0">
+                                                    <span class="fw-bold" style="color: #662FB5; margin: 0">
                                                         ${helper.convertBigNum(cart.value.product.current_price)}&#8363;
                                                     </span>
                                                     <span class="fw-light text-decoration-line-through">
@@ -116,7 +116,7 @@
                             <span class="fw-bold">Cần thanh toán:</span>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <span class="fs-4 fw-bolder" style="color: #fb1514"
+                            <span class="fs-4 fw-bolder" style="color: #662FB5"
                                   >${helper.convertBigNum(requestScope.totalMoney)}&#8363;</span
                             >
                         </div>
