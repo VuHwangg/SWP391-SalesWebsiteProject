@@ -31,7 +31,7 @@ public class AccountDAO extends DBContext {
         return false;
     }
 
-    public Account checkLoginCus(String username, String password) {
+    public Account checkLoginCus(String username, String password, boolean status) {
         Account acc = null;
         try {
             String sql = "SELECT * FROM \"Account\" WHERE username = ? AND password = ?";
@@ -111,7 +111,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public Account checkExistAcc(String username) {
+    public Account checkExistAcc(String username, boolean status) {
         Account acc = null;
         try {
             String sql = "SELECT * FROM \"Account\" WHERE username = ?";
@@ -150,7 +150,7 @@ public class AccountDAO extends DBContext {
         return role;
     }
 
-    public Customer getCust(String email) {
+    public Customer getCust(String email, boolean status) {
         Customer cust = null;
         try {
             String sql = "SELECT * FROM \"Customer\" WHERE email = ?";
@@ -234,16 +234,13 @@ public class AccountDAO extends DBContext {
         return arr;
     }
 
-    // Sửa hàm này nhận thêm tham số boolean status để linh hoạt (Block hay Active đều dùng đc)
-    public boolean updateStatusAccount(String username, boolean status) {
+    public boolean updateStatusAccount(String username) {
         boolean check = false;
         try {
-            String sql = "UPDATE \"Account\" SET status = ? WHERE username = ?";
+            String sql = "UPDATE \"Account\" SET status = FALSE WHERE username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             
-            // Set boolean trực tiếp
-            ps.setBoolean(1, status);
-            ps.setString(2, username);
+            ps.setString(1, username);
             
             check = ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -312,7 +309,7 @@ public class AccountDAO extends DBContext {
         return check;
     }
 
-    public Customer getlastCust(String email) {
+    public Customer getlastCust(String email, boolean status) {
         Customer cust = null;
         try {
             String sql = "SELECT * FROM \"Customer\" "
