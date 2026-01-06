@@ -241,8 +241,8 @@ public class ProductDBContext extends DBContext {
         
         // Set params
         stm.setString(1, name);
-        stm.setInt(2, ram);
-        stm.setInt(3, memory);
+        stm.setString(2, String.valueOf(ram));
+        stm.setString(3, String.valueOf(memory));
         stm.setString(4, cpu);
         stm.setString(5, graphic_card);
 
@@ -853,8 +853,8 @@ public class ProductDBContext extends DBContext {
         
         // Set params
         stm.setString(1, name);
-        stm.setInt(2, ram);
-        stm.setInt(3, memory);
+        stm.setString(2, String.valueOf(ram));
+        stm.setString(3, String.valueOf(memory));
         stm.setString(4, cpu);
         stm.setString(5, graphic_card);
 
@@ -942,8 +942,8 @@ public class ProductDBContext extends DBContext {
 
         // Set params theo đúng thứ tự trong câu SQL
         stm.setInt(1, productId);
-        stm.setInt(2, ram);
-        stm.setInt(3, memory);
+        stm.setString(2, String.valueOf(ram));
+        stm.setString(3, String.valueOf(memory));
         stm.setString(4, cpu);
         stm.setString(5, graphic_card);
         stm.setInt(6, num); // LIMIT
