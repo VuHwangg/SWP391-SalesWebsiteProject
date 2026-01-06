@@ -1,4 +1,3 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="helper" class="util.Helper"/>
 <%@page import="model.Account"%> 
@@ -7,12 +6,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
 
-        <!-- Light Slider CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <title>Chi tiết sản phẩm</title>
@@ -21,18 +18,33 @@
             .lSPager {
                 display: none;
             }
+            /* Custom class cho màu tím */
+            .btn-purple {
+                background-color: #6f42c1;
+                border-color: #6f42c1;
+                color: white;
+            }
+            .btn-purple:hover {
+                background-color: #59359a; /* Màu tím đậm hơn khi di chuột */
+                border-color: #59359a;
+                color: white;
+            }
+            .text-purple {
+                color: #6f42c1 !important;
+            }
+            .bg-purple {
+                background-color: #6f42c1 !important;
+                color: white; /* Chữ trắng trên nền tím */
+            }
         </style>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-            <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
 
             <div class="main-container">
 
-                <!-- Content Center -->
                 <div class="content-center">
-                    <!-- Breadcrumb -->
                     <div class="breadcrumb">
                         <a href="home">Trang chủ</a>
                         <span>&nbsp;/&nbsp;</span>
@@ -101,14 +113,12 @@
                                 </c:forEach>
                             </div>
                             <c:if test="${requestScope.qty >= 1}">
-                                <!--Khi sản phẩm còn hàng-->    
                                 <div class="row">
                                     <div class="col-12" style="padding: 0">
                                         <form action="AddToCart" method="GET">
-                                            <!--Here-->
                                             <input type="number" name="quantity" class="numberInputHidden" value="1" hidden>
                                             <input type="text" name="product_id" value="${requestScope.product.id}" hidden>
-                                            <button type="submit" class="buy-btn btn btn-danger w-100" >
+                                            <button type="submit" class="buy-btn btn btn-purple w-100" >
                                                 Mua ngay
                                             </button>
                                         </form>
@@ -138,14 +148,13 @@
                                 </div>
                             </c:if>
                             <c:if test="${requestScope.qty < 1}">
-                                <!--Khi sản phẩm hết hàng-->            
                                 <div class="row ">
                                     <div class="col-12" style="padding: 0;">
                                         <div class="sold-out-box p-3">
                                             <h4 class="text-center">Sản phẩm đang tạm hết hàng</h4>
                                             <p class="text-start" style="margin-bottom: 8px">Liên hệ với chúng tôi để biết thêm thông tin chi tiết</p>
                                             <div class="d-flex justify-content-between flex-column">
-                                                <a class="btn btn-danger mb-2 fw-bold" href="mailto:awnsshop@gmail.com">awnsshop@gmail.com</a>
+                                                <a class="btn btn-purple mb-2 fw-bold" href="mailto:awnsshop@gmail.com">awnsshop@gmail.com</a>
                                                 <a class="btn btn-secondary fw-bold" href="tel:0833232520">+84 833 232 520</a>
                                             </div>
                                         </div>
@@ -186,15 +195,13 @@
                                                     <div class="product-status">
                                                         <c:if test="${sameList.qty >= 1}">
 
-                                                            <!--Còn hàng-->
                                                             <div class="text-success">
                                                                 <i class="bi bi-check-all"></i>
                                                                 <span>Còn hàng</span>
                                                             </div>
                                                         </c:if>
                                                         <c:if test="${sameList.qty < 1}">
-                                                            <!--Hết hàng-->
-                                                            <div class="text-danger">
+                                                            <div class="text-purple">
                                                                 <i class="bi bi-x-lg"></i>
                                                                 <span>Hết hàng</span>
                                                             </div>
@@ -215,7 +222,7 @@
                           </c:if>
                         <div class="row mt-3 w-100 mx-auto product-description">
 
-                            <div class="cover-block product-description-left col-md-7 bg-danger">
+                            <div class="cover-block product-description-left col-md-7 bg-purple">
                                 <h3>Đặc điểm nổi bật của ${requestScope.product.name}:</h3>
                                 <p>${requestScope.product.description}</p>
                             </div>
@@ -276,11 +283,6 @@
                                     <c:forEach var = "i" begin = "1" end = "5">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span>${i}<i class="bi bi-star-fill active"></i></span>
-                                            <!--old-->
-                                            <!--                                        <div class="progress">
-                                                                                     <div class="progress-bar bg-danger" style="width: 80%;"></div>
-                                                                                    </div>-->
-                                            <!--new-->
                                             <progress max="${helper.totalVote(requestScope.product)}" value="${helper.getNumofVote(requestScope.product, i)}" class="progress is-small m-0"></progress>
                                             <span>${helper.getNumofVote(requestScope.product, i)}</span>
                                         </div>
@@ -292,19 +294,15 @@
                                 <div class="border-top border-3 mt-4 mb-3 p-1 w-100" style="margin-bottom: 4px !important"></div>
                                 <%if (acc != null) {%>
                                 <h5 class="text-center">Bạn thấy sao về sản phẩm này ?</h5>
-                                <!-- Khi người dùng đã đăng nhập -->
-                                <button type="button" class="btn btn-danger fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                                <button type="button" class="btn btn-purple fs-5 w-100" style="max-width: 400px" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                                     Đánh giá ngay
-                                </button><!-- comment -->
-                                <%} else {%>
-                                <!-- Khi người dùng chưa đăng nhập -->
-                                <a href="login-user.jsp" class="btn btn-danger fs-5 w-100" style="max-width: 600px">
+                                </button><%} else {%>
+                                <a href="login-user.jsp" class="btn btn-purple fs-5 w-100" style="max-width: 600px">
                                     Đăng nhập ngay để có thể đánh giá sản phẩm
                                 </a>
                                 <%}%>
                             </div>
 
-                            <!-- Modal -->
                             <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -327,7 +325,7 @@
                                             </div>
                                             <input type="hidden" name="productId" value="${requestScope.product.id}"/>
                                             <div class="modal-footer">
-                                                <input type="submit" class="btn btn-danger w-100" value="Gửi đánh giá">
+                                                <input type="submit" class="btn btn-purple w-100" value="Gửi đánh giá">
                                             </div>
                                         </form>
                                     </div>
@@ -357,11 +355,10 @@
                                     </div>
                                 </div>
 
-                            </c:forEach>                       
+                            </c:forEach>                        
                         </div>
                     </div>
                 </div>
-                <!--footer-->
                 <%@include file="components/footer.jsp" %>
         </main>
 
@@ -373,10 +370,8 @@
             crossorigin="anonymous"
         ></script>
 
-        <!--JQuery 3.6.3 (used for Light Slider)-->
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
-        <!--Light Slider JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>
