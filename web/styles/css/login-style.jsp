@@ -29,7 +29,7 @@
     .header {
         position:relative;
         text-align:center;
-        background: linear-gradient(60deg, rgba(220,53,69,1) 0%, rgba(54,30,48,1) 100%);
+        background: linear-gradient(60deg, #662FB5 0%, #34185C 100%);
         color:white;
     }
     .logo {
@@ -267,12 +267,14 @@
     }
     
     .admin-login-btn {
-        color: #dc3545;
+        color: #662FB5; /* Đã đổi từ đỏ sang tím */
         text-decoration: none;
+        font-weight: 600; /* Thêm độ đậm cho dễ nhìn */
+        transition: color 0.3s ease;
     }
     
     .admin-login-btn:hover {
-        color: #83121d;
+        color: #34185C; /* Đã đổi từ đỏ đậm sang tím than (lấy từ màu gradient header của bạn) */
         text-decoration: underline;
     }
 </style>
