@@ -51,7 +51,7 @@
     }
 
     :root {
-        --main-bg-color: #dc3545;
+        --main-bg-color: #662FB5;
         --main-bg-color2: #198754;
         --sub-bg-color: rgb(227, 215, 37);
         --main-color-lightgray: #dee2e6;
@@ -69,11 +69,11 @@
         }
 
     progress::-webkit-progress-value {
-        background-color: #dc3545 !important;
+        background-color: #662FB5 !important;
     }
 
     progress::-moz-progress-bar {
-        background-color: #dc3545 !important;
+        background-color: #662FB5 !important;
     }
 
     table tr,
@@ -594,7 +594,7 @@
     }
 
     .list-product .filter .btn-filter:hover {
-        background-color: #960000;
+        background-color: #4a1d8a;
     }
 
     /* --------------------------- Sort block --------------------------------------*/
@@ -940,7 +940,7 @@
     }
 
     .profile-btn-red:hover {
-        background-color: #ab2936;
+        background-color: #471a87;
     }
 
     .profile-btn-white.active {
