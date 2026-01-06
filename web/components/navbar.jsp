@@ -20,9 +20,9 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand logo button-92" role="button" href="home">Awns's Store</a>
+            <a class="navbar-brand logo button-92" role="button" href="home">Apex Tec</a>
             
-            <a class="navbar-brand logo mobile-logo" role="button" href="home">Awns's Store</a>
+            <a class="navbar-brand logo mobile-logo" role="button" href="home">Apex Tec</a>
 
             <!-- Search box -->
             <form
