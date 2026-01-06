@@ -415,7 +415,7 @@ public class OrderDAO extends DBContext {
             String sql = "SELECT pro.product_id, COUNT(od.product_id) as num "
                     + " FROM \"Product\" pro "
                     + " LEFT JOIN \"Order_Details\" od ON pro.product_id = od.product_id "
-                    + " WHERE pro.status = 1 " // Nếu lỗi boolean, sửa thành: pro.status = true
+                    + " WHERE pro.status = true " // Nếu lỗi boolean, sửa thành: pro.status = true
                     + " GROUP BY pro.product_id "
                     + " ORDER BY num DESC LIMIT ?";
             PreparedStatement stm = connection.prepareStatement(sql);
