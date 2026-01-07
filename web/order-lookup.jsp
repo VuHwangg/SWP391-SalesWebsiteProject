@@ -1,4 +1,3 @@
- <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Order" %>
 <%@page import="java.sql.Date" %>
@@ -8,7 +7,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
@@ -16,12 +14,10 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-            <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
 
             <div class="py-5"></div>
             <div class="container min-vh-100">
-                <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
@@ -33,23 +29,22 @@
                         <h3 class="fw-bolder mb-4">DANH SÁCH ĐƠN HÀNG</h3>
                     </div>
                     <div class="col-md-4 col-sm-5 mb-4">
-                      
+                       
                     </div>
                 </div>
                 
-                <!--Order lookup-->
                 <div class="order-lookup">
                     
-                    <!--Order status-->
-               <%
-                                          ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
-                                          String err="";
-                                         
-                                                      
-                %>
+                    <%
+                                              ArrayList<Order> arr = (ArrayList<Order>) session.getAttribute("lst");
+                                              String err="";
+                                             
+                                                                  
+               %>
                     
                     <div class="order-status-group row text-center ">
-                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="ViewAllOrder">
+                        <a class="active order-status col-md border border-2 p-0 fw-bold" href="ViewAllOrder" 
+                           style="border-color: #6f42c1 !important; color: #6f42c1 !important;">
                             <span><%=session.getAttribute("total") %></span>
                             <br>
                             <span>Tất cả</span>
@@ -75,17 +70,16 @@
                             <span>Đơn đã bị hủy</span>
                         </a>
                     </div>
-               
-                <!--Order and detail-->
+                
                 <%
-                                           arr = (ArrayList<Order>) session.getAttribute("lst");
-                                          err="";
-                                         
-                                                      
+                                              arr = (ArrayList<Order>) session.getAttribute("lst");
+                                              err="";
+                                             
+                                                                  
                 %>
                 <table class="order-detail-table table text-center mt-5">
                     <tbody>
-                        <tr class="row fw-bold">
+                        <tr class="row fw-bold" style="background-color: #6f42c1; color: white;">
                             <th class="col border border-1 border-white">Mã đơn hàng</th>
                             <th class="col border border-1 border-white">Ngày đặt hàng</th>
                             <th class="col border border-1 border-white">Trạng thái</th>
@@ -103,25 +97,25 @@
                             <th class="col fw-normal"><%=arr.get(i).getOrder_id()%></th>
                             <th class="col fw-normal"><%=arr.get(i).getDate()%></th>
                                 <% if (arr.get(i).getStatus() == 1){
-                                            err = "Đang chuẩn bị";
-                                    }else {
-                                        if (arr.get(i).getStatus() == 2){
-                                        err = "Đang vận chuyển";
-                                        
+                                                err = "Đang chuẩn bị";
                                         }else {
-                                            if (arr.get(i).getStatus() == 3 ){
-                                            err ="Đã nhận hàng";
+                                            if (arr.get(i).getStatus() == 2){
+                                            err = "Đang vận chuyển";
+                                            
                                             }else {
-                                                 if (arr.get(i).getStatus() == 4 ){
-                                                err ="Đơn đã bị hủy";
-                                                }
+                                                 if (arr.get(i).getStatus() == 3 ){
+                                                 err ="Đã nhận hàng";
+                                                 }else {
+                                                      if (arr.get(i).getStatus() == 4 ){
+                                                      err ="Đơn đã bị hủy";
+                                                      }
+                                                  }
                                             }
                                         }
-                                    }
                                 %>
                             <th class="col fw-normal"><%=err%></th>
                             <th class="col fw-normal text-decoration-underline">
-                                <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>">Xem chi tiết</a>
+                                <a href="ViewOrderDetail?id=<%=arr.get(i).getOrder_id()%>" style="color: #6f42c1;">Xem chi tiết</a>
                             </th>
                             <th class="col fw-normal text-end"> <%=price%> &#8363;</th>
                         </tr>
@@ -133,7 +127,6 @@
                 </table>
               </div>
             </div>
-            <!--footer-->
             <%@include file="components/footer.jsp" %>
         </main>
 
