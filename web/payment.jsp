@@ -1,4 +1,3 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="helper" class="util.Helper"/>
@@ -6,20 +5,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
         <title>Thanh toán</title>
+        
+        <style>
+            .btn-purple {
+                background-color: #662FB5 !important;
+                border-color: #662FB5 !important;
+                color: #ffffff !important;
+            }
+            .btn-purple:hover {
+                background-color: #522591 !important; /* Màu tối hơn chút khi di chuột vào */
+                border-color: #522591 !important;
+            }
+        </style>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-            <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
 
             <div class="py-5"></div>
             <div class="container min-vh-100">
-                <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
@@ -28,10 +36,8 @@
                     <a href="#">Thanh toán</a>
                 </div>
 
-                <!--Main info-->
                 <form id="payment-form" class="needs-validation" action="Payment2" method="post" novalidate>
                     <div class="row mt-3 w-100 mx-auto">
-                        <!--Shipment Details-->
                         <div class="col-md-6 border border-2 rounded-1 p-4">
                             <div>
                                 <h3 class="fw-bold mb-4">THÔNG TIN GIAO HÀNG</h3>
@@ -99,7 +105,6 @@
 
 
 
-                        <!--Payment-->
                         <div class="col-md-6 border border-2 rounded-1 p-4">
                             <div>
                                 <h3 class="fw-bold mb-4">HÓA ĐƠN ĐẶT HÀNG</h3>
@@ -129,7 +134,6 @@
                             <%}
                                 }%>
 
-                            <!---Shipment cost-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <span class="fw-bolder fs-5">Phí vận chuyển</span>
@@ -146,22 +150,19 @@
                                     <span class="fw-bolder fs-4">Tổng cộng</span>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end ">
-                                    <span class="fs-4 fw-bolder" style="color: #dc3545;"><%=helper.convertBigNum(total_price)%> &#8363;</span>
+                                    <span class="fs-4 fw-bolder" style="color: #662FB5;"><%=helper.convertBigNum(total_price)%> &#8363;</span>
                                 </div>
 
 
                             </div>
                             <div class="d-flex justify-content-center mt-3">
-                                <button onclick="submitPayment()" type="submit" class="btn btn-danger w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
+                                <button onclick="submitPayment()" type="submit" class="btn btn-purple w-100 fs-4">HOÀN TẤT ĐẶT HÀNG</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
 
-
-            <!--footer-->
-            <!-- Modal -->
 
             <%@include file="components/footer.jsp" %>
         </main>
