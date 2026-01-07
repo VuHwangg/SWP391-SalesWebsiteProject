@@ -17,13 +17,13 @@
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-google"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-twitter"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-instagram" ></i></a>
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/VuHwangg/SWP391-SalesWebsiteProject"><i class="bi bi-github"></i></a>
+                <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-github"></i></a>
                 <a onclick="mailto()"><i class="bi bi-google"></i></a>
                 <script>
                     function mailto() {
                         Swal.fire({
                             icon: 'info',
-                            title: 'apextecp@gmail.com',
+                            title: 'apextec@gmail.com',
                             text: 'Gửi mail cho chúng tôi để được hỗ trợ !!'
                         })
                     }
