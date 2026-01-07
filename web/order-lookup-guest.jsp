@@ -1,4 +1,3 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Order" %>
 <%@page import="java.sql.Date" %>
@@ -9,8 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
-        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
@@ -18,13 +15,11 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-            <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
 
             <div class="py-5"></div>
             <div class="">
               <div class="container">
-                <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
@@ -35,8 +30,6 @@
                     <h3 class="fw-bolder mb-4">TRA CỨU ĐƠN HÀNG</h3>
                 </div>
               </div>
-                <!--Order lookup-->
-                
                 <div class="overlookup-guest">
                     <div class="bg-overlookup"></div>
                     <div class="search-block d-flex justify-content-center align-items-center">
@@ -48,10 +41,10 @@
                             </h1>
                             <br/>
                             <form action="SearchOrder" method="post">
-                                <div class="input-group" style="border: 2px solid #dc3545; border-radius: 24px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                                <div class="input-group" style="border: 2px solid #6f42c1; border-radius: 24px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                                     <input class="form-control border-end-0 border" type="text" name="search" placeholder="Tìm kiếm theo mã đơn hàng">
                                     <span class="input-group-append">
-                                        <button class="btn bg-danger" type="submit" style="border-radius: 0">
+                                        <button class="btn" type="submit" style="border-radius: 0; background-color: #6f42c1; border-color: #6f42c1;">
                                             <i class="bi bi-search" style="color: white"></i>
                                         </button>
                                     </span>
@@ -61,7 +54,6 @@
                     </div>
                 </div>
             </div>
-            <!--footer-->
             <%@include file="components/footer.jsp" %>
         </main>
 
