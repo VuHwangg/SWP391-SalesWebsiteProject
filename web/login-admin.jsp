@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="form-input">
-                    <input type="submit" class="btn" style="color: #662FB5" id="login-btn" value="Đăng nhập">
+                    <input type="submit" class="btn" style="background-color: #662FB5; color: white" id="login-btn" value="Đăng nhập">
                 </div>
             </form>
         </div>
