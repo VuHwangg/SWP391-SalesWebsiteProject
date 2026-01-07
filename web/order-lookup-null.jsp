@@ -1,10 +1,8 @@
-<!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Thẻ này không được bỏ vì giúp gõ tiếng việt trong file-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/head.jsp" %>
         <%@include file="styles/css/user-style.jsp" %>
@@ -12,12 +10,10 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
         <main>
-            <!--navigation bar-->
             <%@include file="components/navbar.jsp" %>
 
             <div class="py-5"></div>
             <div class="container min-vh-100">
-                <!-- Breadcrumb -->
                 <div class="breadcrumb" style="padding-top: 20px">
                     <a href="home">Trang chủ</a>
                     <span>&nbsp;/&nbsp;</span>
@@ -30,11 +26,10 @@
                     <i style="font-size: 250px; line-height: 1.3" class="bi bi-bag-x"></i>
                     <h3 style="text-align: center">Không tìm thấy đơn hàng</h3>
                         <div style="width: 60%;" class=" border-top border-dark border-1 my-3"></div>
-                        <a href="home" class="btn btn-danger w-50" style="font-weight: bold">Quay Lại Trang Chủ</a>
+                        <a href="home" class="btn w-50" style="font-weight: bold; background-color: #6f42c1; border-color: #6f42c1; color: white;">Quay Lại Trang Chủ</a>
                 </div>
 
             </div>
-            <!--footer-->
             <%@include file="components/footer.jsp" %>
         </main>
 
