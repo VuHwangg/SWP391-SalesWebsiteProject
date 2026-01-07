@@ -17,7 +17,6 @@
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-google"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-twitter"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-instagram" ></i></a>
-                <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-github"></i></a>
                 <a onclick="mailto()"><i class="bi bi-google"></i></a>
                 <script>
                     function mailto() {
