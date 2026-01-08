@@ -2,25 +2,45 @@
 <footer class="page-footer">
     
     <style>
+        /* Class riêng cho nút đăng ký */
         .btn-premium-service {
-            display: inline-block;
-            background-color: white;
-            color: #6f42c1; /* Màu chữ tím */
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            margin-left: 10px; /* Cách các icon ra một chút */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            white-space: nowrap; /* Giữ chữ trên 1 dòng */
+            /* Reset lại các thuộc tính đang làm nút bị méo/tròn */
+            width: auto !important;       /* Bỏ chiều rộng cố định của icon */
+            height: auto !important;      /* Bỏ chiều cao cố định của icon */
+            line-height: normal !important; /* Reset line-height */
+            
+            /* Style mới cho nút */
+            display: inline-block !important;
+            background-color: white !important;
+            color: #6f42c1 !important; /* Màu tím */
+            padding: 8px 20px !important; /* Tạo độ dày cho nút */
+            border-radius: 25px !important; /* Bo tròn kiểu viên thuốc thay vì hình tròn 50% */
+            text-decoration: none !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+            margin-left: 15px !important; /* Cách icon Google ra một chút */
+            
+            /* Hiệu ứng mượt mà */
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            white-space: nowrap !important; /* Không cho chữ xuống dòng */
+            border: 2px solid white !important; /* Viền trắng */
         }
 
-        /* Hiệu ứng phóng to khi hover */
+        /* Hiệu ứng khi di chuột vào */
         .btn-premium-service:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            color: #6f42c1; /* Đảm bảo màu chữ không bị đổi */
+            transform: scale(1.1) !important;
+            background-color: #f0f0f0 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+            color: #5a32a3 !important; /* Tím đậm hơn chút khi hover */
+            cursor: pointer;
+        }
+        
+        /* Căn chỉnh lại khung chứa icon để chúng nằm ngang hàng */
+        .media-icons-container {
+            display: flex !important;
+            align-items: center !important; /* Căn giữa theo chiều dọc */
+            flex-wrap: wrap !important;
+            gap: 10px; /* Khoảng cách giữa các phần tử */
         }
     </style>
 
@@ -35,16 +55,18 @@
                     ApexTec là cửa hàng chuyên cũng cấp các mặt hàng về công nghệ như điện thoại và laptop với mức giá tốt nhất trên thị trường, miễn phí giao hàng trên toàn quốc. 
                 </p>
             </div>
-            <div class="media-icons" style="display: flex; align-items: center; flex-wrap: wrap;">
+            
+            <div class="media-icons media-icons-container">
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-google"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-twitter"></i></a>
                 <a target="_blank" rel="noopener noreferrer" href="#" hidden><i class="bi bi-instagram" ></i></a>
                 
-                <a onclick="mailto()"><i class="bi bi-google"></i></a>
+                <a onclick="mailto()" style="cursor: pointer;"><i class="bi bi-google"></i></a>
 
                 <a href="https://forms.gle/64qVr67pcCJR2LRLA" target="_blank" class="btn-premium-service">
                     Đăng ký dịch vụ cao cấp
                 </a>
+
                 <script>
                     function mailto() {
                         Swal.fire({
@@ -91,6 +113,7 @@
                     <span><i class="bi bi-envelope-fill" aria-hidden="true"></i>&nbsp;</span>
                     <span><a href="mailto:apectex@gmail.com">apextec@gmail.com</a></span>
                 </li>
+            </ul>
         </div>
     </div>
 
